@@ -102,10 +102,15 @@ def prereg_failures(smoke: bool) -> list[str]:
         fails.append("git tag prereg-v1 does not exist")
     else:
         r = subprocess.run(["git", "diff", "--quiet", "prereg-v1", "--",
-                            "configs/thresholds.yaml"], cwd=ROOT)
+                            "configs/thresholds.yaml", "configs/eval"], cwd=ROOT)
         if r.returncode != 0:
-            fails.append("configs/thresholds.yaml differs from prereg-v1")
-    nulls = gates.find_nulls(load_yaml(ROOT / "configs" / "thresholds.yaml"))
+            fails.append("configs/thresholds.yaml or configs/eval/ differs from prereg-v1")
+    thr = load_yaml(ROOT / "configs" / "thresholds.yaml")
+    for rel, h in (thr.get("protocol_files_sha256") or {}).items():
+        f = ROOT / rel
+        if not f.exists() or sysinfo.sha256_file(f) != h:
+            fails.append(f"protocol file {rel} missing or hash differs from thresholds.yaml")
+    nulls = gates.find_nulls(thr)
     if nulls:
         fails.append(f"thresholds.yaml has undecided values: {nulls}")
     if env["harness_dirty"]:

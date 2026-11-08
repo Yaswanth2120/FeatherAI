@@ -64,12 +64,21 @@ level2_criteria:             # result criteria, judged against `baseline`
     tasks:
       mmlu:
         shots: 0
-        scoring: logit over A/B/C/D, single forward pass
+        prompt_template: configs/eval/mmlu_prompt.txt   # chat template applied
+        chat_template: the model GGUF's embedded tokenizer.chat_template, generation prompt on; its sha256 recorded per result
+        scoring: logits of the A/B/C/D token IDs at the first assistant position, single forward pass
+        answer_token_ids: configs/eval/mmlu_tokens.yaml  # re-verified against the real GGUF; abort on mismatch
         screening_set: stratified subset, n=2000, seed=20261108, proportional by subject
         gating_set: full test set, final baseline-vs-candidate comparison only
       gsm8k:
+        shots: 0
+        prompt_template: configs/eval/gsm8k_prompt.txt  # chat template applied (as for MMLU)
         decoding: greedy
-        max_new_tokens: set in the Task 3 eval config, committed before any quality result
+        max_new_tokens: 256
+        stop_sequences: ["\nQuestion:"]                 # plus the model's end-of-generation tokens
+        truncation: counts as incorrect                 # hit max_new_tokens without EOG or a stop sequence
+        answer_extraction: configs/eval/gsm8k_extract.py  # gated = strict "Answer: <number>" (last match);
+                                                          #   flexible last-number score reported, never gated
         screening_set: first 300 of a seed=20261108 shuffle of the test split
         gating_set: full test split (1319), final comparison only
     gate: point-estimate loss <= 2 pp AND paired-bootstrap 95% CI upper bound of loss <= 4 pp, on gating sets
@@ -87,3 +96,11 @@ level2_criteria:             # result criteria, judged against `baseline`
       If (max - min) / median > 5%, repeat the full 3-run set once. If it is still
       unstable, report it as unstable and do not average it away.
     report_all_attempts: true          # including invalid and rerun attempts
+
+# sha256 of every eval protocol file. measure.sh / the eval harness refuse to run if any
+# file differs from these hashes or from the prereg-v1 tag. Results record them too.
+protocol_files_sha256:
+  configs/eval/gsm8k_extract.py: e939f6d0a9169139e7a06031cbf203b5b9a287e371af6bc4316b75b9c2be5447
+  configs/eval/gsm8k_prompt.txt: 43854fc155183e5258db59807bea1af6b0e40df76f651fa8918578fbb6784d1b
+  configs/eval/mmlu_prompt.txt: 96195afb0134d56e55d0d32f91d2b69b631a572ed1c7a78f3f617129e5e21b1a
+  configs/eval/mmlu_tokens.yaml: ebade53b35342cb95d0a3f57153320be5d4c8bde70e959c1a0338db2f02c1630

@@ -1,0 +1,10 @@
+# MMLU answer-letter token IDs. Scored position: the first token of the assistant
+# turn (immediately after the chat template's generation prompt, which ends in
+# "\n\n" for Llama 3), so the no-leading-space forms are used.
+# Derived with llama-tokenize --no-bos at llama.cpp cd959bae99ff from
+# third_party/llama.cpp/models/ggml-vocab-llama-bpe.gguf
+# (sha256 97272e430d53bc7688f52d5e0ad8ea8f163ede9f1bbd1694feaa504797d5d96e).
+# Task 3 must re-tokenize "A".."D" with the real model GGUF and abort on any mismatch.
+tokenizer_label: llama3-bpe
+letters: {A: 32, B: 33, C: 34, D: 35}
+leading_space_forms_not_used: {A: 362, B: 426, C: 356, D: 423}

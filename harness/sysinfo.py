@@ -189,6 +189,9 @@ def environment() -> dict:
         "uv_lock_sha256": sha256_file(lock) if lock.exists() else None,
         "thresholds_sha256": sha256_file(thr) if thr.exists() else None,
         "prereg_tag_commit": _git("rev-list", "-n", "1", "prereg-v1"),
+        "protocol_files_sha256": {str(f.relative_to(ROOT)): sha256_file(f)
+                                  for f in sorted((ROOT / "configs" / "eval").glob("*"))
+                                  if f.is_file()},
         "harness_commit": _git("rev-parse", "HEAD"),
         "harness_dirty": bool(_git("status", "--porcelain")),
     }
