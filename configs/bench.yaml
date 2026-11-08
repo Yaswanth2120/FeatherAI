@@ -4,7 +4,8 @@ llama_server:
   binary: third_party/llama.cpp/build/bin/llama-server
   host: 127.0.0.1
   port: 18080
-  ctx_size: 4096
+  ctx_size: 2048            # Pareto-sweep budget context. 4096 is reserved for the later
+                            #   KV-cache experiment (separate config, not this one).
   n_gpu_layers: 999         # offload everything to Metal
   threads: 4                # = performance-core count on M2
   parallel: 1
@@ -16,6 +17,10 @@ llama_server:
     - "off"
     - --fit                # never auto-adjust ngl/ctx to free memory
     - "off"
+    - -ctk                 # KV cache type pinned explicitly (baseline: f16)
+    - f16
+    - -ctv
+    - f16
     - -lv                  # verbosity 4: logs ggml_metal_init + offload lines,
     - "4"                  #   which the harness requires to mark a run valid
 request:
@@ -25,6 +30,7 @@ request:
   cache_prompt: false       # never reuse KV between requests (would deflate TTFT)
 warmup_requests: 1          # per process, discarded
 warmup_prompt_set: warmup   # disjoint from all measured prompt sets
+tokenizer_label: llama3-bpe # key in prompt_sets/token_counts.yaml; checked against server prompt_n
 server_ready_timeout_s: 600
 request_timeout_s: 600
 modes:                      # primary first

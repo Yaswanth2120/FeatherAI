@@ -2,22 +2,25 @@
 # After tagging, this file must not change: measure.sh refuses to run model
 # benchmarks if it differs from the `prereg-v1` tag.
 #
-# Provenance: every number below was set by the user on 2026-11-08. None was
+# Provenance: every value below was set by the user on 2026-11-08. None was
 # chosen by Claude. A `null` means the user hasn't decided yet; the harness
 # refuses model runs while any value is null.
-schema: 1
+schema: 2
 
 validity_gates:              # measurement-validity gates, not result criteria
   swap_used_at_start_max_mb: 256        # abort the run before it starts if above
-  swap_growth_during_run_max_mb: 64     # run INVALID if exceeded
-  # A run is labelled "paging_contaminated" (kept, flagged) if system-wide
-  # vm_stat Pageins per second during the run exceeds this value.
-  # Calibrated from the idle-harness pilot (scripts/measure.sh pilot).
-  # Rule for deriving it from the pilot data: null (user to decide).
-  pagein_rate_contaminated_pages_per_s: null
-  pagein_rate_derivation_rule: null
-  # Free-memory precheck: abort unless available_bytes >= model_file_bytes + this.
-  free_memory_headroom_mb: null
+  swap_growth_during_run_max_mb: 64     # whole process lifetime; run INVALID if exceeded
+  # "paging_contaminated" flag (run kept, flagged): system-wide vm_stat Pageins
+  # per second over the MEASURED-REQUEST WINDOW ONLY (after load and warm-up,
+  # ending after the last measured request). Load/warm-up/shutdown page-ins
+  # are reported separately and are never gated.
+  pagein_rate_contaminated_pages_per_s: null   # filled from the pilot by the rule below
+  pagein_rate_derivation_rule: >-
+    limit = max(2 x highest pilot-window rate, 10 pages/s). Pilot: 5 windows of
+    300 s each (scripts/measure.sh pilot), run after a reboot, on AC power, Low Power Mode
+    off, from Terminal.app with VS Code and Claude Code closed. In the idle pilot
+    the whole window is the measured window.
+  free_memory_headroom_mb: 1024         # abort unless available >= model file bytes + this
   require_ac_power: true
   require_low_power_mode_off: true
   require_no_thermal_warning: true     # pmset -g therm, checked before every run
@@ -25,15 +28,40 @@ validity_gates:              # measurement-validity gates, not result criteria
   reboot_once_per_session: true        # one session per kern.boottime
 
 level2_criteria:             # result criteria, judged against `baseline`
-  baseline: null                       # named config, e.g. "<model> <quant>": user to decide
-  primary_memory_metric: peak_footprint_bytes_no_mmap   # /usr/bin/time -l, llama-server --load-mode none (v0.9.0 spelling of --no-mmap)
-  memory_reduction_min_frac: 0.25      # candidate <= 0.75 x baseline
-  decode_tps_min_frac_of_baseline: 0.90
-  kl_divergence:                       # llama-perplexity --kl-divergence vs saved Q8_0 logits
-    statistic: null                    # which reported statistic (e.g. mean KLD): user to decide
-    max: null
-  accuracy_loss_max:                   # baseline minus candidate, in percentage points
-    mmlu_points: null
-    gsm8k_points: null
-    decision_rule: null                # point estimate vs bootstrap CI bound: user to decide
-  aggregation: null                    # how 3 runs combine (e.g. median): user to decide
+  baseline:
+    model: Llama-3.2-3B-Instruct
+    quant: Q4_K_M
+    kv_cache: f16
+    ctx: 2048
+    load_mode: none                     # llama.cpp v0.9.0 spelling of --no-mmap
+    llama_cpp_commit: cd959bae99ff4bed22bef2604f45241c09bbb8c8
+  reference_for_kl: Llama-3.2-3B-Instruct Q8_0   # fp16 does not fit in 8 GB
+  primary_memory_metric: peak_footprint_bytes_no_mmap   # /usr/bin/time -l, --load-mode none
+  memory_reduction_min_frac: 0.25      # candidate peak footprint <= 0.75 x baseline
+  decode_tps_min_frac_of_baseline: 0.90   # of baseline median decode tok/s
+
+  kl_divergence:             # llama-perplexity --kl-divergence vs saved Q8_0 logits
+    statistic: mean_kld
+    gate: candidate 95% CI upper bound <= baseline mean_kld + margin
+    margin: 0.02
+    # How the 95% CI upper bound is computed. llama-perplexity prints
+    # "Mean KLD: m ± u", where u = sqrt(var/(n-1)) over tokens, treating tokens
+    # as independent (tools/perplexity/perplexity.cpp:1750-1757 at the pinned commit).
+    ci_method: null                    # user to decide (see report)
+    reported_not_gated: [p99_kld, same_top_p]
+
+  accuracy:
+    tasks:
+      mmlu: null                       # user to choose ONE: "full" or "stratified subset, n>=2000, seed=<int>"
+      gsm8k: test split, all 1319 items
+    gate: point-estimate loss <= 2 pp AND paired-bootstrap 95% CI upper bound of loss <= 4 pp
+    point_loss_max_pp: 2
+    ci_upper_loss_max_pp: 4
+    ci_method: paired bootstrap, 95%
+
+  aggregation:
+    runs: 3
+    statistic: median
+    report: [all_runs, min, max]
+    unstable_if: (max - min) / median > 0.05   # re-run; never average the instability away
+    max_reruns: null                   # user to decide (see report)

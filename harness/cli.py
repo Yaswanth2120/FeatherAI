@@ -29,7 +29,8 @@ CSV_FIELDS = [
     "valid", "invalid_reasons", "paging_contaminated",
     "peak_footprint_bytes", "max_rss_bytes",
     "decode_tok_s_median", "prompt_tok_s_median", "ttft_s_median", "load_s",
-    "pageins_delta", "pagein_rate_pages_per_s", "swap_growth_mb",
+    "load_pageins", "measured_window_pageins", "measured_window_s",
+    "pagein_rate_pages_per_s", "swap_growth_mb", "prompt_token_mismatches",
     "llama_cpp_commit", "mlx_version", "mlx_lm_version", "macos_version",
 ]
 
@@ -55,9 +56,35 @@ def append_csv(p: Path, row: dict) -> None:
         w.writerow(row)
 
 
-def load_prompts(name: str) -> list[str]:
+def load_prompts(name: str) -> list[dict]:
     p = ROOT / "configs" / "prompt_sets" / f"{name}.jsonl"
-    return [json.loads(l)["prompt"] for l in p.read_text().splitlines() if l.strip()]
+    return [json.loads(l) for l in p.read_text().splitlines() if l.strip()]
+
+
+def expected_tokens(label: str | None) -> dict:
+    """{prompt_id: {"tokens", "text_sha256"}} for the configured tokenizer."""
+    p = ROOT / "configs" / "prompt_sets" / "token_counts.yaml"
+    if not label or not p.exists():
+        return {}
+    return (load_yaml(p).get(label) or {}).get("prompts", {})
+
+
+def token_check(server: dict, prompts: list[dict], label: str | None) -> dict:
+    """Compare server prompt_n with the recorded count for each prompt."""
+    exp = expected_tokens(label)
+    by_id = {p["id"]: p for p in prompts}
+    rows, mismatches = [], []
+    for r in server["warmup"] + server["requests"]:
+        pid = r.get("prompt_id")
+        e = exp.get(pid)
+        stale = e is not None and pid in by_id and e["text_sha256"] != sysinfo.hashlib.sha256(
+            by_id[pid]["prompt"].encode()).hexdigest()
+        row = {"prompt_id": pid, "expected": e["tokens"] if e else None,
+               "server_prompt_n": r.get("prompt_n"), "count_stale": stale}
+        rows.append(row)
+        if e is None or stale or e["tokens"] != r.get("prompt_n"):
+            mismatches.append(pid)
+    return {"tokenizer_label": label, "per_prompt": rows, "mismatches": mismatches}
 
 
 def prereg_failures(smoke: bool) -> list[str]:
@@ -132,10 +159,11 @@ def cmd_pilot(a) -> int:
         post = sysinfo.snapshot()
         v = gates.post_run_validity(pre, post, None, thr, wall)
         windows.append({"index": i, "wall_s": wall, "pre": pre, "post": post,
-                        "pageins_delta": v["pageins_delta"],
+                        "note": "idle window: whole window = measured window",
+                        "pageins_delta": v["measured_window_pageins"],
                         "pagein_rate_pages_per_s": v["pagein_rate_pages_per_s"],
                         "swap_growth_mb": v["swap_growth_mb"]})
-        print(f"window {i}: {v['pageins_delta']} pageins in {wall:.0f}s "
+        print(f"window {i}: {v['measured_window_pageins']} pageins in {wall:.0f}s "
               f"= {v['pagein_rate_pages_per_s']:.3f} pages/s, swap {v['swap_growth_mb']:+.1f} MB")
     rates = [w["pagein_rate_pages_per_s"] for w in windows]
     out = {"kind": "idle_pilot", "smoke": smoke, "gate_failures_ignored": fails if smoke else [],
@@ -184,12 +212,13 @@ def do_run(d: Path, smoke: bool, model: Path, label: str, mode: str, seed: int,
         print(f"ABORT {run_id}:\n  " + "\n  ".join(fails), file=sys.stderr)
         return rec
     prompts = load_prompts(prompt_set)
-    t0 = time.monotonic()
     warm = load_prompts(cfg.get("warmup_prompt_set", "warmup"))
+    t0 = time.monotonic()
     server = run_server(cfg, model, mode, prompts, seed, d / f"{run_id}.log", warm)
-    wall = time.monotonic() - t0
+    t1 = time.monotonic()
     post = sysinfo.snapshot()
-    v = gates.post_run_validity(pre, post, server, thr, wall)
+    v = gates.post_run_validity(pre, post, server, thr, t1 - t0, t_pre=t0, t_post=t1)
+    rec["prompt_tokens"] = token_check(server, prompts + warm, cfg.get("tokenizer_label"))
     reqs = server["requests"]
 
     def med(k):
@@ -214,14 +243,18 @@ def do_run(d: Path, smoke: bool, model: Path, label: str, mode: str, seed: int,
         "seed": seed, "prompt_set": prompt_set, "model_sha256": rec["model"]["sha256"],
         "valid": v["valid"], "invalid_reasons": " | ".join(v["invalid_reasons"]),
         "paging_contaminated": v["paging_contaminated"], **m,
-        "pageins_delta": v["pageins_delta"],
+        "load_pageins": v["load_pageins"],
+        "measured_window_pageins": v["measured_window_pageins"],
+        "measured_window_s": v["measured_window_s"],
         "pagein_rate_pages_per_s": v["pagein_rate_pages_per_s"],
+        "prompt_token_mismatches": " ".join(rec["prompt_tokens"]["mismatches"]),
         "swap_growth_mb": v["swap_growth_mb"], **{k: e[k] for k in
         ("llama_cpp_commit", "mlx_version", "mlx_lm_version", "macos_version")}})
     print(f"{'SMOKE ' if smoke else ''}{run_id}: valid={v['valid']} "
           f"footprint={m['peak_footprint_bytes']} decode={m['decode_tok_s_median']} "
           f"prompt={m['prompt_tok_s_median']} ttft={m['ttft_s_median']} "
-          f"reasons={v['invalid_reasons']}")
+          f"load_pageins={v['load_pageins']} measured_rate={v['pagein_rate_pages_per_s']} "
+          f"token_mismatches={rec['prompt_tokens']['mismatches']} reasons={v['invalid_reasons']}")
     return rec
 
 

@@ -17,8 +17,9 @@
 One llama-server process under `/usr/bin/time -l`:
 load -> /health -> 1 warm-up request (prompt set `warmup`, discarded) -> each prompt in
 the measured set, streamed, sequentially -> SIGTERM -> parse the time -l report.
+Context is 2048 (Pareto-sweep budget); 4096 is reserved for the later KV-cache experiment.
 Each matrix entry runs once per mode (`no_mmap` = `--load-mode none` = primary memory
-metric, then `mmap`), with a 300 s cooldown between processes.
+metric, then `mmap`), with a 300 s cooldown between processes. Cost: a 24-process matrix is >= 2 h of cooldown alone.
 
 | Metric | Source |
 |---|---|
@@ -26,8 +27,10 @@ metric, then `mmap`), with a 300 s cooldown between processes.
 | max_rss_bytes | `/usr/bin/time -l` "maximum resident set size" |
 | decode tok/s | server `timings.predicted_per_second`, median over prompts |
 | prompt tok/s | server `timings.prompt_per_second`, median over prompts |
-| TTFT | client wall clock from request send to first streamed token, median |
-| page-ins, pageouts, swapins/outs | `vm_stat` delta across the process lifetime |
+| TTFT | client wall clock from request send to first streamed token, median. Includes localhost HTTP + SSE overhead: comparable across these runs, NOT with MLX numbers |
+| prompt token counts | `configs/prompt_sets/token_counts.yaml` (llama-tokenize, BOS included), checked against server `prompt_n` on every request |
+| page-ins (per phase) | `vm_stat` deltas at phase boundaries: load, warmup, measured, shutdown |
+| page-in rate (gated) | measured-request window only: pageins / window seconds |
 | swap growth | `sysctl vm.swapusage` used delta |
 | thermal | `pmset -g therm` before (gate) and after (recorded) |
 
@@ -38,7 +41,8 @@ below model size + headroom; llama.cpp not at the pinned commit; thresholds.yaml
 `prereg-v1` or contains nulls; uncommitted changes.
 Invalidate after the run: swap growth above the limit; Metal not confirmed (needs
 `ggml_metal_init: found device` and N/N layers offloaded); a request error; no time -l report.
-Flag (keep the run): page-in rate above the calibrated limit, `paging_contaminated`.
+Flag (keep the run): measured-window page-in rate above the calibrated limit, `paging_contaminated`.
+Recorded, not gated: prompt-token mismatches against token_counts.yaml.
 
 ## Smoke mode
 `session-start --smoke` writes to results/smoke/ (gitignored). Gates are logged, not enforced;

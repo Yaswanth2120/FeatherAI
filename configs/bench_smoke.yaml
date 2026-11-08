@@ -1,4 +1,5 @@
 # SMOKE-ONLY overrides for the 19 MB toy model (n_ctx_train=128). Never used for measurements.
+# Protocol parameters (design choices, not pass/fail thresholds). Changing
 # these changes what is measured, so their sha256 goes into every result.
 llama_server:
   binary: third_party/llama.cpp/build/bin/llama-server
@@ -16,6 +17,10 @@ llama_server:
     - "off"
     - --fit                # never auto-adjust ngl/ctx to free memory
     - "off"
+    - -ctk                 # KV cache type pinned explicitly (baseline: f16)
+    - f16
+    - -ctv
+    - f16
     - -lv                  # verbosity 4: logs ggml_metal_init + offload lines,
     - "4"                  #   which the harness requires to mark a run valid
 request:
@@ -25,6 +30,7 @@ request:
   cache_prompt: false       # never reuse KV between requests (would deflate TTFT)
 warmup_requests: 1          # per process, discarded
 warmup_prompt_set: warmup_smoke   # disjoint from all measured prompt sets
+tokenizer_label: smoke-stories15M # key in prompt_sets/token_counts.yaml; checked against server prompt_n
 server_ready_timeout_s: 600
 request_timeout_s: 600
 modes:                      # primary first

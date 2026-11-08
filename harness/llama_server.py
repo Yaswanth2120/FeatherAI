@@ -13,7 +13,7 @@ import subprocess
 import time
 from pathlib import Path
 
-from .sysinfo import ROOT, parse_time_l
+from .sysinfo import ROOT, parse_time_l, snapshot
 
 # Evidence that the Metal backend initialised and every layer was offloaded.
 # Strings taken from this build's log at -lv 4 (llama.cpp v0.9.0, cd959ba).
@@ -121,24 +121,38 @@ def complete(host, port, prompt: str, req: dict, seed: int, timeout: float) -> d
     }
 
 
-def run_server(cfg: dict, model: Path, mode: str, prompts: list[str], seed: int,
-               log_path: Path, warmup_prompts: list[str]) -> dict:
+def run_server(cfg: dict, model: Path, mode: str, prompts: list[dict], seed: int,
+               log_path: Path, warmup_prompts: list[dict]) -> dict:
+    """prompts / warmup_prompts: [{"id": ..., "prompt": ...}].
+
+    System snapshots are taken at phase boundaries (outside any request) so
+    paging can be attributed to load, warm-up, measured requests, or shutdown.
+    """
     s, req = cfg["llama_server"], cfg["request"]
     cmd = build_cmd(cfg, model, mode)
-    out = {"cmd": cmd, "warmup": [], "requests": [], "error": None}
+    out = {"cmd": cmd, "warmup": [], "requests": [], "error": None, "phase_snapshots": {}}
+
+    def mark(name):
+        out["phase_snapshots"][name] = {"t_monotonic": time.monotonic(), "snap": snapshot()}
+
     with open(log_path, "w") as log:
         t_launch = time.monotonic()
         proc = subprocess.Popen(cmd, stdout=log, stderr=subprocess.STDOUT)
         try:
             out["load_s"] = _wait_ready(s["host"], s["port"], proc, cfg["server_ready_timeout_s"])
+            mark("after_load")
             # Warm-up prompts are disjoint from every measured prompt set.
             for i in range(cfg["warmup_requests"]):
                 wp = warmup_prompts[i % len(warmup_prompts)]
-                out["warmup"].append(complete(s["host"], s["port"], wp, req,
-                                              seed, cfg["request_timeout_s"]))
+                out["warmup"].append(complete(s["host"], s["port"], wp["prompt"], req,
+                                              seed, cfg["request_timeout_s"])
+                                     | {"prompt_id": wp["id"]})
+            mark("after_warmup")
             for i, p in enumerate(prompts):
-                r = complete(s["host"], s["port"], p, req, seed + i, cfg["request_timeout_s"])
-                out["requests"].append(r | {"prompt_index": i})
+                r = complete(s["host"], s["port"], p["prompt"], req, seed + i,
+                             cfg["request_timeout_s"])
+                out["requests"].append(r | {"prompt_index": i, "prompt_id": p["id"]})
+            mark("after_measured")
         except Exception as e:  # recorded; run is marked invalid
             out["error"] = f"{type(e).__name__}: {e}"
         finally:
