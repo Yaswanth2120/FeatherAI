@@ -47,7 +47,9 @@ def test_gold_missing_raises():
     ("Answer: 3 / 4", "0.75"),
     ("Answer: .5", "0.5"),
     ("Answer: 10", "10"),
-    ("Answer: 18 apples", "18"),
+    ("Answer: 18 apples", "18"),               # first number after last Answer:
+    ("Answer: 25%", "25"),
+    ("Answer: 5 + 3 = 8", "5"),                # explicit: first number only; scores wrong if gold is 8
     ("**Answer:** 18", "18"),                  # Markdown emphasis
     ("Answer: **18**", "18"),
     ("answer: 18", "18"),                      # case-insensitive tag
@@ -64,6 +66,7 @@ def test_strict_extract(completion, want):
     "Answer: eighteen",
     "Answer: 18\nActually I'm not sure.\nAnswer: unsure",   # final Answer has no number
     "Answer: 1/0",                             # division by zero
+    "Answer: about 18",                        # word before the number = format failure
     "The total is 18.",                        # no Answer tag at all
 ])
 def test_strict_no_prediction(completion):
@@ -88,6 +91,10 @@ def test_score_rules():
     assert not s["strict_correct"] and not s["flexible_correct"] and not s["format_failure"]
     s = gx.score("Answer: unsure", g, truncated=False)          # tag present, no number
     assert s["format_failure"] and s["answer_tag_present"]
+    s = gx.score("Answer: 10 + 8 = 18", g, truncated=False)     # first number (10) only
+    assert s["strict_pred"] == "10" and not s["strict_correct"] and not s["format_failure"]
+    s = gx.score("Answer: about 18", g, truncated=False)
+    assert s["format_failure"] and not s["strict_correct"] and s["flexible_correct"]
     s = gx.score("Answer: 17", g, truncated=False)              # reasoning miss, format fine
     assert not s["strict_correct"] and not s["format_failure"]
 

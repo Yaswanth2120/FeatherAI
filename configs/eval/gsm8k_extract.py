@@ -6,6 +6,10 @@ Rules
   emphasis (*, _), a currency sign ($), and/or a sign (-$5 or $-5).
   If the last "Answer:" has no parseable number, there is no prediction, even
   if an earlier "Answer:" line had one (the model's final word counts).
+- The prediction is the FIRST number immediately after the last "Answer:";
+  anything after it is ignored ("Answer: 5 + 3 = 8" -> 5, "Answer: 18 apples"
+  -> 18, "Answer: 25%" -> 25). Any word before the number is a format failure
+  ("Answer: about 18" -> no prediction).
 - Numbers: thousands commas allowed; trailing period ignored; 18.0 == 18.
   A simple fraction a/b is evaluated exactly (1/2 == 0.5); b == 0 is no number.
 - Truncated completions (hit max_new_tokens without end-of-generation or a stop

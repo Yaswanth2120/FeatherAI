@@ -117,7 +117,7 @@ dry_run_amendment:
 # sha256 of every eval protocol file. measure.sh / the eval harness refuse to run if any
 # file differs from these hashes or from the prereg-v1 tag. Results record them too.
 protocol_files_sha256:
-  configs/eval/gsm8k_extract.py: 564dac6a0d24286efecbd8c52917b1f28ed479c9b94578c65bd550b9619d99f6
+  configs/eval/gsm8k_extract.py: 1e8c9b4033354bd34ecbb8c0057e6092c1b3c0a83d032b007f8563de34c943c7
   configs/eval/gsm8k_prompt.txt: 43854fc155183e5258db59807bea1af6b0e40df76f651fa8918578fbb6784d1b
   configs/eval/mmlu_prompt.txt: 96195afb0134d56e55d0d32f91d2b69b631a572ed1c7a78f3f617129e5e21b1a
   configs/eval/mmlu_score.py: b05666a026852a0fe0abbd4cde82181c0a044df0f70982a4e3e79a69f98cba2d
