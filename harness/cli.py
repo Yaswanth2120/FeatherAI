@@ -308,7 +308,7 @@ def main(argv=None) -> int:
     s = sp.add_parser("session-start"); s.add_argument("--smoke", action="store_true")
     s.set_defaults(f=cmd_session_start)
     s = sp.add_parser("pilot"); s.add_argument("--session", required=True)
-    s.add_argument("--windows", type=int, default=5); s.add_argument("--window-s", type=float, default=300)
+    s.add_argument("--windows", type=int, default=20); s.add_argument("--window-s", type=float, default=30)
     s.set_defaults(f=cmd_pilot)
     s = sp.add_parser("matrix"); s.add_argument("--session", required=True)
     s.add_argument("--matrix", required=True); s.set_defaults(f=cmd_matrix)

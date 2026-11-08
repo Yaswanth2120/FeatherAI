@@ -8,9 +8,9 @@
 ## Measuring (you, from Terminal.app, VS Code and Claude Code closed)
 1. Reboot. Plug in AC power. Turn Low Power Mode off.
 2. `scripts/measure.sh check` prints environment and gate status, and runs nothing.
-3. `scripts/measure.sh pilot` runs the idle-harness pilot (default 5 x 300 s windows, no model)
+3. `scripts/measure.sh pilot` runs the idle-harness pilot (default 20 x 30 s windows, no model)
    and writes results/sessions/<id>/pilot-*.json.
-4. Use the pilot to fill `pagein_rate_contaminated_pages_per_s` by the pre-declared rule, commit, then `git tag prereg-v1`.
+4. `uv run python scripts/derive_pagein_limit.py <pilot.json>` applies the pre-declared rule; write the value, commit, then `git tag prereg-v1`.
 5. Reboot again (one session per boot), then `scripts/measure.sh matrix configs/matrix.yaml`.
 
 ## What one run is

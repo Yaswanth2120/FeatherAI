@@ -16,10 +16,11 @@ validity_gates:              # measurement-validity gates, not result criteria
   # are reported separately and are never gated.
   pagein_rate_contaminated_pages_per_s: null   # filled from the pilot by the rule below
   pagein_rate_derivation_rule: >-
-    limit = max(2 x highest pilot-window rate, 10 pages/s). Pilot: 5 windows of
-    300 s each (scripts/measure.sh pilot), run after a reboot, on AC power, Low Power Mode
-    off, from Terminal.app with VS Code and Claude Code closed. In the idle pilot
-    the whole window is the measured window.
+    limit = max(2 x highest pilot-window rate, 10 pages/s). Pilot: 20 consecutive
+    30 s windows (10 min total; scripts/measure.sh pilot), under the same conditions as
+    measured runs: after a reboot, on AC power, Low Power Mode off, from Terminal.app with
+    VS Code and Claude Code closed. In the idle pilot the whole window is the
+    measured window. Computed by scripts/derive_pagein_limit.py.
   free_memory_headroom_mb: 1024         # abort unless available >= model file bytes + this
   require_ac_power: true
   require_low_power_mode_off: true
@@ -44,17 +45,34 @@ level2_criteria:             # result criteria, judged against `baseline`
     statistic: mean_kld
     gate: candidate 95% CI upper bound <= baseline mean_kld + margin
     margin: 0.02
-    # How the 95% CI upper bound is computed. llama-perplexity prints
-    # "Mean KLD: m ± u", where u = sqrt(var/(n-1)) over tokens, treating tokens
-    # as independent (tools/perplexity/perplexity.cpp:1750-1757 at the pinned commit).
-    ci_method: null                    # user to decide (see report)
+    # The margin is the user's judgment, not derived from evidence. Not to be
+    # adjusted after results.
+    ci_method: block_bootstrap_over_chunks   # blocks = llama-perplexity chunks
+    bootstrap_resamples: 10000
+    bootstrap_seed: 20261108
+    ci_fallback: >-
+      If per-chunk KLD cannot be extracted, run llama-perplexity on 10 disjoint
+      text slices (separate logits files) and use a t-interval across slices.
+    # llama-perplexity prints "Mean KLD: m ± u", where u = sqrt(var/(n-1)) over tokens,
+    # treating tokens as independent (tools/perplexity/perplexity.cpp:1750-1757).
+    # u is reported but never used in the gate.
+    printed_uncertainty_used_in_gate: false
     reported_not_gated: [p99_kld, same_top_p]
 
   accuracy:
+    # Screening results never count as a pass or fail; only gating-set results do.
     tasks:
-      mmlu: null                       # user to choose ONE: "full" or "stratified subset, n>=2000, seed=<int>"
-      gsm8k: test split, all 1319 items
-    gate: point-estimate loss <= 2 pp AND paired-bootstrap 95% CI upper bound of loss <= 4 pp
+      mmlu:
+        shots: 0
+        scoring: logit over A/B/C/D, single forward pass
+        screening_set: stratified subset, n=2000, seed=20261108, proportional by subject
+        gating_set: full test set, final baseline-vs-candidate comparison only
+      gsm8k:
+        decoding: greedy
+        max_new_tokens: set in the Task 3 eval config, committed before any quality result
+        screening_set: first 300 of a seed=20261108 shuffle of the test split
+        gating_set: full test split (1319), final comparison only
+    gate: point-estimate loss <= 2 pp AND paired-bootstrap 95% CI upper bound of loss <= 4 pp, on gating sets
     point_loss_max_pp: 2
     ci_upper_loss_max_pp: 4
     ci_method: paired bootstrap, 95%
@@ -63,5 +81,9 @@ level2_criteria:             # result criteria, judged against `baseline`
     runs: 3
     statistic: median
     report: [all_runs, min, max]
-    unstable_if: (max - min) / median > 0.05   # re-run; never average the instability away
-    max_reruns: null                   # user to decide (see report)
+    unstable_if: (max - min) / median > 0.05
+    max_reruns: 1                      # per run slot, only for gate failures (invalid runs)
+    instability_rule: >-
+      If (max - min) / median > 5%, repeat the full 3-run set once. If it is still
+      unstable, report it as unstable and do not average it away.
+    report_all_attempts: true          # including invalid and rerun attempts

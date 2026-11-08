@@ -3,7 +3,7 @@
 # (and Claude Code) closed, on AC power, Low Power Mode off, after a fresh reboot.
 #
 #   scripts/measure.sh check                     # show environment + gate status, run nothing
-#   scripts/measure.sh pilot [windows] [secs]    # idle-harness pilot (no model)
+#   scripts/measure.sh pilot [windows] [secs]    # idle-harness pilot, default 20 x 30 s (no model)
 #   scripts/measure.sh matrix configs/matrix.yaml
 #
 # One session per boot: `pilot` and `matrix` each start a session, and the
@@ -30,7 +30,7 @@ case "$cmd" in
     echo "session: $SESSION"
     # caffeinate -i: keep the Mac from idle-sleeping during the session.
     exec caffeinate -i "${PY[@]}" pilot --session "$SESSION" \
-      --windows "${1:-5}" --window-s "${2:-300}" ;;
+      --windows "${1:-20}" --window-s "${2:-30}" ;;
   matrix)
     [ -f "${1:-}" ] || { echo "usage: $0 matrix <matrix.yaml>" >&2; exit 64; }
     "${PY[@]}" check >/dev/null || { echo "ABORT: gates failing; run '$0 check'" >&2; exit 2; }

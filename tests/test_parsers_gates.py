@@ -217,3 +217,27 @@ def test_bench_ctx_and_kv():
 
 def test_find_nulls():
     assert gates.find_nulls({"a": None, "b": {"c": None, "d": 1}}) == ["a", "b.c"]
+
+
+# ---------------------------------------------------------------- pilot rule
+def _pilot(rates, wall=30.0, smoke=False, fails=()):
+    return {"kind": "idle_pilot", "smoke": smoke, "gate_failures_ignored": list(fails),
+            "page_size": 16384,
+            "windows": [{"index": i, "wall_s": wall, "pagein_rate_pages_per_s": r}
+                        for i, r in enumerate(rates)]}
+
+
+def test_derive_pagein_limit():
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("dpl", ROOT / "scripts/derive_pagein_limit.py")
+    dpl = importlib.util.module_from_spec(spec); spec.loader.exec_module(dpl)
+    r = dpl.derive(_pilot([1.0] * 19 + [7.5]))
+    assert r["ok"] and r["limit_pages_per_s"] == 15.0          # 2 x 7.5
+    assert dpl.derive(_pilot([0.5] * 20))["limit_pages_per_s"] == 10.0   # floor
+    assert not dpl.derive(_pilot([1.0] * 5))["ok"]             # wrong window count
+    assert not dpl.derive(_pilot([1.0] * 20, wall=300))["ok"]  # wrong window length
+    assert not dpl.derive(_pilot([1.0] * 20, smoke=True))["ok"]
+    assert not dpl.derive(_pilot([1.0] * 20, fails=["not on AC power"]))["ok"]
+    thr_rule = yaml.safe_load((ROOT / "configs/thresholds.yaml").read_text())[
+        "validity_gates"]["pagein_rate_derivation_rule"]
+    assert "20 consecutive" in thr_rule and "30 s" in thr_rule and "10 pages/s" in thr_rule
