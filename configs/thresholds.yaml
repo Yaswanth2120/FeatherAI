@@ -68,6 +68,9 @@ level2_criteria:             # result criteria, judged against `baseline`
         chat_template: the model GGUF's embedded tokenizer.chat_template, generation prompt on; its sha256 recorded per result
         scoring: logits of the A/B/C/D token IDs at the first assistant position, single forward pass
         answer_token_ids: configs/eval/mmlu_tokens.yaml  # re-verified against the real GGUF; abort on mismatch
+        scorer: configs/eval/mmlu_score.py
+        reported_not_gated: [letter_mass_mean, letter_mass_min, letter_mass_p05, letter_mass_median]
+        # letter_mass = full-vocab softmax mass on A/B/C/D; low mass = prompt failure
         screening_set: stratified subset, n=2000, seed=20261108, proportional by subject
         gating_set: full test set, final baseline-vs-candidate comparison only
       gsm8k:
@@ -77,8 +80,10 @@ level2_criteria:             # result criteria, judged against `baseline`
         max_new_tokens: 256
         stop_sequences: ["\nQuestion:"]                 # plus the model's end-of-generation tokens
         truncation: counts as incorrect                 # hit max_new_tokens without EOG or a stop sequence
-        answer_extraction: configs/eval/gsm8k_extract.py  # gated = strict "Answer: <number>" (last match);
-                                                          #   flexible last-number score reported, never gated
+        answer_extraction: configs/eval/gsm8k_extract.py  # gated = strict: number after the LAST "Answer:"
+        gated_metric: strict_acc                          # fixed; never to be changed to the lenient score
+        reported_not_gated: [flexible_acc, truncation_rate, format_failure_rate, answer_tag_rate]
+        # format_failure = not truncated and no parseable number after the last "Answer:"
         screening_set: first 300 of a seed=20261108 shuffle of the test split
         gating_set: full test split (1319), final comparison only
     gate: point-estimate loss <= 2 pp AND paired-bootstrap 95% CI upper bound of loss <= 4 pp, on gating sets
@@ -97,10 +102,23 @@ level2_criteria:             # result criteria, judged against `baseline`
       unstable, report it as unstable and do not average it away.
     report_all_attempts: true          # including invalid and rerun attempts
 
+# One permitted pre-test amendment (decided by the user 2026-11-08).
+dry_run_amendment:
+  when: first step of Task 3, before ANY screening or gating output exists
+  model: baseline (Llama-3.2-3B-Instruct Q4_K_M, as defined above)
+  items:
+    gsm8k: first 20 of a seed=20261108 shuffle of the TRAIN split
+    mmlu: 20 items sampled with seed=20261108 from the DEV split
+  counts_as_result: false
+  trigger: high GSM8K format_failure_rate or low MMLU letter_mass (user judgment; no numeric threshold)
+  action: amend prompt files, re-hash, commit, tag prereg-v2, log in docs/experiment_log.md
+  legitimacy_condition: no test-split output from any config has been seen
+
 # sha256 of every eval protocol file. measure.sh / the eval harness refuse to run if any
 # file differs from these hashes or from the prereg-v1 tag. Results record them too.
 protocol_files_sha256:
-  configs/eval/gsm8k_extract.py: e939f6d0a9169139e7a06031cbf203b5b9a287e371af6bc4316b75b9c2be5447
+  configs/eval/gsm8k_extract.py: 564dac6a0d24286efecbd8c52917b1f28ed479c9b94578c65bd550b9619d99f6
   configs/eval/gsm8k_prompt.txt: 43854fc155183e5258db59807bea1af6b0e40df76f651fa8918578fbb6784d1b
   configs/eval/mmlu_prompt.txt: 96195afb0134d56e55d0d32f91d2b69b631a572ed1c7a78f3f617129e5e21b1a
+  configs/eval/mmlu_score.py: b05666a026852a0fe0abbd4cde82181c0a044df0f70982a4e3e79a69f98cba2d
   configs/eval/mmlu_tokens.yaml: ebade53b35342cb95d0a3f57153320be5d4c8bde70e959c1a0338db2f02c1630
