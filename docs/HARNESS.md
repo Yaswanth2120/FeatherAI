@@ -6,7 +6,7 @@
     uv run pytest -q
 
 ## Measuring (you, from Terminal.app, VS Code and Claude Code closed)
-1. Reboot. Plug in AC power. Turn Low Power Mode off.
+1. Reboot. Plug in AC power. Turn Low Power Mode off. Leave the machine idle until 15 min of uptime (the gate enforces it).
 2. `scripts/measure.sh check` prints environment and gate status, and runs nothing.
 3. `scripts/measure.sh pilot` runs the idle-harness pilot (default 20 x 30 s windows, no model)
    and writes results/sessions/<id>/pilot-*.json.

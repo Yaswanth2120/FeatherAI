@@ -9,6 +9,7 @@ Refuses smoke pilots, pilots with gate failures, or the wrong window design.
 import json, sys
 
 EXPECT_WINDOWS, EXPECT_S, TOL_S, FLOOR, FACTOR = 20, 30.0, 2.0, 10.0, 2.0
+MIN_UPTIME_S = 900  # must equal thresholds.yaml validity_gates.min_uptime_before_session_s
 
 
 def derive(pilot: dict) -> dict:
@@ -25,6 +26,11 @@ def derive(pilot: dict) -> dict:
     off = [x["index"] for x in w if abs(x["wall_s"] - EXPECT_S) > TOL_S]
     if off:
         problems.append(f"windows not ~{EXPECT_S:.0f} s: {off}")
+    up = w[0].get("pre", {}).get("uptime_s") if w else None
+    if up is None:
+        problems.append("no uptime recorded (pilot predates the settle gate)")
+    elif up < MIN_UPTIME_S:
+        problems.append(f"pilot started at {up/60:.1f} min uptime < {MIN_UPTIME_S/60:.0f} min")
     rates = [x["pagein_rate_pages_per_s"] for x in w]
     hi = max(rates) if rates else None
     limit = max(FACTOR * hi, FLOOR) if hi is not None else None

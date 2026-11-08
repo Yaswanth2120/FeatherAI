@@ -21,6 +21,12 @@ def pre_run_failures(snap: dict, thr: dict, model_bytes: int | None,
     fails = []
     if blockers:
         fails.append(f"blocking processes running: {', '.join(blockers)}")
+    settle = g["min_uptime_before_session_s"]
+    if settle is None:
+        fails.append("min_uptime_before_session_s is null")
+    elif snap["uptime_s"] < settle:
+        fails.append(f"uptime {snap['uptime_s']/60:.1f} min < required {settle/60:.0f} min "
+                     f"post-boot settle; wait {(settle - snap['uptime_s'])/60:.1f} more min")
     if g["require_ac_power"] and not snap["power"]["ac_power"]:
         fails.append("not on AC power")
     if g["require_low_power_mode_off"] and snap["lowpowermode"] != 0:

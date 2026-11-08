@@ -18,9 +18,14 @@ validity_gates:              # measurement-validity gates, not result criteria
   pagein_rate_derivation_rule: >-
     limit = max(2 x highest pilot-window rate, 10 pages/s). Pilot: 20 consecutive
     30 s windows (10 min total; scripts/measure.sh pilot), under the same conditions as
-    measured runs: after a reboot, on AC power, Low Power Mode off, from Terminal.app with
+    measured runs: after a reboot and at least min_uptime_before_session_s of uptime (machine
+    idle during the wait), on AC power, Low Power Mode off, from Terminal.app with
     VS Code and Claude Code closed. In the idle pilot the whole window is the
     measured window. Computed by scripts/derive_pagein_limit.py.
+  # Post-boot settle: the pilot and every measured run refuse to start before
+  # this much uptime (sysctl kern.boottime). Set by the user 2026-11-08 after pilot
+  # attempt 1 was rejected for post-boot background activity (see experiment log).
+  min_uptime_before_session_s: 900
   free_memory_headroom_mb: 1024         # abort unless available >= model file bytes + this
   require_ac_power: true
   require_low_power_mode_off: true

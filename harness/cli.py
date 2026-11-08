@@ -164,6 +164,7 @@ def cmd_pilot(a) -> int:
         post = sysinfo.snapshot()
         v = gates.post_run_validity(pre, post, None, thr, wall)
         windows.append({"index": i, "wall_s": wall, "pre": pre, "post": post,
+                        "top_processes_end": sysinfo.top_processes(),
                         "note": "idle window: whole window = measured window",
                         "pageins_delta": v["measured_window_pageins"],
                         "pagein_rate_pages_per_s": v["pagein_rate_pages_per_s"],

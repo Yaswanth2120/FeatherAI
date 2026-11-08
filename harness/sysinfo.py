@@ -119,6 +119,34 @@ def parse_time_l(text: str) -> dict:
 
 
 # ---------------------------------------------------------------- snapshots
+def parse_boottime_sec(text: str) -> int:
+    """`sysctl -n kern.boottime` -> boot epoch seconds."""
+    m = re.search(r"sec = (\d+)", text)
+    if not m:
+        raise ValueError(f"cannot parse kern.boottime: {text!r}")
+    return int(m.group(1))
+
+
+def uptime_s() -> float:
+    import time
+    return time.time() - parse_boottime_sec(boot_time())
+
+
+def top_processes(n: int = 10) -> dict:
+    """Diagnostics only (never gated): top processes by CPU and by RSS."""
+    out = {}
+    for key, col in (("by_cpu", "-r"), ("by_rss", "-m")):
+        raw = sh("ps", "-axco", "pid=,pcpu=,rss=,comm=", col, check=False)
+        rows = []
+        for line in raw.splitlines()[:n]:
+            parts = line.split(None, 3)
+            if len(parts) == 4:
+                rows.append({"pid": int(parts[0]), "cpu_pct": float(parts[1]),
+                             "rss_mb": round(int(parts[2]) / 1024, 1), "comm": parts[3]})
+        out[key] = rows
+    return out
+
+
 def snapshot() -> dict:
     """Point-in-time system state (raw + parsed)."""
     vm_raw = sh("vm_stat")
@@ -134,6 +162,7 @@ def snapshot() -> dict:
         "therm": parse_pmset_therm(therm_raw) | {"raw": therm_raw},
         "power": parse_pmset_batt(batt_raw) | {"raw": batt_raw.strip()},
         "lowpowermode": parse_lowpowermode(pm_raw),
+        "uptime_s": uptime_s(),
     }
 
 

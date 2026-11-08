@@ -95,8 +95,10 @@ def thr(**over):
     return t
 
 
-def snap(swap_used=10.0, ac=True, lpm=0, therm_ok=True, avail=6 * 2**30, pageins=100):
+def snap(swap_used=10.0, ac=True, lpm=0, therm_ok=True, avail=6 * 2**30, pageins=100,
+         uptime=3600.0):
     return {"swap": {"used_mb": swap_used}, "power": {"ac_power": ac}, "lowpowermode": lpm,
+            "uptime_s": uptime,
             "therm": {"ok": therm_ok, "unexpected_lines": []}, "available_bytes": avail,
             "vm_stat": {"pageins": pageins, "pageouts": 0, "swapins": 0, "swapouts": 0}}
 
@@ -128,6 +130,16 @@ def test_pre_run_each_gate():
     assert gates.pre_run_failures(snap(swap_used=256.0), t, None, []) == []
     assert any("available" in f for f in gates.pre_run_failures(snap(avail=2**30), t, 2**30, []))
     assert any("VS Code" in f for f in gates.pre_run_failures(snap(), t, None, ["VS Code"]))
+    assert any("settle" in f for f in gates.pre_run_failures(snap(uptime=899), t, None, []))
+    assert gates.pre_run_failures(snap(uptime=900), t, None, []) == []
+
+
+def test_boottime_parse():
+    assert sysinfo.parse_boottime_sec(
+        "{ sec = 1794171607, usec = 169372 } Sun Nov  8 16:00:07 2026") == 1794171607
+    assert sysinfo.uptime_s() > 0
+    assert yaml.safe_load((ROOT / "configs/thresholds.yaml").read_text())[
+        "validity_gates"]["min_uptime_before_session_s"] == 900
 
 
 def test_pre_run_null_headroom_refuses():
@@ -220,10 +232,11 @@ def test_find_nulls():
 
 
 # ---------------------------------------------------------------- pilot rule
-def _pilot(rates, wall=30.0, smoke=False, fails=()):
+def _pilot(rates, wall=30.0, smoke=False, fails=(), uptime=1000.0):
     return {"kind": "idle_pilot", "smoke": smoke, "gate_failures_ignored": list(fails),
             "page_size": 16384,
-            "windows": [{"index": i, "wall_s": wall, "pagein_rate_pages_per_s": r}
+            "windows": [{"index": i, "wall_s": wall, "pagein_rate_pages_per_s": r,
+                         "pre": {"uptime_s": uptime + i * wall}}
                         for i, r in enumerate(rates)]}
 
 
@@ -238,6 +251,9 @@ def test_derive_pagein_limit():
     assert not dpl.derive(_pilot([1.0] * 20, wall=300))["ok"]  # wrong window length
     assert not dpl.derive(_pilot([1.0] * 20, smoke=True))["ok"]
     assert not dpl.derive(_pilot([1.0] * 20, fails=["not on AC power"]))["ok"]
+    assert not dpl.derive(_pilot([1.0] * 20, uptime=600))["ok"]           # before settle
+    assert dpl.MIN_UPTIME_S == yaml.safe_load((ROOT / "configs/thresholds.yaml").read_text())[
+        "validity_gates"]["min_uptime_before_session_s"]
     thr_rule = yaml.safe_load((ROOT / "configs/thresholds.yaml").read_text())[
         "validity_gates"]["pagein_rate_derivation_rule"]
     assert "20 consecutive" in thr_rule and "30 s" in thr_rule and "10 pages/s" in thr_rule
