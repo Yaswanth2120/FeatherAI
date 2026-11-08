@@ -1,0 +1,21 @@
+[project]
+name = "featherai-bench"
+version = "0.1.0"
+description = "Reproducible local LLM inference benchmark harness (M2 Air 8GB)"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "mlx==0.32.0",
+  "mlx-lm==0.31.3",
+  "numpy",
+  "pyyaml",
+]
+
+[dependency-groups]
+dev = ["pytest"]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

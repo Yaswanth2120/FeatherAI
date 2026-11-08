@@ -1,0 +1,39 @@
+# FeatherAI pre-registration. Commit and tag `prereg-v1` BEFORE any model result.
+# After tagging, this file must not change: measure.sh refuses to run model
+# benchmarks if it differs from the `prereg-v1` tag.
+#
+# Provenance: every number below was set by the user on 2026-11-08. None was
+# chosen by Claude. A `null` means the user hasn't decided yet; the harness
+# refuses model runs while any value is null.
+schema: 1
+
+validity_gates:              # measurement-validity gates, not result criteria
+  swap_used_at_start_max_mb: 256        # abort the run before it starts if above
+  swap_growth_during_run_max_mb: 64     # run INVALID if exceeded
+  # A run is labelled "paging_contaminated" (kept, flagged) if system-wide
+  # vm_stat Pageins per second during the run exceeds this value.
+  # Calibrated from the idle-harness pilot (scripts/measure.sh pilot).
+  # Rule for deriving it from the pilot data: null (user to decide).
+  pagein_rate_contaminated_pages_per_s: null
+  pagein_rate_derivation_rule: null
+  # Free-memory precheck: abort unless available_bytes >= model_file_bytes + this.
+  free_memory_headroom_mb: null
+  require_ac_power: true
+  require_low_power_mode_off: true
+  require_no_thermal_warning: true     # pmset -g therm, checked before every run
+  cooldown_between_runs_s: 300
+  reboot_once_per_session: true        # one session per kern.boottime
+
+level2_criteria:             # result criteria, judged against `baseline`
+  baseline: null                       # named config, e.g. "<model> <quant>": user to decide
+  primary_memory_metric: peak_footprint_bytes_no_mmap   # /usr/bin/time -l, llama-server --load-mode none (v0.9.0 spelling of --no-mmap)
+  memory_reduction_min_frac: 0.25      # candidate <= 0.75 x baseline
+  decode_tps_min_frac_of_baseline: 0.90
+  kl_divergence:                       # llama-perplexity --kl-divergence vs saved Q8_0 logits
+    statistic: null                    # which reported statistic (e.g. mean KLD): user to decide
+    max: null
+  accuracy_loss_max:                   # baseline minus candidate, in percentage points
+    mmlu_points: null
+    gsm8k_points: null
+    decision_rule: null                # point estimate vs bootstrap CI bound: user to decide
+  aggregation: null                    # how 3 runs combine (e.g. median): user to decide

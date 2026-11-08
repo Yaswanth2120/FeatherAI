@@ -1,0 +1,6 @@
+0.00.107.158 I cmn  common_param: system_info: n_threads = 4 (n_threads_batch = 4) / 8 | MTL : EMBED_LIBRARY = 1 | CPU : NEON = 1 | ARM_FMA = 1 | FP16_VA = 1 | MATMUL_INT8 = 1 | DOTPROD = 1 | ACCELERATE = 1 | REPACK = 1 | 
+0.00.159.133 I load_tensors: offloaded 7/7 layers to GPU
+0.00.159.135 I load_tensors:         MTL0 model buffer size =    12.56 MiB
+0.00.172.545 I ggml_metal_init: found device: Apple M2
+0.00.172.970 I llama_kv_cache:       MTL0 KV buffer size =     1.69 MiB
+0.00.175.598 I sched_reserve:       MTL0 compute buffer size =     7.30 MiB

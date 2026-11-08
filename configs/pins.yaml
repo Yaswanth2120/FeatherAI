@@ -1,0 +1,14 @@
+# Toolchain pins. The harness records the *actual* values found at run time in
+# every result JSON and refuses to run if llama.cpp HEAD != llama_cpp.commit.
+llama_cpp:
+  repo: https://github.com/ggml-org/llama.cpp
+  tag: v0.9.0                                      # latest non-pre-release as of 2026-11-08
+  commit: cd959bae99ff4bed22bef2604f45241c09bbb8c8 # peeled commit of v0.9.0
+  build_dir: third_party/llama.cpp/build
+  cmake_flags:
+    - -DCMAKE_BUILD_TYPE=Release
+    - -DGGML_METAL=ON
+    - -DGGML_METAL_EMBED_LIBRARY=ON   # no Xcode `metal` compiler on this machine
+    - -DBUILD_SHARED_LIBS=OFF
+    - -DLLAMA_BUILD_TESTS=OFF
+# Python package pins live in pyproject.toml + uv.lock.

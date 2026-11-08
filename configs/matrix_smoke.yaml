@@ -1,0 +1,3 @@
+# Functional smoke test only (19 MB toy model). Not a measurement.
+runs:
+  - {label: smoke-stories15M-q4_0, model: models/smoke/stories15M-q4_0.gguf, seed: 1, prompt_set: smoke, bench: configs/bench_smoke.yaml}
