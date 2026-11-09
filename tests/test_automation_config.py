@@ -157,3 +157,18 @@ def test_selftest_failed_predecessor_is_not_completed_and_blocks_dependent(tmp_p
     assert result['tasks']['selftest-alpha']['status'] == 'failed'
     assert result['tasks']['selftest-beta']['status'] == 'pending'
     assert order == ['alpha']
+
+
+def test_task04_gate_requires_reproducible_cited_study(tmp_path, monkeypatch):
+    import automation.validate as validate
+    root = Path(__file__).resolve().parents[1]
+    data = json.loads((root / 'experiments' / 'comparison-evidence-v0.2.json').read_text())
+    validate.validate('task04')  # real evidence passes
+    for mutate in (lambda d: d.pop('study'), lambda d: d.update(study='../../etc'),
+                   lambda d: d['configurations'][0].update(coding_status='partial'),
+                   lambda d: d['configurations'][1].update(decode_tokens_per_second=d['configurations'][1]['decode_tokens_per_second'] * 1.01)):
+        candidate = json.loads(json.dumps(data))
+        mutate(candidate)
+        monkeypatch.setattr(validate, 'evidence', lambda name, c=candidate: c)
+        with pytest.raises(ValueError):
+            validate.validate('task04')

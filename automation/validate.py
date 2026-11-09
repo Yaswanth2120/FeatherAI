@@ -58,15 +58,18 @@ def validate(identifier):
         require(len(configs) >= 2, 'At least two configurations required')
         require(len({c['source_sha256'] for c in configs}) == 1, 'Configurations must share exact source')
         require(len({c['artifact_sha256'] for c in configs}) >= 2, 'Configurations must use distinct artifacts')
-        if data.get('study'):
-            # Evidence must be exactly reproducible from the exported study it cites.
-            if str(ROOT) not in sys.path:
-                sys.path.insert(0, str(ROOT))
-            from backend.study.evidence import build
-            rebuilt = json.loads(json.dumps(build(ROOT / data['study'])))
-            rebuilt['study'] = data['study']  # the recorded path is repository-relative; every measured field must match
-            require(rebuilt == data, 'Comparison evidence does not match its exported study')
-            require(all(c.get('coding_status') == 'completed' for c in configs), 'Coding evaluation must have completed for every configuration')
+        # Evidence must cite an exported study and be exactly reproducible from it (no exemption).
+        require(isinstance(data.get('study'), str) and bool(data['study']), 'Evidence must cite its exported study directory')
+        studies = (ROOT / 'experiments' / 'studies').resolve()
+        study_dir = (ROOT / data['study']).resolve()
+        require(study_dir.is_relative_to(studies) and (study_dir / 'study.json').is_file(), 'Cited study must be inside experiments/studies/')
+        if str(ROOT) not in sys.path:
+            sys.path.insert(0, str(ROOT))
+        from backend.study.evidence import build
+        rebuilt = json.loads(json.dumps(build(study_dir)))
+        rebuilt['study'] = data['study']  # the recorded path is repository-relative; every measured field must match
+        require(rebuilt == data, 'Comparison evidence does not match its exported study')
+        require(all(c.get('coding_status') == 'completed' for c in configs), 'Coding evaluation must have completed for every configuration')
         reference = configs[0]
         for field in ['context_length', 'decoding_settings', 'runtime_version', 'repeats', 'warmups']:
             require(all(config.get(field) == reference.get(field) for config in configs), f'Incomparable experiment setting: {field}')
