@@ -82,7 +82,8 @@ uv run feather benchmark report --latest
 uv run feather benchmark report --latest --output report.json
 uv run feather benchmark report --latest --format csv --output trials.csv
 uv run feather artifact models/SmolLM2-135M-Instruct-f16.gguf
-uv run feather quantize --source models/SmolLM2-135M-Instruct-f16.gguf --output-dir experiments/my-q4 --target Q4_K_M --executable .feather/tools/llama.cpp/build/bin/llama-quantize
+mkdir -p .feather   # ignored working directory; keeps generated manifests/logs out of Git
+uv run feather quantize --source models/SmolLM2-135M-Instruct-f16.gguf --output-dir .feather/my-q4 --target Q4_K_M --executable .feather/tools/llama.cpp/build/bin/llama-quantize
 ```
 
 The model name must exactly match `models list`; Feather does not silently download models. Global `--db` and `--ollama-url` flags precede the command. The standalone benchmark CLI uses Ollama. The `study` command and dashboard additionally support owned native llama.cpp inference.
