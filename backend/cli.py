@@ -13,6 +13,26 @@ from backend.core.artifacts import inspect_gguf
 from backend.quantization.gguf_adapter import convert, TARGETS
 
 
+def automation_command(args) -> int:
+    root = Path(__file__).resolve().parents[1]
+    if str(root) not in sys.path:
+        sys.path.insert(0, str(root))
+    from automation.doctor import format_report, run_checks
+    if args.action == "doctor":
+        result = run_checks(root, do_probe=args.probe, probe_candidates=args.probe_candidates, select=args.select)
+        print(json.dumps(result, indent=2) if args.json else format_report(result))
+        return 0 if result["status"] == "ready" else 1
+    from automation.codex_config import resolve_model
+    from automation.selftest import run_selftest
+    preflight = run_checks(root)
+    if preflight["status"] == "blocked":
+        print(format_report(preflight))
+        return 1
+    result = run_selftest(resolve_model(root)["model"], timeout=args.timeout)
+    print(json.dumps(result, indent=2))
+    return 0 if result["status"] == "passed" else 1
+
+
 def main():
     parser = argparse.ArgumentParser(description="Feather AI — local LLM laboratory")
     parser.add_argument("--db", default=".feather/experiments.sqlite3")
@@ -53,7 +73,17 @@ def main():
     study.add_argument("--quantizer", required=True)
     study.add_argument("--server", required=True)
     study.add_argument("--repeats", type=int, default=5)
+    automation = commands.add_parser("automation", help="Codex automation preflight and self-test").add_subparsers(dest="action", required=True)
+    doctor = automation.add_parser("doctor", help="Validate CLI, auth readiness, model, repository, queue and paths")
+    doctor.add_argument("--probe", action="store_true", help="Send one small read-only request to verify the model (uses account quota)")
+    doctor.add_argument("--probe-candidates", action="store_true", help="With --probe, try listed cached models until one is accepted")
+    doctor.add_argument("--select", action="store_true", help="With --probe, record the accepted model for automation")
+    doctor.add_argument("--json", action="store_true")
+    selftest = automation.add_parser("selftest", help="Run two dependent tasks through live Codex in a throwaway repository")
+    selftest.add_argument("--timeout", type=int, default=600)
     args = parser.parse_args()
+    if args.command == "automation":
+        sys.exit(automation_command(args))
     backend = None
     try:
         if args.command == "serve":

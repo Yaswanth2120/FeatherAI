@@ -1,0 +1,8 @@
+version: 1
+codex:
+  # null: use FEATHER_CODEX_MODEL, then a model accepted by
+  # `feather automation doctor --probe --select`, then the Codex CLI default.
+  # Do not hardcode a model that has not been verified for this account.
+  model: null
+task_timeout_seconds: 1800
+max_attempts: 3

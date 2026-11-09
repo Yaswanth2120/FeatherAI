@@ -1,0 +1,61 @@
+{
+  "kind": "real-run",
+  "observed_date": "2026-11-09",
+  "codex_cli_version": "0.142.3",
+  "latest_cli_reported_by_codex_doctor": "0.167.0",
+  "auth_mode": "ChatGPT account (codex login status)",
+  "method": "codex exec --json --sandbox read-only --skip-git-repo-check -m <model> \"Reply with exactly the single word OK...\" in an empty scratch directory; models from ~/.codex/models_cache.json visibility=list",
+  "models_cache_note": "codex-cli 0.142.3 logs \"failed to load models cache: missing field base_instructions\"; the cache was written by a different client version.",
+  "probes": [
+    {
+      "model": "gpt-5.6-luna",
+      "turn_completed": false,
+      "failure_kind": "cli_outdated",
+      "message": "{\"type\":\"error\",\"status\":400,\"error\":{\"type\":\"invalid_request_error\",\"message\":\"The 'gpt-5.6-luna' model requires a newer version of Codex. Please upgrade to the latest app or CLI and try again.\"}}"
+    },
+    {
+      "model": "gpt-5.6-sol",
+      "turn_completed": false,
+      "failure_kind": "cli_outdated",
+      "message": "{\"type\":\"error\",\"status\":400,\"error\":{\"type\":\"invalid_request_error\",\"message\":\"The 'gpt-5.6-sol' model requires a newer version of Codex. Please upgrade to the latest app or CLI and try again.\"}}"
+    },
+    {
+      "model": "gpt-5.6-terra",
+      "turn_completed": false,
+      "failure_kind": "cli_outdated",
+      "message": "{\"type\":\"error\",\"status\":400,\"error\":{\"type\":\"invalid_request_error\",\"message\":\"The 'gpt-5.6-terra' model requires a newer version of Codex. Please upgrade to the latest app or CLI and try again.\"}}"
+    },
+    {
+      "model": "gpt-6-astra",
+      "turn_completed": false,
+      "failure_kind": "cli_outdated",
+      "message": "{\"type\":\"error\",\"status\":400,\"error\":{\"type\":\"invalid_request_error\",\"message\":\"The 'gpt-6-astra' model requires a newer version of Codex. Please upgrade to the latest app or CLI and try again.\"}}"
+    },
+    {
+      "model": "gpt-6-luna",
+      "turn_completed": false,
+      "failure_kind": "model_entitlement",
+      "message": "{\"type\":\"error\",\"status\":400,\"error\":{\"type\":\"invalid_request_error\",\"message\":\"The 'gpt-6-luna' model is not supported when using Codex with a ChatGPT account.\",\"code\":\"model_not_found\"}}"
+    },
+    {
+      "model": "gpt-6-sol",
+      "turn_completed": false,
+      "failure_kind": "model_entitlement",
+      "message": "{\"type\":\"error\",\"status\":400,\"error\":{\"type\":\"invalid_request_error\",\"message\":\"The 'gpt-6-sol' model is not supported when using Codex with a ChatGPT account.\",\"code\":\"model_not_found\"}}"
+    },
+    {
+      "model": "gpt-6.1-sol",
+      "turn_completed": false,
+      "failure_kind": "model_entitlement",
+      "message": "{\"type\":\"error\",\"status\":400,\"error\":{\"type\":\"invalid_request_error\",\"message\":\"The 'gpt-6.1-sol' model is not supported when using Codex with a ChatGPT account.\",\"code\":\"model_not_found\"}}"
+    },
+    {
+      "model": "gpt-6.1-terra",
+      "turn_completed": false,
+      "failure_kind": "model_entitlement",
+      "message": "{\"type\":\"error\",\"status\":400,\"error\":{\"type\":\"invalid_request_error\",\"message\":\"The 'gpt-6.1-terra' model is not supported when using Codex with a ChatGPT account.\",\"code\":\"model_not_found\"}}"
+    }
+  ],
+  "accepted": [],
+  "diagnosis": "No listed model is usable with this CLI and account: four are refused for ChatGPT-account Codex use (model_entitlement); four require a newer Codex CLI (cli_outdated). The configured default gpt-6.1-sol is in the first group. User action: upgrade the Codex CLI (codex update), then run `feather automation doctor --probe --probe-candidates --select` and `feather automation selftest`."
+}

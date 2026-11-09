@@ -20,6 +20,13 @@ from typing import Any
 
 import yaml
 
+try:
+    from automation.codex_config import classify_failure, load_config, resolve_model
+except ImportError:  # executed as a script: python automation/orchestrator.py
+    import sys as _sys
+    _sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+    from automation.codex_config import classify_failure, load_config, resolve_model
+
 ROOT = Path(__file__).resolve().parents[1]
 STATES = {"pending", "running", "testing", "reviewing", "completed", "blocked", "failed"}
 ACTIVE = {"running", "testing", "reviewing"}
@@ -40,6 +47,14 @@ REVIEW_SCHEMA = {
 
 class CriticalFailure(RuntimeError):
     """A failure for which automatic retry would risk unrelated work."""
+
+
+class NonRetryableFailure(CriticalFailure):
+    """Model entitlement, outdated CLI, authentication or usage-limit failure: retrying cannot help."""
+
+    def __init__(self, failure: dict):
+        self.failure = failure
+        super().__init__(f"{failure['kind']}: {failure['message']} Action: {failure['action']}")
 
 
 def load_tasks(path: Path) -> dict[str, Any]:
@@ -167,15 +182,17 @@ def review_approved(path: Path) -> bool:
 
 
 class Runner:
-    def __init__(self, root: Path, manifest: Path, timeout=1800, retries=2, executor=invoke):
+    def __init__(self, root: Path, manifest: Path, timeout=1800, retries=2, executor=invoke, model: str | None = None):
         if not 0 <= retries <= 2 or timeout < 1:
             raise ValueError("Retries must be 0–2 and timeout must be positive")
         self.root = root.resolve()
         self.manifest = load_tasks(manifest)
         self.timeout, self.retries, self.execute = timeout, retries, executor
+        self.model = model
         self._deadline = None
         self.directory = self.root / ".feather" / "automation"
-        self.state_path = self.directory / "state.json"
+        # The original queue keeps its historical state file; other manifests get their own.
+        self.state_path = self.directory / ("state.json" if manifest.name == "tasks.yaml" else f"state-{manifest.stem}.json")
         if self.state_path.exists():
             saved = json.loads(self.state_path.read_text())
             if saved.get("manifest_sha256") != hashlib.sha256(manifest.read_bytes()).hexdigest():
@@ -298,15 +315,33 @@ class Runner:
         schema = directory / f"{name}-schema.json"
         argv = ["codex", "exec", "--json", "--sandbox", "read-only" if review else "workspace-write",
                 "-C", str(self.root), "--output-last-message", str(final)]
+        if self.model:
+            argv += ["-m", self.model]
         atomic_json(schema, REVIEW_SCHEMA if review else IMPLEMENTATION_SCHEMA)
         argv += ["--output-schema", str(schema), prompt]
         environment = dict(os.environ, FEATHER_AUTOMATION_CHILD="1")
         log = directory / f"{name}.jsonl"
         code = self.checked_execute(argv, self.root, log, self.timeout, environment)
+        failure = classify_failure(log.read_text(errors="replace")) if code and log.exists() else None
+        self.record_invocation(name, code, log, failure)
+        if failure:
+            raise NonRetryableFailure(failure)
         return code, final, token_usage(log)
+
+    def record_invocation(self, name, code, log, failure):
+        task = getattr(self, "_current", None)
+        if task is None:
+            return
+        entry = self.state[task]
+        entry.setdefault("invocations", []).append({
+            "name": name, "attempt": entry["attempts"], "exit_code": code, "model": self.model or "cli-default",
+            "failure_kind": failure["kind"] if failure else None, "log": str(log.relative_to(self.root)),
+            "recorded_at": time.time()})
+        self.save()
 
     def run_task(self, task):
         entry = self.state[task["id"]]
+        self._current = task["id"]
         if git(self.root, "status", "--porcelain"):
             raise CriticalFailure("Refusing to run on a dirty working tree; preserve and review existing work first")
         start_head = git(self.root, "rev-parse", "HEAD")
@@ -373,6 +408,10 @@ class Runner:
                 entry.update(status="blocked", error="Interrupted; inspect changes and logs before explicit resumption")
                 self.save()
                 raise
+            except NonRetryableFailure as error:
+                entry.update(status="blocked", error=str(error), failure_kind=error.failure["kind"])
+                self.save()
+                raise
             except CriticalFailure as error:
                 entry.update(status="blocked", error=str(error))
                 self.save()
@@ -424,17 +463,22 @@ def main():
     parser.add_argument("--block-task")
     parser.add_argument("--reason")
     parser.add_argument("--evidence", type=Path)
-    parser.add_argument("--timeout", type=int, default=1800)
-    parser.add_argument("--retries", type=int, default=2)
+    parser.add_argument("--manifest", type=Path, default=ROOT / "automation" / "tasks.yaml")
+    parser.add_argument("--timeout", type=int, help="Per-task seconds (default: automation/config.yaml)")
+    parser.add_argument("--retries", type=int, help="Retries after the first attempt, 0-2 (default: config max_attempts-1)")
     args = parser.parse_args()
     if os.environ.get("FEATHER_AUTOMATION_CHILD"):
         parser.exit(2, "Recursive automation is prohibited\n")
     try:
+        config = load_config(ROOT)
+        args.timeout = args.timeout or config["task_timeout_seconds"]
+        args.retries = config["max_attempts"] - 1 if args.retries is None else args.retries
+        selection = resolve_model(ROOT)
         with exclusive_lock(ROOT / ".feather" / "automation"):
-            runner = Runner(ROOT, ROOT / "automation" / "tasks.yaml", args.timeout, args.retries)
+            runner = Runner(ROOT, args.manifest.resolve(), args.timeout, args.retries, model=selection["model"])
             if args.dry_run or args.status:
                 print(json.dumps({"tasks": runner.state, "eligible": [task["id"] for task in eligible_tasks(runner.manifest["tasks"], runner.state)],
-                                  "timeout": args.timeout, "max_attempts": args.retries + 1}, indent=2))
+                                  "timeout": args.timeout, "max_attempts": args.retries + 1, "codex_model": selection}, indent=2))
                 return
             def interrupted(signum, frame):
                 raise KeyboardInterrupt
