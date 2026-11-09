@@ -8,7 +8,7 @@
 
 **Optional 1.5B experiment: BLOCKED** pending approval for a roughly 3.1 GB download and sufficient free memory; it was not attempted.
 
-**Task queue:** task01–task08 are completed; each was adopted only after its acceptance gate passed and a commit-bound independent review approved it. task04 was adopted at `16fbe37` and task08 at `b862de3`. task09 (this documentation) is adopted only after review.
+**Task queue:** task01–task09 are completed; each was adopted only after its acceptance gate passed and a commit-bound independent review approved it. task04 was adopted at `16fbe37` and task08 at `b862de3`. task09 was adopted at `4b704ce` after independent documentation review approved with no findings and its acceptance/regression gates re-ran.
 
 Everything else is implemented and verified with real runs.
 
@@ -114,6 +114,7 @@ Run history:
 | `9470e7d`, `533614f`, `f957640` | End-to-end workflow, stricter gate and review fixes |
 | `d36ed7e` | Accepted workflow evidence (`8cab4706`) |
 | `2eb0b49`, `b862de3` | Docs; PROGRESS repair (task08 adopted at `b862de3`) |
+| `f94be82`, `4b704ce` | task09 documentation and reviewed fixes (task09 adopted at `4b704ce`) |
 
 ## Next engineering milestone
 

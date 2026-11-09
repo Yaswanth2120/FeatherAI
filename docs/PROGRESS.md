@@ -38,7 +38,7 @@ Status here is based only on acceptance gates and committed evidence.
 |---|---|
 | task04 | **Completed.** Adopted at `16fbe37` after three independent review rounds. The orchestrator re-ran the acceptance and regression gates at that commit. The gate rebuilds the evidence from `experiments/studies/smollm2-135m`, requires an exact match and completed coding, and rejects tampering. |
 | task08 | **Completed.** Adopted at `b862de3` after three independent review rounds; the orchestrator re-ran the acceptance and regression gates. Evidence is workflow `8cab4706` (section above). |
-| task09 | **Unadopted, awaiting independent documentation review.** task08 is complete; adoption requires approval with no findings and passing gates. |
+| task09 | **Completed.** Adopted at `4b704ce` after independent documentation review approved with no findings; the orchestrator re-ran acceptance and regression gates. |
 
 
 ---
