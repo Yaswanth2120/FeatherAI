@@ -1,0 +1,77 @@
+{
+ "request": {
+  "experiment_ids": [
+   "474ae1c0-43ae-4f00-b24f-467a14389431",
+   "9bccb390-28f7-4642-812d-ad05a815b244"
+  ],
+  "available_memory_bytes": 1945665536,
+  "max_memory_bytes": 1073741824,
+  "min_quality": 0.7,
+  "max_latency_seconds": null,
+  "objective": "fastest",
+  "quality_suite": "coding-v1",
+  "quality_split": "heldout"
+ },
+ "response": {
+  "status": "no_eligible_configuration",
+  "objective": "fastest",
+  "eligible": [],
+  "rejected": [
+   {
+    "id": "474ae1c0-43ae-4f00-b24f-467a14389431",
+    "reasons": [
+     "Measured quality or lower confidence bound is below the requirement"
+    ],
+    "evidence_missing": false,
+    "quality": 0.26666666666666666,
+    "quality_ci": [
+     0.14182663319596317,
+     0.4444796169518888
+    ],
+    "peak_memory_bytes": 272023552,
+    "evidence": {
+     "benchmark_id": "474ae1c0-43ae-4f00-b24f-467a14389431",
+     "evaluation_id": "79918bfa-05e8-4bf1-94be-8f7e8d04be2c",
+     "evaluation_suite": "coding-v1",
+     "evaluation_split": "heldout",
+     "benchmark_complete": true,
+     "memory_metric": "sampled_process_tree_rss",
+     "memory_note": "Managed llama.cpp: sampled process-tree RSS every 50ms during requests; excludes startup peak and unaccounted GPU allocations, may miss short peaks. Ollama process memory is not measured.",
+     "join_policy": "Exact artifact_sha256 and verified source_sha256; model display names are never joined"
+    }
+   },
+   {
+    "id": "9bccb390-28f7-4642-812d-ad05a815b244",
+    "reasons": [
+     "Measured quality or lower confidence bound is below the requirement"
+    ],
+    "evidence_missing": false,
+    "quality": 0.36666666666666664,
+    "quality_ci": [
+     0.21873920806100708,
+     0.5448643634520511
+    ],
+    "peak_memory_bytes": 273301504,
+    "evidence": {
+     "benchmark_id": "9bccb390-28f7-4642-812d-ad05a815b244",
+     "evaluation_id": "dd27ac61-f27f-4ba2-b721-667cdebf798d",
+     "evaluation_suite": "coding-v1",
+     "evaluation_split": "heldout",
+     "benchmark_complete": true,
+     "memory_metric": "sampled_process_tree_rss",
+     "memory_note": "Managed llama.cpp: sampled process-tree RSS every 50ms during requests; excludes startup peak and unaccounted GPU allocations, may miss short peaks. Ollama process memory is not measured.",
+     "join_policy": "Exact artifact_sha256 and verified source_sha256; model display names are never joined"
+    }
+   }
+  ],
+  "memory_limit_bytes": 1073741824,
+  "limitations": [
+   "Only supplied measurements are considered; no metric is inferred from quantization width.",
+   "Measured peak memory is workload-specific and does not guarantee fit for larger contexts.",
+   "Sampled process RSS is not total GPU or unified-memory allocation; unsampled peaks may be missed.",
+   "Public screening quality and repeated deterministic trials do not establish held-out generalization."
+  ],
+  "reason": "No fully measured configuration satisfies every constraint"
+ },
+ "http_status": 200
+}
