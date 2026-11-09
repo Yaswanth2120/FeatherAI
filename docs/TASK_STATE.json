@@ -25,16 +25,18 @@
       "review_record": "/Users/yaswanth/Desktop/FeatherAI/.feather/review-task03.json"
     },
     "task04": {
-      "status": "blocked",
+      "status": "completed",
       "attempts": 0,
-      "error": "Docker daemon unavailable; required coding correctness is unmeasured. Real FP16/Q4/Q8 performance and reasoning evidence retained.",
-      "origin": "externally-observed",
+      "error": null,
+      "origin": "externally-reviewed",
       "blocker_evidence": {
         "path": "experiments/resource-blockers.json",
         "sha256": "11bc4c702a51d5f9cdfd2ef7c138bf575b734fc1776895840d55ca68fcd67d80",
         "commit": "2d473a56844e061f588014c82592cd9af8205c0d",
         "recorded_at": 1794250750.766832
-      }
+      },
+      "commit": "16fbe37e8f4eea72c62953659e0640ef508b6b80",
+      "review_record": "/Users/yaswanth/Desktop/FeatherAI/.feather/review-task04.json"
     },
     "task05": {
       "status": "completed",
@@ -63,13 +65,13 @@
     "task08": {
       "status": "blocked",
       "attempts": 0,
-      "error": "Full end-to-end acceptance depends on blocked task04 coding comparison. Reasoning-only API workflow succeeded.",
+      "error": "Single real import-to-coding-evaluation-to-recommendation-to-export run not yet recorded; task04 coding blocker is resolved (see evidence).",
       "origin": "externally-observed",
       "blocker_evidence": {
-        "path": "experiments/resource-blockers.json",
-        "sha256": "11bc4c702a51d5f9cdfd2ef7c138bf575b734fc1776895840d55ca68fcd67d80",
-        "commit": "2d473a56844e061f588014c82592cd9af8205c0d",
-        "recorded_at": 1794250750.85346
+        "path": "experiments/task08-blocker-v0.2.json",
+        "sha256": "97348cf051e433f5a29e519f7c036cb2c916a113367ae35431a682d72627424b",
+        "commit": "d31fd39f4fbb0bc3d266f596559e71f46ced05a9",
+        "recorded_at": 1794261969.3147469
       }
     },
     "task09": {
@@ -87,5 +89,9 @@
   },
   "eligible": [],
   "timeout": 1800,
-  "max_attempts": 3
+  "max_attempts": 3,
+  "codex_model": {
+    "model": null,
+    "source": "codex CLI default (no -m flag)"
+  }
 }
