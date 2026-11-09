@@ -1,0 +1,76 @@
+version: 1
+regression:
+  - [uv, run, pytest]
+tasks:
+  - id: task01
+    title: Repository audit
+    role: architect
+    depends_on: []
+    prompt: >-
+      Audit existing modules, dependencies, CLI, Git status and missing functionality. Rerun all tests and record evidence in docs/AUDIT.md. Preserve working code.
+    acceptance:
+      - [uv, run, python, automation/validate.py, --task, task01]
+  - id: task02
+    title: Real model quantization
+    role: quantization-engineer
+    depends_on: [task01]
+    prompt: >-
+      Quantize genuine higher-precision Qwen 2.5 Coder 0.5B weights (or smaller supported model if RAM requires). Validate actual generation, preserve source/output hashes, baseline output and logs. Run heavy work sequentially. Do not substitute a downloaded quantization or claim success without evidence. Record exact resource blockers.
+    acceptance:
+      - [uv, run, python, automation/validate.py, --task, task02]
+  - id: task03
+    title: Quality evaluation engine
+    role: evaluation-engineer
+    depends_on: [task01]
+    prompt: >-
+      Implement deterministic coding tests using isolated resource-limited execution, reasoning evaluation, uncertainty estimates, baseline comparisons, and perplexity where token log probabilities are available. Mark unsupported results. Add meaningful tests and documentation.
+    acceptance:
+      - [uv, run, python, automation/validate.py, --task, task03]
+  - id: task04
+    title: Comparable performance and quality experiments
+    role: quantization-engineer
+    depends_on: [task02, task03]
+    prompt: >-
+      Benchmark and evaluate at least two configurations from the exact same source, recording file size, peak memory, TTFT, prefill/decode throughput, wall latency, quality, settings, runtime versions and hashes. Use repeated trials and warmups. Persist real evidence under experiments; never invent missing metrics.
+    acceptance:
+      - [uv, run, python, automation/validate.py, --task, task04]
+  - id: task05
+    title: Explainable recommendation engine
+    role: backend-engineer
+    depends_on: [task01]
+    prompt: >-
+      Implement deterministic ranking over actual comparable tested configurations with explicit memory, quality and latency constraints, confidence/limitations, and insufficient-evidence handling. Reject absent/invalid metrics and add tests.
+    acceptance:
+      - [uv, run, python, automation/validate.py, --task, task05]
+  - id: task06
+    title: Local FastAPI integration
+    role: backend-engineer
+    depends_on: [task03, task05]
+    prompt: >-
+      Expose local hardware, models, controlled persisted benchmark/quantization/evaluation jobs, cancellation/timeouts, history, comparisons, recommendations and report exports. Bind localhost by default; constrain filesystem and subprocess interfaces. Add API integration tests.
+    acceptance:
+      - [uv, run, python, automation/validate.py, --task, task06]
+  - id: task07
+    title: React and TypeScript dashboard
+    role: frontend-engineer
+    depends_on: [task06]
+    prompt: >-
+      Build the five local dashboard pages in frontend, using actual API data and saved results: Overview, Model Library, Quantization Studio, Benchmark & Evaluation, Comparison Reports. Include job controls, charts, comparisons and exports. No invented production metrics. Do not publish.
+    acceptance:
+      - [uv, run, python, automation/validate.py, --task, task07]
+  - id: task08
+    title: End-to-end integration
+    role: qa-security-reviewer
+    depends_on: [task02, task04, task06, task07]
+    prompt: >-
+      Verify real import-to-quantize-to-generation-to-benchmark-to-evaluate-to-recommend-to-export workflow, plus interrupted jobs and failures. Add integration tests and preserve real run evidence. Do not mark complete for a fixture-only workflow.
+    acceptance:
+      - [uv, run, python, automation/validate.py, --task, task08]
+  - id: task09
+    title: Documentation and final report
+    role: integrator
+    depends_on: [task08]
+    prompt: >-
+      Update installation, architecture, CLI, API/dashboard usage, methodology, hardware limits and known defects. Write docs/FINAL_REPORT.md with tests, actual model/quantization/performance/quality evidence, commit references and remaining limitations. Verify claims against artifacts.
+    acceptance:
+      - [uv, run, python, automation/validate.py, --task, task09]
