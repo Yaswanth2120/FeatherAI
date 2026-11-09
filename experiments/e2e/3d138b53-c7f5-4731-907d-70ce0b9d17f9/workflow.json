@@ -1,0 +1,21 @@
+{
+ "kind": "real-run",
+ "workflow_id": "3d138b53-c7f5-4731-907d-70ce0b9d17f9",
+ "started_at": "2026-11-09T22:21:52.091459+00:00",
+ "status": "failed",
+ "settings": {
+  "context": 2048,
+  "seed": 42,
+  "temperature": 0,
+  "benchmark_repeats": 5,
+  "benchmark_warmups": 1,
+  "benchmark_tokens": 128,
+  "coding_tokens": 384,
+  "quality_suite": "coding-v1"
+ },
+ "stages": {},
+ "constraints_file": "experiments/e2e/recommendation-constraints.json",
+ "constraints_sha256": "8c819722f5c46ba3ed80a0d92e0480b54fb8f406e02a7c383fe07c0dc2579a1b",
+ "error": "RuntimeError: Local API did not start",
+ "finished_at": "2026-11-09T22:22:23.636561+00:00"
+}

@@ -24,6 +24,13 @@ class LlamaCpp:
             raise ValueError('llama-server unavailable; supply --server-executable')
         if not 128 <= context <= 4096:
             raise ValueError('Managed server context must be between 128 and 4096')
+        import psutil
+        from backend.study.server import runtime_admission
+        admission = runtime_admission(self.artifact)
+        available = psutil.virtual_memory().available
+        if admission['bytes'] > available:
+            raise MemoryError(f"Runtime initialization rejected before start: estimate {admission['bytes']} bytes "
+                              f"({admission['rule']}) exceeds available {available} bytes")
         self.binary = binary
         self.executable_sha256 = sha256(binary)
         self.benchmark_settings = {"prompt_template": self.prompt_template, "cache_prompt": False, "threads": 2, "parallel": 1, "server_executable_sha256": self.executable_sha256}

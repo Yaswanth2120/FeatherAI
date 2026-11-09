@@ -1,0 +1,44 @@
+{
+ "request": {
+  "experiment_ids": [
+   "c1fbf5c4-0543-471c-b5cf-334fd0fd8556",
+   "e73fca15-e9ea-4c51-b42f-b454a3cc770d"
+  ],
+  "available_memory_bytes": 2070413312,
+  "max_memory_bytes": 1073741824,
+  "min_quality": 0.7,
+  "max_latency_seconds": null,
+  "objective": "fastest",
+  "quality_suite": "coding-v1"
+ },
+ "response": {
+  "status": "no_eligible_configuration",
+  "objective": "fastest",
+  "eligible": [],
+  "rejected": [
+   {
+    "id": "c1fbf5c4-0543-471c-b5cf-334fd0fd8556",
+    "reasons": [
+     "Measured quality or lower confidence bound is below the requirement"
+    ],
+    "evidence_missing": false
+   },
+   {
+    "id": "e73fca15-e9ea-4c51-b42f-b454a3cc770d",
+    "reasons": [
+     "Measured quality or lower confidence bound is below the requirement"
+    ],
+    "evidence_missing": false
+   }
+  ],
+  "memory_limit_bytes": 1073741824,
+  "limitations": [
+   "Only supplied measurements are considered; no metric is inferred from quantization width.",
+   "Measured peak memory is workload-specific and does not guarantee fit for larger contexts.",
+   "Sampled process RSS is not total GPU or unified-memory allocation; unsampled peaks may be missed.",
+   "Public screening quality and repeated deterministic trials do not establish held-out generalization."
+  ],
+  "reason": "No fully measured configuration satisfies every constraint"
+ },
+ "http_status": 200
+}

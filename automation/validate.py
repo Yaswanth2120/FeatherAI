@@ -38,6 +38,72 @@ def verify_artifact(artifact):
     require(digest.hexdigest() == artifact['sha256'], f'Artifact hash mismatch: {path}')
 
 
+def validate_workflow(data, record=None):
+    workflow_path = (ROOT / str(data.get('workflow', ''))).resolve()
+    e2e_root = (ROOT / 'experiments' / 'e2e').resolve()
+    require(workflow_path.is_relative_to(e2e_root) and workflow_path.is_file(), 'Workflow record must be inside experiments/e2e/')
+    record = json.loads(workflow_path.read_text()) if record is None else record
+    folder = workflow_path.parent
+    wid = record.get('workflow_id')
+    require(record.get('kind') == 'real-run' and record.get('status') == 'completed' and wid == data.get('workflow_id') == folder.name,
+            'Workflow identity or status mismatch')
+    stages = record.get('stages', {})
+    names = ['import', 'preflight', 'quantization', 'generation_validation', 'benchmark', 'evaluation', 'recommendation', 'export']
+    for name in names:
+        require(stages.get(name, {}).get('workflow_id') == wid and stages[name].get('status') == 'completed', f'Stage {name} missing or incomplete')
+    constraints_file = ROOT / record['constraints_file']
+    require(hashlib.sha256(constraints_file.read_bytes()).hexdigest() == record['constraints_sha256'], 'Recommendation constraints changed after the run')
+    committed = subprocess.run(['git', 'log', '-1', '--format=%cI', '--', record['constraints_file']], cwd=ROOT, capture_output=True, text=True).stdout.strip()
+    from datetime import datetime
+    require(bool(committed) and datetime.fromisoformat(committed) < datetime.fromisoformat(record['started_at']),
+            'Constraints must be committed before the workflow started')
+    constraints = json.loads(constraints_file.read_text())
+    source = stages['import']['source']
+    verify_artifact({'path': source['path'], 'sha256': source['sha256']})
+    require(stages['preflight']['sandbox'].get('status') == 'available', 'Sandbox was not available')
+    artifacts = stages['quantization']['artifacts']
+    require(len(artifacts) >= 2 and len({a['artifact_sha256'] for a in artifacts.values()}) == len(artifacts), 'Need distinct quantized artifacts')
+    for target, item in artifacts.items():
+        require(item['status'] == 'completed' and item['source_sha256'] == source['sha256'], f'{target} not created from the imported source')
+        require(item['artifact_sha256'] != source['sha256'], f'{target} artifact equals source')
+        verify_artifact({'path': item['artifact_path'], 'sha256': item['artifact_sha256']})
+        validation = stages['generation_validation']['results'][target]
+        require(validation['artifact_sha256'] == item['artifact_sha256'] and validation['nonempty'], f'{target} generation not validated')
+        bench = stages['benchmark']['results'][target]
+        require(bench['status'] == 'completed' and bench['artifact_sha256'] == item['artifact_sha256'] and bench['source_sha256'] == source['sha256'],
+                f'{target} benchmark lineage mismatch')
+        summary = bench['summary']
+        require(summary['successful_trials'] == record['settings']['benchmark_repeats'] and summary['failed_trials'] == 0, f'{target} benchmark incomplete')
+        evaluation = stages['evaluation']['results'][target]
+        require(evaluation['status'] == 'completed' and evaluation['artifact_sha256'] == item['artifact_sha256'] and
+                evaluation['source_sha256'] == source['sha256'], f'{target} evaluation lineage mismatch')
+        if str(ROOT) not in sys.path:
+            sys.path.insert(0, str(ROOT))
+        from backend.evaluation.datasets import SHA256, load
+        heldout = len(load('coding-v1', 'heldout')['items'])
+        require(evaluation['dataset_sha256'] == SHA256['coding-v1'] and evaluation['split'] == 'heldout', f'{target} wrong dataset')
+        require((evaluation.get('sandbox') or {}).get('status') == 'available', f'{target} coding was not sandboxed')
+        require(evaluation['summary']['scored'] == evaluation['summary']['items'] == heldout, f'{target} coding items not all scored')
+    settings = {stages['benchmark']['results'][t]['settings_sha256'] for t in artifacts}
+    require(None not in settings, 'Benchmark settings identity missing')
+    recommendation = stages['recommendation']
+    request = recommendation['request']
+    for key in ['max_memory_bytes', 'min_quality', 'max_latency_seconds', 'objective', 'quality_suite']:
+        require(request[key] == constraints[key], f'Recommendation constraint {key} differs from the pre-registered value')
+    require(sorted(request['experiment_ids']) == sorted(stages['benchmark']['results'][t]['experiment_id'] for t in artifacts),
+            'Recommendation must use exactly this workflow\'s benchmarks')
+    require(recommendation['outcome'] in constraints['expected_valid_outcomes'] and recommendation['http_status'] == 200, 'Invalid recommendation outcome')
+    saved = json.loads((folder / 'recommendation.json').read_text())
+    require(saved['request'] == request and saved['response'].get('status') == recommendation['outcome'], 'Saved recommendation does not match the stage record')
+    files = stages['export']['files']
+    for target in artifacts:
+        for name in [f'exports/benchmark-{target}.json', f'exports/benchmark-{target}.csv', f'exports/evaluation-{target}.json']:
+            require(name in files and files[name]['http_status'] == 200, f'Missing export {name}')
+    for name, item in files.items():
+        path = folder / name
+        require(path.is_file() and hashlib.sha256(path.read_bytes()).hexdigest() == item['sha256'], f'Export {name} missing or altered')
+
+
 def validate(identifier):
     if identifier == 'task01':
         require((ROOT / 'docs/AUDIT.md').is_file(), 'Repository audit document is missing')
@@ -107,9 +173,15 @@ def validate(identifier):
                 require(type(value) in {int, float} and math.isfinite(value) and value > 0, 'Invalid perplexity')
             require(config.get('perplexity') is not None or config.get('perplexity_unsupported_reason'), 'Perplexity needs measurement or unsupported reason')
     elif identifier == 'task08':
-        data = evidence('e2e-evidence.json')
+        # v0.2: one traceable workflow is mandatory. The v0.1 flag-only file (no coding stage) is history.
+        data = evidence('e2e-evidence-v0.2.json')
+        require(data.get('status') == 'completed', 'End-to-end workflow did not complete')
         require(all(data.get(stage) is True for stage in ['imported', 'quantized', 'generation_validated',
-                    'benchmarked', 'evaluated', 'recommended', 'exported']), 'Incomplete real end-to-end workflow')
+                    'benchmarked', 'evaluated', 'coding_evaluated', 'recommended', 'exported']), 'Incomplete real end-to-end workflow')
+        validate_workflow(data)
+        tests = subprocess.run(['uv', 'run', 'pytest', '-q', 'tests/test_api.py', '-k',
+                                'cancellation or interrupted or failure or timeout or restart'], cwd=ROOT)
+        require(tests.returncode == 0, 'Interrupted-job and failure regression tests must pass')
         validate('task02')
         validate('task04')
     elif identifier == 'task07':

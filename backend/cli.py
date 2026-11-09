@@ -136,6 +136,11 @@ def main():
     quant.add_argument("--measured", type=int, default=4)
     quant.add_argument("--cooldown", type=int, default=30)
     quant.add_argument("--export", type=Path, help="Copy curated evidence to this directory after the phases")
+    e2e = commands.add_parser("e2e", help="One traceable end-to-end workflow through the local API (task08)")
+    e2e.add_argument("--source", type=Path, required=True)
+    e2e.add_argument("--constraints", type=Path, default=Path("experiments/e2e/recommendation-constraints.json"))
+    e2e.add_argument("--tools", type=Path, default=Path(".feather/tools/llama.cpp/build/bin"))
+    e2e.add_argument("--out", type=Path, default=Path("experiments/e2e"))
     sandbox = commands.add_parser("sandbox", help="Coding-evaluation isolation").add_subparsers(dest="action", required=True)
     sandbox.add_parser("status", help="Report whether isolated execution is available")
     sandbox.add_parser("prepare", help="Explicitly pull the pinned sandbox image (about 20 MB)")
@@ -144,6 +149,16 @@ def main():
     args = parser.parse_args()
     if args.command == "sandbox":
         sys.exit(sandbox_command(args))
+    if args.command == "e2e":
+        from backend.e2e import Workflow, summary_evidence
+        workflow = Workflow(args.source, args.constraints, args.tools, args.out, log=lambda m: print(m, flush=True))
+        try:
+            record = workflow.run(json.loads(args.constraints.read_text()))
+        finally:
+            evidence = summary_evidence(workflow.out)
+            Path("experiments/e2e-evidence-v0.2.json").write_text(json.dumps(evidence, indent=2) + "\n")
+            print(json.dumps(evidence, indent=2))
+        sys.exit(0 if record["status"] == "completed" else 1)
     if args.command == "quant-study":
         from backend.study.run import Study
         study = Study(args.source, args.out, args.tools, log=lambda m: print(m, flush=True))
@@ -208,3 +223,7 @@ def main():
     finally:
         if backend:
             backend.close()
+
+
+if __name__ == "__main__":
+    main()

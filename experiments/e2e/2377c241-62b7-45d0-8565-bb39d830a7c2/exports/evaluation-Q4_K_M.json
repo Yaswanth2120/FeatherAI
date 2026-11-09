@@ -1,0 +1,1581 @@
+{
+ "id": "664f44eb-3c9b-4192-b47f-8a182f471b17",
+ "kind": "evaluation",
+ "created_at": "2026-11-09T22:23:54.628437+00:00",
+ "model": {
+  "name": "model-Q4_K_M.gguf",
+  "size": 105454144,
+  "digest": "76ab8f094853fd2e48a76620f031f59b3e127970ba84489323a47a877e632b3e",
+  "artifact_sha256": "76ab8f094853fd2e48a76620f031f59b3e127970ba84489323a47a877e632b3e",
+  "details": {
+   "tensor_types": {
+    "F32": 61,
+    "Q8_0": 15,
+    "Q5_0": 166,
+    "Q6_K": 14,
+    "Q4_K": 16
+   },
+   "parameter_count": 134515008
+  }
+ },
+ "suite": "coding-v1",
+ "split": "heldout",
+ "dataset_version": "v1",
+ "dataset_sha256": "e41bfe10854cd6fa6e8ad69b9e56d34c73da66e6b48ec9dd86d5e74565d531bb",
+ "suite_sha256": "44c8bb28de634a1617390b3165324c8479b7ac1e06e8e81537bc21d1f6490a0e:e41bfe10854cd6fa6e8ad69b9e56d34c73da66e6b48ec9dd86d5e74565d531bb",
+ "item_limit": null,
+ "options": {
+  "seed": 42,
+  "temperature": 0,
+  "num_ctx": 2048,
+  "num_predict": 384
+ },
+ "settings_sha256": "c8867afd6f92a7b962aede873f63d8254da6d99fe69b7c5a9351e582bcc329fb",
+ "repeats": 1,
+ "backend": "llama.cpp",
+ "source_sha256": "f535f83ec568d040f88ddc04a199fa6da90923bbb41d4dcaed02caa924d6ef57",
+ "prompt_template": "chatml-v1: <|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant\n",
+ "runtime_version": "version: 0.9.0-dev (build 1, commit 9d340ec)\nbuilt with AppleClang 17.0.0.17000603 for Darwin arm64",
+ "hardware": {
+  "chip": "Apple M2",
+  "architecture": "arm64",
+  "os": "macOS-26.7.3-arm64-arm-64bit",
+  "python": "3.12.9",
+  "physical_ram_bytes": 8589934592,
+  "available_ram_bytes": 1614610432,
+  "system_swap": {
+   "total": 4294967296,
+   "used": 2870214656,
+   "free": 1424752640,
+   "percent": 66.8,
+   "sin": 265483534336,
+   "sout": 5912379392
+  }
+ },
+ "results": [
+  {
+   "task_id": "add_digits",
+   "category": "passed",
+   "item_category": "coding",
+   "prompt_sha256": "991d75edcd11bb9e57b3755cf03d34f09d9a2c458b96b78390200a64a6c9d684",
+   "generation": {
+    "output": "Here's how you can implement this function:\n\n```python\ndef add_digits(n):\n    return sum(int(digit) for digit in str(n))\n```\n\nThis function uses a generator expression to iterate over each digit in the string representation of `n`. For each digit, it converts the digit to an integer using the `int()` function and adds it to the sum. The `sum()` function is used to calculate the sum of all digits in the string representation of `n`.",
+    "ttft_seconds": 0.03581212499921094,
+    "wall_seconds": 0.4550339579982392,
+    "truncated": false,
+    "eval_count": 106
+   },
+   "status": "scored",
+   "passed": true,
+   "test_cases": 5,
+   "cases_passed": 5,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "passed",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": true
+    },
+    {
+     "index": 1,
+     "passed": true
+    },
+    {
+     "index": 2,
+     "passed": true
+    },
+    {
+     "index": 3,
+     "passed": true
+    },
+    {
+     "index": 4,
+     "passed": true
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-e3de55271f7c4e6b9a1c032142f59365",
+    "exit_code": 0,
+    "seconds": 24452.327,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "is_prime",
+   "category": "passed",
+   "item_category": "coding",
+   "prompt_sha256": "d87f03d65918c6dac2ee0dc0d525393abc4136448f2b9c9ea9cee85e3a0f9d99",
+   "generation": {
+    "output": "Here's a Python function that checks if a number is prime:\n\n```python\ndef is_prime(n):\n    if n < 2:\n        return False\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n```\n\nThis function works by checking if the number `n` is divisible by any number up to its square root. If it is, then `n` is not prime, so the function immediately returns False. If `n` is not divisible by any of these numbers, then `n` is prime, so the function returns True.\n\nThis function has a time complexity of O(sqrt(n)), which is efficient for large numbers. It also handles edge cases like numbers less than 2, which are not prime.\n\nHere's an example of how you can use this function:\n\n```python\nprint(is_prime(25))  # False\nprint(is_prime(23))  # True\nprint(is_prime(37))  # False\nprint(is_prime(48))  # True\n```",
+    "ttft_seconds": 0.032415459001640556,
+    "wall_seconds": 0.9989536670000234,
+    "truncated": false,
+    "eval_count": 253
+   },
+   "status": "scored",
+   "passed": true,
+   "test_cases": 9,
+   "cases_passed": 9,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "passed",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": true
+    },
+    {
+     "index": 1,
+     "passed": true
+    },
+    {
+     "index": 2,
+     "passed": true
+    },
+    {
+     "index": 3,
+     "passed": true
+    },
+    {
+     "index": 4,
+     "passed": true
+    },
+    {
+     "index": 5,
+     "passed": true
+    },
+    {
+     "index": 6,
+     "passed": true
+    },
+    {
+     "index": 7,
+     "passed": true
+    },
+    {
+     "index": 8,
+     "passed": true
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-5587def99c944220b8fefedaba5ee367",
+    "exit_code": 0,
+    "seconds": 24453.616,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "count_vowels",
+   "category": "partial_pass",
+   "item_category": "coding",
+   "prompt_sha256": "54053ebc1011ba6cc5082d00fcba947b7efa912a6057fd8cc9565a551efc1f6b",
+   "generation": {
+    "output": "Here's how you can implement this function:\n\n```python\ndef count_vowels(s):\n    vowels = 'aeiou'\n    return sum(char in vowels for char in s)\n```\n\nThis function uses the built-in `in` operator to check if each character in the string `s` is a vowel. The `sum` function then adds up all the characters in the string that are vowels.",
+    "ttft_seconds": 0.03291212499971152,
+    "wall_seconds": 0.36696604100143304,
+    "truncated": false,
+    "eval_count": 91
+   },
+   "status": "scored",
+   "passed": false,
+   "test_cases": 5,
+   "cases_passed": 3,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "partial_pass",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": true
+    },
+    {
+     "index": 1,
+     "passed": true
+    },
+    {
+     "index": 2,
+     "passed": false
+    },
+    {
+     "index": 3,
+     "passed": false
+    },
+    {
+     "index": 4,
+     "passed": true
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-c3db32f1153d41f7b0e8aa9f30264a85",
+    "exit_code": 0,
+    "seconds": 24454.281,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "factorial",
+   "category": "passed",
+   "item_category": "coding",
+   "prompt_sha256": "849de9a72017a2f236c18653b16ab36e745e2449e93cbb46f87aa602a824d6bf",
+   "generation": {
+    "output": "```python\ndef factorial(n):\n    \"\"\"\n    Returns the factorial of a non-negative integer n.\n\n    Args:\n        n (int): The number to calculate the factorial of.\n\n    Returns:\n        int: The factorial of n.\n\n    Raises:\n        ValueError: If n is negative.\n    \"\"\"\n    if not isinstance(n, int) or n < 0:\n        raise ValueError(\"n must be a non-negative integer\")\n    elif n == 0 or n == 1:\n        return 1\n    else:\n        result = 1\n        for i in range(2, n + 1):\n            result *= i\n        return result\n```\n\nThis function uses a recursive approach to calculate the factorial of a non-negative integer `n`. It checks if `n` is negative and raises a `ValueError` if it is. Otherwise, it calculates the factorial of `n` by multiplying all the numbers from 2 to `n` together. The factorial of a non-negative integer is defined as the product of all positive integers less than or equal to that integer.",
+    "ttft_seconds": 0.02883233300235588,
+    "wall_seconds": 0.9303210830003081,
+    "truncated": false,
+    "eval_count": 232
+   },
+   "status": "scored",
+   "passed": true,
+   "test_cases": 5,
+   "cases_passed": 5,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "passed",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": true
+    },
+    {
+     "index": 1,
+     "passed": true
+    },
+    {
+     "index": 2,
+     "passed": true
+    },
+    {
+     "index": 3,
+     "passed": true
+    },
+    {
+     "index": 4,
+     "passed": true
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-0b1519f78cc44e40b33769551fe4bf82",
+    "exit_code": 0,
+    "seconds": 24455.49,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "fibonacci",
+   "category": "wrong_answer",
+   "item_category": "coding",
+   "prompt_sha256": "5263a355167bf6ab6dceb3a5fca81e46ecdac1fe55b170c5beeae8c14c25384b",
+   "generation": {
+    "output": "```python\ndef fibonacci(n):\n    fib_sequence = [0, 1]\n    while len(fib_sequence) < n:\n        fib_sequence.append(fib_sequence[-1] + fib_sequence[-2])\n    return fib_sequence\n```\n\nThis function uses a simple iterative approach to calculate the Fibonacci sequence. It initializes the Fibonacci sequence with the first two numbers, 0 and 1, and then enters a loop that continues until the length of the Fibonacci sequence is equal to `n`. In each iteration, it appends the sum of the last two numbers in the Fibonacci sequence to the end of the sequence.\n\nThe `fibonacci` function takes an integer `n` as input and returns the n-th Fibonacci number. It uses a simple iterative approach to calculate the Fibonacci sequence, where each number is calculated by adding the previous two numbers in the sequence.\n\nThe function uses a `while` loop to iterate through the Fibonacci sequence, adding the last two numbers in the sequence to the end of the sequence. This process continues until the length of the Fibonacci sequence is equal to `n`.\n\nThe function returns the `n-th` Fibonacci number, which is the sum of the last two numbers in the Fibonacci sequence.",
+    "ttft_seconds": 0.036992165998526616,
+    "wall_seconds": 1.1025379999991856,
+    "truncated": false,
+    "eval_count": 275
+   },
+   "status": "scored",
+   "passed": false,
+   "test_cases": 6,
+   "cases_passed": 0,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "wrong_answer",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": false
+    },
+    {
+     "index": 1,
+     "passed": false
+    },
+    {
+     "index": 2,
+     "passed": false
+    },
+    {
+     "index": 3,
+     "passed": false
+    },
+    {
+     "index": 4,
+     "passed": false
+    },
+    {
+     "index": 5,
+     "passed": false
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-26ec014754f64ae0a28d4aefd1ccbfc4",
+    "exit_code": 0,
+    "seconds": 24456.866,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "flatten",
+   "category": "passed",
+   "item_category": "coding",
+   "prompt_sha256": "5d4eebfdc3cef354826f2aa26ba877ea2ffe709f39e9ce15eada53e1e1c02f7e",
+   "generation": {
+    "output": "Here's how you can implement this function:\n\n```python\ndef flatten(nested):\n    result = []\n    for item in nested:\n        if isinstance(item, list):\n            result.extend(flatten(item))\n        else:\n            result.append(item)\n    return result\n```\n\nThis function uses a nested loop to iterate through the list of nested lists. For each nested list, it checks if the item is a list. If it is, it calls itself recursively with the nested list as the argument. If it is not a list, it simply appends the item to the result list.\n\nThe `flatten` function iterates through the list of nested lists, and for each nested list, it checks if the item is a list. If it is, it calls itself recursively with the nested list as the argument. If it is not a list, it simply appends the item to the result list.\n\nThe `flatten` function returns a flat list of integers in the same order as the input list.",
+    "ttft_seconds": 0.0273531249986263,
+    "wall_seconds": 0.8376077909997548,
+    "truncated": false,
+    "eval_count": 216
+   },
+   "status": "scored",
+   "passed": true,
+   "test_cases": 4,
+   "cases_passed": 4,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "passed",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": true
+    },
+    {
+     "index": 1,
+     "passed": true
+    },
+    {
+     "index": 2,
+     "passed": true
+    },
+    {
+     "index": 3,
+     "passed": true
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-e523384d47d4467eab55376c325a241e",
+    "exit_code": 0,
+    "seconds": 24457.939,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "second_largest",
+   "category": "passed",
+   "item_category": "coding",
+   "prompt_sha256": "e930b8895cd708587b605c675eee4b704c34ffcc397340648e1bce22ce468c3f",
+   "generation": {
+    "output": "Here's how you can implement this function:\n\n```python\ndef second_largest(items):\n    if len(items) < 2:\n        return None\n\n    max_val = second_max = float('-inf')\n    for num in items:\n        if num > max_val:\n            second_max = max_val\n            max_val = num\n        elif num > second_max and num != max_val:\n            second_max = num\n\n    if second_max == float('-inf'):\n        return None\n\n    return second_max\n```\n\nThis function iterates through the list of integers, comparing each number to the current maximum value. If a number is greater than the current maximum, it updates the maximum value and the current maximum. If a number is less than the current maximum, it updates the current maximum and the current number. If the current maximum is equal to the current number, it returns None. If the list is empty, it returns None.\n\nThe function returns None if there are fewer than two distinct values.",
+    "ttft_seconds": 0.03669416699995054,
+    "wall_seconds": 0.9016020840026613,
+    "truncated": false,
+    "eval_count": 217
+   },
+   "status": "scored",
+   "passed": true,
+   "test_cases": 5,
+   "cases_passed": 5,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "passed",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": true
+    },
+    {
+     "index": 1,
+     "passed": true
+    },
+    {
+     "index": 2,
+     "passed": true
+    },
+    {
+     "index": 3,
+     "passed": true
+    },
+    {
+     "index": 4,
+     "passed": true
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-2cdfa849fe494757a6ff4f41672d1051",
+    "exit_code": 0,
+    "seconds": 24459.188,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "is_anagram",
+   "category": "partial_pass",
+   "item_category": "coding",
+   "prompt_sha256": "04a8ff476f1c6372e600ed61b47a105735105e85c697843c4382fd1c28cc393f",
+   "generation": {
+    "output": "Here's a Python function that checks if a string is a rearrangement of the characters of another string:\n\n```python\ndef is_anagram(a, b):\n    # Convert both strings to lowercase\n    a = ''.join(c for c in a if c.isalnum()).lower()\n    b = ''.join(c for c in b if c.isalnum()).lower()\n\n    # Compare the characters of the two strings\n    return a == b\n```\n\nThis function works by first converting both strings to lowercase, then comparing the characters of the two strings. The `isalnum()` method returns `True` if all characters in the string are alphanumeric (either alphabets or numbers), and `False` otherwise.\n\nThe `join()` method is used to concatenate the characters of the two strings into a single string. The `isalnum()` method returns `True` if all characters in the string are alphanumeric, and `False` otherwise.\n\nThe `isalnum()` method returns `True` if all characters in the string are alphanumeric, and `False` otherwise.\n\nThe `lower()` method converts the string to lowercase, so that the comparison is case-insensitive.\n\nThe `isalnum()` method returns `True` if all characters in the string are alphanumeric, and `False` otherwise.\n\nThe `join()` method concatenates the characters of the two strings into a single string.\n\nThe `isalnum()` method returns `True` if all characters in the string are alphanumeric, and `False` otherwise.\n\nThe `lower()` method converts the string to lowercase, so that the comparison is case-insensitive.\n\nThe `isalnum()` method returns `True` if all characters in the",
+    "ttft_seconds": 0.03475504100060789,
+    "wall_seconds": 1.467201916002523,
+    "truncated": true,
+    "eval_count": 384
+   },
+   "status": "scored",
+   "passed": false,
+   "test_cases": 5,
+   "cases_passed": 4,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "partial_pass",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": false
+    },
+    {
+     "index": 1,
+     "passed": true
+    },
+    {
+     "index": 2,
+     "passed": true
+    },
+    {
+     "index": 3,
+     "passed": true
+    },
+    {
+     "index": 4,
+     "passed": true
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-d6f1d0cf87cb4a6da6be37ee3826ad53",
+    "exit_code": 0,
+    "seconds": 24460.896,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "run_length_encode",
+   "category": "wrong_answer",
+   "item_category": "coding",
+   "prompt_sha256": "4f77b8fdc6e89e3362b71c38046fb04a955fb5583f3a5fa64bd922409f43287f",
+   "generation": {
+    "output": "Here's how you can implement this function:\n\n```python\ndef run_length_encode(s):\n    length = 0\n    for char in s:\n        if char == 'a':\n            length += 1\n        elif char == 'b':\n            length += 2\n        else:\n            length += 1\n    return ' '.join(chr(i) for i in range(len(s) - length + 1))\n```\n\nThis function iterates through the input string `s` and checks each character. If the character is a single-character string, it increments the length of the current character. If the character is a repeated character, it adds the length of the current character to the length of the current character. If the character is not a single-character string, it adds the character itself to the length of the current character.\n\nThe `chr` function is used to convert each character to its corresponding character in the string. The `range` function is used to generate a range of characters from 0 to the length of the string minus one.\n\nThe `join` method is used to concatenate the characters in the string into a single string. The `' '.join` method is used to join the characters in the string into a single string.\n\nThe `len` function is used to get the length of the string.\n\nThe function returns the run-length encoded string.",
+    "ttft_seconds": 0.039888499999506166,
+    "wall_seconds": 1.1554202920015086,
+    "truncated": false,
+    "eval_count": 297
+   },
+   "status": "scored",
+   "passed": false,
+   "test_cases": 5,
+   "cases_passed": 0,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "wrong_answer",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": false
+    },
+    {
+     "index": 1,
+     "passed": false
+    },
+    {
+     "index": 2,
+     "passed": false
+    },
+    {
+     "index": 3,
+     "passed": false
+    },
+    {
+     "index": 4,
+     "passed": false
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-53ca9bd0395e435a957b47974852020b",
+    "exit_code": 0,
+    "seconds": 24462.362,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "chunk",
+   "category": "partial_pass",
+   "item_category": "coding",
+   "prompt_sha256": "1a47d3b94779ddb2044a50a28439a59964666463cb4f85b69f4536092f1d4853",
+   "generation": {
+    "output": "Here's how you can implement this function:\n\n```python\ndef chunk(items, size):\n    chunks = []\n    for i in range(len(items) - size + 1):\n        chunks.append(items[i:i+size])\n    return chunks\n```\n\nThis function takes a list of items and a length `size` as input. It uses a list comprehension to create a list of chunks, where each chunk is a contiguous sublist of length `size`. The `range(len(items) - size + 1)` expression generates a sequence of indices that starts from the last index of the list and goes up to the current index. The `items[i:i+size]` expression creates a new list containing the sublists of length `size` and appends them to the `chunks` list.\n\nThe function returns the list of chunks, which is then unpacked into a list of sublists.",
+    "ttft_seconds": 0.027706208999006776,
+    "wall_seconds": 0.7847268340010487,
+    "truncated": false,
+    "eval_count": 198
+   },
+   "status": "scored",
+   "passed": false,
+   "test_cases": 4,
+   "cases_passed": 2,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "partial_pass",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": true
+    },
+    {
+     "index": 1,
+     "passed": false
+    },
+    {
+     "index": 2,
+     "passed": true
+    },
+    {
+     "index": 3,
+     "passed": false
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-bfde7a7175194d3b8ad6338a3ff7d846",
+    "exit_code": 0,
+    "seconds": 24463.422,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "rotate_left",
+   "category": "partial_pass",
+   "item_category": "coding",
+   "prompt_sha256": "8fa4efa762debd23d28d431d940de896dc2dbd88354e7beaa4a362607f70c770",
+   "generation": {
+    "output": "Here's how you can implement this function:\n\n```python\ndef rotate_left(items, k):\n    new_list = []\n    for i in range(len(items) - k + 1):\n        new_list.append(items[i])\n    return new_list\n```\n\nThis function uses a two-pointer technique to rotate the list. The outer loop iterates over the list, and the inner loop iterates over the list in the opposite direction of the rotation. The `rotate_left` function takes a list `items` and a number `k` as input, and returns a new list `new_list` that is rotated left by `k` positions.\n\nThe inner loop iterates over the list in the opposite direction of the rotation, so it starts from the end of the list and moves to the beginning. This ensures that the rotation is done in the correct order.\n\nThe `rotate_left` function returns a new list `new_list` that is rotated left by `k` positions.",
+    "ttft_seconds": 0.02956945799815003,
+    "wall_seconds": 0.8555801250004151,
+    "truncated": false,
+    "eval_count": 220
+   },
+   "status": "scored",
+   "passed": false,
+   "test_cases": 4,
+   "cases_passed": 1,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "partial_pass",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": true
+    },
+    {
+     "index": 1,
+     "passed": false
+    },
+    {
+     "index": 2,
+     "passed": false
+    },
+    {
+     "index": 3,
+     "passed": false
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-637f4e2aff9840b6ade4b9ac99a44df7",
+    "exit_code": 0,
+    "seconds": 24464.569,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "transpose",
+   "category": "partial_pass",
+   "item_category": "coding",
+   "prompt_sha256": "97611e8f96947886e6f6326915983f587a95c99b1a14a91ca6d39babda92896f",
+   "generation": {
+    "output": "```python\ndef transpose(matrix):\n    return [[row[i] for row in matrix] for i in range(len(matrix[0]))]\n```\n\nThis function uses a list comprehension to create a new matrix by iterating over each row in the input matrix. For each row, it creates a new row by appending the corresponding element from the input matrix to the corresponding element in the new row.\n\nThe `range(len(matrix[0]))` expression generates a sequence of indices from 0 to the length of the input matrix, which is the same as the length of the input matrix itself.\n\nThe `for` loop iterates over each row in the input matrix, and for each row, it creates a new row by appending the corresponding element from the input matrix to the corresponding element in the new row.\n\nThe `[row[i]` expression creates a new row by appending the corresponding element from the input matrix to the corresponding element in the new row.\n\nThe `for` loop continues until all rows have been processed, and the resulting new matrix is returned.\n\nThe function returns the resulting matrix as a new list, which is the same as the input matrix.",
+    "ttft_seconds": 0.028019917001074646,
+    "wall_seconds": 0.9743289170000935,
+    "truncated": false,
+    "eval_count": 255
+   },
+   "status": "scored",
+   "passed": false,
+   "test_cases": 3,
+   "cases_passed": 2,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "partial_pass",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": false,
+     "error": "IndexError",
+     "message": "list index out of range"
+    },
+    {
+     "index": 1,
+     "passed": true
+    },
+    {
+     "index": 2,
+     "passed": true
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-4c98c74fdbae4777bf5d0a74b39d16a5",
+    "exit_code": 0,
+    "seconds": 24465.849,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "merge_sorted",
+   "category": "passed",
+   "item_category": "coding",
+   "prompt_sha256": "35fdf4bd76995ce7b45e1f5d0f28f0920bbd2252d912ef2761290192e04bad45",
+   "generation": {
+    "output": "Here's a Python function that merges two sorted lists into one:\n\n```python\ndef merge_sorted(a, b):\n    return sorted(a + b)\n```\n\nThis function uses the built-in `sorted` function to sort the two lists, and then uses the `+` operator to concatenate the two sorted lists into a single list.\n\nHowever, this approach has a time complexity of O(n log n) due to the sorting operation. A more efficient approach would be to use a two-pointer technique, which has a time complexity of O(n):\n\n```python\ndef merge_sorted(a, b):\n    result = []\n    i, j = 0, 0\n    while i < len(a) and j < len(b):\n        if a[i] < b[j]:\n            result.append(a[i])\n            i += 1\n        else:\n            result.append(b[j])\n            j += 1\n    result.extend(a[i:])\n    result.extend(b[j:])\n    return result\n```\n\nThis function uses two pointers, `i` and `j`, to iterate through the two lists. It compares the elements at the current positions and appends the smaller element to the result list.\n\nAlternatively, you can use a two-pointer technique with a `set` to avoid the need for sorting:\n\n```python\ndef merge_sorted(a, b):\n    result = []\n    i, j = 0, 0\n    seen = set()\n    while i < len(a) and j < len(b):\n        if a[i] < b[j]:\n            result.append(a[i])\n            i += 1\n        else:\n            result.append(b[j])\n            j",
+    "ttft_seconds": 0.02797370899861562,
+    "wall_seconds": 1.4923579589994915,
+    "truncated": true,
+    "eval_count": 384
+   },
+   "status": "scored",
+   "passed": true,
+   "test_cases": 5,
+   "cases_passed": 5,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "passed",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": true
+    },
+    {
+     "index": 1,
+     "passed": true
+    },
+    {
+     "index": 2,
+     "passed": true
+    },
+    {
+     "index": 3,
+     "passed": true
+    },
+    {
+     "index": 4,
+     "passed": true
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-723b9d5417f54d8d9f78537c80cb9793",
+    "exit_code": 0,
+    "seconds": 24467.593,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "word_counts",
+   "category": "partial_pass",
+   "item_category": "coding",
+   "prompt_sha256": "2ea033f5c57a0b0515b7f530fdb9075b71d8ac47b5cfd96b267601d29c88a80b",
+   "generation": {
+    "output": "Here's how you can implement this function:\n\n```python\ndef word_counts(text):\n    counts = {}\n    for word in text.lower():\n        if word in counts:\n            counts[word] += 1\n        else:\n            counts[word] = 1\n    return counts\n```\n\nThis function iterates over each word in the input text, and for each word, it checks if the word is already in the dictionary. If it is, it increments the count by 1. If the word is not in the dictionary, it adds it with a count of 1.\n\nThe function returns a dictionary where the keys are the words and the values are their respective counts.\n\nHere's how you can test this function:\n\n```python\nprint(word_counts(\"Hello, World!\"))  # Output: {'H': 1, 'e': 1, 'l': 1, 'o': 1, 'r': 1, 'w': 1}\n```",
+    "ttft_seconds": 0.03792312500081607,
+    "wall_seconds": 0.8537469580005563,
+    "truncated": false,
+    "eval_count": 215
+   },
+   "status": "scored",
+   "passed": false,
+   "test_cases": 4,
+   "cases_passed": 1,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "partial_pass",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": true
+    },
+    {
+     "index": 1,
+     "passed": false
+    },
+    {
+     "index": 2,
+     "passed": false
+    },
+    {
+     "index": 3,
+     "passed": false
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-6ad5db9fb29d4589b3152a23352688a9",
+    "exit_code": 0,
+    "seconds": 24468.675,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "balanced_brackets",
+   "category": "partial_pass",
+   "item_category": "coding",
+   "prompt_sha256": "cb28d0a8b181bcecf76daf1abc5dec14a1b906a2909e68c3f262e60e9c8dab56",
+   "generation": {
+    "output": "Here's a Python function that checks if a string is balanced:\n\n```python\ndef balanced_brackets(s):\n    stack = []\n    current_bracket = ''\n    current_char = ''\n\n    for char in s:\n        if char == '(':\n            stack.append(current_char)\n        elif char == ')':\n            if not stack:\n                return False\n            current_bracket = stack.pop()\n            current_char = current_bracket\n            if not stack:\n                return False\n            current_bracket = current_bracket + current_char\n            stack.append(current_char)\n\n    return stack == ''\n```\n\nThis function uses a stack to keep track of the opening brackets and the closing brackets. It iterates through the string, pushing opening brackets onto the stack and popping them off when it encounters a closing bracket. If it encounters a closing bracket, it checks if the stack is empty. If it's not empty, it pushes the closing bracket onto the stack and pushes the closing bracket onto the stack. If it encounters a closing bracket, it checks if the stack is empty. If it's not empty, it pushes the opening bracket onto the stack and pushes the opening bracket onto the stack. If it encounters a closing bracket, it checks if the stack is empty. If it's not empty, it pushes the closing bracket onto the stack and pushes the closing bracket onto the stack. If it encounters a closing bracket, it checks if the stack is empty. If it's not empty, it pushes the opening bracket onto the stack and pushes the opening bracket onto the stack. If it encounters a closing bracket, it checks if the stack is empty. If it's not empty, it pushes the closing bracket onto the stack and pushes the closing bracket onto the stack. If it encounters a closing bracket, it checks",
+    "ttft_seconds": 0.0363172500001383,
+    "wall_seconds": 1.5065621249996184,
+    "truncated": true,
+    "eval_count": 384
+   },
+   "status": "scored",
+   "passed": false,
+   "test_cases": 6,
+   "cases_passed": 3,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "partial_pass",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": false
+    },
+    {
+     "index": 1,
+     "passed": false
+    },
+    {
+     "index": 2,
+     "passed": true
+    },
+    {
+     "index": 3,
+     "passed": false
+    },
+    {
+     "index": 4,
+     "passed": true
+    },
+    {
+     "index": 5,
+     "passed": true
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-f5778f53a9614cbf989406838ead0d5c",
+    "exit_code": 0,
+    "seconds": 24470.453,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "binary_to_int",
+   "category": "passed",
+   "item_category": "coding",
+   "prompt_sha256": "b506e2f5383f6d2c68f01565f7f627c230e86059fe6612619eccb7a2c6cb953d",
+   "generation": {
+    "output": "Here's how you can implement this function:\n\n```python\ndef binary_to_int(s):\n    if not s:\n        return 0\n    binary_str = ''.join(c for c in s if c.isdigit())\n    return int(binary_str, 2)\n```\n\nThis function first checks if the input string `s` is empty. If it is, the function returns 0. Otherwise, it converts the string to a binary string using the `join` method, which returns a list of characters in the same order as the input string.\n\nNext, it converts the binary string to an integer using the `int` function with base 2. This is done by iterating over each character in the binary string and checking if it is a digit. If it is, it is converted to a digit using the `isdigit` method.\n\nFinally, the function returns the integer representation of the binary string.",
+    "ttft_seconds": 0.038263958998868475,
+    "wall_seconds": 0.8268126249968191,
+    "truncated": false,
+    "eval_count": 200
+   },
+   "status": "scored",
+   "passed": true,
+   "test_cases": 5,
+   "cases_passed": 5,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "passed",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": true
+    },
+    {
+     "index": 1,
+     "passed": true
+    },
+    {
+     "index": 2,
+     "passed": true
+    },
+    {
+     "index": 3,
+     "passed": true
+    },
+    {
+     "index": 4,
+     "passed": true
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-06f54047df6b453b9d40a01efcea9a9f",
+    "exit_code": 0,
+    "seconds": 24471.525,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "int_to_roman",
+   "category": "partial_pass",
+   "item_category": "coding",
+   "prompt_sha256": "60281601163a3d3a95c874e1fc44e17ca00b50f37f5c2c58017107c8a17be2a8",
+   "generation": {
+    "output": "Here's how you can implement this function:\n\n```python\ndef int_to_roman(n):\n    roman_numerals = {\n        1000: 'M',\n        900: 'CM',\n        500: 'D',\n        400: 'CD',\n        100: 'C',\n        90: 'XC',\n        50: 'L',\n        40: 'XL',\n        10: 'X',\n        9: 'IX',\n        5: 'V',\n        4: 'IV',\n        1: 'I'\n    }\n\n    roman_numeral = ''\n    for i in range(1, n + 1):\n        roman_numeral += roman_numerals[i]\n\n    return roman_numeral\n```\n\nThis function takes an integer `n` as input and returns the corresponding Roman numeral representation. It uses standard subtractive notation to convert the integer to its equivalent Roman numeral. The `range` function generates a sequence of numbers from 1 to `n`, and the `for` loop iterates through each number in the sequence. For each number, the `+` operator is used to add the corresponding Roman numeral to the `roman_numeral` string.\n\nThe `roman_numeral` string is constructed by concatenating the corresponding Roman numeral from the `roman_numerals` dictionary. The `+` operator is used to add the corresponding Roman numeral to the `roman_numeral` string.\n\nThe function returns the `roman_numeral` string, which is the equivalent Roman numeral representation of the input integer `n`.",
+    "ttft_seconds": 0.03543220900246524,
+    "wall_seconds": 1.3740897919997224,
+    "truncated": false,
+    "eval_count": 356
+   },
+   "status": "scored",
+   "passed": false,
+   "test_cases": 7,
+   "cases_passed": 1,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "partial_pass",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": true
+    },
+    {
+     "index": 1,
+     "passed": false,
+     "error": "KeyError",
+     "message": "2"
+    },
+    {
+     "index": 2,
+     "passed": false,
+     "error": "KeyError",
+     "message": "2"
+    },
+    {
+     "index": 3,
+     "passed": false,
+     "error": "KeyError",
+     "message": "2"
+    },
+    {
+     "index": 4,
+     "passed": false,
+     "error": "KeyError",
+     "message": "2"
+    },
+    {
+     "index": 5,
+     "passed": false,
+     "error": "KeyError",
+     "message": "2"
+    },
+    {
+     "index": 6,
+     "passed": false,
+     "error": "KeyError",
+     "message": "2"
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-6fdb37b4ba9e40638cf971482a65bf70",
+    "exit_code": 0,
+    "seconds": 24473.135,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "longest_common_prefix",
+   "category": "partial_pass",
+   "item_category": "coding",
+   "prompt_sha256": "4ea4fa775dda609572014c76ac267c9922a691c1c4fd1fe260582a607804b396",
+   "generation": {
+    "output": "Here's how you can implement this function:\n\n```python\ndef longest_common_prefix(words):\n    prefix = \"\"\n    for char in words:\n        if char in prefix:\n            return prefix\n        prefix += char\n    return prefix\n```\n\nThis function iterates through the list of words, and for each word, it checks if the current character is already in the prefix. If it is, it returns the prefix. If not, it adds the current character to the prefix. If the loop completes without finding a prefix, it returns the prefix.\n\nThis function uses a `for` loop to iterate through the list of words. For each word, it checks if the current character is already in the prefix. If it is, it returns the prefix. If not, it adds the current character to the prefix. If the loop completes without finding a prefix, it returns the prefix.\n\nThis function is efficient because it uses a simple loop to iterate through the list of words, and for each word, it checks if the current character is already in the prefix. If it is, it returns the prefix. If not, it adds the current character to the prefix. If the loop completes without finding a prefix, it returns the prefix.\n\nThis function is concise and efficient because it uses a simple loop to iterate through the list of words, and for each word, it checks if the current character is already in the prefix. If it is, it returns the prefix. If not, it adds the current character to the prefix. If the loop completes without finding a prefix, it returns the prefix.",
+    "ttft_seconds": 0.030626250001660082,
+    "wall_seconds": 1.2577446670002246,
+    "truncated": false,
+    "eval_count": 331
+   },
+   "status": "scored",
+   "passed": false,
+   "test_cases": 5,
+   "cases_passed": 3,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "partial_pass",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": true
+    },
+    {
+     "index": 1,
+     "passed": false
+    },
+    {
+     "index": 2,
+     "passed": false
+    },
+    {
+     "index": 3,
+     "passed": true
+    },
+    {
+     "index": 4,
+     "passed": true
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-0ab908135ca1413696637f2ad0267c16",
+    "exit_code": 0,
+    "seconds": 24474.702,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "two_sum",
+   "category": "passed",
+   "item_category": "coding",
+   "prompt_sha256": "3287fde1febdef79ff9cb04db0ff85f8a483b444177e88b1cea81603863604cd",
+   "generation": {
+    "output": "```python\ndef two_sum(nums, target):\n    seen = {}\n    for i, num in enumerate(nums):\n        complement = target - num\n        if complement in seen:\n            return [seen[complement], i]\n        seen[num] = i\n    return []\n```\n\nThis function works by iterating over the list of numbers and for each number, it checks if its complement (the number that would be needed to reach the target) is in the dictionary. If it is, it returns the pair (i, j) with the current index. If not, it adds the current number to the dictionary and continues to the next number.\n\nThis function has a time complexity of O(n), where n is the length of the list of numbers, because it makes a single pass through the list. The space complexity is also O(n), because in the worst case, it needs to store all the numbers in the dictionary.\n\nHere's an example usage of the function:\n\n```python\nprint(two_sum([1, 2, 3, 4, 5], 2))  # Output: [0, 1]\nprint(two_sum([1, 2, 3, 4, 5], 3))  # Output: []\n```",
+    "ttft_seconds": 0.03247470899805194,
+    "wall_seconds": 1.0592917920002947,
+    "truncated": false,
+    "eval_count": 277
+   },
+   "status": "scored",
+   "passed": true,
+   "test_cases": 5,
+   "cases_passed": 5,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "passed",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": true
+    },
+    {
+     "index": 1,
+     "passed": true
+    },
+    {
+     "index": 2,
+     "passed": true
+    },
+    {
+     "index": 3,
+     "passed": true
+    },
+    {
+     "index": 4,
+     "passed": true
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-741be13d0e74423b84d3cfc2a170d292",
+    "exit_code": 0,
+    "seconds": 24476.017,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "max_subarray_sum",
+   "category": "passed",
+   "item_category": "coding",
+   "prompt_sha256": "7678a576c79d03450a26cd927f83620aaac85a2dd46c984cde24ce39f7573b58",
+   "generation": {
+    "output": "Here's a Python function that uses Kadane's algorithm to find the largest sum of a contiguous sublist of the non-empty integer list:\n\n```python\ndef max_subarray_sum(nums):\n    max_sum = float('-inf')\n    current_sum = 0\n\n    for num in nums:\n        current_sum = max(num, current_sum + num)\n        max_sum = max(max_sum, current_sum)\n\n    return max_sum\n```\n\nThis function works by maintaining two variables: `max_sum` and `current_sum`. `max_sum` keeps track of the maximum sum of a contiguous sublist, and `current_sum` keeps track of the maximum sum of the current sublist.\n\nThe function iterates through the list of numbers, updating `current_sum` to be the maximum of the current number and the sum of the current number and the previous `current_sum`. This ensures that the maximum sum is always at the end of the list.\n\nFinally, the function returns the maximum sum of a contiguous sublist.\n\nHere's an example usage of this function:\n\n```python\nprint(max_subarray_sum([-2, 1, -3, 4, -1, 2, 1, -5, 4]))  # Output: 7\n```\n\nThis function has a time complexity of O(n), where n is the length of the input list, because it makes a single pass through the list. The space complexity is also O(n), because it creates a new list to store the maximum sum of a contiguous sublist.",
+    "ttft_seconds": 0.038219624999328516,
+    "wall_seconds": 1.379671208000218,
+    "truncated": false,
+    "eval_count": 350
+   },
+   "status": "scored",
+   "passed": true,
+   "test_cases": 4,
+   "cases_passed": 4,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "passed",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": true
+    },
+    {
+     "index": 1,
+     "passed": true
+    },
+    {
+     "index": 2,
+     "passed": true
+    },
+    {
+     "index": 3,
+     "passed": true
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-61fc72b64d0e428eb969b8c3e0bba541",
+    "exit_code": 0,
+    "seconds": 24477.651,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "binary_search",
+   "category": "passed",
+   "item_category": "coding",
+   "prompt_sha256": "6513937104c2b40aa0c1b25501ef89400cdd95463da9ef8d11ef1612e5022e3e",
+   "generation": {
+    "output": "Here's a Python function that implements the binary search algorithm:\n\n```python\ndef binary_search(items, target):\n    \"\"\"\n    Searches for the target value in a sorted list of distinct integers.\n\n    Args:\n        items: A list of distinct integers.\n        target: The target value to search for.\n\n    Returns:\n        The index of the target value if found, -1 otherwise.\n    \"\"\"\n    left, right = 0, len(items) - 1\n\n    while left <= right:\n        mid = (left + right) // 2\n        if items[mid] == target:\n            return mid\n        elif items[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n\n    return -1\n```\n\nThis function uses a while loop to iterate through the list of items. It calculates the middle index `mid` of the current range and compares the value at that index with the target value. If they match, it returns the index of the target value. If the value at the middle index is less than the target, it moves the left pointer to the right until the target is found. If the value at the middle index is greater than the target, it moves the right pointer to the left until the target is found. If the loop completes without finding the target, it returns -1 to indicate that the target is not present in the list.\n\nNote that this implementation assumes that the input list is sorted in ascending order. If the list is sorted in descending order, the function will return -1 instead of returning -1.",
+    "ttft_seconds": 0.028079833999072434,
+    "wall_seconds": 1.3136513749996084,
+    "truncated": false,
+    "eval_count": 331
+   },
+   "status": "scored",
+   "passed": true,
+   "test_cases": 5,
+   "cases_passed": 5,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "passed",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": true
+    },
+    {
+     "index": 1,
+     "passed": true
+    },
+    {
+     "index": 2,
+     "passed": true
+    },
+    {
+     "index": 3,
+     "passed": true
+    },
+    {
+     "index": 4,
+     "passed": true
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-4ad5b39cbc8d464689d682fb7d578c5b",
+    "exit_code": 0,
+    "seconds": 24479.216,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "is_palindrome",
+   "category": "passed",
+   "item_category": "coding",
+   "prompt_sha256": "83e7a3cc7ad8edcc57188f16cd7c0e38e4c30b7c01c2fd9140d4600c2bcfd62c",
+   "generation": {
+    "output": "Here's how you can implement this function:\n\n```python\ndef is_palindrome(text):\n    reversed_text = text[::-1]\n    return text == reversed_text\n```\n\nThis function works by reversing the input text and comparing it to the original text. The `[::-1]` slice is used to reverse the string, effectively reversing the order of the characters in the text. The comparison is done using the `==` operator, which compares the characters of the two strings. If the characters of the two strings are equal, the function returns `True`, indicating that the text is a palindrome. Otherwise, it returns `False`.",
+    "ttft_seconds": 0.026900540997303324,
+    "wall_seconds": 0.5458467079988623,
+    "truncated": false,
+    "eval_count": 138
+   },
+   "status": "scored",
+   "passed": true,
+   "test_cases": 5,
+   "cases_passed": 5,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "passed",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": true
+    },
+    {
+     "index": 1,
+     "passed": true
+    },
+    {
+     "index": 2,
+     "passed": true
+    },
+    {
+     "index": 3,
+     "passed": true
+    },
+    {
+     "index": 4,
+     "passed": true
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-d9bb7b5869f44e31b5774c778cac982d",
+    "exit_code": 0,
+    "seconds": 24480.039,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "deduplicate",
+   "category": "partial_pass",
+   "item_category": "coding",
+   "prompt_sha256": "c9dc70b97f9d76f97071a3ddaf6e9d28c217a8ca473c2241feb3056ab873a448",
+   "generation": {
+    "output": "Here's how you can implement this function:\n\n```python\ndef deduplicate(items):\n    seen = set()\n    duplicates = set()\n    for item in items:\n        if item not in seen:\n            seen.add(item)\n            duplicates.add(item)\n    return list(duplicates)\n```\n\nThis function uses a set to keep track of the items it has seen so far. It iterates through the list of items, and for each item, it checks if it is already in the set. If it is not, it adds it to the set and adds it to the set of duplicates. Finally, it returns the list of duplicates.\n\nThis function works by iterating through the list of items, and for each item, it checks if it is already in the set. If it is not, it adds it to the set and adds it to the set of duplicates. Finally, it returns the list of duplicates.\n\nNote that this function assumes that the input list is not empty and contains only unique items. If the input list is empty or contains duplicate items, the function will raise an error.",
+    "ttft_seconds": 0.030968958002631553,
+    "wall_seconds": 0.9269141250006214,
+    "truncated": false,
+    "eval_count": 235
+   },
+   "status": "scored",
+   "passed": false,
+   "test_cases": 4,
+   "cases_passed": 2,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "partial_pass",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": true
+    },
+    {
+     "index": 1,
+     "passed": false
+    },
+    {
+     "index": 2,
+     "passed": true
+    },
+    {
+     "index": 3,
+     "passed": false
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-a4041294217d4a42a2363776f1661439",
+    "exit_code": 0,
+    "seconds": 24481.236,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "pascal_row",
+   "category": "wrong_answer",
+   "item_category": "coding",
+   "prompt_sha256": "13c9945b630e663ca483a096e76baa4d726ccebb944d57c080bfdb62136200df",
+   "generation": {
+    "output": "```python\ndef pascal_row(n):\n    # Initialize the row with 0\n    row = [0] * (n + 1)\n\n    # Iterate from 0 to n-1\n    for i in range(1, n + 1):\n        # If i is 0, add 1 to the row\n        if i == 0:\n            row[i] = 1\n        # If i is 1, add 1 to the row\n        elif i == 1:\n            row[i] = 1\n        # If i is 2, add 1 to the row\n        elif i == 2:\n            row[i] = 2\n        # If i is 3, add 1 to the row\n        elif i == 3:\n            row[i] = 3\n        # If i is 4, add 1 to the row\n        elif i == 4:\n            row[i] = 4\n        # If i is 5, add 1 to the row\n        elif i == 5:\n            row[i] = 5\n        # If i is 6, add 1 to the row\n        elif i == 6:\n            row[i] = 6\n        # If i is 7, add 1 to the row\n        elif i == 7:\n            row[i] = 7\n        # If i is 8, add 1 to the row\n        elif i == 8:\n            row[i] = 8\n        # If i is 9, add 1 to the row\n        elif i == 9:\n            row[i] = 9\n        # If i is 10, add 1 to the row\n        elif i == 10:\n            row[i] = 10\n        # If i is ",
+    "ttft_seconds": 0.03464000000167289,
+    "wall_seconds": 1.4971850420006376,
+    "truncated": true,
+    "eval_count": 384
+   },
+   "status": "scored",
+   "passed": false,
+   "test_cases": 4,
+   "cases_passed": 0,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "wrong_answer",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": false
+    },
+    {
+     "index": 1,
+     "passed": false
+    },
+    {
+     "index": 2,
+     "passed": false
+    },
+    {
+     "index": 3,
+     "passed": false
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-2da865a716c2453ab34c431f98229a09",
+    "exit_code": 0,
+    "seconds": 24483.011,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "sum_of_multiples",
+   "category": "partial_pass",
+   "item_category": "coding",
+   "prompt_sha256": "5709765a182eed9c56091b7bdc2b94827491985952fa9cc1ed51310106019825",
+   "generation": {
+    "output": "Here's a Python function that calculates the sum of all non-negative integers below a given limit:\n\n```python\ndef sum_of_multiples(limit):\n    return sum(i for i in range(1, limit + 1) if i % 3 == 0 or i % 5 == 0)\n```\n\nThis function uses a generator expression to iterate over the numbers from 1 to `limit` and check if each number is divisible by 3 or 5. If it is, the number is added to the sum.\n\nHere's how you can use this function:\n\n```python\nprint(sum_of_multiples(10))  # Output: 15\nprint(sum_of_multiples(20))  # Output: 30\nprint(sum_of_multiples(30))  # Output: 60\n```\n\nThis function works by iterating over the numbers from 1 to `limit` and checking if each number is divisible by 3 or 5. If it is, the number is added to the sum. The loop continues until the limit is reached, at which point the sum is returned.",
+    "ttft_seconds": 0.034872542000812246,
+    "wall_seconds": 0.9962904999993043,
+    "truncated": false,
+    "eval_count": 256
+   },
+   "status": "scored",
+   "passed": false,
+   "test_cases": 4,
+   "cases_passed": 2,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "partial_pass",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": true
+    },
+    {
+     "index": 1,
+     "passed": false
+    },
+    {
+     "index": 2,
+     "passed": true
+    },
+    {
+     "index": 3,
+     "passed": false
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-89c523b246e04b98af229368fa42995c",
+    "exit_code": 0,
+    "seconds": 24484.297,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "mode",
+   "category": "partial_pass",
+   "item_category": "coding",
+   "prompt_sha256": "620a6928860bb2dfa9afb9d909529f0738aa31c067fdf58ec1356c1d4b58b619",
+   "generation": {
+    "output": "```python\ndef mode(items):\n    if not items:\n        return None\n\n    count = {}\n    for item in items:\n        if item in count:\n            count[item] += 1\n        else:\n            count[item] = 1\n\n    max_count = max(count.values())\n    return count[max_count]\n```\n\nThis function first checks if the list of items is empty. If it is, it returns `None` because there is no value that can be the most frequent. Otherwise, it creates a dictionary `count` to store the frequency of each item. It then finds the maximum frequency in the dictionary and returns the value associated with that frequency.\n\nThe function then iterates through the list of items and increments the frequency of each item in the dictionary. If an item is already in the dictionary, it increments its frequency by 1. Finally, it returns the value associated with the maximum frequency.\n\nThe function returns the value associated with the maximum frequency, which is the most frequent value in the list of items.\n\nExample usage:\n```python\nprint(mode([1, 2, 3, 4, 2, 1]))  # Output: 2\nprint(mode([1, 2, 3, 4, 5]))  # Output: 3\nprint(mode([1, 2, 3, 4, 5, 6]))  # Output: 4\n```",
+    "ttft_seconds": 0.03287708399875555,
+    "wall_seconds": 1.2593536669992318,
+    "truncated": false,
+    "eval_count": 311
+   },
+   "status": "scored",
+   "passed": false,
+   "test_cases": 4,
+   "cases_passed": 2,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "partial_pass",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": true
+    },
+    {
+     "index": 1,
+     "passed": true
+    },
+    {
+     "index": 2,
+     "passed": false,
+     "error": "KeyError",
+     "message": "2"
+    },
+    {
+     "index": 3,
+     "passed": false,
+     "error": "KeyError",
+     "message": "3"
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-efe54acb9b3f453089584285f872c486",
+    "exit_code": 0,
+    "seconds": 24485.844,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "median",
+   "category": "partial_pass",
+   "item_category": "coding",
+   "prompt_sha256": "9f8d61576d21bc510bde70bdce64fc267c22f4271e59d03c60bf29bca0fcbdd9",
+   "generation": {
+    "output": "Here's how you can implement this function:\n\n```python\nimport math\n\ndef median(items):\n    if len(items) == 0:\n        return None\n\n    middle_index = len(items) // 2\n    if len(items) % 2 == 0:\n        return (items[middle_index - 1] + items[middle_index]) / 2\n    else:\n        return items[middle_index]\n```\n\nThis function first checks if the list is empty. If it is, it returns `None` as the median. If the list has an odd length, it returns the middle element. If the list has an even length, it returns the middle element as the median.\n\nThe function then calculates the median by dividing the length of the list by 2 and taking the average of the two middle elements. If the length of the list is odd, it returns the middle element. If the length of the list is even, it returns the middle element as the median.\n\nThe function returns the median as a float, which is the mean of the two middle values for even lengths.",
+    "ttft_seconds": 0.03588345800017123,
+    "wall_seconds": 0.9713076660009392,
+    "truncated": false,
+    "eval_count": 238
+   },
+   "status": "scored",
+   "passed": false,
+   "test_cases": 4,
+   "cases_passed": 1,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "partial_pass",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": false
+    },
+    {
+     "index": 1,
+     "passed": false
+    },
+    {
+     "index": 2,
+     "passed": false
+    },
+    {
+     "index": 3,
+     "passed": true
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-2bd8201a7e914b5bbf4c56875fbec8aa",
+    "exit_code": 0,
+    "seconds": 24487.08,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "compress_spaces",
+   "category": "wrong_answer",
+   "item_category": "coding",
+   "prompt_sha256": "d32cd840006cd1ccd87803b670ce6f1d076e619ea24932b1b546622d82f604a7",
+   "generation": {
+    "output": "Here's how you can implement this function:\n\n```python\nimport sys\n\ndef compress_spaces(s):\n    compressed_s = \"\"\n    for char in s:\n        if char == ' ':\n            compressed_s += ' '\n        else:\n            compressed_s += char\n    compressed_s += ' '\n    return compressed_s\n```\n\nThis function iterates through each character in the input string `s`. If the character is a space, it is appended to the compressed string. Otherwise, it is appended to the compressed string. The compressed string is then returned.\n\nThe `compress_spaces` function uses a `for` loop to iterate through each character in the input string `s`. If the character is a space, it is appended to the compressed string. Otherwise, it is appended to the compressed string. The compressed string is then returned.\n\nThe `compress_spaces` function uses the `join` method to concatenate the compressed string with the input string `s`. The `join` method concatenates the characters in the input string `s` into a single string, separated by spaces.",
+    "ttft_seconds": 0.0294186669998453,
+    "wall_seconds": 0.9057731670000067,
+    "truncated": false,
+    "eval_count": 238
+   },
+   "status": "scored",
+   "passed": false,
+   "test_cases": 5,
+   "cases_passed": 0,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "wrong_answer",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": false
+    },
+    {
+     "index": 1,
+     "passed": false
+    },
+    {
+     "index": 2,
+     "passed": false
+    },
+    {
+     "index": 3,
+     "passed": false
+    },
+    {
+     "index": 4,
+     "passed": false
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-a7480ed101644a58bacb6fd62d63227e",
+    "exit_code": 0,
+    "seconds": 24488.275,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "collatz_steps",
+   "category": "wrong_answer",
+   "item_category": "coding",
+   "prompt_sha256": "d01fc6b0dc28fd6806e0701e4b351462a958b36ff2e7359f5b78cab499b465b2",
+   "generation": {
+    "output": "Here's a Python function that calculates the number of steps required to reach 1 from a given positive integer:\n\n```python\ndef collatz_steps(n):\n    steps = 0\n    while n > 0:\n        if n % 2 == 0:\n            n //= 2\n        else:\n            n //= 2\n        steps += 1\n    return steps\n```\n\nThis function uses a while loop to iterate through the numbers from 1 to the given positive integer `n`. It checks if `n` is even by checking if `n` is divisible by 2. If it is, it divides `n` by 2 and increments the `steps` variable. If `n` is odd, it divides `n` by 2 and increments the `steps` variable. This process continues until `n` reaches 1, at which point it stops.\n\nThe `//` operator is used for integer division, which divides the number by 2 and increments the `steps` variable. This ensures that the number of steps is always even, regardless of whether `n` is even or odd.\n\nThe function returns the number of steps required to reach `n` from 1.",
+    "ttft_seconds": 0.03293399999893154,
+    "wall_seconds": 0.9830233329994371,
+    "truncated": false,
+    "eval_count": 257
+   },
+   "status": "scored",
+   "passed": false,
+   "test_cases": 5,
+   "cases_passed": 0,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "wrong_answer",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": false
+    },
+    {
+     "index": 1,
+     "passed": false
+    },
+    {
+     "index": 2,
+     "passed": false
+    },
+    {
+     "index": 3,
+     "passed": false
+    },
+    {
+     "index": 4,
+     "passed": false
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-cc69ba076b6b454392808f0a54dfb695",
+    "exit_code": 0,
+    "seconds": 24489.598,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "invert_dict",
+   "category": "partial_pass",
+   "item_category": "coding",
+   "prompt_sha256": "d49e81cf7f04fc25eb6593221449b4548c73d531e5af9ca6fdc4e964855fba67",
+   "generation": {
+    "output": "Here's how you can implement this function:\n\n```python\ndef invert_dict(d):\n    inverted_dict = {}\n    for key, value in d.items():\n        inverted_dict[key] = value.lower()\n    return inverted_dict\n```\n\nThis function takes a dictionary `d` as input and returns a new dictionary with all keys and values swapped. The `items()` method is used to iterate over the keys and values of the dictionary, and the `lower()` method is used to convert the values to lowercase.\n\nThe `invert_dict()` function takes a dictionary `d` as input and returns a new dictionary with all keys and values swapped. It uses the `items()` method to iterate over the keys and values of the dictionary, and the `lower()` method to convert the values to lowercase.\n\nThe `invert_dict()` function returns a new dictionary with all keys and values swapped. It uses the `items()` method to iterate over the keys and values of the dictionary, and the `lower()` method to convert the values to lowercase.\n\nThe `invert_dict()` function takes a dictionary `d` as input and returns a new dictionary with all keys and values swapped. It uses the `items()` method to iterate over the keys and values of the dictionary, and the `lower()` method to convert the values to lowercase.\n\nThe `invert_dict()` function returns a new dictionary with all keys and values swapped. It uses the `items()` method to iterate over the keys and values of the dictionary, and the `lower()` method to convert the values to lowercase.\n\nThe `invert_dict()` function takes a dictionary `d` as input and returns a new dictionary with all keys and values swapped. It uses the `items()` method to iterate",
+    "ttft_seconds": 0.030519833002472296,
+    "wall_seconds": 1.4548368329997174,
+    "truncated": true,
+    "eval_count": 384
+   },
+   "status": "scored",
+   "passed": false,
+   "test_cases": 3,
+   "cases_passed": 1,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "partial_pass",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": true
+    },
+    {
+     "index": 1,
+     "passed": false
+    },
+    {
+     "index": 2,
+     "passed": false
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-ce5fa9f0c9954025b6be1592aa86eea4",
+    "exit_code": 0,
+    "seconds": 24491.285,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  }
+ ],
+ "sandbox": {
+  "status": "available",
+  "backend": "docker",
+  "binary": "/usr/local/bin/docker",
+  "image": "docker.io/library/python@sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+  "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+  "server_version": "29.9.3",
+  "security_options": [
+   "name=seccomp,profile=builtin",
+   "name=cgroupns"
+  ],
+  "daemon_os": "Docker Desktop",
+  "daemon_memory_bytes": 2065739776,
+  "isolation": "Linux container, no network, read-only root, all capabilities dropped, non-root user"
+ },
+ "perplexity": {
+  "status": "unsupported",
+  "reason": "Backend did not provide held-out token log probabilities"
+ },
+ "summary": {
+  "items": 30,
+  "scored": 30,
+  "passed": 11,
+  "complete": true,
+  "accuracy": 0.36666666666666664,
+  "accuracy_ci95": [
+   0.21873920806100708,
+   0.5448643634520511
+  ],
+  "accuracy_over_scored_items": 0.36666666666666664,
+  "outcomes": {
+   "passed": 11,
+   "partial_pass": 14,
+   "wrong_answer": 5
+  },
+  "not_scored": 0,
+  "lenient_accuracy": null
+ },
+ "by_category": {
+  "coding": {
+   "items": 30,
+   "scored": 30,
+   "passed": 11,
+   "complete": true,
+   "accuracy": 0.36666666666666664,
+   "accuracy_ci95": [
+    0.21873920806100708,
+    0.5448643634520511
+   ],
+   "accuracy_over_scored_items": 0.36666666666666664,
+   "outcomes": {
+    "passed": 11,
+    "partial_pass": 14,
+    "wrong_answer": 5
+   },
+   "not_scored": 0,
+   "lenient_accuracy": null
+  }
+ },
+ "status": "completed"
+}
