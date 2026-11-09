@@ -79,7 +79,9 @@ Run the pre-registered Qwen2.5-Coder-0.5B study under clean conditions. SmolLM2 
 
 ---
 
-# Final implementation report — 2026-11-09
+# Superseded: v0.1 final implementation report — 2026-11-09
+
+> **Historical record.** These statements describe the v0.1 state and were superseded by the v0.2 report above: Docker unavailable, coding unmeasured, task04 failing.
 
 ## Status
 

@@ -29,6 +29,17 @@ def _git(root: Path, *args) -> str:
     return subprocess.run(["git", *args], cwd=root, capture_output=True, text=True).stdout.strip()
 
 
+def _tree_digest(root: Path) -> str:
+    """SHA-256 over `git diff HEAD` plus the names and contents of untracked files."""
+    import hashlib
+    digest = hashlib.sha256(subprocess.run(["git", "diff", "HEAD", "--binary"], cwd=root, capture_output=True).stdout)
+    for name in sorted(_git(root, "ls-files", "--others", "--exclude-standard").splitlines()):
+        path = root / name
+        if path.is_file():
+            digest.update(name.encode() + b"\0" + path.read_bytes())
+    return digest.hexdigest()
+
+
 class Study:
     def __init__(self, source: Path, out: Path, tools: Path, source_label="F16", log=print):
         self.source, self.out, self.tools, self.log = source.resolve(strict=True), out.resolve(), tools.resolve(), log
@@ -71,8 +82,7 @@ class Study:
         source.pop("tensors", None)
         self.state.update(kind="real-run", study="quantization-study-v0.2", created_at=datetime.now(timezone.utc).isoformat(),
                           source=source, repository_commit=_git(root, "rev-parse", "HEAD"),
-                          working_tree_diff_sha256=__import__("hashlib").sha256(
-                              subprocess.run(["git", "diff", "HEAD", "--binary"], cwd=root, capture_output=True).stdout).hexdigest(),
+                          working_tree_diff_sha256=_tree_digest(root),
                           untracked_files=_git(root, "ls-files", "--others", "--exclude-standard").splitlines(),
                           toolchain_commit=_git(self.tools.parents[1], "rev-parse", "HEAD"),  # <llama.cpp>/build/bin
                           tools={name: sha256(self.tools / name) for name in ("llama-server", "llama-quantize", "llama-perplexity")},

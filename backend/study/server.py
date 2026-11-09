@@ -213,7 +213,8 @@ class ServerSession:
         return self.record
 
     def __enter__(self):
-        return self.start()
+        # Already started (e.g. start() called explicitly to catch admission errors): never start twice.
+        return self if self.wrapper is not None else self.start()
 
     def __exit__(self, *args):
         if not self.record:

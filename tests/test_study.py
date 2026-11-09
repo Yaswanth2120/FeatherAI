@@ -134,3 +134,21 @@ def test_incomplete_evaluation_reports_no_accuracy():
     assert summary['accuracy'] is None and summary['accuracy_ci95'] is None and summary['complete'] is False
     assert summary['accuracy_over_scored_items'] == 1.0
     assert category_summary([{'status': 'scored', 'passed': True}])['accuracy'] == 1.0
+
+
+def test_context_manager_never_starts_a_started_session(tmp_path, monkeypatch):
+    from backend.study import server as module
+    monkeypatch.setattr(module, 'sha256', lambda path: 'x')
+    monkeypatch.setattr(module.subprocess, 'run', lambda *a, **k: type('R', (), {'stdout': 'v', 'stderr': ''})())
+    session = module.ServerSession({'path': '/x.gguf', 'size_bytes': 1}, '/bin/echo', tmp_path / 'log')
+    starts = []
+    def fake_start():
+        starts.append(1)
+        session.wrapper = object()
+        return session
+    session.start = fake_start
+    session.record = {'done': True}  # avoid stop() in __exit__
+    session.start()
+    with session as entered:
+        assert entered is session
+    assert len(starts) == 1
