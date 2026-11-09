@@ -2,10 +2,11 @@
 
 ## Status
 
-**v0.2 is not complete.** Three items in the definition of done are BLOCKED by external conditions:
+**v0.2 is not complete.** Two items in the definition of done are BLOCKED by external conditions:
 - **Live Codex automation:** the CLI and account have no usable model.
-- **Qwen study:** both memory guards reject it under current memory availability.
-- **Complete end-to-end acceptance (task08):** no single real run has covered every stage including the recommendation.
+- **The pre-registered Qwen study:** both memory guards reject it under current memory availability.
+
+**task08 (end-to-end acceptance):** its gate passes on one traceable workflow, `8cab4706`. Queue status depends on independent review (see PROGRESS.md).
 
 Everything else is implemented and verified with real runs.
 
@@ -54,6 +55,30 @@ Everything else is implemented and verified with real runs.
 - Neither guard was relaxed.
 - The v0.1 "Qwen exceeded memory" result was a pre-flight estimate, not an observed OOM.
 
+## End-to-end workflow (task08)
+
+One real SmolLM2-135M workflow (`8cab4706`, from clean commit `f957640`) ran through the local API, with a hash chain across every stage. Steps:
+1. Import source `f535f83e`.
+2. Quantization jobs create Q8_0 `a2c82248` and Q4_K_M `76ab8f09`.
+3. Generation validation (runtime compatibility).
+4. Benchmark jobs.
+5. Held-out coding evaluation in the sandbox: 8/30 and 11/30.
+6. Recommendation under constraints pre-registered in `c9db2cc`: **`no_eligible_configuration`**, because both coding lower bounds (0.142 and 0.219) are below 0.70.
+7. Exports.
+
+Run history:
+- Failed run `3d138b53` (API never started) is preserved.
+- Run `2377c241` is preserved but superseded because it ran from an uncommitted tree.
+- The task08 gate verifies identity, hash chaining, raw job records, settings consistency, sandboxing, unchanged constraints committed before the run, and export hashes, plus the interrupted-job and failure tests.
+
+## Known defects and limits
+
+- **Benchmark memory figures differ by path.** API benchmark jobs (`backend/benchmarks/runner.py`) still use sampled process RSS (startup excluded) and 5 trials; only `feather quant-study` uses `/usr/bin/time -l` footprints and 20 clustered trials. So API benchmark numbers (for example the task08 decode medians) are not directly comparable with the study's.
+- **Generation validation is a weak check.** It only requires non-empty output. It is a compatibility check, not a correctness check.
+- **One dependency warning.** Starlette's TestClient emits a deprecation warning for httpx.
+- **Large frontend bundle.** It is about 634 kB, which triggers a Vite warning.
+- **iCloud Desktop.** The project lives in an iCloud-synced Desktop folder. Earlier, venv `.pth` files carried the hidden flag, which breaks the `feather` entry point; recreating them fixed it.
+
 ## Automation
 
 - No real Codex task ran successfully, and no live dependent task advanced.
@@ -70,12 +95,11 @@ Everything else is implemented and verified with real runs.
 
 1. **Codex:** upgrade the CLI yourself (`codex update`), then run `uv run feather automation doctor --probe --probe-candidates --select` and `uv run feather automation selftest`.
 2. **Qwen study:** run `feather quant-study` for Qwen from Terminal with VS Code, browsers and Docker closed, so at least about 2.1 GB is available at admission. Start Docker afterwards only for the quality phase.
-3. **task08:** one real run that goes from import through the coding evaluation to a recommendation and export, preferably on Qwen once it is admitted.
-4. **1.5B model:** needs your approval for a roughly 3.1 GB download, and more free memory than this machine had today.
+3. **1.5B model:** needs your approval for a roughly 3.1 GB download, and more free memory than this machine had today.
 
 ## Next engineering milestone
 
-Run the pre-registered Qwen2.5-Coder-0.5B study under clean conditions. SmolLM2 is too weak for reasoning, so a larger coding set (well beyond 30 problems) is needed before small quality differences can be detected.
+Run the pre-registered Qwen2.5-Coder-0.5B study and a Qwen end-to-end workflow under clean conditions. SmolLM2 is too weak for reasoning, so a larger coding set (well beyond 30 problems) is needed before small quality differences can be detected.
 
 ---
 
