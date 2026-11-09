@@ -110,7 +110,7 @@ class Workflow:
     # Stages --------------------------------------------------------------------------------------
     def run(self, constraints: dict) -> dict:
         try:
-            self.start_api()
+            # Provenance first: before this run writes any file into the repository.
             from backend.study.run import _tree_digest
             self.record["environment"] = {"repository_commit": subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True, text=True).stdout.strip(),
                                           "repository_dirty": bool(subprocess.run(["git", "status", "--porcelain"], cwd=ROOT, capture_output=True, text=True).stdout.strip()),
@@ -118,6 +118,7 @@ class Workflow:
                                           "untracked_files": subprocess.run(["git", "ls-files", "--others", "--exclude-standard"], cwd=ROOT, capture_output=True, text=True).stdout.split(),
                                           "toolchain_commit": subprocess.run(["git", "rev-parse", "HEAD"], cwd=self.tools.parents[1], capture_output=True, text=True).stdout.strip(),
                                           "hardware": {k: v for k, v in hardware().items() if k != "system_swap"}}
+            self.start_api()
             source = inspect_gguf(self.source)
             source.pop("tensors", None)
             if not source["higher_precision"]:
