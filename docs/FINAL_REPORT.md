@@ -6,7 +6,7 @@
 - **Live Codex automation:** the CLI and account have no usable model.
 - **The pre-registered Qwen study:** both memory guards reject it under current memory availability.
 
-**task08 (end-to-end acceptance):** its gate passes on one traceable workflow, `8cab4706`. Queue status depends on independent review (see PROGRESS.md).
+**Task queue:** task01–task08 are completed; each was adopted only after its acceptance gate passed and a commit-bound independent review approved it. task04 was adopted at `16fbe37` and task08 at `b862de3`. task09 (this documentation) is adopted only after review.
 
 Everything else is implemented and verified with real runs.
 
@@ -25,10 +25,11 @@ Everything else is implemented and verified with real runs.
 
 | Check | Result |
 |---|---|
-| `uv run pytest` | **158 passed, 0 failed, 0 skipped.** The real-Docker sandbox tests executed. One upstream Starlette deprecation warning. |
+| `uv run pytest` | **181 passed, 0 failed, 0 skipped.** The real-Docker sandbox tests and real-evidence end-to-end gate tests executed. One upstream Starlette deprecation warning. |
 | `npm --prefix frontend run build` | **Passed** (the existing bundle-size warning remains) |
 | Playwright `dashboard.spec.ts` against a live API with real saved data | **1 passed** |
 | `automation/validate.py --task task04` | **Passes**; task04 adopted as completed at reviewed commit `16fbe37` |
+| `automation/validate.py --task task08` | **Passes**: one clean-tree workflow (`8cab4706`), hash-chained across all stages, plus the interrupted-job and failure tests. task08 adopted as completed at reviewed commit `b862de3`. |
 
 ## Model experiments (measured; details in docs/studies/quantization-study-v0.2.md)
 
@@ -96,6 +97,21 @@ Run history:
 1. **Codex:** upgrade the CLI yourself (`codex update`), then run `uv run feather automation doctor --probe --probe-candidates --select` and `uv run feather automation selftest`.
 2. **Qwen study:** run `feather quant-study` for Qwen from Terminal with VS Code, browsers and Docker closed, so at least about 2.1 GB is available at admission. Start Docker afterwards only for the quality phase.
 3. **1.5B model:** needs your approval for a roughly 3.1 GB download, and more free memory than this machine had today.
+
+## Commit references (v0.2, local only, nothing pushed)
+
+| Commit | Change |
+|---|---|
+| `e9e02d3` | Automation: model selection, non-retryable failures, doctor, self-test |
+| `f08f70a` | Docker sandbox and hash-pinned reasoning/coding datasets |
+| `1f6f8f1` | Memory diagnostics, measured quantization memory, study pre-registration |
+| `fc93634` | Study runner, SmolLM2 results, Qwen blocked diagnosis, first review fixes |
+| `5a9c9b8`, `16fbe37` | Review fixes; reproducible task04 gate (task04 adopted at `16fbe37`) |
+| `d31fd39`, `a9fcbf5` | Task state after task04 adoption. Note: `d31fd39` corrupted `PROGRESS.md`; it was repaired in `b862de3`. |
+| `c9db2cc` | task08 design and recommendation constraints, pre-registered before any run |
+| `9470e7d`, `533614f`, `f957640` | End-to-end workflow, stricter gate and review fixes |
+| `d36ed7e` | Accepted workflow evidence (`8cab4706`) |
+| `2eb0b49`, `b862de3` | Docs; PROGRESS repair (task08 adopted at `b862de3`) |
 
 ## Next engineering milestone
 

@@ -36,7 +36,7 @@ Status here is based only on acceptance gates and committed evidence.
 | Task | Status |
 |---|---|
 | task04 | **Completed.** Adopted at `16fbe37` after three independent review rounds. The orchestrator re-ran the acceptance and regression gates at that commit. The gate rebuilds the evidence from `experiments/studies/smollm2-135m`, requires an exact match and completed coding, and rejects tampering. |
-| task08 | Its gate **passes** on workflow `8cab4706` (section below). It is marked completed only after an independent review approves. |
+| task08 | **Completed.** Adopted at `b862de3` after three independent review rounds; the orchestrator re-ran the acceptance and regression gates. Evidence is workflow `8cab4706` (section above). |
 | task09 | Documentation updated; follows task08. |
 
 

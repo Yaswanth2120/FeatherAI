@@ -5,7 +5,8 @@ A local-first laboratory for quantizing language models, measuring performance, 
 **Current status (v0.2):**
 - **Working:** coding evaluation runs in a hardened Docker sandbox, and the reasoning and coding datasets are hash-pinned.
 - **Complete study:** the pre-registered quantization study is complete for SmolLM2-135M ([study](docs/studies/quantization-study-v0.2.md)).
-- **Blocked:** the primary Qwen2.5-Coder-0.5B study (memory guards), live Codex automation (CLI/account model availability), and full end-to-end acceptance (task08).
+- **End-to-end:** one traceable SmolLM2 workflow went through the API (task08 complete); its recommendation truthfully found no configuration that meets the pre-registered 70% coding requirement.
+- **Blocked:** the primary Qwen2.5-Coder-0.5B study (memory guards) and live Codex automation (CLI/account model availability).
 
 See [the final report](docs/FINAL_REPORT.md).
 
@@ -69,6 +70,7 @@ uv run feather sandbox status                       # is isolated coding executi
 uv run feather sandbox prepare                      # explicit pull of the pinned python:3.12-alpine digest (~20 MB)
 uv run feather sandbox selftest --output experiments/sandbox-selftest.json
 uv run feather automation doctor [--probe]          # Codex automation preflight
+uv run feather e2e --source models/SmolLM2-135M-Instruct-f16.gguf   # one traceable API workflow (task08)
 uv run feather quant-study --source models/<source-f16>.gguf --out .feather/study-<name> \
     --phases convert,validate,dryrun,benchmark,quality,perplexity --export experiments/studies/<name>
 ```

@@ -63,16 +63,18 @@
       "review_record": "/Users/yaswanth/Desktop/FeatherAI/.feather/review-task07.json"
     },
     "task08": {
-      "status": "blocked",
+      "status": "completed",
       "attempts": 0,
-      "error": "Single real import-to-coding-evaluation-to-recommendation-to-export run not yet recorded; task04 coding blocker is resolved (see evidence).",
-      "origin": "externally-observed",
+      "error": null,
+      "origin": "externally-reviewed",
       "blocker_evidence": {
         "path": "experiments/task08-blocker-v0.2.json",
         "sha256": "97348cf051e433f5a29e519f7c036cb2c916a113367ae35431a682d72627424b",
         "commit": "d31fd39f4fbb0bc3d266f596559e71f46ced05a9",
         "recorded_at": 1794261969.3147469
-      }
+      },
+      "commit": "b862de3082a0a38976699d4db677046120787a4b",
+      "review_record": "/Users/yaswanth/Desktop/FeatherAI/.feather/review-task08.json"
     },
     "task09": {
       "status": "blocked",
