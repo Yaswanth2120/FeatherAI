@@ -90,7 +90,7 @@ cmake --build .feather/tools/llama.cpp/build --target llama-perplexity
 ## Dashboard workflow
 
 1. **Overview:** actual hardware, job counts, saved benchmark chart.
-2. **Model Library:** installed Ollama models and Feather-created artifacts.
+2. **Model Library:** installed Ollama models, plus artifacts returned by completed API quantization jobs when available; study-only artifacts are not automatically imported.
 3. **Quantization Studio:** enter an FP16 GGUF filename relative to `models/` (e.g. `SmolLM2-135M-Instruct-f16.gguf`) and target precision. RAM/disk admission runs before conversion.
 4. **Benchmark & Evaluation:** choose an installed model or completed quantization artifact. Native jobs validate artifact path/hash before loading. Heavy jobs are sequential; inspect, cancel and review persisted results. Choose legacy three-item screening suites or the hash-pinned reasoning-v1 and coding-v1 held-out suites. Saved results identify their suite and split.
 5. **Comparison Reports:** select saved runs, inspect comparability, export JSON/CSV and apply memory/quality constraints. Choose the quality evidence suite; the dashboard defaults to coding-v1 held-out evidence and a 70% minimum quality requirement. Missing evidence returns insufficient evidence; the measured SmolLM2 configurations do not meet that quality requirement. A 0% threshold is diagnostic only.

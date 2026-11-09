@@ -79,7 +79,7 @@ Run history:
 - **Benchmark memory figures differ by path.** API benchmark jobs (`backend/benchmarks/runner.py`) still use sampled process RSS (startup excluded) and 5 trials; only `feather quant-study` uses `/usr/bin/time -l` footprints and 20 clustered trials. So API benchmark numbers (for example the task08 decode medians) are not directly comparable with the study's.
 - **Generation validation is a weak check.** It only requires non-empty output. It is a compatibility check, not a correctness check.
 - **One dependency warning.** Starlette's TestClient emits a deprecation warning for httpx.
-- **Large frontend bundle.** It is about 634 kB, which triggers a Vite warning.
+- **Large frontend bundle.** The current production JavaScript bundle is 642,317 bytes (642.32 kB, uncompressed), which triggers a Vite warning.
 - **iCloud Desktop.** The project lives in an iCloud-synced Desktop folder. Earlier, venv `.pth` files carried the hidden flag, which breaks the `feather` entry point; recreating them fixed it.
 
 ## Automation
