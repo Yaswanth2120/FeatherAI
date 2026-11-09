@@ -127,6 +127,15 @@ def main():
     doctor.add_argument("--json", action="store_true")
     selftest = automation.add_parser("selftest", help="Run two dependent tasks through live Codex in a throwaway repository")
     selftest.add_argument("--timeout", type=int, default=600)
+    quant = commands.add_parser("quant-study", help="v0.2 reproducible quantization study (resumable phases)")
+    quant.add_argument("--source", type=Path, required=True)
+    quant.add_argument("--out", type=Path, required=True, help="Working directory (keep it under .feather/)")
+    quant.add_argument("--tools", type=Path, default=Path(".feather/tools/llama.cpp/build/bin"))
+    quant.add_argument("--phases", default="convert,validate,dryrun,benchmark,quality,perplexity")
+    quant.add_argument("--rounds", type=int, default=5)
+    quant.add_argument("--measured", type=int, default=4)
+    quant.add_argument("--cooldown", type=int, default=30)
+    quant.add_argument("--export", type=Path, help="Copy curated evidence to this directory after the phases")
     sandbox = commands.add_parser("sandbox", help="Coding-evaluation isolation").add_subparsers(dest="action", required=True)
     sandbox.add_parser("status", help="Report whether isolated execution is available")
     sandbox.add_parser("prepare", help="Explicitly pull the pinned sandbox image (about 20 MB)")
@@ -135,6 +144,17 @@ def main():
     args = parser.parse_args()
     if args.command == "sandbox":
         sys.exit(sandbox_command(args))
+    if args.command == "quant-study":
+        from backend.study.run import Study
+        study = Study(args.source, args.out, args.tools, log=lambda m: print(m, flush=True))
+        state = study.run([p.strip() for p in args.phases.split(",") if p.strip()],
+                          rounds=args.rounds, measured=args.measured, cooldown=args.cooldown)
+        if args.export:
+            from backend.study.report import export_tables
+            print("\n".join(study.export(args.export)))
+            print("\n".join(str(p) for p in export_tables(args.export / "study.json", args.export)))
+        print(json.dumps({k: v.get("status") for k, v in state["phases"].items()}, indent=2))
+        sys.exit(0)
     if args.command == "automation":
         sys.exit(automation_command(args))
     backend = None

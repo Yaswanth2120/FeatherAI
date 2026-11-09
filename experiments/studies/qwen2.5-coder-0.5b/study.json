@@ -1,0 +1,91 @@
+{
+  "phases": {
+    "convert": {
+      "status": "blocked",
+      "stage": "quantization pre-flight admission",
+      "target": "Q8_0",
+      "reason": "Insufficient available RAM for quantization stage: admission estimate 2168074048 bytes (1.5 x source_size + 256 MiB (v0.2, measured basis: experiments/memory/quantize-smollm.json)) exceeds available 1615659008 bytes. Close other applications, use a smaller source, or provide measured evidence for a revised rule; the guard is not bypassed.",
+      "jobs": [],
+      "finished_at": 1794260076.802957,
+      "memory_at_rejection": {
+        "available_bytes": 1615937536,
+        "swap": {
+          "total_bytes": 4294967296,
+          "used_bytes": 3239512637,
+          "free_bytes": 1055454658
+        },
+        "pressure_level": 2
+      },
+      "docker_vm_running_at_end": false,
+      "pressure_level_at_start": 2
+    },
+    "validate": {
+      "status": "blocked",
+      "stage": "runtime initialization pre-flight admission",
+      "variant": "F16",
+      "reason": "Runtime initialization rejected before start: estimate 1803296640 bytes (artifact size + 512 MiB (v0.2)) exceeds available 1464500224 bytes. Close other applications or use a smaller variant.",
+      "results": {},
+      "finished_at": 1794260081.6150231,
+      "memory_at_rejection": {
+        "available_bytes": 1460060160,
+        "swap": {
+          "total_bytes": 4294967296,
+          "used_bytes": 3239512637,
+          "free_bytes": 1055454658
+        },
+        "pressure_level": 2
+      }
+    }
+  },
+  "kind": "real-run",
+  "study": "quantization-study-v0.2",
+  "created_at": "2026-11-09T21:16:42.387185+00:00",
+  "source": {
+    "path": "/Users/yaswanth/Desktop/FeatherAI/models/qwen2.5-coder-0.5b-instruct-fp16.gguf",
+    "sha256": "bb69b303c65113199b19c72f9c75bca449200b6cdf807e0f7d8822f669c02e64",
+    "size_bytes": 1266425728,
+    "architecture": "qwen2",
+    "tokenizer_sha256": "2a79a01a91fbc7fbb416c63be850e165bb1adb07bd6c705909ec9504624e39aa",
+    "tensor_count": 291,
+    "tensor_types": {
+      "F16": 170,
+      "F32": 121
+    },
+    "parameter_count": 630167424,
+    "higher_precision": true
+  },
+  "repository_commit": "1f6f8f159101e538e453741784fb6aa0cbf58234",
+  "toolchain_commit": "9d340ec341e079d2c28afd50871afce358cdbf48",
+  "tools": {
+    "llama-server": "4de055b01d5b27044bfd0dfd6f0a4b022b4359cb59c37d18451d99ed7a77cb67",
+    "llama-quantize": "963dc27a67e05f3bfb4990459cbcad47c99022b41ac0b9c1f955a7e8de73733b",
+    "llama-perplexity": "b6dc45b79a95f0ddff2c39d48003770d6feab6346ae957f5b37c431b2cf6d622"
+  },
+  "hardware": {
+    "chip": "Apple M2",
+    "architecture": "arm64",
+    "os": "macOS-26.7.3-arm64-arm-64bit",
+    "python": "3.12.9",
+    "physical_ram_bytes": 8589934592,
+    "available_ram_bytes": 2101313536,
+    "system_swap": {
+      "total": 4294967296,
+      "used": 3411148800,
+      "free": 883818496,
+      "percent": 79.4,
+      "sin": 180026114048,
+      "sout": 5058560000
+    }
+  },
+  "os": "macOS-26.7.3-arm64-arm-64bit",
+  "conditions": "Run by the agent while VS Code and other user applications were open; see per-session flags.",
+  "provenance_corrections": [
+    {
+      "field": "toolchain_commit",
+      "recorded": "1f6f8f159101e538e453741784fb6aa0cbf58234",
+      "corrected": "9d340ec341e079d2c28afd50871afce358cdbf48",
+      "corrected_at": "2026-11-09",
+      "reason": "run.py resolved git from .feather/tools (the outer repository) instead of the llama.cpp checkout; every server session runtime_version reports \"commit 9d340ec\", and git -C .feather/tools/llama.cpp rev-parse HEAD confirms it. No measurement changed."
+    }
+  ]
+}

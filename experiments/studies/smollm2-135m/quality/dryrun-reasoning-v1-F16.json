@@ -1,0 +1,1087 @@
+{
+ "id": "3b06edc9-e202-4431-9de2-91a9821f419d",
+ "kind": "evaluation",
+ "created_at": "2026-11-09T21:42:58.188773+00:00",
+ "model": {
+  "name": "SmolLM2-135M-Instruct-f16.gguf",
+  "size": 270885952,
+  "digest": "f535f83ec568d040f88ddc04a199fa6da90923bbb41d4dcaed02caa924d6ef57",
+  "artifact_sha256": "f535f83ec568d040f88ddc04a199fa6da90923bbb41d4dcaed02caa924d6ef57",
+  "details": {
+   "tensor_types": {
+    "F16": 211,
+    "F32": 61
+   },
+   "parameter_count": 134515008
+  }
+ },
+ "suite": "reasoning-v1",
+ "split": "screening",
+ "dataset_version": "v1",
+ "dataset_sha256": "02e5f81bd76d0bc2159de994ef1ec7d08d1f411662e610aadfe0ce49c9f7d5dd",
+ "suite_sha256": "a7626fb59f944eb25c6af938a3dc1eb0fcde881bcbe6dec07f3983697d3037fd:02e5f81bd76d0bc2159de994ef1ec7d08d1f411662e610aadfe0ce49c9f7d5dd",
+ "item_limit": null,
+ "options": {
+  "seed": 42,
+  "temperature": 0,
+  "num_ctx": 2048,
+  "num_predict": 256
+ },
+ "settings_sha256": "fbbe41e53f8fbe4f7d6c595c1e9feec4ee9c44f1e50fe523960e57f0d6d6b16d",
+ "repeats": 1,
+ "backend": "llama.cpp",
+ "source_sha256": "f535f83ec568d040f88ddc04a199fa6da90923bbb41d4dcaed02caa924d6ef57",
+ "prompt_template": "chatml-v1: <|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant\n",
+ "runtime_version": "version: 0.9.0-dev (build 1, commit 9d340ec)\nbuilt with AppleClang 17.0.0.17000603 for Darwin arm64",
+ "results": [
+  {
+   "task_id": "arithmetic-screening-001",
+   "category": "invalid_format",
+   "item_category": "arithmetic",
+   "prompt_sha256": "bccaf1f87aab7fd5858e93bd920df9a6f21af4486e8099de3961454e0bd80539",
+   "generation": {
+    "output": "698 - 278 = 366",
+    "ttft_seconds": 0.037810958001500694,
+    "wall_seconds": 0.09628300000258605,
+    "truncated": false,
+    "eval_count": 14
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 420,
+   "extracted": null,
+   "lenient_extracted": 366,
+   "lenient_passed": false,
+   "answer_tag": false,
+   "truncated": false
+  },
+  {
+   "task_id": "arithmetic-screening-002",
+   "category": "invalid_format",
+   "item_category": "arithmetic",
+   "prompt_sha256": "0ac65c0845e3e131f9835b9fc7daabd5b60d52a6fe8acc0e8cb94c49b5a77ecc",
+   "generation": {
+    "output": "472 - 208 = 208\n\nThe answer is: 208",
+    "ttft_seconds": 0.010788207997393329,
+    "wall_seconds": 0.11727462499766261,
+    "truncated": false,
+    "eval_count": 24
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 264,
+   "extracted": null,
+   "lenient_extracted": 208,
+   "lenient_passed": false,
+   "answer_tag": false,
+   "truncated": false
+  },
+  {
+   "task_id": "arithmetic-screening-003",
+   "category": "invalid_format",
+   "item_category": "arithmetic",
+   "prompt_sha256": "3687b1046507e2edc2418bdc1b2cbe38b1284b5f13d4cfd969b3b2112d6a8299",
+   "generation": {
+    "output": "597 - 227 is 100.",
+    "ttft_seconds": 0.011234999998123385,
+    "wall_seconds": 0.07403608299864572,
+    "truncated": false,
+    "eval_count": 15
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 370,
+   "extracted": null,
+   "lenient_extracted": 100,
+   "lenient_passed": false,
+   "answer_tag": false,
+   "truncated": false
+  },
+  {
+   "task_id": "arithmetic-screening-004",
+   "category": "truncated",
+   "item_category": "arithmetic",
+   "prompt_sha256": "49badbe2ea2e344a032b8efb1e950b7067e06546606063521eeda2209d5feba0",
+   "generation": {
+    "output": "To solve this problem, we need to first calculate the sum of the numbers from 24 to 35.\n\nThe sum of the numbers from 24 to 35 is:\n24 + 25 + 26 + 27 + 28 + 29 + 30 + 31 + 32 + 33 + 34 + 35 = 24 + 25 + 26 + 27 + 28 + 29 + 30 + 31 + 32 + 33 + 34 + 35 = 24 * 35 = 800\n\nNow, we need to subtract the sum of the numbers from 35 from the sum of the numbers from 24 to 35.\n\nThe sum of the numbers from 24 to 35 is:\n24 + 25 + 26 + 27 + 28 + 29 + 30 + 31 + 32 + 33 + 34 + 35 = 24 + 25 + 2",
+    "ttft_seconds": 0.010755291001260048,
+    "wall_seconds": 1.1991822909985785,
+    "truncated": true,
+    "eval_count": 256
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 37,
+   "extracted": null,
+   "lenient_extracted": 2,
+   "lenient_passed": false,
+   "answer_tag": false,
+   "truncated": true
+  },
+  {
+   "task_id": "arithmetic-screening-005",
+   "category": "invalid_format",
+   "item_category": "arithmetic",
+   "prompt_sha256": "66e4617626d3b753364ca56e52a0cf0a1157cacd483aa4c38262f05e5093754e",
+   "generation": {
+    "output": "26 * 12 = 320",
+    "ttft_seconds": 0.01086225000108243,
+    "wall_seconds": 0.061420582998835016,
+    "truncated": false,
+    "eval_count": 12
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 312,
+   "extracted": null,
+   "lenient_extracted": 320,
+   "lenient_passed": false,
+   "answer_tag": false,
+   "truncated": false
+  },
+  {
+   "task_id": "arithmetic-screening-006",
+   "category": "invalid_format",
+   "item_category": "arithmetic",
+   "prompt_sha256": "1ed58af94db7f6c3df219c2b292541954e4f112a81cf18b1a6d350bebd2bc615",
+   "generation": {
+    "output": "154 divided by 14 is equal to 12.5.",
+    "ttft_seconds": 0.010689624999940861,
+    "wall_seconds": 0.0951527500001248,
+    "truncated": false,
+    "eval_count": 18
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 11,
+   "extracted": null,
+   "lenient_extracted": 14,
+   "lenient_passed": false,
+   "answer_tag": false,
+   "truncated": false
+  },
+  {
+   "task_id": "arithmetic-screening-007",
+   "category": "truncated",
+   "item_category": "arithmetic",
+   "prompt_sha256": "2d3140ec771b04aa0ffed7a82e86a2fbcb664505b0d117bd6621b566bbf9bfec",
+   "generation": {
+    "output": "To solve this problem, we need to follow these steps:\n\n1. Add the numbers: 373 + 325 = 708.\n2. Calculate the sum: 708 = 373 + 325.\n3. Calculate the sum: 708 = 373 + 325 + 1.\n4. Calculate the sum: 708 = 373 + 325 + 1 + 1.\n5. Calculate the sum: 708 = 373 + 325 + 1 + 1 + 1.\n6. Calculate the sum: 708 = 373 + 325 + 1 + 1 + 1 + 1 + 1.\n7. Calculate the sum: 708 = 373 + 325 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 +",
+    "ttft_seconds": 0.010965541001496604,
+    "wall_seconds": 1.1453654159995494,
+    "truncated": true,
+    "eval_count": 256
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 698,
+   "extracted": null,
+   "lenient_extracted": 1,
+   "lenient_passed": false,
+   "answer_tag": false,
+   "truncated": true
+  },
+  {
+   "task_id": "arithmetic-screening-008",
+   "category": "invalid_format",
+   "item_category": "arithmetic",
+   "prompt_sha256": "cfbf2be5306ab690a27cb7a1931d603f76f48e0a2d8bebf65f0e23cb85193745",
+   "generation": {
+    "output": "48 * 12 = 560",
+    "ttft_seconds": 0.01071883399708895,
+    "wall_seconds": 0.060201249998499407,
+    "truncated": false,
+    "eval_count": 12
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 576,
+   "extracted": null,
+   "lenient_extracted": 560,
+   "lenient_passed": false,
+   "answer_tag": false,
+   "truncated": false
+  },
+  {
+   "task_id": "arithmetic-screening-009",
+   "category": "invalid_format",
+   "item_category": "arithmetic",
+   "prompt_sha256": "87ba76abfa8772e3eba87f934ac73dde517b0b5f305498ff8a7bd885fad30610",
+   "generation": {
+    "output": "19 * 2 - 58 = 19 * 2 - 58\n19 * 2 = 37\n37 - 58\n37 - 58\n37\n\nThe answer is 37.",
+    "ttft_seconds": 0.0106944580002164,
+    "wall_seconds": 0.262961083000846,
+    "truncated": false,
+    "eval_count": 57
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": -20,
+   "extracted": null,
+   "lenient_extracted": 37,
+   "lenient_passed": false,
+   "answer_tag": false,
+   "truncated": false
+  },
+  {
+   "task_id": "arithmetic-screening-010",
+   "category": "invalid_format",
+   "item_category": "arithmetic",
+   "prompt_sha256": "609758b6818129063ec24027db9ea4989492f782de32b8bd999cf0eab078e24c",
+   "generation": {
+    "output": "47 * 18 = 756",
+    "ttft_seconds": 0.010862375002034241,
+    "wall_seconds": 0.06041195800207788,
+    "truncated": false,
+    "eval_count": 12
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 846,
+   "extracted": null,
+   "lenient_extracted": 756,
+   "lenient_passed": false,
+   "answer_tag": false,
+   "truncated": false
+  },
+  {
+   "task_id": "multi_step-screening-001",
+   "category": "incorrect",
+   "item_category": "multi_step",
+   "prompt_sha256": "88a4b2f15dae528e2bd919192b05f39f760b37cdd4884c0913ea0a3915e1f387",
+   "generation": {
+    "output": "Step 1: Ivan gave Fatima 30 stickers.\nStep 2: Ivan gave 18 stickers to a sibling.\nStep 3: Ivan gave half of the stickers to a sibling.\nStep 4: Ivan gave 6 more stickers to a sibling.\nStep 5: Ivan gave 30 stickers to a sibling.\nStep 6: Ivan kept 30 stickers.\nAnswer: 30",
+    "ttft_seconds": 0.013536875001591397,
+    "wall_seconds": 0.4229629159999604,
+    "truncated": false,
+    "eval_count": 92
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 9,
+   "extracted": 30,
+   "lenient_extracted": 30,
+   "lenient_passed": false,
+   "answer_tag": true,
+   "truncated": false
+  },
+  {
+   "task_id": "multi_step-screening-002",
+   "category": "incorrect",
+   "item_category": "multi_step",
+   "prompt_sha256": "f9c8f5e4efcd79ab58a56737134379ac48e5fd8c2c2d955ad9d8b7eb154af874",
+   "generation": {
+    "output": "Pencils cost $4 each and notebooks cost $5 each. Mateo buys 6 pencils and 2 notebooks, so he has 6 * 2 = 12 pencils and 2 * 6 = 12 notebooks. He pays with $50, so he has 12 pencils + 12 notebooks = 24 dollars of change.\n\nAnswer: 24 dollars of change is Mateo's total amount of change.",
+    "ttft_seconds": 0.014140916002361337,
+    "wall_seconds": 0.44524633300170535,
+    "truncated": false,
+    "eval_count": 97
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 16,
+   "extracted": 24,
+   "lenient_extracted": 24,
+   "lenient_passed": false,
+   "answer_tag": true,
+   "truncated": false
+  },
+  {
+   "task_id": "multi_step-screening-003",
+   "category": "invalid_format",
+   "item_category": "multi_step",
+   "prompt_sha256": "f4a861e231b9feb159251abc54c159a23d4b7219cb8bfb86a86d82c0c26b529c",
+   "generation": {
+    "output": "Eli had 74 stickers, gave 23 to Lena, and then bought 8 more.\nEli now has 74 - 23 + 8 = 65 stickers.\n#### 65\nThe answer is: 65",
+    "ttft_seconds": 0.01397625000026892,
+    "wall_seconds": 0.27843175000089104,
+    "truncated": false,
+    "eval_count": 58
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 59,
+   "extracted": null,
+   "lenient_extracted": 65,
+   "lenient_passed": false,
+   "answer_tag": false,
+   "truncated": false
+  },
+  {
+   "task_id": "multi_step-screening-004",
+   "category": "incorrect",
+   "item_category": "multi_step",
+   "prompt_sha256": "180aecc90dcc711c8b997a07dfb6b71232085ed622908f1f8ea2b28cd1266354",
+   "generation": {
+    "output": "Ivan gave 21 stickers to Omar, and Omar gave 14 more stickers to Ivan.\nSo, Omar gave 21 + 14 = 35 stickers to Ivan.\nIvan now has 35 stickers.\nAnswer: 35",
+    "ttft_seconds": 0.013469083001837134,
+    "wall_seconds": 0.27580125000167754,
+    "truncated": false,
+    "eval_count": 58
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 63,
+   "extracted": 35,
+   "lenient_extracted": 35,
+   "lenient_passed": false,
+   "answer_tag": true,
+   "truncated": false
+  },
+  {
+   "task_id": "multi_step-screening-005",
+   "category": "invalid_format",
+   "item_category": "multi_step",
+   "prompt_sha256": "b4ad1cac2b78996eaec1121c75e37dfc5c9c640287361e0c320b13f5ea39bdf9",
+   "generation": {
+    "output": "Pencils cost $3 each, and notebooks cost $4 each. Dara buys 3 pencils and 3 notebooks, so she has 3 * 3 = 9 pencils and 3 * 3 = 9 notebooks.\nShe pays with $40, so she has $40 - $3 = $37.\n#### 37\nThe answer is: 37",
+    "ttft_seconds": 0.01368933299818309,
+    "wall_seconds": 0.388218207997852,
+    "truncated": false,
+    "eval_count": 85
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 19,
+   "extracted": null,
+   "lenient_extracted": 37,
+   "lenient_passed": false,
+   "answer_tag": false,
+   "truncated": false
+  },
+  {
+   "task_id": "multi_step-screening-006",
+   "category": "invalid_format",
+   "item_category": "multi_step",
+   "prompt_sha256": "fe45ca6c5f735f731d209451c524f4cf703b3285a164efe853577e3ded13fff6",
+   "generation": {
+    "output": "Gus buys 4 pencils and 2 notebooks, so he has 4 pencils + 2 notebooks = 6 pencils.\nHe pays with $60, so he has $60 - 6 pencils = $54.\nGus receives 54 dollars of change.\n#### 54\nThe answer is: 54",
+    "ttft_seconds": 0.013674916001036763,
+    "wall_seconds": 0.34050037500128383,
+    "truncated": false,
+    "eval_count": 74
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 16,
+   "extracted": null,
+   "lenient_extracted": 54,
+   "lenient_passed": false,
+   "answer_tag": false,
+   "truncated": false
+  },
+  {
+   "task_id": "multi_step-screening-007",
+   "category": "invalid_format",
+   "item_category": "multi_step",
+   "prompt_sha256": "6598ea2253c846d103321bbde4befc2af7b5c81dba10b5c5eb73043212d9dd84",
+   "generation": {
+    "output": "11 parts per hour\n3 hours a day for 5 days\nTotal parts made in 5 days * 11 parts per hour = 55 parts\n55 parts / 11 parts per hour = 5.5 parts\nThe machine makes 5.5 parts in total.",
+    "ttft_seconds": 0.014902833001542604,
+    "wall_seconds": 0.29304995799975586,
+    "truncated": false,
+    "eval_count": 64
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 165,
+   "extracted": null,
+   "lenient_extracted": 11,
+   "lenient_passed": false,
+   "answer_tag": false,
+   "truncated": false
+  },
+  {
+   "task_id": "multi_step-screening-008",
+   "category": "truncated",
+   "item_category": "multi_step",
+   "prompt_sha256": "5b6c3450730de00992f9e8bad3cb0b1ece290fe12a98d0bd6e1fe74b3d1b9847",
+   "generation": {
+    "output": "Step 1: Determine the total number of cookies shared among the 4 children.\nThere are 4 children.\n\nStep 2: Calculate the number of cookies each child gets.\nEach child gets 4 cookies.\n\nStep 3: Calculate the total number of cookies shared among the 4 children.\nThere are 4 children.\n\nStep 4: Calculate the number of cookies each child gets.\nEach child gets 4 cookies.\n\nStep 5: Calculate the total number of cookies shared among the 4 children.\nThere are 4 children.\n\nStep 6: Calculate the total number of cookies shared among the 4 children.\nThere are 4 children.\n\nStep 7: Calculate the number of cookies each child gets.\nEach child gets 4 cookies.\n\nStep 8: Calculate the total number of cookies shared among the 4 children.\nThere are 4 children.\n\nStep 9: Calculate the total number of cookies shared among the 4 children.\nThere are 4 children.\n\nStep 10: Calculate the total number of cookies shared among the 4 children.\nThere are 4 children.\n\nStep 11",
+    "ttft_seconds": 0.01317604200085043,
+    "wall_seconds": 1.152268957997876,
+    "truncated": true,
+    "eval_count": 256
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 7,
+   "extracted": null,
+   "lenient_extracted": 11,
+   "lenient_passed": false,
+   "answer_tag": false,
+   "truncated": true
+  },
+  {
+   "task_id": "multi_step-screening-009",
+   "category": "incorrect",
+   "item_category": "multi_step",
+   "prompt_sha256": "84b8838e3987ec6ad1bd36026e05479418bd4a5c1ecf82ae17268d8d63ad782b",
+   "generation": {
+    "output": "To find out how many parts the machine makes in total, we need to calculate the total number of parts produced by the machine over the 4-day period.\n\nThe machine makes 3 parts per hour, so it makes 3 * 60 = 180 parts per hour.\n\nThe machine runs for 3 hours a day for 4 days, so it runs for 3 * 4 = 12 hours a day.\n\nSince the machine makes 180 parts per hour, it will make 180 * 12 = 1960 parts per day.\n\nTherefore, the machine makes 1960 parts per day.\n\nAnswer: 1960",
+    "ttft_seconds": 0.015722667001682566,
+    "wall_seconds": 0.7202791670024453,
+    "truncated": false,
+    "eval_count": 156
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 36,
+   "extracted": 1960,
+   "lenient_extracted": 1960,
+   "lenient_passed": false,
+   "answer_tag": true,
+   "truncated": false
+  },
+  {
+   "task_id": "multi_step-screening-010",
+   "category": "incorrect",
+   "item_category": "multi_step",
+   "prompt_sha256": "f38712e78b97f0d0ae86845de908a11b70c969d1527dfa18504270819611d67b",
+   "generation": {
+    "output": "Step 1: Determine the total number of parts made in the machine.\nThe machine makes 7 parts per hour.\n\nStep 2: Calculate the total number of parts made in the machine.\nThe total number of parts made in the machine is the sum of the parts made in each day: 7 parts per hour * 6 days = 42 parts.\n\nStep 3: Determine the total number of parts made in the machine.\nThe total number of parts made in the machine is the sum of the parts made in each day: 42 parts.\n\nAnswer: 42 parts.",
+    "ttft_seconds": 0.011039666998840403,
+    "wall_seconds": 0.5890663749996747,
+    "truncated": false,
+    "eval_count": 131
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 84,
+   "extracted": 42,
+   "lenient_extracted": 42,
+   "lenient_passed": false,
+   "answer_tag": true,
+   "truncated": false
+  },
+  {
+   "task_id": "programming_concepts-screening-001",
+   "category": "invalid_format",
+   "item_category": "programming_concepts",
+   "prompt_sha256": "449e147861ff4849968cdc2102ad360858ceeb8971d5845429379e5cdeea4334",
+   "generation": {
+    "output": "In Python, the `len()` function returns the number of elements in an iterable, which is the length of the iterable.\n\nHere's how you can use it:\n\n```python\nnumbers = [3, 3, 7, 8, 1]\nprint(len(numbers))  # Output: 5\n```\n\nIn this example, the `len()` function is used to iterate over the `numbers` list and count the number of elements. The result is 5, which is the length of the list.",
+    "ttft_seconds": 0.011334500002703862,
+    "wall_seconds": 0.5283955410013732,
+    "truncated": false,
+    "eval_count": 117
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 4,
+   "extracted": null,
+   "lenient_extracted": 5,
+   "lenient_passed": false,
+   "answer_tag": false,
+   "truncated": false
+  },
+  {
+   "task_id": "programming_concepts-screening-002",
+   "category": "invalid_format",
+   "item_category": "programming_concepts",
+   "prompt_sha256": "4f65f3d90ef0bbeac4ae018f32457d13dffb7ddb67c99a16366297de8ddeb611",
+   "generation": {
+    "output": "To find the value of x after running the code, we need to follow these steps:\n\n1. Initialize the variable x to 9.\n2. Add 5 to x.\n3. Subtract 5 from x.\n4. Divide x by 5.\n\nHere's the code:\n\n```python\nx = 9\nx += 5\nx *= 5\nx -= 5\n```\n\nWhen you run this code, it will output: `14`. This is because the value of x after running the code is 14.",
+    "ttft_seconds": 0.013442833998851711,
+    "wall_seconds": 0.5607418750005309,
+    "truncated": false,
+    "eval_count": 123
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 65,
+   "extracted": null,
+   "lenient_extracted": 14,
+   "lenient_passed": false,
+   "answer_tag": false,
+   "truncated": false
+  },
+  {
+   "task_id": "programming_concepts-screening-003",
+   "category": "invalid_format",
+   "item_category": "programming_concepts",
+   "prompt_sha256": "5fa5ba75716409914e99b39da319892a93d9c80c92ee51de6a3e96f454a91e11",
+   "generation": {
+    "output": "The `len(list(range(13))[2:7])` function in Python returns the number of elements in the range of 13 (inclusive) that are greater than or equal to 2 and less than 7.\n\nHere's the code:\n\n```python\nfor i in range(13):\n    if i > 2 and i < 7:\n        print(i)\n```\n\nThis will output:\n\n```\n1\n2\n3\n4\n5\n6\n7\n```\n\nThis is because the range starts at 1 and goes up to 7, so the first 2 elements are greater than 2 and less than 7, and the last 2 elements are less than 7.",
+    "ttft_seconds": 0.011203124999155989,
+    "wall_seconds": 0.7245314169995254,
+    "truncated": false,
+    "eval_count": 161
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 5,
+   "extracted": null,
+   "lenient_extracted": 7,
+   "lenient_passed": false,
+   "answer_tag": false,
+   "truncated": false
+  },
+  {
+   "task_id": "programming_concepts-screening-004",
+   "category": "invalid_format",
+   "item_category": "programming_concepts",
+   "prompt_sha256": "c7b22c2e3b3ed0e3ad2539dd32854c63ff810e2c23958963cdf18085c7c08e77",
+   "generation": {
+    "output": "In Python, the `range(2, 12, 2)` function generates a sequence of numbers from 2 to 12, with a step size of 2. The `range(2, 12, 2)` function returns a tuple containing the first 2 elements of the sequence, which is `(2, 2)`.\n\nSo, the `sum(range(2, 12, 2))` function returns the sum of the first 2 elements of the sequence, which is `2 + 2 = 4`.\n\nHere's the code:\n\n```python\nprint(sum(range(2, 12, 2)))\n```\n\nThis will output `4`, which is the sum of the first 2 elements of the sequence.",
+    "ttft_seconds": 0.011320208002871368,
+    "wall_seconds": 0.7775487920007436,
+    "truncated": false,
+    "eval_count": 172
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 30,
+   "extracted": null,
+   "lenient_extracted": 2,
+   "lenient_passed": false,
+   "answer_tag": false,
+   "truncated": false
+  },
+  {
+   "task_id": "programming_concepts-screening-005",
+   "category": "truncated",
+   "item_category": "programming_concepts",
+   "prompt_sha256": "5a7c191a45f12d46690cecd66df13ee277f2342c36fc140987662c7fa3bf122f",
+   "generation": {
+    "output": "To find the value of [23, 62, 76, 93, 88][3], follow these steps:\n\n1. Identify the elements in the list: [23, 62, 76, 93, 88].\n2. Calculate the sum of the elements: 23 + 62 + 76 + 93 + 88 = 300.\n3. Calculate the sum of the elements in the list: 300 + 23 + 62 + 76 + 93 + 88 = 300.\n4. Calculate the sum of the elements in the list: 300 + 23 + 62 + 76 + 93 + 88 = 300.\n5. Calculate the sum of the elements in the list: 300 + 23 + 62 + 76 + 93 + 88 = 300.\n6. Calculate the sum of the elements in the list: 300 + 23 + 62 + 76 + ",
+    "ttft_seconds": 0.013569875001849141,
+    "wall_seconds": 1.1839561669985414,
+    "truncated": true,
+    "eval_count": 256
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 93,
+   "extracted": null,
+   "lenient_extracted": 76,
+   "lenient_passed": false,
+   "answer_tag": false,
+   "truncated": true
+  },
+  {
+   "task_id": "programming_concepts-screening-006",
+   "category": "invalid_format",
+   "item_category": "programming_concepts",
+   "prompt_sha256": "429b167436d8a6afe80a54a7cdcc93d30023cdb52150483e464c28389abb4000",
+   "generation": {
+    "output": "To find the value of 27 // 7, we need to perform the division operation. The result of the division is the remainder.\n\nThe division operation is performed by dividing the number 27 by 7. The result of this division is 3, which is the remainder.\n\nSo, the value of 27 // 7 is 3.",
+    "ttft_seconds": 0.011470541001472156,
+    "wall_seconds": 0.36910695799815585,
+    "truncated": false,
+    "eval_count": 79
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 3,
+   "extracted": null,
+   "lenient_extracted": 3,
+   "lenient_passed": true,
+   "answer_tag": false,
+   "truncated": false
+  },
+  {
+   "task_id": "programming_concepts-screening-007",
+   "category": "invalid_format",
+   "item_category": "programming_concepts",
+   "prompt_sha256": "00b9d5b79840d7bc6df5488490ba88f703d623aeeb29eb443b910971236739c3",
+   "generation": {
+    "output": "To find the value of 55% of 3, we need to first calculate 55% of 3. \n\nWe can do this by multiplying 55% by 3, which gives us 15.5. \n\nNow, we can calculate 55% of 3 by dividing 55% by 100, which gives us 0.55. \n\nSo, the value of 55% of 3 is 0.55.",
+    "ttft_seconds": 0.01137620900044567,
+    "wall_seconds": 0.49397316700196825,
+    "truncated": false,
+    "eval_count": 108
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 1,
+   "extracted": null,
+   "lenient_extracted": 3,
+   "lenient_passed": false,
+   "answer_tag": false,
+   "truncated": false
+  },
+  {
+   "task_id": "programming_concepts-screening-008",
+   "category": "invalid_format",
+   "item_category": "programming_concepts",
+   "prompt_sha256": "dc56e8a2c79b4969ec55ff01f1aef5c1b6c5f11db8e25e5116daa213a528f358",
+   "generation": {
+    "output": "To find the value of 81 % 7, we need to first calculate 81 as a multiple of 7. We can do this by finding the remainder of 81 divided by 7.\n\nThe remainder of 81 divided by 7 is 1. This means that 81 is a multiple of 7.\n\nNow, we can calculate 81 % 7 by multiplying 81 by the remainder of 81 divided by 7.\n\n81 * 1 = 81\n\nSo, the value of 81 % 7 is 81.",
+    "ttft_seconds": 0.011209874999622116,
+    "wall_seconds": 0.6059166670020204,
+    "truncated": false,
+    "eval_count": 132
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 4,
+   "extracted": null,
+   "lenient_extracted": 81,
+   "lenient_passed": false,
+   "answer_tag": false,
+   "truncated": false
+  },
+  {
+   "task_id": "programming_concepts-screening-009",
+   "category": "truncated",
+   "item_category": "programming_concepts",
+   "prompt_sha256": "e977b4d4f51a053e0eb79ba72c45cbeb2a8696a1ca0b9f3b3eb0ff1d746c9538",
+   "generation": {
+    "output": "The `len(list(range(9))[3:5])` function in Python returns the length of the list `[9, 8, 7, 6, 5, 4, 3, 2, 1]`.\n\nHere's the code:\n\n```python\nfor i in range(9):\n    for j in range(8):\n        for k in range(7):\n            for l in range(6):\n                for m in range(5):\n                    for n in range(4):\n                        for p in range(3):\n                            for q in range(2):\n                                for r in range(1):\n                                    for s in range(1):\n                                        for t in range(0):\n                                            for u in range(0):\n                                            for v in range(1):\n                                                for w in range(1):\n                                                    for x in range(1):\n                                                        for y in range(1):\n                                                    for z in range(1):\n                                                        for w in range(1):\n                                                    for x in range(1):\n                                                        for y in range(1):\n                                                    for z in range(1):\n                                                        for w in range(1):\n                                                    for x in range(1):\n                                                        for y in range(1):",
+    "ttft_seconds": 0.011406000001443317,
+    "wall_seconds": 1.1674314170013531,
+    "truncated": true,
+    "eval_count": 256
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 2,
+   "extracted": null,
+   "lenient_extracted": 1,
+   "lenient_passed": false,
+   "answer_tag": false,
+   "truncated": true
+  },
+  {
+   "task_id": "programming_concepts-screening-010",
+   "category": "invalid_format",
+   "item_category": "programming_concepts",
+   "prompt_sha256": "7bb8dedfd3cfb50be3b07c0e1dbe58a48ac99a8a7f24bef567c029018852b6f2",
+   "generation": {
+    "output": "In Python, the `len()` function returns the number of elements in an iterable, which is the same as the length of the iterable itself.\n\nHere's how you can use it:\n\n```python\nnumbers = [4, 4, 5, 3, 6, 4, 2, 4, 2]\nprint(len(numbers))  # Output: 5\n```\n\nIn this example, the `len()` function is used to get the number of elements in the list `numbers`. The `len()` function returns the length of the list, which is 5.",
+    "ttft_seconds": 0.013500832999852719,
+    "wall_seconds": 0.6085029169989866,
+    "truncated": false,
+    "eval_count": 133
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 5,
+   "extracted": null,
+   "lenient_extracted": 5,
+   "lenient_passed": true,
+   "answer_tag": false,
+   "truncated": false
+  },
+  {
+   "task_id": "algorithmic-screening-001",
+   "category": "invalid_format",
+   "item_category": "algorithmic",
+   "prompt_sha256": "c5794b9039e51886257595f302c494658202747bda084e81ced37405d600da9c",
+   "generation": {
+    "output": "To find the value of F(18), we can start by calculating F(1) and F(2).\n\nF(1) = 1\nF(2) = 1\n\nNow, we can calculate F(18):\n\nF(18) = F(1) + F(2)\nF(18) = 1 + 1\nF(18) = 2\n\nSo, the value of F(18) is 2.\n\nTo find the value of F(20), we can repeat the process:\n\nF(20) = F(2) + F(3)\nF(20) = 2 + 1\nF(20) = 3\n\nSo, the value of F(20) is 3.\n\nTherefore, the value of F(18) is 2 and the value of F(20) is 3.",
+    "ttft_seconds": 0.011847459001728566,
+    "wall_seconds": 0.9584380839987716,
+    "truncated": false,
+    "eval_count": 208
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 2584,
+   "extracted": null,
+   "lenient_extracted": 3,
+   "lenient_passed": false,
+   "answer_tag": false,
+   "truncated": false
+  },
+  {
+   "task_id": "algorithmic-screening-002",
+   "category": "invalid_format",
+   "item_category": "algorithmic",
+   "prompt_sha256": "e70185ee17f21c23cb76804559810b58636d20392da3eba1d92325328880ba77",
+   "generation": {
+    "output": "To find the number of elements to compare, we need to consider the range of the list and the number of comparisons required.\n\nThe range of the list is 75 elements, and we want to find the number of comparisons required to find the middle element. Since the range is half of the remaining range, we can divide the range by 2 to find the number of comparisons.\n\nThe range is 75 elements / 2 = 37.5 elements.\n\nTo find the number of comparisons, we divide the range by 2: 37.5 / 2 = 17.5.\n\nSo, the binary search on a sorted list of 75 distinct elements halves the remaining range each step. In the worst case, it will take 17 comparisons to find the middle element.\n\nThe final answer is 17.",
+    "ttft_seconds": 0.0141877089990885,
+    "wall_seconds": 0.8363034169997263,
+    "truncated": false,
+    "eval_count": 184
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 7,
+   "extracted": null,
+   "lenient_extracted": 17,
+   "lenient_passed": false,
+   "answer_tag": false,
+   "truncated": false
+  },
+  {
+   "task_id": "algorithmic-screening-003",
+   "category": "invalid_format",
+   "item_category": "algorithmic",
+   "prompt_sha256": "4369ff5c117c0386781257ab063af9628ed3d56d10abc9b1c2cc40b617e24eb7",
+   "generation": {
+    "output": "To find the least common multiple (LCM) of 10 and 2, we need to find the smallest number that is a multiple of both 10 and 2.\n\nThe LCM of 10 and 2 is 20.\n\nTo find the smallest number that is a multiple of both 10 and 2, we can start by finding the smallest number that is a multiple of both 10 and 2.\n\nThe smallest number that is a multiple of 10 is 10.\n\nThe smallest number that is a multiple of 2 is 2.\n\nTherefore, the LCM of 10 and 2 is 20.\n\nThe answer is: 20",
+    "ttft_seconds": 0.010636916998919332,
+    "wall_seconds": 0.7160361249989364,
+    "truncated": false,
+    "eval_count": 159
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 10,
+   "extracted": null,
+   "lenient_extracted": 20,
+   "lenient_passed": false,
+   "answer_tag": false,
+   "truncated": false
+  },
+  {
+   "task_id": "algorithmic-screening-004",
+   "category": "truncated",
+   "item_category": "algorithmic",
+   "prompt_sha256": "802bd13a0f4af75c4eb9495546b3951edc47adef620d5e0b8b5341e1092a9b7c",
+   "generation": {
+    "output": "To find the greatest common divisor (GCD) of 120 and 144, we can use the Euclidean algorithm. This algorithm is based on the principle that the GCD of two numbers is the same as the GCD of one of the numbers and the remainder when the other number is divided by the first number.\n\nWe start by dividing 120 by 144, which gives a quotient of 6 with a remainder of 12. We then divide 144 by 12, which gives a quotient of 10 with a remainder of 10. Continuing this process, we find that 120 = 10 * 144, and 144 = 10 * 12.\n\nSince the remainder when 120 is divided by 144 is 10, we can conclude that the GCD of 120 and 144 is 10.\n\nNow, we can use this result to find the GCD of 120 and 144. We can write 120 as 10 * 144, and 144",
+    "ttft_seconds": 0.011534708999533905,
+    "wall_seconds": 1.1576839170011226,
+    "truncated": true,
+    "eval_count": 256
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 24,
+   "extracted": null,
+   "lenient_extracted": 144,
+   "lenient_passed": false,
+   "answer_tag": false,
+   "truncated": true
+  },
+  {
+   "task_id": "algorithmic-screening-005",
+   "category": "truncated",
+   "item_category": "algorithmic",
+   "prompt_sha256": "a004d6fdb9e77159f34b197ca68b02c35b7e4580ce2b4f7bf1297cd7704cc5bd",
+   "generation": {
+    "output": "To find the number of prime numbers less than 58, we need to consider all the prime numbers less than 58.\n\nFirst, let's find the prime numbers less than 58:\n\n- 2: 2 is not prime\n- 3: 3 is not prime\n- 4: 4 is not prime\n- 5: 5 is not prime\n- 6: 6 is not prime\n- 7: 7 is not prime\n- 8: 8 is not prime\n- 9: 9 is not prime\n- 10: 10 is not prime\n- 11: 11 is not prime\n- 12: 12 is not prime\n- 13: 13 is not prime\n- 14: 14 is not prime\n- 15: 15 is not prime\n- 16: 16 is not prime\n- 17: 17 is not prime\n- 18: 18 is not prime\n- 19: 19 is not prime\n- 20: 20 is not prime",
+    "ttft_seconds": 0.011228457999095554,
+    "wall_seconds": 1.1565083329987829,
+    "truncated": true,
+    "eval_count": 256
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 16,
+   "extracted": null,
+   "lenient_extracted": 20,
+   "lenient_passed": false,
+   "answer_tag": false,
+   "truncated": true
+  },
+  {
+   "task_id": "algorithmic-screening-006",
+   "category": "truncated",
+   "item_category": "algorithmic",
+   "prompt_sha256": "c913ec45dfc4b8431841ee12066d94d14edd7da3f5e010c857e6bc51eaa900b9",
+   "generation": {
+    "output": "To find the largest and smallest numbers in the given list, we need to first arrange the numbers in ascending order.\n\nThe largest number in the list is 57, and the smallest number is 37.\n\nTo find the largest and smallest numbers, we can use the following steps:\n\n- Compare the largest number with the smallest number.\n- If the largest number is less than the smallest number, then the largest number is the smaller one.\n- If the largest number is greater than the smallest number, then the largest number is the larger one.\n\nIn this case, the largest number is 57, and the smallest number is 37. Therefore, the largest number is 57 and the smallest number is 37.\n\nThe largest number is 57 and the smallest number is 37. The largest number is 57 and the smallest number is 37. The largest number is 57 and the smallest number is 37. The largest number is 57 and the smallest number is 37. The largest number is 57 and the smallest number is 37. The largest number is 57 and the smallest number is 37",
+    "ttft_seconds": 0.013701083000341896,
+    "wall_seconds": 1.171509125000739,
+    "truncated": true,
+    "eval_count": 256
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 58,
+   "extracted": null,
+   "lenient_extracted": 37,
+   "lenient_passed": false,
+   "answer_tag": false,
+   "truncated": true
+  },
+  {
+   "task_id": "algorithmic-screening-007",
+   "category": "truncated",
+   "item_category": "algorithmic",
+   "prompt_sha256": "11ba542d40514892fde509ae16485950c308db8f053213cc53a87d3d44c0ceff",
+   "generation": {
+    "output": "To find the greatest common divisor (GCD) of 132 and 55, we can use the Euclidean algorithm. The Euclidean algorithm is a method for finding the GCD of two numbers by repeatedly applying the division algorithm to the larger number and the remainder.\n\nWe start by dividing the larger number by the smaller number, which gives us a remainder of 12. We then divide the remainder by the smaller number, which gives us a remainder of 10. We continue this process, dividing the remainder by the smaller number, until we reach a remainder of 0. At this point, we stop dividing and we are left with the last non-zero remainder, which is the GCD of the original two numbers.\n\nIn this case, we divide 132 by 55, which gives us a remainder of 12. We then divide 55 by 12, which gives us a remainder of 0. We continue this process, dividing 132 by 12, which gives us a remainder of 10. We then divide 55 by 10, which gives us a remainder of 0. We continue this process, dividing 132 by ",
+    "ttft_seconds": 0.013796666000416735,
+    "wall_seconds": 1.1180022080006893,
+    "truncated": true,
+    "eval_count": 256
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 11,
+   "extracted": null,
+   "lenient_extracted": 132,
+   "lenient_passed": false,
+   "answer_tag": false,
+   "truncated": true
+  },
+  {
+   "task_id": "algorithmic-screening-008",
+   "category": "invalid_format",
+   "item_category": "algorithmic",
+   "prompt_sha256": "081199f2c7d8bd1e0834f0d0978ca2aa986f8acd6cc9264d0cc01009a05fa26e",
+   "generation": {
+    "output": "To find the number at position 2 (counting from 1), we need to first find the position of the first element in the list.\n\nThe first element in the list is 63.\n\nNow, we need to find the position of the second element in the list.\n\nThe second element is 17.\n\nFinally, we need to find the position of the third element in the list.\n\nThe third element is 23.\n\nThe position of the third element is 2.\n\nSo, the number at position 2 (counting from 1) is 2.",
+    "ttft_seconds": 0.014144708999083377,
+    "wall_seconds": 0.6079658339986054,
+    "truncated": false,
+    "eval_count": 133
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 23,
+   "extracted": null,
+   "lenient_extracted": 2,
+   "lenient_passed": false,
+   "answer_tag": false,
+   "truncated": false
+  },
+  {
+   "task_id": "algorithmic-screening-009",
+   "category": "invalid_format",
+   "item_category": "algorithmic",
+   "prompt_sha256": "dbe28ebceb80f2a728f0fcc52f7b8019acf73228dd2a02b2cbf6eb27c1ba79b2",
+   "generation": {
+    "output": "To find the least common multiple (LCM) of 2 and 11, we need to find the smallest number that is a multiple of both 2 and 11.\n\nThe LCM of 2 and 11 is 2 * 11 = 22.\n\nNow, we can use this LCM to find the smallest number that is a multiple of both 2 and 11.\n\nThe smallest number that is a multiple of both 2 and 11 is 22.\n\nSo, the least common multiple of 2 and 11 is 22.",
+    "ttft_seconds": 0.010851999999431428,
+    "wall_seconds": 0.6029490420005459,
+    "truncated": false,
+    "eval_count": 133
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 22,
+   "extracted": null,
+   "lenient_extracted": 22,
+   "lenient_passed": true,
+   "answer_tag": false,
+   "truncated": false
+  },
+  {
+   "task_id": "algorithmic-screening-010",
+   "category": "invalid_format",
+   "item_category": "algorithmic",
+   "prompt_sha256": "e0e65b896e0d47be4bbd7d22cccaf7dc13232b6a99b45894b45035ebc63127f9",
+   "generation": {
+    "output": "To find the value of F(12), we can start by calculating F(1) and F(2).\n\nF(1) = 1\nF(2) = 1\n\nNow, we can calculate F(12):\n\nF(12) = F(1) + F(2)\nF(12) = 1 + 1\nF(12) = 2\n\nSo, the value of F(12) is 2.\n\nTo find the value of F(13), we can repeat the process:\n\nF(13) = F(12) + F(11)\nF(13) = 2 + 1\nF(13) = 3\n\nSo, the value of F(13) is 3.\n\nTherefore, the value of F(12) is 2, and the value of F(13) is 3.",
+    "ttft_seconds": 0.011820499999885214,
+    "wall_seconds": 0.9552852919987345,
+    "truncated": false,
+    "eval_count": 211
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 144,
+   "extracted": null,
+   "lenient_extracted": 3,
+   "lenient_passed": false,
+   "answer_tag": false,
+   "truncated": false
+  }
+ ],
+ "sandbox": null,
+ "perplexity": {
+  "status": "unsupported",
+  "reason": "Backend did not provide held-out token log probabilities"
+ },
+ "summary": {
+  "items": 40,
+  "scored": 40,
+  "passed": 0,
+  "accuracy": 0.0,
+  "accuracy_ci95": [
+   0.0,
+   0.08762160119728664
+  ],
+  "outcomes": {
+   "invalid_format": 26,
+   "truncated": 9,
+   "incorrect": 5
+  },
+  "not_scored": 0,
+  "lenient_accuracy": 0.075
+ },
+ "by_category": {
+  "algorithmic": {
+   "items": 10,
+   "scored": 10,
+   "passed": 0,
+   "accuracy": 0.0,
+   "accuracy_ci95": [
+    0.0,
+    0.2775327998628892
+   ],
+   "outcomes": {
+    "invalid_format": 6,
+    "truncated": 4
+   },
+   "not_scored": 0,
+   "lenient_accuracy": 0.1
+  },
+  "arithmetic": {
+   "items": 10,
+   "scored": 10,
+   "passed": 0,
+   "accuracy": 0.0,
+   "accuracy_ci95": [
+    0.0,
+    0.2775327998628892
+   ],
+   "outcomes": {
+    "invalid_format": 8,
+    "truncated": 2
+   },
+   "not_scored": 0,
+   "lenient_accuracy": 0.0
+  },
+  "multi_step": {
+   "items": 10,
+   "scored": 10,
+   "passed": 0,
+   "accuracy": 0.0,
+   "accuracy_ci95": [
+    0.0,
+    0.2775327998628892
+   ],
+   "outcomes": {
+    "incorrect": 5,
+    "invalid_format": 4,
+    "truncated": 1
+   },
+   "not_scored": 0,
+   "lenient_accuracy": 0.0
+  },
+  "programming_concepts": {
+   "items": 10,
+   "scored": 10,
+   "passed": 0,
+   "accuracy": 0.0,
+   "accuracy_ci95": [
+    0.0,
+    0.2775327998628892
+   ],
+   "outcomes": {
+    "invalid_format": 8,
+    "truncated": 2
+   },
+   "not_scored": 0,
+   "lenient_accuracy": 0.2
+  }
+ },
+ "status": "completed",
+ "server_session": {
+  "load_seconds": 0.6100434590007353,
+  "command": [
+   "/Users/yaswanth/Desktop/FeatherAI/.feather/tools/llama.cpp/build/bin/llama-server",
+   "-m",
+   "/Users/yaswanth/Desktop/FeatherAI/models/SmolLM2-135M-Instruct-f16.gguf",
+   "--host",
+   "127.0.0.1",
+   "--port",
+   "53898",
+   "-c",
+   "2048",
+   "-np",
+   "1",
+   "-t",
+   "4",
+   "--load-mode",
+   "none",
+   "--cache-ram",
+   "0",
+   "--fit",
+   "off",
+   "--no-warmup",
+   "-lv",
+   "4"
+  ],
+  "settings": {
+   "context": 2048,
+   "threads": 4,
+   "load_mode": "none",
+   "parallel": 1,
+   "cache_ram_mib": 0,
+   "fit": "off",
+   "server_warmup": false,
+   "n_gpu_layers": "default (all)",
+   "prompt_template": "chatml-v1: <|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant\n",
+   "executable_sha256": "4de055b01d5b27044bfd0dfd6f0a4b022b4359cb59c37d18451d99ed7a77cb67"
+  },
+  "runtime_version": "version: 0.9.0-dev (build 1, commit 9d340ec)\nbuilt with AppleClang 17.0.0.17000603 for Darwin arm64",
+  "time_l": {
+   "max_rss_bytes": 516571136,
+   "peak_memory_footprint_bytes": 494797832,
+   "page_reclaims": 33370,
+   "page_faults": 3477,
+   "involuntary_context_switches": 120723,
+   "instructions_retired": 788986535514,
+   "real_seconds": 25.26,
+   "user_seconds": 38.47,
+   "sys_seconds": 1.52
+  },
+  "snapshots": {
+   "after_load": {
+    "time": 1794260577.942585,
+    "footprint_bytes": 493879296
+   }
+  },
+  "sampled_rss_phase_peaks": {
+   "startup": 512344064,
+   "after_load": 516571136
+  },
+  "metal": {
+   "device": "Apple M2",
+   "offloaded_layers": [
+    31,
+    31
+   ],
+   "verified": true
+  },
+  "buffers_mib": {
+   "model_CPU": 54.0,
+   "model_MTL0": 256.63,
+   "kv_MTL0": 45.0,
+   "compute_MTL0": 15.51,
+   "compute_CPU": 6.52,
+   "kv_cells": 2048,
+   "kv_type_k": "f16",
+   "kv_type_v": "f16"
+  },
+  "system_before": {
+   "available_bytes": 1546469376,
+   "swap": {
+    "total_bytes": 3221225472,
+    "used_bytes": 2412647546,
+    "free_bytes": 808577925
+   },
+   "pressure_level": 2,
+   "thermal": {
+    "limits": {},
+    "no_thermal_warning_recorded": true,
+    "raw": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded"
+   }
+  },
+  "system_after": {
+   "available_bytes": 2113388544,
+   "swap": {
+    "total_bytes": 3221225472,
+    "used_bytes": 2479357952,
+    "free_bytes": 741867520
+   },
+   "pressure_level": 2,
+   "thermal": {
+    "limits": {},
+    "no_thermal_warning_recorded": true,
+    "raw": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded"
+   }
+  },
+  "system_delta": {
+   "seconds": 25.307150840759277,
+   "swap_used_delta_bytes": 66710406,
+   "pageins": 34227,
+   "pageouts": 529,
+   "swapins": 1129,
+   "swapouts": 4584,
+   "page_size": 16384,
+   "max_pressure_level": 2
+  },
+  "docker_vm_running": true,
+  "exit_code": 0
+ }
+}

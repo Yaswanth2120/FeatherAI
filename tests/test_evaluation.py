@@ -54,7 +54,7 @@ def test_docker_limits_no_host_mounts_and_cleanup(monkeypatch):
         assert 'answer' not in sent and 'cases' not in sent
         return 0, harness_output(-1, 1, -1, 0)
     monkeypatch.setattr(module, '_bounded_run', fake)
-    monkeypatch.setattr(module.subprocess, 'run', lambda command, **kwargs: (commands.append(command) or SimpleNamespace(returncode=0, stderr='', stdout='false')))
+    monkeypatch.setattr(module.subprocess, 'run', lambda command, **kwargs: (commands.append(command) or SimpleNamespace(returncode=0, stderr='', stdout='false|2026-11-09T21:00:00Z')))
     result = score_code('def binary_search(a,b): return -1', CODING[0], sandbox=SANDBOX)
     assert result['passed'] and result['outcome'] == 'passed'
     command = commands[0]
@@ -131,7 +131,7 @@ def test_quality_comparison_requires_identity_and_complete_results():
 def test_coding_boolean_is_not_integer_correctness(monkeypatch):
     import backend.evaluation.sandbox as module
     monkeypatch.setattr(module, '_bounded_run', lambda *args: (0, harness_output([], [True, False, 3], [False])))
-    monkeypatch.setattr(module.subprocess, 'run', lambda *args, **kwargs: SimpleNamespace(returncode=0, stderr='', stdout='false'))
+    monkeypatch.setattr(module.subprocess, 'run', lambda *args, **kwargs: SimpleNamespace(returncode=0, stderr='', stdout='false|2026-11-09T21:00:00Z'))
     result = score_code('pass', CODING[2], sandbox=SANDBOX)
     assert result['passed'] is False
     assert result['cases_passed'] == 1
@@ -148,7 +148,7 @@ def test_coding_labels_worker_job_for_external_cleanup(monkeypatch):
     calls = []
     monkeypatch.setenv('FEATHER_JOB_ID','job-123')
     monkeypatch.setattr(module, '_bounded_run', lambda command, *args: (calls.append(command) or (0, harness_output(-1, 1, -1, 0))))
-    monkeypatch.setattr(module.subprocess, 'run', lambda *args, **kwargs: SimpleNamespace(returncode=0, stderr='', stdout='false'))
+    monkeypatch.setattr(module.subprocess, 'run', lambda *args, **kwargs: SimpleNamespace(returncode=0, stderr='', stdout='false|2026-11-09T21:00:00Z'))
     score_code('pass', CODING[0], sandbox=SANDBOX)
     assert '--label' in calls[0]
     assert 'feather.job=job-123' in calls[0]

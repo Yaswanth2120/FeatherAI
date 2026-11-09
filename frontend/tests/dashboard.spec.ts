@@ -5,6 +5,9 @@ test('real local dashboard navigation, saved reports and quality evidence',async
   await page.goto('/');
   await expect(page.getByRole('heading',{name:'Your local intelligence lab.'})).toBeVisible();
   await expect(page.getByText('Apple M2',{exact:true}).first()).toBeVisible();
+  await expect(page.getByRole('heading',{name:'Platform status'})).toBeVisible();
+  await expect(page.getByText('Codex automation')).toBeVisible();
+  await expect(page.getByText('Coding sandbox')).toBeVisible();
   await page.getByRole('button',{name:'Model Library',exact:true}).click();
   await expect(page.getByRole('heading',{name:'Installed runtime models'})).toBeVisible();
   await page.getByRole('button',{name:'Quantization Studio',exact:true}).click();
@@ -14,6 +17,12 @@ test('real local dashboard navigation, saved reports and quality evidence',async
   await expect(page.getByLabel('Public screening suite')).toBeVisible();
   await page.getByRole('button',{name:'Comparison Reports',exact:true}).click();
   await expect(page.getByRole('heading',{name:'Select saved experiments'})).toBeVisible();
+  const complete=page.locator('section',{has:page.getByRole('heading',{name:'Quantization study · smollm2-135m'})});
+  await expect(complete.getByText('COMPLETE',{exact:true})).toBeVisible();
+  await expect(complete.getByText('Q4_K_M',{exact:true}).first()).toBeVisible();
+  const blocked=page.locator('section',{has:page.getByRole('heading',{name:'Quantization study · qwen2.5-coder-0.5b'})});
+  await expect(blocked.getByText('INCOMPLETE',{exact:true})).toBeVisible();
+  await expect(blocked.getByText('blocked').first()).toBeVisible();
   const boxes=page.getByRole('checkbox');
   expect(await boxes.count()).toBeGreaterThanOrEqual(2);
   await boxes.nth(0).check();await boxes.nth(1).check();

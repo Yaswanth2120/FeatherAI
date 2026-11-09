@@ -1,0 +1,714 @@
+{
+ "id": "adeaf069-1b7c-47ad-9e75-357d5a6b419e",
+ "kind": "evaluation",
+ "created_at": "2026-11-09T21:43:24.941510+00:00",
+ "model": {
+  "name": "SmolLM2-135M-Instruct-f16.gguf",
+  "size": 270885952,
+  "digest": "f535f83ec568d040f88ddc04a199fa6da90923bbb41d4dcaed02caa924d6ef57",
+  "artifact_sha256": "f535f83ec568d040f88ddc04a199fa6da90923bbb41d4dcaed02caa924d6ef57",
+  "details": {
+   "tensor_types": {
+    "F16": 211,
+    "F32": 61
+   },
+   "parameter_count": 134515008
+  }
+ },
+ "suite": "coding-v1",
+ "split": "screening",
+ "dataset_version": "v1",
+ "dataset_sha256": "e41bfe10854cd6fa6e8ad69b9e56d34c73da66e6b48ec9dd86d5e74565d531bb",
+ "suite_sha256": "3bde9f61d0ec9977678477a6bc353e3fd09df0608aeab67803b1262b9e687033:e41bfe10854cd6fa6e8ad69b9e56d34c73da66e6b48ec9dd86d5e74565d531bb",
+ "item_limit": null,
+ "options": {
+  "seed": 42,
+  "temperature": 0,
+  "num_ctx": 2048,
+  "num_predict": 384
+ },
+ "settings_sha256": "c8867afd6f92a7b962aede873f63d8254da6d99fe69b7c5a9351e582bcc329fb",
+ "repeats": 1,
+ "backend": "llama.cpp",
+ "source_sha256": "f535f83ec568d040f88ddc04a199fa6da90923bbb41d4dcaed02caa924d6ef57",
+ "prompt_template": "chatml-v1: <|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant\n",
+ "runtime_version": "version: 0.9.0-dev (build 1, commit 9d340ec)\nbuilt with AppleClang 17.0.0.17000603 for Darwin arm64",
+ "results": [
+  {
+   "task_id": "reverse_words",
+   "category": "partial_pass",
+   "item_category": "coding",
+   "prompt_sha256": "6f4620072ba20ce2bfa70153b3bc9f0c1e5b35ff2dc1f50105a7c2911451d977",
+   "generation": {
+    "output": "Here's how you can implement this function in Python:\n\n```python\nimport re\n\ndef reverse_words(s):\n    words = re.findall(r'\\b\\w+\\b', s)\n    return ' '.join(words)\n```\n\nThis function uses the `re.findall` function to find all sequences of word characters (`\\b`) in the input string `s`. The `\\b` matches the word boundary, and the `\\w+` matches one or more word characters. The `re.findall` function returns a list of all matches, which is then joined by spaces to form the final result.",
+    "ttft_seconds": 0.026487541999813402,
+    "wall_seconds": 0.595914207999158,
+    "truncated": false,
+    "eval_count": 135
+   },
+   "status": "scored",
+   "passed": false,
+   "test_cases": 5,
+   "cases_passed": 2,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "partial_pass",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": false
+    },
+    {
+     "index": 1,
+     "passed": true
+    },
+    {
+     "index": 2,
+     "passed": true
+    },
+    {
+     "index": 3,
+     "passed": false
+    },
+    {
+     "index": 4,
+     "passed": false
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-449e1786098444468d3a7d97edc89f4f",
+    "exit_code": 0,
+    "seconds": 0.399,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "fizzbuzz",
+   "category": "partial_pass",
+   "item_category": "coding",
+   "prompt_sha256": "3dd586bf5bd40df5deae25032770b5964dbce92502c8f1cc4c827573473dd9c6",
+   "generation": {
+    "output": "```python\ndef fizzbuzz(n):\n    return [f\"{num:03d}\" for num in range(1, n + 1)]\n```\n\nThis function uses a list comprehension to generate the list of strings for each number from 1 to `n`. The `range(1, n + 1)` function generates numbers from 1 to `n`, and the `for` loop iterates over these numbers. The `fizzbuzz` function then uses the `:03d` format specifier to format each string as a decimal number.",
+    "ttft_seconds": 0.025080832998355618,
+    "wall_seconds": 0.5657562080014031,
+    "truncated": false,
+    "eval_count": 123
+   },
+   "status": "scored",
+   "passed": false,
+   "test_cases": 4,
+   "cases_passed": 1,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "partial_pass",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": true
+    },
+    {
+     "index": 1,
+     "passed": false
+    },
+    {
+     "index": 2,
+     "passed": false
+    },
+    {
+     "index": 3,
+     "passed": false
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-36947a6c5b1b4cd39b155d62e2e8a157",
+    "exit_code": 0,
+    "seconds": 0.215,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "gcd",
+   "category": "passed",
+   "item_category": "coding",
+   "prompt_sha256": "6723303273d1b761dd42ac8a630a300c94f35a130865a6ff3a0ac2c8a874dc96",
+   "generation": {
+    "output": "```python\ndef gcd(a, b):\n    if b == 0:\n        return a\n    else:\n        return gcd(b, a % b)\n```\n\nThis function uses the Euclidean algorithm to find the greatest common divisor of non-negative integers `a` and `b`. The `gcd` function takes two arguments, `a` and `b`, and returns the greatest common divisor of `a` and `b` using the division algorithm. If `b` is zero, the function returns `a` as the greatest common divisor.",
+    "ttft_seconds": 0.019718874998943647,
+    "wall_seconds": 0.5819217499993101,
+    "truncated": false,
+    "eval_count": 122
+   },
+   "status": "scored",
+   "passed": true,
+   "test_cases": 6,
+   "cases_passed": 6,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "passed",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": true
+    },
+    {
+     "index": 1,
+     "passed": true
+    },
+    {
+     "index": 2,
+     "passed": true
+    },
+    {
+     "index": 3,
+     "passed": true
+    },
+    {
+     "index": 4,
+     "passed": true
+    },
+    {
+     "index": 5,
+     "passed": true
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-71325ef822494719a898ad609d4d1af9",
+    "exit_code": 0,
+    "seconds": 0.205,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "title_case",
+   "category": "truncated",
+   "item_category": "coding",
+   "prompt_sha256": "c1817fb735437bea63dacc486fc00b76f09d8c556f5a3523c0be635ce89e95f0",
+   "generation": {
+    "output": "Here is the implementation of the `title_case` function in Python:\n\n```python\nimport string\n\ndef title_case(s):\n    s = s.replace(\" \", \"\").lower()\n    s = s.replace(\" \", \"\").replace(\"_\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").replace(\"!\", \"\").",
+    "ttft_seconds": 0.023598499999934575,
+    "wall_seconds": 1.7180420000004233,
+    "truncated": true,
+    "eval_count": 384
+   },
+   "status": "scored",
+   "passed": false,
+   "test_cases": 4,
+   "cases_passed": 0,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "compile_error",
+   "reason": "SyntaxError: invalid syntax (<generated>, line 5)",
+   "execution": {
+    "container": "feather-eval-b08e765a0cfc4e3e984c202afbc954d8",
+    "exit_code": 0,
+    "seconds": 0.21,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "roman_to_int",
+   "category": "runtime_error",
+   "item_category": "coding",
+   "prompt_sha256": "cc0785af4fe9f5d9962ed3c0706e335e5555994468af872c96d0b300c33450f7",
+   "generation": {
+    "output": "Here's how you can implement the `roman_to_int` function in Python:\n\n```python\ndef roman_to_int(s):\n    roman_numerals = {\n        'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000\n    }\n    roman_numeral = ''\n    for i, numeral in enumerate(s):\n        if numeral in roman_numerals:\n            roman_numeral += roman_numerals[numeral]\n        else:\n            roman_numeral += numeral\n    return roman_numeral\n```\n\nThis function uses the `enumerate` function to iterate over the input string `s` and the corresponding Roman numeral `numeral` in the `roman_to_int` dictionary. It adds the `numeral` to the `roman_numeral` string and then adds the `numeral` to the `roman_numeral` string. If the `numeral` is already in the dictionary, it is added to the `roman_numeral` string. Otherwise, it is added to the `roman_numeral` string.",
+    "ttft_seconds": 0.021305666999978712,
+    "wall_seconds": 1.2814024590006738,
+    "truncated": false,
+    "eval_count": 275
+   },
+   "status": "scored",
+   "passed": false,
+   "test_cases": 6,
+   "cases_passed": 0,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "runtime_error",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": false,
+     "error": "TypeError",
+     "message": "can only concatenate str (not \"int\") to str"
+    },
+    {
+     "index": 1,
+     "passed": false,
+     "error": "TypeError",
+     "message": "can only concatenate str (not \"int\") to str"
+    },
+    {
+     "index": 2,
+     "passed": false,
+     "error": "TypeError",
+     "message": "can only concatenate str (not \"int\") to str"
+    },
+    {
+     "index": 3,
+     "passed": false,
+     "error": "TypeError",
+     "message": "can only concatenate str (not \"int\") to str"
+    },
+    {
+     "index": 4,
+     "passed": false,
+     "error": "TypeError",
+     "message": "can only concatenate str (not \"int\") to str"
+    },
+    {
+     "index": 5,
+     "passed": false,
+     "error": "TypeError",
+     "message": "can only concatenate str (not \"int\") to str"
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-2601e7bc211240d983b948767f1e1849",
+    "exit_code": 0,
+    "seconds": 0.26,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "unique_paths",
+   "category": "partial_pass",
+   "item_category": "coding",
+   "prompt_sha256": "da0e32ca24b62c639d8ddc3ae3f666328a36340255fdc5eeb1159d4d90ebeea2",
+   "generation": {
+    "output": "Here's how you can implement this function in Python:\n\n```python\nimport sys\n\ndef unique_paths(m, n):\n    if m == 0 or n == 0:\n        return 0\n\n    paths = []\n    for i in range(m):\n        for j in range(n):\n            if i == 0 or j == 0:\n                paths.append(i)\n            elif i == m - 1 or j == n - 1:\n                paths.append(j)\n\n    return len(paths)\n```\n\nThis function uses a nested loop to iterate over the rows and columns of the grid. For each cell, it checks if it's the top-left or bottom-right cell. If it is, it adds the current cell to the path. If it's not the top-left or bottom-right cell, it adds the current cell to the path. The function returns the total number of paths.",
+    "ttft_seconds": 0.025778292001632508,
+    "wall_seconds": 0.872577750000346,
+    "truncated": false,
+    "eval_count": 199
+   },
+   "status": "scored",
+   "passed": false,
+   "test_cases": 5,
+   "cases_passed": 1,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "partial_pass",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": true
+    },
+    {
+     "index": 1,
+     "passed": false
+    },
+    {
+     "index": 2,
+     "passed": false
+    },
+    {
+     "index": 3,
+     "passed": false
+    },
+    {
+     "index": 4,
+     "passed": false
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-7812ccf431684afbb7c30136f5ed9eed",
+    "exit_code": 0,
+    "seconds": 0.224,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "caesar_shift",
+   "category": "runtime_error",
+   "item_category": "coding",
+   "prompt_sha256": "a0f6759bea2aebb50501098d13df450bac5a1c6a4a8b0db7d1efec22856883b1",
+   "generation": {
+    "output": "Here's how you can implement the `caesar_shift` function in Python:\n\n```python\nimport string\n\ndef caesar_shift(text, k):\n    alphabet = string.ascii_lowercase\n    shift = k\n    while shift > 0:\n        shift -= 1\n        alphabet.insert(0, alphabet.pop(shift))\n        shift -= 1\n    return alphabet\n```\n\nThis function uses the `string.ascii_lowercase` constant to store the lowercase letters in a list. It then enters a loop that shifts each lowercase letter a-z forward by k positions in the alphabet, wrapping around if necessary. The `while` loop continues until the shift is zero, and the `alphabet.insert()` method is called to insert the new characters into the alphabet.",
+    "ttft_seconds": 0.02539875000002212,
+    "wall_seconds": 0.7618630830002076,
+    "truncated": false,
+    "eval_count": 167
+   },
+   "status": "scored",
+   "passed": false,
+   "test_cases": 5,
+   "cases_passed": 0,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "runtime_error",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": false,
+     "error": "AttributeError",
+     "message": "'str' object has no attribute 'insert'"
+    },
+    {
+     "index": 1,
+     "passed": false,
+     "error": "AttributeError",
+     "message": "'str' object has no attribute 'insert'"
+    },
+    {
+     "index": 2,
+     "passed": false,
+     "error": "AttributeError",
+     "message": "'str' object has no attribute 'insert'"
+    },
+    {
+     "index": 3,
+     "passed": false,
+     "error": "AttributeError",
+     "message": "'str' object has no attribute 'insert'"
+    },
+    {
+     "index": 4,
+     "passed": false,
+     "error": "AttributeError",
+     "message": "'str' object has no attribute 'insert'"
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-d51d7be7de384f478b654dd962f66e8f",
+    "exit_code": 0,
+    "seconds": 0.291,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "nth_prime",
+   "category": "partial_pass",
+   "item_category": "coding",
+   "prompt_sha256": "956a597e9793c09ebc279e98d68f46df0772ce5c41d9736f83e6121bc7eaa3e1",
+   "generation": {
+    "output": "Here's how you can implement the `nth_prime` function in Python:\n\n```python\nimport math\n\ndef nth_prime(n):\n    if n == 1:\n        return 2\n    elif n == 2:\n        return 2\n    else:\n        return n - 1\n```\n\nThe `nth_prime` function takes an integer `n` as input and returns the n-th prime number. It uses the `math.isqrt` function to check if `n` is an integer. If `n` is not an integer, it returns 2. Otherwise, it returns the n-th prime number.",
+    "ttft_seconds": 0.027712707997125108,
+    "wall_seconds": 0.6530157919987687,
+    "truncated": false,
+    "eval_count": 141
+   },
+   "status": "scored",
+   "passed": false,
+   "test_cases": 5,
+   "cases_passed": 1,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "partial_pass",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": true
+    },
+    {
+     "index": 1,
+     "passed": false
+    },
+    {
+     "index": 2,
+     "passed": false
+    },
+    {
+     "index": 3,
+     "passed": false
+    },
+    {
+     "index": 4,
+     "passed": false
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-9f9dc797fda54de2bb43f3254b13848c",
+    "exit_code": 0,
+    "seconds": 0.223,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "hamming_distance",
+   "category": "partial_pass",
+   "item_category": "coding",
+   "prompt_sha256": "91d81d0cdb41cb3225c17eefb6f910140c22da5b5567ca286328522a109e4e9b",
+   "generation": {
+    "output": "Here's how you can implement the `hamming_distance` function in Python:\n\n```python\ndef hamming_distance(a, b):\n    return len(a) - len(b)\n```\n\nThe `len` function returns the number of elements in an object, which is the number of positions at which two equal-length strings differ.",
+    "ttft_seconds": 0.025337999999464955,
+    "wall_seconds": 0.35419891700075823,
+    "truncated": false,
+    "eval_count": 77
+   },
+   "status": "scored",
+   "passed": false,
+   "test_cases": 4,
+   "cases_passed": 2,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "partial_pass",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": true
+    },
+    {
+     "index": 1,
+     "passed": false
+    },
+    {
+     "index": 2,
+     "passed": false
+    },
+    {
+     "index": 3,
+     "passed": true
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-c63ec214f4bd4b848d0d14932259286b",
+    "exit_code": 0,
+    "seconds": 0.257,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "is_power_of_two",
+   "category": "passed",
+   "item_category": "coding",
+   "prompt_sha256": "cfec97c5e70872771c3647a7b15f3f76d6b3fdf1132181257c36f742d246018e",
+   "generation": {
+    "output": "Here is the complete Python function `is_power_of_two(n)` that returns True if the integer `n` is a positive power of two (1, 2, 4, ...) and False otherwise:\n\n```python\ndef is_power_of_two(n):\n    if n <= 0:\n        return False\n    return (n & (n - 1)) == 0\n```\n\nThis function works by using the bitwise AND operator (`&`) to check if the binary representation of `n` is a power of two. If `n` is a power of two, its binary representation has exactly one bit set to 1 (the bit in the place that corresponds to that power of two). Subtracting 1 from `n` flips all the bits to the right of the first 1 bit, so the bitwise AND of `n` and `n - 1` will be zero if and only if `n` is a power of two.\n\nHere's how you can use this function:\n\n```python\nprint(is_power_of_two(8))  # Output: True\nprint(is_power_of_two(10))  # Output: False\nprint(is_power_of_two(15))  # Output: False\n```",
+    "ttft_seconds": 0.02911070800109883,
+    "wall_seconds": 1.2331761669993284,
+    "truncated": false,
+    "eval_count": 285
+   },
+   "status": "scored",
+   "passed": true,
+   "test_cases": 7,
+   "cases_passed": 7,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "passed",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": true
+    },
+    {
+     "index": 1,
+     "passed": true
+    },
+    {
+     "index": 2,
+     "passed": true
+    },
+    {
+     "index": 3,
+     "passed": true
+    },
+    {
+     "index": 4,
+     "passed": true
+    },
+    {
+     "index": 5,
+     "passed": true
+    },
+    {
+     "index": 6,
+     "passed": true
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-aeb0ea5497234f7d951e41613a203cad",
+    "exit_code": 0,
+    "seconds": 0.232,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  }
+ ],
+ "sandbox": {
+  "status": "available",
+  "backend": "docker",
+  "binary": "/usr/local/bin/docker",
+  "image": "docker.io/library/python@sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+  "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+  "server_version": "29.4.1",
+  "security_options": [
+   "name=seccomp,profile=builtin",
+   "name=cgroupns"
+  ],
+  "daemon_os": "Docker Desktop",
+  "daemon_memory_bytes": 2068029440,
+  "isolation": "Linux container, no network, read-only root, all capabilities dropped, non-root user"
+ },
+ "perplexity": {
+  "status": "unsupported",
+  "reason": "Backend did not provide held-out token log probabilities"
+ },
+ "summary": {
+  "items": 10,
+  "scored": 10,
+  "passed": 2,
+  "accuracy": 0.2,
+  "accuracy_ci95": [
+   0.05668215145437519,
+   0.5098375284633583
+  ],
+  "outcomes": {
+   "partial_pass": 5,
+   "passed": 2,
+   "truncated": 1,
+   "runtime_error": 2
+  },
+  "not_scored": 0,
+  "lenient_accuracy": null
+ },
+ "by_category": {
+  "coding": {
+   "items": 10,
+   "scored": 10,
+   "passed": 2,
+   "accuracy": 0.2,
+   "accuracy_ci95": [
+    0.05668215145437519,
+    0.5098375284633583
+   ],
+   "outcomes": {
+    "partial_pass": 5,
+    "passed": 2,
+    "truncated": 1,
+    "runtime_error": 2
+   },
+   "not_scored": 0,
+   "lenient_accuracy": null
+  }
+ },
+ "status": "completed",
+ "server_session": {
+  "load_seconds": 0.5060343750010361,
+  "command": [
+   "/Users/yaswanth/Desktop/FeatherAI/.feather/tools/llama.cpp/build/bin/llama-server",
+   "-m",
+   "/Users/yaswanth/Desktop/FeatherAI/models/SmolLM2-135M-Instruct-f16.gguf",
+   "--host",
+   "127.0.0.1",
+   "--port",
+   "53949",
+   "-c",
+   "2048",
+   "-np",
+   "1",
+   "-t",
+   "4",
+   "--load-mode",
+   "none",
+   "--cache-ram",
+   "0",
+   "--fit",
+   "off",
+   "--no-warmup",
+   "-lv",
+   "4"
+  ],
+  "settings": {
+   "context": 2048,
+   "threads": 4,
+   "load_mode": "none",
+   "parallel": 1,
+   "cache_ram_mib": 0,
+   "fit": "off",
+   "server_warmup": false,
+   "n_gpu_layers": "default (all)",
+   "prompt_template": "chatml-v1: <|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant\n",
+   "executable_sha256": "4de055b01d5b27044bfd0dfd6f0a4b022b4359cb59c37d18451d99ed7a77cb67"
+  },
+  "runtime_version": "version: 0.9.0-dev (build 1, commit 9d340ec)\nbuilt with AppleClang 17.0.0.17000603 for Darwin arm64",
+  "time_l": {
+   "max_rss_bytes": 541229056,
+   "peak_memory_footprint_bytes": 496469072,
+   "page_reclaims": 36173,
+   "page_faults": 59,
+   "involuntary_context_switches": 41934,
+   "instructions_retired": 292646618693,
+   "real_seconds": 13.59,
+   "user_seconds": 13.8,
+   "sys_seconds": 0.55
+  },
+  "snapshots": {
+   "after_load": {
+    "time": 1794260603.239381,
+    "footprint_bytes": 495976448
+   }
+  },
+  "sampled_rss_phase_peaks": {
+   "startup": 467484672,
+   "after_load": 419414016
+  },
+  "metal": {
+   "device": "Apple M2",
+   "offloaded_layers": [
+    31,
+    31
+   ],
+   "verified": true
+  },
+  "buffers_mib": {
+   "model_CPU": 54.0,
+   "model_MTL0": 256.63,
+   "kv_MTL0": 45.0,
+   "compute_MTL0": 15.51,
+   "compute_CPU": 6.52,
+   "kv_cells": 2048,
+   "kv_type_k": "f16",
+   "kv_type_v": "f16"
+  },
+  "system_before": {
+   "available_bytes": 1981366272,
+   "swap": {
+    "total_bytes": 3221225472,
+    "used_bytes": 2479357952,
+    "free_bytes": 741867520
+   },
+   "pressure_level": 2,
+   "thermal": {
+    "limits": {},
+    "no_thermal_warning_recorded": true,
+    "raw": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded"
+   }
+  },
+  "system_after": {
+   "available_bytes": 1965686784,
+   "swap": {
+    "total_bytes": 3221225472,
+    "used_bytes": 2583229890,
+    "free_bytes": 637995581
+   },
+   "pressure_level": 2,
+   "thermal": {
+    "limits": {},
+    "no_thermal_warning_recorded": true,
+    "raw": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded"
+   }
+  },
+  "system_delta": {
+   "seconds": 13.616267681121826,
+   "swap_used_delta_bytes": 103871938,
+   "pageins": 44964,
+   "pageouts": 642,
+   "swapins": 690,
+   "swapouts": 7364,
+   "page_size": 16384,
+   "max_pressure_level": 2
+  },
+  "docker_vm_running": true,
+  "exit_code": 0
+ }
+}

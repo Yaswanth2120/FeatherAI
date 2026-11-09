@@ -51,7 +51,9 @@ def validate(identifier):
         require(data.get('generation_validated') is True, 'Real generation validation is missing')
         require(bool(data.get('baseline_output', '').strip()) and bool(data.get('quantized_output', '').strip()), 'Baseline and quantized generation outputs required')
     elif identifier == 'task04':
-        data = evidence('comparison-evidence.json')
+        # v0.2 evidence supersedes the v0.1 file, which is kept unmodified as history; the checks are identical.
+        data = evidence('comparison-evidence-v0.2.json' if (ROOT / 'experiments' / 'comparison-evidence-v0.2.json').is_file()
+                        else 'comparison-evidence.json')
         configs = data.get('configurations', [])
         require(len(configs) >= 2, 'At least two configurations required')
         require(len({c['source_sha256'] for c in configs}) == 1, 'Configurations must share exact source')

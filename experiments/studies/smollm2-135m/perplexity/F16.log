@@ -1,0 +1,11 @@
+0.00.355.095 I cmn          init: llama threadpool init, n_threads = 4
+0.00.398.396 I 
+0.00.398.415 I system_info: n_threads = 4 (n_threads_batch = 4) / 8 | MTL : EMBED_LIBRARY = 1 | CPU : NEON = 1 | ARM_FMA = 1 | FP16_VA = 1 | MATMUL_INT8 = 1 | DOTPROD = 1 | ACCELERATE = 1 | REPACK = 1 | 
+0.00.398.835 I perplexity: saving all logits to /Users/yaswanth/Desktop/FeatherAI/.feather/study-smollm135m/perplexity/base-logits.kld
+0.00.398.840 I perplexity: tokenizing the input ..
+0.00.480.058 I perplexity: tokenization took 81.217 ms
+0.00.480.093 I perplexity: calculating perplexity over 20 chunks, n_ctx=512, batch_size=512, n_seq=1
+0.00.572.411 I perplexity: 0.09 seconds per pass - ETA 0.02 minutes
+[1]8.8428,[2]11.5105,[3]7.5063,[4]7.5205,[5]7.3875,[6]7.5958,[7]7.2099,[8]6.7134,[9]6.8256,[10]7.0315,[11]7.4229,[12]8.3028,[13]8.1724,[14]7.8481,[15]8.3087,[16]8.2260,[17]7.8249,[18]7.6362,[19]7.6414,[20]7.6022,
+0.02.807.664 I Final estimate: PPL = 7.6022 +/- 0.27714
+

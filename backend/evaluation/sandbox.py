@@ -113,7 +113,9 @@ def _bounded_run(command: list[str], payload: str, timeout: float, max_output: i
     with tempfile.TemporaryFile() as source:
         source.write(payload.encode())
         source.seek(0)
-        process = subprocess.Popen(command, stdin=source, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        # Client/daemon diagnostics go to a separate bounded sink so they cannot corrupt the result frame.
+        errors = tempfile.TemporaryFile()
+        process = subprocess.Popen(command, stdin=source, stdout=subprocess.PIPE, stderr=errors)
         output = bytearray()
         deadline = time.monotonic() + timeout
         try:
@@ -137,6 +139,7 @@ def _bounded_run(command: list[str], payload: str, timeout: float, max_output: i
                 process.kill()
             process.wait(timeout=5)
             process.stdout.close()
+            errors.close()
 
 
 class ExecutionBackend(ABC):
@@ -233,21 +236,25 @@ class DockerExecutionBackend(ExecutionBackend):
         try:
             code_, output = _bounded_run(self.command(name, limits), payload, limits.wall_seconds, limits.max_output_bytes)
             record["exit_code"] = code_
-            oom = self._oom_killed(name)
-            if oom or code_ == OOM_EXIT:
-                record.update(category="memory_limit", reason="Container exceeded its memory limit" if oom else "Container was killed (exit 137)")
-            elif code_ == CPU_LIMIT_EXIT:
+            state = self._state(name)
+            started = state.get("started")  # the container process ran: its exit status belongs to generated code
+            if state.get("oom") or (started and code_ == OOM_EXIT):
+                record.update(category="memory_limit", reason="Container exceeded its memory limit" if state.get("oom") else "Container was killed (exit 137)")
+            elif started and code_ == CPU_LIMIT_EXIT:
                 record.update(category="timeout", reason="CPU time limit exceeded")
-            elif code_ in {125, 126, 127}:
-                record.update(category="infrastructure_error", reason=f"Docker infrastructure failed with code {code_}: {output[:300]!r}")
+            elif not started:
+                record.update(category="infrastructure_error", reason=f"Container did not start (docker exit {code_})")
             elif code_:
-                record.update(category="runtime_error", reason=f"Container exited with code {code_}")
+                record.update(category="runtime_error", reason=f"Generated program terminated the container with exit code {code_}")
             else:
                 try:
-                    record["harness"] = json.loads(output)
-                    record["category"] = "executed"
+                    harness = json.loads(output)
+                    if not isinstance(harness, dict) or harness.get("phase") not in {"compile", "load", "cases"}:
+                        raise ValueError
+                    record.update(harness=harness, category="executed")
                 except ValueError:
-                    record.update(category="infrastructure_error", reason="Harness output was not valid JSON")
+                    # The harness always emits a frame; a missing or garbled one means generated code interfered.
+                    record.update(category="runtime_error", reason="Generated program suppressed or corrupted the result frame")
         except subprocess.TimeoutExpired:
             record.update(category="timeout", reason="Execution timeout")
         except OutputLimitExceeded:
@@ -259,12 +266,17 @@ class DockerExecutionBackend(ExecutionBackend):
             self._remove(name)
         return record
 
-    def _oom_killed(self, name) -> bool:
+    def _state(self, name) -> dict:
+        """Container state after exit: whether its process started and whether it was OOM-killed."""
         try:
-            result = self._docker("inspect", "--format", "{{.State.OOMKilled}}", name, timeout=5)
+            result = self._docker("inspect", "--format", "{{.State.OOMKilled}}|{{.State.StartedAt}}", name, timeout=5)
         except (OSError, subprocess.TimeoutExpired):
-            return False
-        return result.returncode == 0 and (getattr(result, "stdout", "") or "").strip() == "true"
+            return {}
+        if result.returncode:
+            return {}
+        oom, _, started = ((getattr(result, "stdout", "") or "").strip() + "|").partition("|")
+        started = started.rstrip("|")
+        return {"oom": oom == "true", "started": bool(started) and not started.startswith("0001-01-01")}
 
     def _remove(self, name):
         # A killed Docker client does not necessarily stop its container.

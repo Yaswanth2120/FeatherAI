@@ -11,11 +11,15 @@ VERIFIED = {'status': 'available', 'binary': 'docker', 'image_id': 'sha256:test'
 TASK = {'function': 'f', 'cases': [([2], 4), ([3], 9), ([0], 0)]}
 
 
-def fake_docker(monkeypatch, exit_code=0, output=b'', oom='false'):
+STARTED = '2026-11-09T21:00:00.000000000Z'
+NEVER = '0001-01-01T00:00:00Z'
+
+
+def fake_docker(monkeypatch, exit_code=0, output=b'', oom='false', started=STARTED):
     calls = []
     monkeypatch.setattr(sandbox, '_bounded_run', lambda command, payload, timeout, limit: (calls.append(command) or (exit_code, output)))
     monkeypatch.setattr(sandbox.subprocess, 'run', lambda command, **kw: (calls.append(command) or SimpleNamespace(
-        returncode=0, stderr='', stdout=oom if command[1] == 'inspect' else '')))
+        returncode=0, stderr='', stdout=f'{oom}|{started}' if command[1] == 'inspect' else '')))
     return calls
 
 
@@ -29,8 +33,16 @@ def test_exit_status_classification(monkeypatch, exit_code, oom, outcome):
 
 
 def test_infrastructure_failure_is_not_a_score(monkeypatch):
-    fake_docker(monkeypatch, 125, b'docker: error')
+    fake_docker(monkeypatch, 125, b'', started=NEVER)
     assert score_code('def f(x): return x', TASK, sandbox=VERIFIED)['status'] == 'failed'
+
+
+@pytest.mark.parametrize('exit_code,output', [(125, b''), (127, b''), (0, b''), (0, b'not json'), (0, b'[1, 2]')])
+def test_generated_code_cannot_disguise_failure_as_infrastructure(monkeypatch, exit_code, output):
+    # A started container's exit status and stdout are controlled by generated code.
+    fake_docker(monkeypatch, exit_code, output)
+    result = score_code('import os\nos._exit(125)', TASK, sandbox=VERIFIED)
+    assert result['status'] == 'scored' and result['outcome'] == 'runtime_error' and result['passed'] is False
 
 
 @pytest.mark.parametrize('harness,outcome', [
@@ -102,3 +114,10 @@ def test_real_container_has_no_network_no_writable_root_and_is_not_root():
             '    return [net, fs, os.getuid()]')
     result = score_code(code, {'function': 'f', 'cases': [([0], ['blocked', 'read-only', 65534])]}, sandbox=real)
     assert result['passed'], result
+
+
+@requires_docker
+def test_real_container_exit_tricks_are_runtime_errors():
+    for code in ['import os\nos._exit(125)', 'import os\nos._exit(0)', 'import sys\nsys.stdout.write("x")\nimport os\nos._exit(0)']:
+        result = score_code(code, TASK, sandbox=real)
+        assert result['status'] == 'scored' and result['outcome'] == 'runtime_error', (code, result)

@@ -72,8 +72,9 @@ def run_checks(root: Path = ROOT, do_probe=False, probe_candidates=False, select
         code, status = _run(["codex", "login", "status"])
         first = status.splitlines()[0] if status else ""
         logged_in = code == 0 and "logged in" in first.lower() and "not logged in" not in first.lower()
+        method = "ChatGPT" if "chatgpt" in first.lower() else "API key" if "api key" in first.lower() else "unknown method"
         checks.append(_check("authentication", "ok" if logged_in else "fail",
-                             first[:120] if logged_in else "Not logged in; run `codex login` yourself"))
+                             f"logged in ({method})" if logged_in else "Not logged in; run `codex login` yourself"))
     try:
         config = load_config(root)
         selection = resolve_model(root)

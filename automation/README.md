@@ -50,6 +50,34 @@ uv run python automation/orchestrator.py --block-task task04 --reason 'Docker da
 
 The evidence file must already be committed/tracked and the working tree clean. The state records its SHA-256, current commit and reason as `origin: externally-observed`, preserving the attempt count. Completed tasks cannot be downgraded through this operation. Pending independent tasks remain eligible according to their dependencies. Use the same command for a blocked dependent integration/report task only when its reason and committed evidence accurately identify the unmet requirement.
 
-## Observed account blocker
+## Model selection, preflight and self-test (v0.2)
 
-A real bounded read-only CLI smoke invocation on2026-11-09 exited1: the account rejected its configured `gpt-6.1-sol` model with `model_not_found` ("not supported when using Codex with a ChatGPT account"). See `experiments/automation-cli-smoke.json`. Runner unit tests and dry-run pass, but unattended model execution is not verified successful for this account. Configure a model supported by the selected CLI account before live execution; no automatic model substitution, credential change or paid fallback is performed. Interactive multi-agent reviews and validated completion adoption are separate from live CLI execution.
+The runner passes `-m <model>` only when a model is configured. Resolution order:
+1. `FEATHER_CODEX_MODEL`.
+2. `codex.model` in `automation/config.yaml`.
+3. A model accepted by `feather automation doctor --probe --select`, stored in `.feather/automation/codex-model.json`.
+4. The Codex CLI default.
+
+`automation/config.yaml` also sets `task_timeout_seconds` and `max_attempts` (at most 3).
+
+```bash
+uv run feather automation doctor                                  # offline checks: CLI, login status, config, repository, queue, paths, tools
+uv run feather automation doctor --probe                          # one small read-only request with the resolved model
+uv run feather automation doctor --probe --probe-candidates --select  # try cached models in priority order, record the first accepted
+uv run feather automation selftest                                # two dependent tasks via live Codex in a throwaway Git repository
+```
+
+Each Codex invocation is recorded in the task state: exit code, model and failure kind. Failures classified as `model_entitlement`, `cli_outdated`, `authentication` or `usage_limit` block the task after a single invocation. They are never retried, and dependent tasks do not start. Other failures keep the bounded retry budget. A manifest other than `tasks.yaml` keeps its own state file, `state-<name>.json`.
+
+## Observed account blocker (re-diagnosed 2026-11-09)
+
+All eight models listed in the local model cache were probed with codex-cli 0.142.3 and a ChatGPT login (`experiments/automation-model-probes.json`):
+- **Refused for ChatGPT-account Codex use:** `gpt-6.1-sol` (the configured default), `gpt-6.1-terra`, `gpt-6-sol` and `gpt-6-luna`.
+- **Need a newer CLI:** `gpt-6-astra`, `gpt-5.6-sol`, `gpt-5.6-terra` and `gpt-5.6-luna`. `codex doctor` reports 0.167.0 as available.
+
+Live automation therefore remains **BLOCKED**. To unblock it:
+1. Upgrade the CLI yourself (`codex update`).
+2. Run `uv run feather automation doctor --probe --probe-candidates --select`.
+3. Run `uv run feather automation selftest`.
+
+The dependency ordering, model-rejection handling and interruption recovery are covered by mocked tests (`tests/test_automation_config.py`). They are not verified live.

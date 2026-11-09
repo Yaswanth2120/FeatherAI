@@ -6,6 +6,8 @@ import io
 import json
 from pathlib import Path
 import sqlite3
+import sys
+import time
 from typing import Literal
 from urllib.parse import urlsplit
 from fastapi import FastAPI, HTTPException, Request
@@ -19,6 +21,9 @@ from backend.backends.ollama import Ollama
 from backend.benchmarks.runner import summarize
 from backend.core.hardware import inspect
 from backend.storage.database import Database
+
+if str(Path(__file__).resolve().parents[2]) not in sys.path:
+    sys.path.insert(0, str(Path(__file__).resolve().parents[2]))  # automation package lives at the repository root
 
 
 class StrictModel(BaseModel):
@@ -65,8 +70,10 @@ class RecommendationRequest(ComparisonRequest):
 
 
 def create_app(data_dir: str | Path | None = None, model_root: str | Path | None = None,
-               ollama_url='http://127.0.0.1:11434', quantizer='llama-quantize', job_timeout=1800, server_executable='llama-server'):
+               ollama_url='http://127.0.0.1:11434', quantizer='llama-quantize', job_timeout=1800, server_executable='llama-server',
+               studies_dir: str | Path | None = None):
     root = Path(data_dir or '.feather').resolve()
+    repository_root = Path(__file__).resolve().parents[2]
     models = Path(model_root or 'models').resolve()
     config = {'model_root': str(models), 'ollama_url': ollama_url,
               'quantizer': quantizer, 'job_timeout': job_timeout, 'server_executable': server_executable}
@@ -123,6 +130,40 @@ def create_app(data_dir: str | Path | None = None, model_root: str | Path | None
     @app.get('/api/hardware')
     def hardware():
         return inspect()
+
+    status_cache = {}
+
+    @app.get('/api/status')
+    def platform_status():
+        """Automation health, sandbox isolation and memory state. Unavailable is never reported as ready."""
+        from backend.diagnostics.memory import system_snapshot
+        from backend.evaluation.sandbox import discover
+        now = time.monotonic()
+        if 'automation' not in status_cache or now - status_cache['automation'][0] > 60:
+            try:
+                from automation.doctor import run_checks
+                result = run_checks(repository_root)
+                automation_status = {'status': result['status'], 'note': result.get('note'),
+                                     'checks': [{k: c.get(k) for k in ('name', 'status', 'detail', 'action')} for c in result['checks']]}
+            except Exception as error:
+                automation_status = {'status': 'unknown', 'note': f'{type(error).__name__}: {error}'[:300], 'checks': []}
+            status_cache['automation'] = (now, automation_status)
+        memory = system_snapshot()
+        return {'automation': status_cache['automation'][1], 'sandbox': discover().status(),
+                'memory': {k: memory[k] for k in ('physical_ram_bytes', 'available_bytes', 'swap', 'pressure_level')}}
+
+    @app.get('/api/studies')
+    def studies():
+        from backend.study.summary import summarize_study
+        folder = Path(studies_dir) if studies_dir else repository_root / 'experiments' / 'studies'
+        results = []
+        for path in sorted(folder.glob('*/study.json')) if folder.is_dir() else []:
+            try:
+                results.append(summarize_study(path))
+            except (OSError, ValueError, KeyError, TypeError) as error:
+                results.append({'id': path.parent.name, 'complete': False, 'invalid': True,
+                                'error': f'{type(error).__name__}: {error}'[:300], 'phases': {}, 'variants': {}})
+        return results
 
     @app.get('/api/models')
     def installed_models():

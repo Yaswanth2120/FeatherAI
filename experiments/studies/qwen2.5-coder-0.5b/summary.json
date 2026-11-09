@@ -1,0 +1,29 @@
+{
+ "id": "qwen2.5-coder-0.5b",
+ "study": "quantization-study-v0.2",
+ "phases": {
+  "convert": "blocked",
+  "validate": "blocked",
+  "dryrun": "not_run",
+  "benchmark": "not_run",
+  "quality": "not_run",
+  "perplexity": "not_run"
+ },
+ "complete": false,
+ "source": {
+  "path": "/Users/yaswanth/Desktop/FeatherAI/models/qwen2.5-coder-0.5b-instruct-fp16.gguf",
+  "sha256": "bb69b303c65113199b19c72f9c75bca449200b6cdf807e0f7d8822f669c02e64",
+  "size_bytes": 1266425728,
+  "architecture": "qwen2",
+  "parameter_count": 630167424
+ },
+ "toolchain_commit": "9d340ec341e079d2c28afd50871afce358cdbf48",
+ "conditions": "Run by the agent while VS Code and other user applications were open; see per-session flags.",
+ "variants": {
+  "F16": {
+   "artifact_size_bytes": 1266425728,
+   "sha256": "bb69b303c65113199b19c72f9c75bca449200b6cdf807e0f7d8822f669c02e64"
+  }
+ },
+ "quality_comparisons": {}
+}

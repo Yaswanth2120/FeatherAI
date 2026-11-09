@@ -343,3 +343,46 @@ def test_comparison_rejects_changed_native_backend_settings(tmp_path, changed):
     db.connection.close()
     with TestClient(app) as client:
         assert client.post('/api/comparisons', json={'experiment_ids': ['a', 'b']}).json()['comparable'] is False
+
+
+def test_platform_status_never_reports_unavailable_as_ready(tmp_path, monkeypatch):
+    from backend.evaluation.sandbox import UnavailableExecutionBackend
+    import automation.doctor as doctor
+    monkeypatch.setattr('backend.evaluation.sandbox.discover', lambda *a, **k: UnavailableExecutionBackend('Docker daemon is not reachable'))
+    monkeypatch.setattr(doctor, 'run_checks', lambda root: {'status': 'blocked', 'note': None, 'checks': [
+        {'name': 'live_model_probe', 'status': 'fail', 'detail': 'no accepted model', 'action': 'upgrade'}]})
+    with TestClient(create_app(tmp_path / 'data', tmp_path / 'models')) as client:
+        status = client.get('/api/status').json()
+    assert status['sandbox']['status'] == 'blocked' and 'not reachable' in status['sandbox']['reason']
+    assert status['automation']['status'] == 'blocked'
+    assert status['memory']['physical_ram_bytes'] > 0
+
+
+def test_study_summary_marks_blocked_and_missing_phases(tmp_path):
+    from backend.study.summary import summarize_study
+    folder = tmp_path / 'qwen'
+    folder.mkdir()
+    (folder / 'study.json').write_text(json.dumps({
+        'study': 'quantization-study-v0.2', 'source': {'sha256': 'a' * 64, 'size_bytes': 10},
+        'phases': {'convert': {'status': 'blocked', 'reason': 'Insufficient available RAM', 'jobs': []},
+                   'quality': {'status': 'completed', 'runs': {'coding-v1-F16': {'status': 'blocked', 'summary': {'accuracy': None}}},
+                               'comparisons': {}}}}))
+    summary = summarize_study(folder / 'study.json')
+    assert summary['complete'] is False
+    assert summary['phases']['convert'] == 'blocked' and summary['phases']['benchmark'] == 'not_run'
+    assert summary['variants']['F16']['quality']['coding-v1']['status'] == 'blocked'
+    assert list(summary['variants']) == ['F16'], 'no variant is invented for a blocked conversion'
+
+
+def test_studies_endpoint_isolates_malformed_study(tmp_path):
+    studies = tmp_path / 'studies'
+    (studies / 'broken').mkdir(parents=True)
+    (studies / 'broken' / 'study.json').write_text('{not json')
+    (studies / 'good').mkdir()
+    (studies / 'good' / 'study.json').write_text(json.dumps({'source': {'sha256': 'a' * 64}, 'phases': {}}))
+    with TestClient(create_app(tmp_path / 'data', tmp_path / 'models', studies_dir=studies)) as client:
+        response = client.get('/api/studies')
+    assert response.status_code == 200
+    by_id = {item['id']: item for item in response.json()}
+    assert by_id['broken']['invalid'] is True and by_id['broken']['complete'] is False
+    assert by_id['good']['complete'] is False and by_id['good']['phases']['benchmark'] == 'not_run'

@@ -2,7 +2,12 @@
 
 A local-first laboratory for quantizing language models, measuring performance, evaluating quality and selecting tested configurations. Python/FastAPI backend, React/TypeScript dashboard, SQLite storage. One project root; application code is in `backend/`.
 
-**Current status:** real SmolLM2-135M FP16 → Q4/Q8 conversion and generation are verified on this M2. Benchmarking, reasoning evaluation, recommendations and the dashboard work together. The full MVP is **not complete**: real coding evaluation is blocked by an unavailable Docker daemon; held-out quality and MLX conversion remain outstanding. See [the final report](docs/FINAL_REPORT.md).
+**Current status (v0.2):**
+- **Working:** coding evaluation runs in a hardened Docker sandbox, and the reasoning and coding datasets are hash-pinned.
+- **Complete study:** the pre-registered quantization study is complete for SmolLM2-135M ([study](docs/studies/quantization-study-v0.2.md)).
+- **Blocked:** the primary Qwen2.5-Coder-0.5B study (memory guards), live Codex automation (CLI/account model availability), and full end-to-end acceptance (task08).
+
+See [the final report](docs/FINAL_REPORT.md).
 
 ## Install and open
 
@@ -56,6 +61,29 @@ uv run feather study --source models/SmolLM2-135M-Instruct-f16.gguf --output-dir
 ```
 
 The output directory must be new; its parent must exist. The source must contain genuine F32/F16/BF16 weights. Downloads are explicit: the tested FP16 source repository, pinned revision, URL and local SHA-256 appear in `experiments/quantization-evidence.json`. Model weights are ignored by Git. The command creates Q4/Q8 itself, validates nonempty generation against a baseline, records repeated performance, scores reasoning, attempts isolated coding, computes recommendations and exports raw evidence. Unsupported coding/perplexity remain explicit; a completed study with limitations is not a complete MVP acceptance result.
+
+### v0.2 commands
+
+```sh
+uv run feather sandbox status                       # is isolated coding execution available? (blocked => no code runs)
+uv run feather sandbox prepare                      # explicit pull of the pinned python:3.12-alpine digest (~20 MB)
+uv run feather sandbox selftest --output experiments/sandbox-selftest.json
+uv run feather automation doctor [--probe]          # Codex automation preflight
+uv run feather quant-study --source models/<source-f16>.gguf --out .feather/study-<name> \
+    --phases convert,validate,dryrun,benchmark,quality,perplexity --export experiments/studies/<name>
+```
+
+`quant-study` follows the protocol pre-registered in [docs/DECISIONS.md](docs/DECISIONS.md):
+- Feather creates the Q8_0 and Q4_K_M variants itself, with a measured-memory admission guard.
+- The benchmark runs 5 order-balanced rounds of server sessions under `/usr/bin/time -l`, giving 20 measured trials per variant, with bootstrap CIs.
+- Quality is measured on the hash-pinned `reasoning-v1` and `coding-v1` held-out splits, with paired comparisons.
+- PPL and KLD are computed with `llama-perplexity`.
+
+Phases are resumable. For the cleanest numbers, run the study from Terminal with VS Code, browsers and Docker closed, except for the quality phase, which needs Docker for coding. The tools directory also needs `llama-perplexity`:
+
+```sh
+cmake --build .feather/tools/llama.cpp/build --target llama-perplexity
+```
 
 ## Dashboard workflow
 

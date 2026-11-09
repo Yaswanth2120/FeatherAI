@@ -1,0 +1,2 @@
+variant,peak_memory_footprint_bytes_median,load_seconds_first,load_seconds_repeat_median,reasoning_status,reasoning_accuracy,reasoning_ci95,coding_status,coding_accuracy,coding_ci95,mean_kld,mean_kld_se,same_top_p_percent,ppl_base,ppl_ratio
+F16,,,,not_run,,null,not_run,,null,,,,,

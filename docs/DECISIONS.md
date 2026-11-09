@@ -61,3 +61,13 @@ Sources: https://learn.chatgpt.com/docs/agent-configuration/subagents and https:
   - KLD is computed against the F16 base logits.
 - **Measurement conditions.** These measurements are run by the agent while VS Code and other user applications are open. They are labelled accordingly, and `feather study` reruns the whole protocol from Terminal for cleaner conditions.
 - **1.5B model.** Attempted only if the user approves the roughly 3.1 GB F16 download, and only if the measured 0.5B F16 peak footprint × 3 + 1 GiB fits within available memory. Otherwise it is recorded as not attempted, with the reason.
+
+### Amendment 1 (2026-11-09, recorded AFTER the SmolLM2 study results existed — post hoc, disclosed as such)
+- **Model substitution.** The pre-registered primary model, Qwen2.5-Coder-0.5B, could not run. Both the quantization pre-flight guard and the runtime pre-flight guard rejected it (`experiments/studies/qwen2.5-coder-0.5b/study.json`).
+  - The full protocol was executed unchanged on SmolLM2-135M-Instruct F16 (`f535f83e…`), the v0.1 fallback source.
+  - The Qwen study stays pre-registered and BLOCKED; it was not replaced.
+  - Results for SmolLM2 are reported as a protocol-conformant study of a different model, not as evidence about Qwen.
+- **Order design.** With 5 rounds and 6 permutations, the first five shuffled permutations were used. F16 ran first in a round once and last twice. This follows mechanically from the pre-registered "seeded shuffle, cycled" rule; it is not position-balanced and is disclosed in the study report.
+- **Sensitivity analysis.** 13 of 15 sessions carried a memory-pressure flag. The unflagged-only analysis is not estimable for F16 or Q4_K_M; this is reported, not worked around.
+- **Provenance.** The study code (`backend/study/`) was uncommitted at run time, on top of commit `1f6f8f1`. After the run, `run.py` was changed only to fix `toolchain_commit` resolution and to handle blocked phases. The corrected `toolchain_commit` is recorded under `provenance_corrections`. Future runs record `working_tree_diff_sha256` and the untracked files.
+- **Review fixes after the run.** Sandbox exit classification, the accuracy denominator, phase status for partial or failed runs, and the perplexity exit-code check were all fixed after the study. Each was verified not to change any recorded SmolLM2 result: every item scored, every exit code 0, no infrastructure failures, and one benchmark run of 15 sessions.

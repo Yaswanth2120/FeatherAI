@@ -82,9 +82,12 @@ def category_summary(rows: list[dict]) -> dict:
         key = row.get('category') or row.get('outcome') or row.get('status')
         categories[key] = categories.get(key, 0) + 1
     lenient = [row for row in scored if 'lenient_passed' in row]
-    return {'items': len(rows), 'scored': len(scored), 'passed': passed,
-            'accuracy': passed / len(scored) if scored else None,
-            'accuracy_ci95': wilson_interval(passed, len(scored)),
+    complete = bool(rows) and len(scored) == len(rows)
+    # Accuracy is reported only when every item was scored; otherwise the denominator would hide failures.
+    return {'items': len(rows), 'scored': len(scored), 'passed': passed, 'complete': complete,
+            'accuracy': passed / len(scored) if complete else None,
+            'accuracy_ci95': wilson_interval(passed, len(scored)) if complete else None,
+            'accuracy_over_scored_items': passed / len(scored) if scored else None,
             'outcomes': categories,
             'not_scored': len(rows) - len(scored),
             'lenient_accuracy': (sum(r['lenient_passed'] for r in lenient) / len(lenient)) if lenient else None}

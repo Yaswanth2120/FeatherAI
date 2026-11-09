@@ -1,19 +1,19 @@
 {
   "kind": "real-run",
-  "created_at": "2026-11-09T21:04:03.996888+00:00",
+  "created_at": "2026-11-09T21:59:05.311837+00:00",
   "sandbox": {
     "status": "available",
     "backend": "docker",
     "binary": "/usr/local/bin/docker",
     "image": "docker.io/library/python@sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
     "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
-    "server_version": "29.4.1",
+    "server_version": "29.9.3",
     "security_options": [
       "name=seccomp,profile=builtin",
       "name=cgroupns"
     ],
     "daemon_os": "Docker Desktop",
-    "daemon_memory_bytes": 2068029440,
+    "daemon_memory_bytes": 2065739776,
     "isolation": "Linux container, no network, read-only root, all capabilities dropped, non-root user"
   },
   "probes": [
@@ -22,56 +22,56 @@
       "expected_outcome": "passed",
       "observed_outcome": "passed",
       "ok": true,
-      "seconds": 0.244
+      "seconds": 23105.975
     },
     {
       "probe": "incorrect",
       "expected_outcome": "wrong_answer",
       "observed_outcome": "wrong_answer",
       "ok": true,
-      "seconds": 0.238
+      "seconds": 23106.25
     },
     {
       "probe": "partial",
       "expected_outcome": "partial_pass",
       "observed_outcome": "partial_pass",
       "ok": true,
-      "seconds": 0.195
+      "seconds": 23106.475
     },
     {
       "probe": "infinite_loop",
       "expected_outcome": "timeout",
       "observed_outcome": "timeout",
       "ok": true,
-      "seconds": 6.217
+      "seconds": 23112.724
     },
     {
       "probe": "memory_bomb",
       "expected_outcome": "memory_limit",
       "observed_outcome": "memory_limit",
       "ok": true,
-      "seconds": 0.369
+      "seconds": 23113.043
     },
     {
       "probe": "fork_bomb",
       "expected_outcome": "runtime_error",
       "observed_outcome": "runtime_error",
       "ok": true,
-      "seconds": 0.26
+      "seconds": 23113.403
     },
     {
       "probe": "syntax_error",
       "expected_outcome": "compile_error",
       "observed_outcome": "compile_error",
       "ok": true,
-      "seconds": 0.214
+      "seconds": 23113.678
     },
     {
       "probe": "output_flood",
       "expected_outcome": "output_limit",
       "observed_outcome": "output_limit",
       "ok": true,
-      "seconds": 0.258
+      "seconds": 23113.903
     },
     {
       "probe": "network_filesystem_user",

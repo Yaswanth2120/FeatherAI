@@ -1,4 +1,30 @@
-# Progress — 2026-11-09
+# Progress — v0.2 (2026-11-09)
+
+Status here is based only on acceptance gates and committed evidence.
+
+| v0.2 item | Status | Evidence |
+| --- | --- | --- |
+| Codex automation recovery | **Code complete; live run BLOCKED** | `experiments/automation-model-probes.json`: with codex-cli 0.142.3 and a ChatGPT login, 4 models are refused for the account and 4 need a newer CLI. The doctor, model resolution and non-retryable blocking are covered by `tests/test_automation_config.py` (mocked). The live self-test has not run. |
+| Secure coding evaluation | **Complete** | `backend/evaluation/sandbox.py`. Real Docker self-test: `experiments/sandbox-selftest.json` (9/9 probes; network blocked, read-only root, uid 65534, memory and fork limits, no leftover containers). Real-container tests in `tests/test_sandbox.py` ran, none skipped. |
+| Qwen memory diagnosis | **Diagnosed; Qwen BLOCKED** | Rejected by the quantization and runtime pre-flight guards; no OOM was ever observed. Evidence: `experiments/memory/quantize-smollm.json`, `experiments/studies/qwen2.5-coder-0.5b/study.json`. |
+| Reasoning evaluation rebuild | **Complete** | `reasoning-v1` and `coding-v1` are hash-pinned. The v0.1 0/3 result was caused both by an exact-match scoring defect and by model weakness (SmolLM2 solved 3/160 held-out items under strict scoring). |
+| Benchmark reliability | **Complete** | 15 sessions, 20 measured trials per variant, session-clustered bootstrap. Raw trials in `experiments/studies/smollm2-135m/benchmark/`. |
+| Quantization study | **Complete for SmolLM2-135M; primary Qwen study BLOCKED** | `docs/studies/quantization-study-v0.2.md`, `experiments/studies/` |
+| API and dashboard integration | **Complete** | `/api/status` and `/api/studies`; status and study panels. The Playwright test asserts COMPLETE/INCOMPLETE and blocked labels against real data. |
+| Final validation | 158 pytest passed, 0 skipped; frontend build passed; 1 browser test passed | See FINAL_REPORT.md |
+
+**v0.1 task queue (`automation/tasks.yaml`)**
+
+| Task | Status |
+|---|---|
+| task04 | The acceptance gate now **passes** on `experiments/comparison-evidence-v0.2.json`. It is not marked completed in the queue: adoption needs a commit-bound independent review record. |
+| task08 | **Blocked.** No single real run has gone from import through coding evaluation to recommendation and export. The v0.2 study covers every stage except the recommendation. |
+| task09 | **Blocked.** Depends on task08. |
+
+
+---
+
+# Progress — v0.1 (2026-11-09, superseded above where noted)
 
 | Task | Status | Evidence |
 | --- | --- | --- |

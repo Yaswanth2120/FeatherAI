@@ -1,3 +1,84 @@
+# Final report: Feather AI v0.2 (2026-11-09)
+
+## Status
+
+**v0.2 is not complete.** Three items in the definition of done are BLOCKED by external conditions:
+- **Live Codex automation:** the CLI and account have no usable model.
+- **Qwen study:** both memory guards reject it under current memory availability.
+- **Complete end-to-end acceptance (task08):** no single real run has covered every stage including the recommendation.
+
+Everything else is implemented and verified with real runs.
+
+## Implementation
+
+| Area | Result |
+|---|---|
+| **Automation** | Model resolution order: env var, then config, then probed selection, then CLI default; no hardcoded model. Model-entitlement, outdated-CLI, authentication and usage-limit failures block the task after one invocation and never retry. Every invocation is recorded. Commands: `feather automation doctor [--probe]`, and `feather automation selftest` (two dependent tasks in a throwaway repository). Live verification is **BLOCKED** (see below). |
+| **Coding sandbox** | `ExecutionBackend` with Docker and Unavailable implementations. Settings: pinned image digest, no network, read-only root, `--cap-drop ALL`, `no-new-privileges`, uid 65534, 128 MiB / 0.5 CPU / 32 pids, per-case alarms, bounded output, OOM detection, forced container removal. If isolation can't be confirmed, the status is `blocked` and code is never run on the host. **Real isolation self-test: 9/9 probes passed.** |
+| **Memory diagnostics** | `/usr/bin/time -l` peaks, footprint snapshots by stage, swap, memory pressure, vm_stat and thermal state. Every conversion records its memory. Separate pre-flight guards cover quantization and runtime. |
+| **Evaluation** | Hash-pinned `reasoning-v1` (40 screening + 160 held-out) and `coding-v1` (10 screening + 30 held-out hidden-test problems). Strict answer extraction with invalid and truncated categories. Paired bootstrap plus McNemar comparisons. Pre-registered baseline-validity labels. |
+| **Benchmark** | Order-balanced server sessions, 20 measured trials per variant. Reports median, mean, SD, p95, min and max, a session-clustered bootstrap CI and ratio CIs. Sensitivity analysis excludes flagged sessions. Raw JSONL and CSV are kept. |
+| **API and dashboard** | `/api/status` (automation, sandbox, memory) and `/api/studies`. The Overview page has a status panel. Comparison Reports has one study panel per study, showing per-phase status, variants, CIs, quality validity and KLD. Blocked and incomplete phases are labelled. |
+
+## Tests (final run)
+
+| Check | Result |
+|---|---|
+| `uv run pytest` | **158 passed, 0 failed, 0 skipped.** The real-Docker sandbox tests executed. One upstream Starlette deprecation warning. |
+| `npm --prefix frontend run build` | **Passed** (the existing bundle-size warning remains) |
+| Playwright `dashboard.spec.ts` against a live API with real saved data | **1 passed** |
+| `automation/validate.py --task task04` | **Passes** with v0.2 evidence |
+
+## Model experiments (measured; details in docs/studies/quantization-study-v0.2.md)
+
+**SmolLM2-135M-Instruct (all phases complete).** F16 source `f535f83e…`; Q8_0 and Q4_K_M created by Feather; llama.cpp `9d340ec`.
+
+| | F16 | Q8_0 | Q4_K_M |
+|---|---:|---:|---:|
+| Artifact size | 258.3 MiB | 138.1 MiB | 100.6 MiB |
+| Peak footprint, median | 472.1 MiB | 300.5 MiB | 264.2 MiB |
+| Decode tok/s, median [95% CI] | 220.8 [207.1, 225.8] | 252.6 [244.9, 256.4] | 262.8 [246.2, 268.5] |
+| Decode ratio to F16 | — | 1.14 [1.10, 1.23] | 1.19 [1.11, 1.27] |
+| Prefill ratio to F16 | — | 0.94 [0.90, 0.96] | 0.84 [0.79, 0.85] |
+| Coding pass rate, held-out 30 | 36.7% [21.9, 54.5] | 26.7% [14.2, 44.4] | 36.7% [21.9, 54.5] |
+| Reasoning, held-out 160 | 1.9% (uninformative baseline) | 1.9% | 1.3% |
+| Mean KLD vs F16 | reference | 0.0012 | 0.0445 |
+
+- **Coding differences vs F16:** Q8_0 −10 pp [−20, 0] (p = 0.25), Q4_K_M 0 pp [−16.7, +16.7]. No detectable change at n = 30.
+- **Reasoning:** cannot measure quantization loss for this model.
+- **Measurement conditions:** sessions ran under machine-wide memory pressure. Most sessions are flagged, so the sensitivity analysis could only be computed for Q8_0.
+
+**Qwen2.5-Coder-0.5B-Instruct: BLOCKED.**
+- The quantization pre-flight needs 2 168 074 048 bytes; 1 615 937 536 were available.
+- The runtime pre-flight needs 1 803 296 640 bytes; 1 460 060 160 were available.
+- Neither guard was relaxed.
+- The v0.1 "Qwen exceeded memory" result was a pre-flight estimate, not an observed OOM.
+
+## Automation
+
+- No real Codex task ran successfully, and no live dependent task advanced.
+- Probing all eight listed models with codex-cli 0.142.3 and a ChatGPT login: four are refused for this account type and four need a newer CLI.
+- Recovery, dependency ordering and non-retry blocking are verified with mocked tests only.
+
+## Security
+
+- Generated code runs only inside the hardened Docker container, and isolation was verified with real probes.
+- With Docker unavailable, coding evaluation reports `blocked` and runs nothing.
+- Docker is an isolation layer, not an absolute security boundary.
+
+## Remaining blockers (need user action)
+
+1. **Codex:** upgrade the CLI yourself (`codex update`), then run `uv run feather automation doctor --probe --probe-candidates --select` and `uv run feather automation selftest`.
+2. **Qwen study:** run `feather quant-study` for Qwen from Terminal with VS Code, browsers and Docker closed, so at least about 2.1 GB is available at admission. Start Docker afterwards only for the quality phase.
+3. **task08:** one real run that goes from import through the coding evaluation to a recommendation and export, preferably on Qwen once it is admitted.
+4. **1.5B model:** needs your approval for a roughly 3.1 GB download, and more free memory than this machine had today.
+
+## Next engineering milestone
+
+Run the pre-registered Qwen2.5-Coder-0.5B study under clean conditions. SmolLM2 is too weak for reasoning, so a larger coding set (well beyond 30 problems) is needed before small quality differences can be detected.
+
+---
+
 # Final implementation report — 2026-11-09
 
 ## Status

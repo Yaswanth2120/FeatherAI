@@ -1,0 +1,1 @@
+variant,artifact_size_bytes,sha256,sessions,flagged_sessions,failed_trials,metric,n,median,median_ci95_low,median_ci95_high,mean,sd,p95,ratio_to_F16,ratio_ci95_low,ratio_ci95_high
