@@ -1,0 +1,91 @@
+{
+  "tasks": {
+    "task01": {
+      "status": "completed",
+      "attempts": 0,
+      "commit": "2d473a56844e061f588014c82592cd9af8205c0d",
+      "origin": "externally-reviewed",
+      "error": null,
+      "review_record": "/Users/yaswanth/Desktop/FeatherAI/.feather/review-task01.json"
+    },
+    "task02": {
+      "status": "completed",
+      "attempts": 0,
+      "commit": "2d473a56844e061f588014c82592cd9af8205c0d",
+      "origin": "externally-reviewed",
+      "error": null,
+      "review_record": "/Users/yaswanth/Desktop/FeatherAI/.feather/review-task02.json"
+    },
+    "task03": {
+      "status": "completed",
+      "attempts": 0,
+      "commit": "2d473a56844e061f588014c82592cd9af8205c0d",
+      "origin": "externally-reviewed",
+      "error": null,
+      "review_record": "/Users/yaswanth/Desktop/FeatherAI/.feather/review-task03.json"
+    },
+    "task04": {
+      "status": "blocked",
+      "attempts": 0,
+      "error": "Docker daemon unavailable; required coding correctness is unmeasured. Real FP16/Q4/Q8 performance and reasoning evidence retained.",
+      "origin": "externally-observed",
+      "blocker_evidence": {
+        "path": "experiments/resource-blockers.json",
+        "sha256": "11bc4c702a51d5f9cdfd2ef7c138bf575b734fc1776895840d55ca68fcd67d80",
+        "commit": "2d473a56844e061f588014c82592cd9af8205c0d",
+        "recorded_at": 1794250750.766832
+      }
+    },
+    "task05": {
+      "status": "completed",
+      "attempts": 0,
+      "commit": "2d473a56844e061f588014c82592cd9af8205c0d",
+      "origin": "externally-reviewed",
+      "error": null,
+      "review_record": "/Users/yaswanth/Desktop/FeatherAI/.feather/review-task05.json"
+    },
+    "task06": {
+      "status": "completed",
+      "attempts": 0,
+      "commit": "2d473a56844e061f588014c82592cd9af8205c0d",
+      "origin": "externally-reviewed",
+      "error": null,
+      "review_record": "/Users/yaswanth/Desktop/FeatherAI/.feather/review-task06.json"
+    },
+    "task07": {
+      "status": "completed",
+      "attempts": 0,
+      "commit": "2d473a56844e061f588014c82592cd9af8205c0d",
+      "origin": "externally-reviewed",
+      "error": null,
+      "review_record": "/Users/yaswanth/Desktop/FeatherAI/.feather/review-task07.json"
+    },
+    "task08": {
+      "status": "blocked",
+      "attempts": 0,
+      "error": "Full end-to-end acceptance depends on blocked task04 coding comparison. Reasoning-only API workflow succeeded.",
+      "origin": "externally-observed",
+      "blocker_evidence": {
+        "path": "experiments/resource-blockers.json",
+        "sha256": "11bc4c702a51d5f9cdfd2ef7c138bf575b734fc1776895840d55ca68fcd67d80",
+        "commit": "2d473a56844e061f588014c82592cd9af8205c0d",
+        "recorded_at": 1794250750.85346
+      }
+    },
+    "task09": {
+      "status": "blocked",
+      "attempts": 0,
+      "error": "Documentation written, but full MVP sign-off depends on blocked task08; live autonomous CLI also rejects configured account/model.",
+      "origin": "externally-observed",
+      "blocker_evidence": {
+        "path": "experiments/resource-blockers.json",
+        "sha256": "11bc4c702a51d5f9cdfd2ef7c138bf575b734fc1776895840d55ca68fcd67d80",
+        "commit": "2d473a56844e061f588014c82592cd9af8205c0d",
+        "recorded_at": 1794250750.9399319
+      }
+    }
+  },
+  "eligible": [],
+  "timeout": 1800,
+  "max_attempts": 3
+}

@@ -28,3 +28,9 @@ Validation and independent review are required before local commits. No code has
 Real evidence and this report are committed in a subsequent documentation increment. Runtime completion adoption is bound to that reviewed commit and reruns acceptance/regression gates; blocked tasks retain explicit evidence.
 
 Live automation smoke: documented bounded `codex exec` was invoked read-only and exited1 with account `model_not_found` for configured gpt-6.1-sol. This is an external account/model blocker; dry-run/tests pass. No live unattended implementation task is claimed complete. See experiments/automation-cli-smoke.json.
+
+## Final persisted queue
+
+Validated tasks01,02,03,05,06,07 were adopted at reviewed commit `2d473a5`, with acceptance and regression checks rerun for each. Tasks04,08,09 are blocked with committed resource evidence; none is marked completed. `docs/TASK_STATE.json` records the final queue snapshot. The unavailable-coding and CLI-account blockers remain unchanged.
+
+`2d473a5` commits the real conversion logs, raw model/API evidence, final report and resource/account blockers.
