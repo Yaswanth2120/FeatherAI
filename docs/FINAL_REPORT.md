@@ -27,7 +27,7 @@ Everything else is implemented and verified with real runs.
 | `uv run pytest` | **158 passed, 0 failed, 0 skipped.** The real-Docker sandbox tests executed. One upstream Starlette deprecation warning. |
 | `npm --prefix frontend run build` | **Passed** (the existing bundle-size warning remains) |
 | Playwright `dashboard.spec.ts` against a live API with real saved data | **1 passed** |
-| `automation/validate.py --task task04` | **Passes** with v0.2 evidence |
+| `automation/validate.py --task task04` | **Passes**; task04 adopted as completed at reviewed commit `16fbe37` |
 
 ## Model experiments (measured; details in docs/studies/quantization-study-v0.2.md)
 

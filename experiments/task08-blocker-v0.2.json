@@ -1,0 +1,9 @@
+{
+  "kind": "real-run",
+  "observed_date": "2026-11-09",
+  "task": "task08",
+  "status": "blocked",
+  "resolved": "task04 (coding correctness) now passes on experiments/comparison-evidence-v0.2.json and is adopted at a reviewed commit.",
+  "remaining_gap": "The gate needs experiments/e2e-evidence.json from ONE real run in which import, quantize, generation validation, benchmark, evaluation (including sandboxed coding), recommendation and export all succeed. The v0.2 study (experiments/studies/smollm2-135m) covers every stage except recommendation. The existing v0.1 API real run (experiments/api-real-run.json) had no coding stage. No such single run exists, and none is fabricated from separate runs.",
+  "next_action": "Run the API workflow (quantization job, then benchmark job, then coding-v1 and reasoning-v1 evaluation jobs, then recommendation, then export) against Feather-created artifacts, record it in experiments/e2e-evidence.json, and re-run the gate. Qwen is preferred once its memory guards admit it."
+}
