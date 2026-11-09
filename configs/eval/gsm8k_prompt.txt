@@ -1,3 +1,0 @@
-Solve the following math problem. Think step by step, then give the final answer on its own line in the form "Answer: <number>".
-
-Question: {question}

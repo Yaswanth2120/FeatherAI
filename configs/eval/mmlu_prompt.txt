@@ -1,9 +1,0 @@
-The following is a multiple choice question about {subject}.
-
-{question}
-A. {A}
-B. {B}
-C. {C}
-D. {D}
-
-Answer with the letter of the correct option only.
