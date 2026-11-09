@@ -1,0 +1,14 @@
+{
+  "kind": "real-run",
+  "status": "blocked",
+  "imported": true,
+  "quantized": true,
+  "generation_validated": true,
+  "benchmarked": true,
+  "evaluated": true,
+  "recommended": true,
+  "exported": true,
+  "coding_evaluated": false,
+  "blocker": "Full coding performance/quality acceptance is blocked by unavailable Docker daemon. Reasoning-only pipeline succeeds; task04 gate must fail.",
+  "supporting_report": "experiments/api-real-run.json"
+}

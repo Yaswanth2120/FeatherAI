@@ -1,0 +1,6042 @@
+{
+  "kind": "real-run",
+  "quantization_job": {
+    "id": "aa71ad60-008f-4c9b-a583-1b5eb951a001",
+    "kind": "quantization",
+    "status": "completed",
+    "payload": {
+      "source": "/Users/yaswanth/Desktop/FeatherAI/models/SmolLM2-135M-Instruct-f16.gguf",
+      "target": "Q4_K_M"
+    },
+    "result": {
+      "status": "converted",
+      "started_at": 1794249555.6566021,
+      "source": {
+        "path": "/Users/yaswanth/Desktop/FeatherAI/models/SmolLM2-135M-Instruct-f16.gguf",
+        "sha256": "f535f83ec568d040f88ddc04a199fa6da90923bbb41d4dcaed02caa924d6ef57",
+        "size_bytes": 270885952,
+        "architecture": "llama",
+        "tokenizer_sha256": "894ddeb8ec79365a636abe3991b1365c0b79cb044736d5de473619eb89ca6efa",
+        "tensor_count": 272,
+        "tensor_types": {
+          "F16": 211,
+          "F32": 61
+        },
+        "tensors": {
+          "token_embd.weight": {
+            "shape": [
+              576,
+              49152
+            ],
+            "type": "F16"
+          },
+          "blk.0.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.0.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.0.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.0.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.0.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.0.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.0.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.0.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.0.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.1.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.1.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.1.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.1.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.1.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.1.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.1.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.1.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.1.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.10.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.10.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.10.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.10.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.10.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.10.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.10.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.10.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.10.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.11.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.11.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.11.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.11.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.11.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.11.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.11.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.11.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.11.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.12.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.12.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.12.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.12.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.12.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.12.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.12.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.12.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.12.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.13.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.13.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.13.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.13.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.13.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.13.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.13.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.13.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.13.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.14.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.14.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.14.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.14.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.14.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.14.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.14.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.14.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.14.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.15.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.15.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.15.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.15.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.15.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.15.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.15.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.15.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.15.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.16.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.16.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.16.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.16.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.16.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.16.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.16.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.16.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.16.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.17.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.17.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.17.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.17.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.17.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.17.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.17.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.17.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.17.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.18.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.18.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.18.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.18.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.18.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.18.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.18.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.18.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.18.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.19.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.19.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.19.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.19.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.19.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.19.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.19.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.19.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.19.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.2.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.2.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.2.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.2.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.2.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.2.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.2.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.2.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.2.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.20.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.20.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.20.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.20.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.20.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.20.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.20.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.20.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.20.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.21.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.21.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.21.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.21.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.21.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.21.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.21.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.21.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.21.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.22.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.22.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.22.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.22.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.22.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.22.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.22.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.22.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.22.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.23.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.23.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.23.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.23.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.23.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.23.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.23.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.23.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.23.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.24.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.24.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.24.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.24.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.24.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.24.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.24.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.24.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.24.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.25.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.25.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.25.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.25.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.25.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.25.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.25.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.25.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.25.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.26.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.26.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.26.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.26.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.26.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.26.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.26.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.26.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.26.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.27.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.27.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.27.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.27.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.27.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.27.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.27.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.27.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.27.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.28.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.28.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.28.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.28.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.28.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.28.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.28.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.28.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.28.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.29.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.29.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.29.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.29.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.29.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.29.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.29.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.29.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.29.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.3.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.3.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.3.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.3.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.3.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.3.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.3.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.3.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.3.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.4.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.4.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.4.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.4.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.4.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.4.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.4.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.4.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.4.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.5.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.5.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.5.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.5.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.5.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.5.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.5.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.5.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.5.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.6.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.6.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.6.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.6.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.6.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.6.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.6.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.6.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.6.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.7.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.7.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.7.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.7.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.7.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.7.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.7.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.7.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.7.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.8.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.8.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.8.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.8.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.8.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.8.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.8.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.8.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.8.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.9.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.9.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.9.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.9.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "F16"
+          },
+          "blk.9.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.9.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "blk.9.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.9.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "F16"
+          },
+          "blk.9.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "F16"
+          },
+          "output_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          }
+        },
+        "parameter_count": 134515008,
+        "higher_precision": true
+      },
+      "target": "Q4_K_M",
+      "command": [
+        ".feather/tools/llama.cpp/build/bin/llama-quantize",
+        "/Users/yaswanth/Desktop/FeatherAI/models/SmolLM2-135M-Instruct-f16.gguf",
+        "/Users/yaswanth/Desktop/FeatherAI/.feather/artifacts/aa71ad60-008f-4c9b-a583-1b5eb951a001/model-Q4_K_M.gguf",
+        "Q4_K_M"
+      ],
+      "executable_sha256": "963dc27a67e05f3bfb4990459cbcad47c99022b41ac0b9c1f955a7e8de73733b",
+      "memory_admission_estimate_bytes": 810207360,
+      "available_ram_bytes": 1784152064,
+      "generation_validated": false,
+      "artifact": {
+        "path": "/Users/yaswanth/Desktop/FeatherAI/.feather/artifacts/aa71ad60-008f-4c9b-a583-1b5eb951a001/model-Q4_K_M.gguf",
+        "sha256": "76ab8f094853fd2e48a76620f031f59b3e127970ba84489323a47a877e632b3e",
+        "size_bytes": 105454144,
+        "architecture": "llama",
+        "tokenizer_sha256": "894ddeb8ec79365a636abe3991b1365c0b79cb044736d5de473619eb89ca6efa",
+        "tensor_count": 272,
+        "tensor_types": {
+          "F32": 61,
+          "Q8_0": 15,
+          "Q5_0": 166,
+          "Q6_K": 14,
+          "Q4_K": 16
+        },
+        "tensors": {
+          "output_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "token_embd.weight": {
+            "shape": [
+              576,
+              49152
+            ],
+            "type": "Q8_0"
+          },
+          "blk.0.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.0.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.0.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.0.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.0.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q8_0"
+          },
+          "blk.0.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "Q6_K"
+          },
+          "blk.0.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.0.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.0.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.1.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.1.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.1.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.1.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.1.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q8_0"
+          },
+          "blk.1.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "Q6_K"
+          },
+          "blk.1.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.1.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.1.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.2.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.2.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.2.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.2.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.2.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q8_0"
+          },
+          "blk.2.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "Q6_K"
+          },
+          "blk.2.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.2.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.2.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.3.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.3.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.3.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.3.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.3.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.3.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "Q4_K"
+          },
+          "blk.3.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.3.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.3.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.4.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.4.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.4.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.4.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.4.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.4.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "Q4_K"
+          },
+          "blk.4.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.4.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.4.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.5.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.5.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.5.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.5.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.5.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q8_0"
+          },
+          "blk.5.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "Q6_K"
+          },
+          "blk.5.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.5.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.5.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.6.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.6.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.6.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.6.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.6.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.6.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "Q4_K"
+          },
+          "blk.6.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.6.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.6.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.7.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.7.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.7.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.7.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.7.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.7.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "Q4_K"
+          },
+          "blk.7.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.7.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.7.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.8.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.8.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.8.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.8.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.8.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q8_0"
+          },
+          "blk.8.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "Q6_K"
+          },
+          "blk.8.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.8.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.8.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.9.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.9.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.9.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.9.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.9.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.9.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "Q4_K"
+          },
+          "blk.9.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.9.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.9.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.10.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.10.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.10.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.10.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.10.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.10.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "Q4_K"
+          },
+          "blk.10.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.10.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.10.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.11.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.11.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.11.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.11.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.11.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q8_0"
+          },
+          "blk.11.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "Q6_K"
+          },
+          "blk.11.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.11.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.11.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.12.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.12.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.12.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.12.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.12.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.12.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "Q4_K"
+          },
+          "blk.12.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.12.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.12.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.13.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.13.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.13.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.13.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.13.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.13.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "Q4_K"
+          },
+          "blk.13.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.13.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.13.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.14.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.14.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.14.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.14.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.14.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q8_0"
+          },
+          "blk.14.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "Q6_K"
+          },
+          "blk.14.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.14.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.14.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.15.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.15.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.15.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.15.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.15.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.15.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "Q4_K"
+          },
+          "blk.15.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.15.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.15.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.16.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.16.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.16.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.16.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.16.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.16.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "Q4_K"
+          },
+          "blk.16.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.16.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.16.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.17.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.17.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.17.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.17.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.17.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q8_0"
+          },
+          "blk.17.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "Q6_K"
+          },
+          "blk.17.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.17.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.17.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.18.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.18.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.18.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.18.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.18.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.18.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "Q4_K"
+          },
+          "blk.18.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.18.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.18.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.19.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.19.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.19.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.19.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.19.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.19.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "Q4_K"
+          },
+          "blk.19.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.19.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.19.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.20.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.20.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.20.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.20.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.20.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q8_0"
+          },
+          "blk.20.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "Q6_K"
+          },
+          "blk.20.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.20.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.20.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.21.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.21.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.21.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.21.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.21.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.21.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "Q4_K"
+          },
+          "blk.21.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.21.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.21.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.22.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.22.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.22.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.22.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.22.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.22.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "Q4_K"
+          },
+          "blk.22.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.22.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.22.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.23.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.23.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.23.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.23.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.23.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q8_0"
+          },
+          "blk.23.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "Q6_K"
+          },
+          "blk.23.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.23.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.23.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.24.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.24.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.24.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.24.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.24.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.24.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "Q4_K"
+          },
+          "blk.24.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.24.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.24.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.25.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.25.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.25.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.25.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.25.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.25.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "Q4_K"
+          },
+          "blk.25.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.25.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.25.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.26.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.26.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.26.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.26.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.26.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q8_0"
+          },
+          "blk.26.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "Q6_K"
+          },
+          "blk.26.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.26.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.26.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.27.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.27.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.27.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.27.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.27.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q8_0"
+          },
+          "blk.27.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "Q6_K"
+          },
+          "blk.27.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.27.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.27.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.28.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.28.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.28.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.28.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.28.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q8_0"
+          },
+          "blk.28.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "Q6_K"
+          },
+          "blk.28.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.28.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.28.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.29.attn_k.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q5_0"
+          },
+          "blk.29.attn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.29.attn_output.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.29.attn_q.weight": {
+            "shape": [
+              576,
+              576
+            ],
+            "type": "Q5_0"
+          },
+          "blk.29.attn_v.weight": {
+            "shape": [
+              576,
+              192
+            ],
+            "type": "Q8_0"
+          },
+          "blk.29.ffn_down.weight": {
+            "shape": [
+              1536,
+              576
+            ],
+            "type": "Q6_K"
+          },
+          "blk.29.ffn_gate.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          },
+          "blk.29.ffn_norm.weight": {
+            "shape": [
+              576
+            ],
+            "type": "F32"
+          },
+          "blk.29.ffn_up.weight": {
+            "shape": [
+              576,
+              1536
+            ],
+            "type": "Q5_0"
+          }
+        },
+        "parameter_count": 134515008,
+        "higher_precision": false
+      },
+      "storage_reduction_fraction": 0.6107064865438279,
+      "finished_at": 1794249557.7514281
+    },
+    "error": null,
+    "created_at": 1794249554.204607,
+    "updated_at": 1794249557.8572931,
+    "cancel_requested": 0,
+    "pid": null
+  },
+  "benchmark_job": {
+    "id": "ea53051d-dad9-409b-a5b2-1b8fd44fd3e8",
+    "kind": "benchmark",
+    "status": "completed",
+    "payload": {
+      "backend": "llama.cpp",
+      "artifact_job_id": "aa71ad60-008f-4c9b-a583-1b5eb951a001",
+      "model": "managed-artifact",
+      "repeats": 5,
+      "warmups": 1,
+      "context": 1024,
+      "tokens": 128,
+      "seed": 42
+    },
+    "result": {
+      "id": "ed98919f-52d2-482e-b183-39455fee6c70",
+      "metadata": {
+        "created_at": "2026-11-09T18:39:20.752785+00:00",
+        "model": {
+          "name": "model-Q4_K_M.gguf",
+          "size": 105454144,
+          "digest": "76ab8f094853fd2e48a76620f031f59b3e127970ba84489323a47a877e632b3e",
+          "artifact_sha256": "76ab8f094853fd2e48a76620f031f59b3e127970ba84489323a47a877e632b3e",
+          "details": {
+            "tensor_types": {
+              "F32": 61,
+              "Q8_0": 15,
+              "Q5_0": 166,
+              "Q6_K": 14,
+              "Q4_K": 16
+            },
+            "parameter_count": 134515008
+          }
+        },
+        "backend": "llama.cpp",
+        "runtime_version": "version: 0.9.0-dev (build 1, commit 9d340ec)\nbuilt with AppleClang 17.0.0.17000603 for Darwin arm64",
+        "hardware": {
+          "chip": "Apple M2",
+          "architecture": "arm64",
+          "os": "macOS-26.7.3-arm64-arm-64bit",
+          "python": "3.12.9",
+          "physical_ram_bytes": 8589934592,
+          "available_ram_bytes": 1575272448,
+          "system_swap": {
+            "total": 3221225472,
+            "used": 2112421888,
+            "free": 1108803584,
+            "percent": 65.6,
+            "sin": 94907760640,
+            "sout": 2229731328
+          }
+        },
+        "source_sha256": "f535f83ec568d040f88ddc04a199fa6da90923bbb41d4dcaed02caa924d6ef57",
+        "backend_settings": {
+          "prompt_template": "chatml-v1: <|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant\n",
+          "cache_prompt": false,
+          "threads": 2,
+          "parallel": 1,
+          "server_executable_sha256": "4de055b01d5b27044bfd0dfd6f0a4b022b4359cb59c37d18451d99ed7a77cb67"
+        },
+        "settings_sha256": "6e81a7a05d5b5e79961332116e6f77bd562bb5f09c104a33763cfa5418acfe48",
+        "prompt": "Write a Python binary_search(items, target) function. Return the index or -1. Output only the function.",
+        "prompt_sha256": "acdd3811c7e64f44c88f99a5d52d14ed65c6edb72014dd73e3e7d520dbfbe630",
+        "options": {
+          "seed": 42,
+          "temperature": 0,
+          "num_ctx": 1024,
+          "num_predict": 128
+        },
+        "repeats": 5,
+        "warmups": 1,
+        "packages": {
+          "feather-ai": "0.1.0",
+          "httpx": "0.28.1",
+          "numpy": "2.5.4",
+          "psutil": "7.2.2"
+        },
+        "memory_note": "Managed llama.cpp: sampled process-tree RSS every 50ms during requests; excludes startup peak and unaccounted GPU allocations, may miss short peaks. Ollama process memory is not measured.",
+        "load_note": "Warmups are excluded; model residency before the first request is unknown.",
+        "peak_memory_bytes": 248086528,
+        "memory_metric": "sampled_process_tree_rss"
+      },
+      "trials": [
+        {
+          "ordinal": 0,
+          "warmup": true,
+          "started_at": 1794249560.756315,
+          "output": "```python\ndef binary_search(items, target):\n    \"\"\"\n    Returns the index or -1 of the target value in the list if it exists.\n\n    Args:\n        items (list): A list of elements to search.\n        target: The value to search for.\n\n    Returns:\n        int: The index or -1 if the target is not found, or the index of the target if it is found.\n    \"\"\"\n    low = 0\n    high = len(items) - 1\n\n    while low <= high:\n        mid = (low + high) // 2\n        if items[mid] == target:",
+          "ttft_seconds": 0.02185341599943058,
+          "wall_seconds": 0.4960824579993641,
+          "runtime": {
+            "eval_count": 128,
+            "eval_duration": 474109000.0,
+            "prompt_eval_count": 34,
+            "prompt_eval_duration": 19777000.0,
+            "native": {
+              "index": 0,
+              "content": "",
+              "tokens": [],
+              "id_slot": 0,
+              "stop": true,
+              "model": "/Users/yaswanth/Desktop/FeatherAI/.feather/artifacts/aa71ad60-008f-4c9b-a583-1b5eb951a001/model-Q4_K_M.gguf",
+              "tokens_predicted": 128,
+              "tokens_evaluated": 34,
+              "generation_settings": {
+                "seed": 42,
+                "temperature": 0.0,
+                "dynatemp_range": 0.0,
+                "dynatemp_exponent": 1.0,
+                "top_k": 40,
+                "top_p": 0.949999988079071,
+                "min_p": 0.05000000074505806,
+                "top_n_sigma": -1.0,
+                "xtc_probability": 0.0,
+                "xtc_threshold": 0.10000000149011612,
+                "typical_p": 1.0,
+                "repeat_last_n": 64,
+                "repeat_penalty": 1.0,
+                "presence_penalty": 0.0,
+                "frequency_penalty": 0.0,
+                "dry_multiplier": 0.0,
+                "dry_base": 1.75,
+                "dry_allowed_length": 2,
+                "dry_penalty_last_n": 64,
+                "dry_sequence_breakers": [
+                  "\n",
+                  ":",
+                  "\"",
+                  "*"
+                ],
+                "mirostat": 0,
+                "mirostat_tau": 5.0,
+                "mirostat_eta": 0.10000000149011612,
+                "adaptive_target": -1.0,
+                "adaptive_decay": 0.8999999761581421,
+                "stop": [
+                  "<|im_end|>",
+                  "<|im_start|>"
+                ],
+                "max_tokens": 128,
+                "n_predict": 128,
+                "n_keep": 0,
+                "n_discard": 0,
+                "ignore_eos": false,
+                "stream": true,
+                "logit_bias": [],
+                "n_probs": 0,
+                "min_keep": 0,
+                "grammar": "",
+                "grammar_lazy": false,
+                "grammar_triggers": [],
+                "preserved_tokens": [],
+                "chat_format": "Content-only",
+                "reasoning_format": "deepseek",
+                "reasoning_in_content": false,
+                "generation_prompt": "",
+                "samplers": [
+                  "penalties",
+                  "dry",
+                  "top_n_sigma",
+                  "top_k",
+                  "typ_p",
+                  "top_p",
+                  "min_p",
+                  "xtc",
+                  "temperature"
+                ],
+                "speculative.types": "none",
+                "timings_per_token": false,
+                "post_sampling_probs": false,
+                "backend_sampling": false,
+                "lora": []
+              },
+              "prompt": "<|im_start|>user\nWrite a Python binary_search(items, target) function. Return the index or -1. Output only the function.<|im_end|>\n<|im_start|>assistant\n",
+              "has_new_line": true,
+              "truncated": false,
+              "stop_type": "limit",
+              "stopping_word": "",
+              "tokens_cached": 161,
+              "timings": {
+                "cache_n": 0,
+                "prompt_n": 34,
+                "prompt_ms": 19.777,
+                "prompt_per_token_ms": 0.5816764705882354,
+                "prompt_per_second": 1719.1687313546038,
+                "predicted_n": 128,
+                "predicted_ms": 474.109,
+                "predicted_per_token_ms": 3.7331417322834644,
+                "predicted_per_second": 267.8708904492427
+              }
+            }
+          },
+          "peak_memory_bytes": 244187136,
+          "memory_samples": 10,
+          "memory_metric": "sampled_process_tree_rss",
+          "decode_tokens_per_second": 269.98011005907927,
+          "prefill_tokens_per_second": 1719.1687313546038,
+          "system_after": {
+            "chip": "Apple M2",
+            "architecture": "arm64",
+            "os": "macOS-26.7.3-arm64-arm-64bit",
+            "python": "3.12.9",
+            "physical_ram_bytes": 8589934592,
+            "available_ram_bytes": 1569505280,
+            "system_swap": {
+              "total": 3221225472,
+              "used": 2112421888,
+              "free": 1108803584,
+              "percent": 65.6,
+              "sin": 94908284928,
+              "sout": 2229731328
+            }
+          }
+        },
+        {
+          "ordinal": 1,
+          "warmup": false,
+          "started_at": 1794249561.2637,
+          "output": "```python\ndef binary_search(items, target):\n    \"\"\"\n    Returns the index or -1 of the target value in the list if it exists.\n\n    Args:\n        items (list): A list of elements to search.\n        target: The value to search for.\n\n    Returns:\n        int: The index or -1 if the target is not found, or the index of the target if it is found.\n    \"\"\"\n    low = 0\n    high = len(items) - 1\n\n    while low <= high:\n        mid = (low + high) // 2\n        if items[mid] == target:",
+          "ttft_seconds": 0.0131085000011808,
+          "wall_seconds": 0.47036395800023456,
+          "runtime": {
+            "eval_count": 128,
+            "eval_duration": 456971000.0,
+            "prompt_eval_count": 34,
+            "prompt_eval_duration": 11791000.0,
+            "native": {
+              "index": 0,
+              "content": "",
+              "tokens": [],
+              "id_slot": 0,
+              "stop": true,
+              "model": "/Users/yaswanth/Desktop/FeatherAI/.feather/artifacts/aa71ad60-008f-4c9b-a583-1b5eb951a001/model-Q4_K_M.gguf",
+              "tokens_predicted": 128,
+              "tokens_evaluated": 34,
+              "generation_settings": {
+                "seed": 42,
+                "temperature": 0.0,
+                "dynatemp_range": 0.0,
+                "dynatemp_exponent": 1.0,
+                "top_k": 40,
+                "top_p": 0.949999988079071,
+                "min_p": 0.05000000074505806,
+                "top_n_sigma": -1.0,
+                "xtc_probability": 0.0,
+                "xtc_threshold": 0.10000000149011612,
+                "typical_p": 1.0,
+                "repeat_last_n": 64,
+                "repeat_penalty": 1.0,
+                "presence_penalty": 0.0,
+                "frequency_penalty": 0.0,
+                "dry_multiplier": 0.0,
+                "dry_base": 1.75,
+                "dry_allowed_length": 2,
+                "dry_penalty_last_n": 64,
+                "dry_sequence_breakers": [
+                  "\n",
+                  ":",
+                  "\"",
+                  "*"
+                ],
+                "mirostat": 0,
+                "mirostat_tau": 5.0,
+                "mirostat_eta": 0.10000000149011612,
+                "adaptive_target": -1.0,
+                "adaptive_decay": 0.8999999761581421,
+                "stop": [
+                  "<|im_end|>",
+                  "<|im_start|>"
+                ],
+                "max_tokens": 128,
+                "n_predict": 128,
+                "n_keep": 0,
+                "n_discard": 0,
+                "ignore_eos": false,
+                "stream": true,
+                "logit_bias": [],
+                "n_probs": 0,
+                "min_keep": 0,
+                "grammar": "",
+                "grammar_lazy": false,
+                "grammar_triggers": [],
+                "preserved_tokens": [],
+                "chat_format": "Content-only",
+                "reasoning_format": "deepseek",
+                "reasoning_in_content": false,
+                "generation_prompt": "",
+                "samplers": [
+                  "penalties",
+                  "dry",
+                  "top_n_sigma",
+                  "top_k",
+                  "typ_p",
+                  "top_p",
+                  "min_p",
+                  "xtc",
+                  "temperature"
+                ],
+                "speculative.types": "none",
+                "timings_per_token": false,
+                "post_sampling_probs": false,
+                "backend_sampling": false,
+                "lora": []
+              },
+              "prompt": "<|im_start|>user\nWrite a Python binary_search(items, target) function. Return the index or -1. Output only the function.<|im_end|>\n<|im_start|>assistant\n",
+              "has_new_line": true,
+              "truncated": false,
+              "stop_type": "limit",
+              "stopping_word": "",
+              "tokens_cached": 161,
+              "timings": {
+                "cache_n": 0,
+                "prompt_n": 34,
+                "prompt_ms": 11.791,
+                "prompt_per_token_ms": 0.3467941176470588,
+                "prompt_per_second": 2883.555254007294,
+                "predicted_n": 128,
+                "predicted_ms": 456.971,
+                "predicted_per_token_ms": 3.598196850393701,
+                "predicted_per_second": 277.91697941444863
+              }
+            }
+          },
+          "peak_memory_bytes": 247988224,
+          "memory_samples": 9,
+          "memory_metric": "sampled_process_tree_rss",
+          "decode_tokens_per_second": 280.10530208700334,
+          "prefill_tokens_per_second": 2883.555254007294,
+          "system_after": {
+            "chip": "Apple M2",
+            "architecture": "arm64",
+            "os": "macOS-26.7.3-arm64-arm-64bit",
+            "python": "3.12.9",
+            "physical_ram_bytes": 8589934592,
+            "available_ram_bytes": 1569505280,
+            "system_swap": {
+              "total": 3221225472,
+              "used": 2112421888,
+              "free": 1108803584,
+              "percent": 65.6,
+              "sin": 94908284928,
+              "sout": 2229731328
+            }
+          }
+        },
+        {
+          "ordinal": 2,
+          "warmup": false,
+          "started_at": 1794249561.74402,
+          "output": "```python\ndef binary_search(items, target):\n    \"\"\"\n    Returns the index or -1 of the target value in the list if it exists.\n\n    Args:\n        items (list): A list of elements to search.\n        target: The value to search for.\n\n    Returns:\n        int: The index or -1 if the target is not found, or the index of the target if it is found.\n    \"\"\"\n    low = 0\n    high = len(items) - 1\n\n    while low <= high:\n        mid = (low + high) // 2\n        if items[mid] == target:",
+          "ttft_seconds": 0.012717665998934535,
+          "wall_seconds": 0.47373679100019217,
+          "runtime": {
+            "eval_count": 128,
+            "eval_duration": 460746000.0,
+            "prompt_eval_count": 34,
+            "prompt_eval_duration": 11833000.0,
+            "native": {
+              "index": 0,
+              "content": "",
+              "tokens": [],
+              "id_slot": 0,
+              "stop": true,
+              "model": "/Users/yaswanth/Desktop/FeatherAI/.feather/artifacts/aa71ad60-008f-4c9b-a583-1b5eb951a001/model-Q4_K_M.gguf",
+              "tokens_predicted": 128,
+              "tokens_evaluated": 34,
+              "generation_settings": {
+                "seed": 42,
+                "temperature": 0.0,
+                "dynatemp_range": 0.0,
+                "dynatemp_exponent": 1.0,
+                "top_k": 40,
+                "top_p": 0.949999988079071,
+                "min_p": 0.05000000074505806,
+                "top_n_sigma": -1.0,
+                "xtc_probability": 0.0,
+                "xtc_threshold": 0.10000000149011612,
+                "typical_p": 1.0,
+                "repeat_last_n": 64,
+                "repeat_penalty": 1.0,
+                "presence_penalty": 0.0,
+                "frequency_penalty": 0.0,
+                "dry_multiplier": 0.0,
+                "dry_base": 1.75,
+                "dry_allowed_length": 2,
+                "dry_penalty_last_n": 64,
+                "dry_sequence_breakers": [
+                  "\n",
+                  ":",
+                  "\"",
+                  "*"
+                ],
+                "mirostat": 0,
+                "mirostat_tau": 5.0,
+                "mirostat_eta": 0.10000000149011612,
+                "adaptive_target": -1.0,
+                "adaptive_decay": 0.8999999761581421,
+                "stop": [
+                  "<|im_end|>",
+                  "<|im_start|>"
+                ],
+                "max_tokens": 128,
+                "n_predict": 128,
+                "n_keep": 0,
+                "n_discard": 0,
+                "ignore_eos": false,
+                "stream": true,
+                "logit_bias": [],
+                "n_probs": 0,
+                "min_keep": 0,
+                "grammar": "",
+                "grammar_lazy": false,
+                "grammar_triggers": [],
+                "preserved_tokens": [],
+                "chat_format": "Content-only",
+                "reasoning_format": "deepseek",
+                "reasoning_in_content": false,
+                "generation_prompt": "",
+                "samplers": [
+                  "penalties",
+                  "dry",
+                  "top_n_sigma",
+                  "top_k",
+                  "typ_p",
+                  "top_p",
+                  "min_p",
+                  "xtc",
+                  "temperature"
+                ],
+                "speculative.types": "none",
+                "timings_per_token": false,
+                "post_sampling_probs": false,
+                "backend_sampling": false,
+                "lora": []
+              },
+              "prompt": "<|im_start|>user\nWrite a Python binary_search(items, target) function. Return the index or -1. Output only the function.<|im_end|>\n<|im_start|>assistant\n",
+              "has_new_line": true,
+              "truncated": false,
+              "stop_type": "limit",
+              "stopping_word": "",
+              "tokens_cached": 161,
+              "timings": {
+                "cache_n": 0,
+                "prompt_n": 34,
+                "prompt_ms": 11.833,
+                "prompt_per_token_ms": 0.34802941176470586,
+                "prompt_per_second": 2873.3203752218374,
+                "predicted_n": 128,
+                "predicted_ms": 460.746,
+                "predicted_per_token_ms": 3.6279212598425197,
+                "predicted_per_second": 275.6399404444097
+              }
+            }
+          },
+          "peak_memory_bytes": 248020992,
+          "memory_samples": 10,
+          "memory_metric": "sampled_process_tree_rss",
+          "decode_tokens_per_second": 277.8103336762555,
+          "prefill_tokens_per_second": 2873.3203752218374,
+          "system_after": {
+            "chip": "Apple M2",
+            "architecture": "arm64",
+            "os": "macOS-26.7.3-arm64-arm-64bit",
+            "python": "3.12.9",
+            "physical_ram_bytes": 8589934592,
+            "available_ram_bytes": 1554956288,
+            "system_swap": {
+              "total": 3221225472,
+              "used": 2112421888,
+              "free": 1108803584,
+              "percent": 65.6,
+              "sin": 94912217088,
+              "sout": 2229731328
+            }
+          }
+        },
+        {
+          "ordinal": 3,
+          "warmup": false,
+          "started_at": 1794249562.230284,
+          "output": "```python\ndef binary_search(items, target):\n    \"\"\"\n    Returns the index or -1 of the target value in the list if it exists.\n\n    Args:\n        items (list): A list of elements to search.\n        target: The value to search for.\n\n    Returns:\n        int: The index or -1 if the target is not found, or the index of the target if it is found.\n    \"\"\"\n    low = 0\n    high = len(items) - 1\n\n    while low <= high:\n        mid = (low + high) // 2\n        if items[mid] == target:",
+          "ttft_seconds": 0.01266287500038743,
+          "wall_seconds": 0.4728683749999618,
+          "runtime": {
+            "eval_count": 128,
+            "eval_duration": 459933000.0,
+            "prompt_eval_count": 34,
+            "prompt_eval_duration": 11752000.0,
+            "native": {
+              "index": 0,
+              "content": "",
+              "tokens": [],
+              "id_slot": 0,
+              "stop": true,
+              "model": "/Users/yaswanth/Desktop/FeatherAI/.feather/artifacts/aa71ad60-008f-4c9b-a583-1b5eb951a001/model-Q4_K_M.gguf",
+              "tokens_predicted": 128,
+              "tokens_evaluated": 34,
+              "generation_settings": {
+                "seed": 42,
+                "temperature": 0.0,
+                "dynatemp_range": 0.0,
+                "dynatemp_exponent": 1.0,
+                "top_k": 40,
+                "top_p": 0.949999988079071,
+                "min_p": 0.05000000074505806,
+                "top_n_sigma": -1.0,
+                "xtc_probability": 0.0,
+                "xtc_threshold": 0.10000000149011612,
+                "typical_p": 1.0,
+                "repeat_last_n": 64,
+                "repeat_penalty": 1.0,
+                "presence_penalty": 0.0,
+                "frequency_penalty": 0.0,
+                "dry_multiplier": 0.0,
+                "dry_base": 1.75,
+                "dry_allowed_length": 2,
+                "dry_penalty_last_n": 64,
+                "dry_sequence_breakers": [
+                  "\n",
+                  ":",
+                  "\"",
+                  "*"
+                ],
+                "mirostat": 0,
+                "mirostat_tau": 5.0,
+                "mirostat_eta": 0.10000000149011612,
+                "adaptive_target": -1.0,
+                "adaptive_decay": 0.8999999761581421,
+                "stop": [
+                  "<|im_end|>",
+                  "<|im_start|>"
+                ],
+                "max_tokens": 128,
+                "n_predict": 128,
+                "n_keep": 0,
+                "n_discard": 0,
+                "ignore_eos": false,
+                "stream": true,
+                "logit_bias": [],
+                "n_probs": 0,
+                "min_keep": 0,
+                "grammar": "",
+                "grammar_lazy": false,
+                "grammar_triggers": [],
+                "preserved_tokens": [],
+                "chat_format": "Content-only",
+                "reasoning_format": "deepseek",
+                "reasoning_in_content": false,
+                "generation_prompt": "",
+                "samplers": [
+                  "penalties",
+                  "dry",
+                  "top_n_sigma",
+                  "top_k",
+                  "typ_p",
+                  "top_p",
+                  "min_p",
+                  "xtc",
+                  "temperature"
+                ],
+                "speculative.types": "none",
+                "timings_per_token": false,
+                "post_sampling_probs": false,
+                "backend_sampling": false,
+                "lora": []
+              },
+              "prompt": "<|im_start|>user\nWrite a Python binary_search(items, target) function. Return the index or -1. Output only the function.<|im_end|>\n<|im_start|>assistant\n",
+              "has_new_line": true,
+              "truncated": false,
+              "stop_type": "limit",
+              "stopping_word": "",
+              "tokens_cached": 161,
+              "timings": {
+                "cache_n": 0,
+                "prompt_n": 34,
+                "prompt_ms": 11.752,
+                "prompt_per_token_ms": 0.3456470588235294,
+                "prompt_per_second": 2893.1245745405035,
+                "predicted_n": 128,
+                "predicted_ms": 459.933,
+                "predicted_per_token_ms": 3.62151968503937,
+                "predicted_per_second": 276.12717504506094
+              }
+            }
+          },
+          "peak_memory_bytes": 248037376,
+          "memory_samples": 10,
+          "memory_metric": "sampled_process_tree_rss",
+          "decode_tokens_per_second": 278.3014047698252,
+          "prefill_tokens_per_second": 2893.1245745405035,
+          "system_after": {
+            "chip": "Apple M2",
+            "architecture": "arm64",
+            "os": "macOS-26.7.3-arm64-arm-64bit",
+            "python": "3.12.9",
+            "physical_ram_bytes": 8589934592,
+            "available_ram_bytes": 1554956288,
+            "system_swap": {
+              "total": 3221225472,
+              "used": 2112421888,
+              "free": 1108803584,
+              "percent": 65.6,
+              "sin": 94912217088,
+              "sout": 2229731328
+            }
+          }
+        },
+        {
+          "ordinal": 4,
+          "warmup": false,
+          "started_at": 1794249562.71359,
+          "output": "```python\ndef binary_search(items, target):\n    \"\"\"\n    Returns the index or -1 of the target value in the list if it exists.\n\n    Args:\n        items (list): A list of elements to search.\n        target: The value to search for.\n\n    Returns:\n        int: The index or -1 if the target is not found, or the index of the target if it is found.\n    \"\"\"\n    low = 0\n    high = len(items) - 1\n\n    while low <= high:\n        mid = (low + high) // 2\n        if items[mid] == target:",
+          "ttft_seconds": 0.012656541000978905,
+          "wall_seconds": 0.4709244160003436,
+          "runtime": {
+            "eval_count": 128,
+            "eval_duration": 457982000.0,
+            "prompt_eval_count": 34,
+            "prompt_eval_duration": 11780000.0,
+            "native": {
+              "index": 0,
+              "content": "",
+              "tokens": [],
+              "id_slot": 0,
+              "stop": true,
+              "model": "/Users/yaswanth/Desktop/FeatherAI/.feather/artifacts/aa71ad60-008f-4c9b-a583-1b5eb951a001/model-Q4_K_M.gguf",
+              "tokens_predicted": 128,
+              "tokens_evaluated": 34,
+              "generation_settings": {
+                "seed": 42,
+                "temperature": 0.0,
+                "dynatemp_range": 0.0,
+                "dynatemp_exponent": 1.0,
+                "top_k": 40,
+                "top_p": 0.949999988079071,
+                "min_p": 0.05000000074505806,
+                "top_n_sigma": -1.0,
+                "xtc_probability": 0.0,
+                "xtc_threshold": 0.10000000149011612,
+                "typical_p": 1.0,
+                "repeat_last_n": 64,
+                "repeat_penalty": 1.0,
+                "presence_penalty": 0.0,
+                "frequency_penalty": 0.0,
+                "dry_multiplier": 0.0,
+                "dry_base": 1.75,
+                "dry_allowed_length": 2,
+                "dry_penalty_last_n": 64,
+                "dry_sequence_breakers": [
+                  "\n",
+                  ":",
+                  "\"",
+                  "*"
+                ],
+                "mirostat": 0,
+                "mirostat_tau": 5.0,
+                "mirostat_eta": 0.10000000149011612,
+                "adaptive_target": -1.0,
+                "adaptive_decay": 0.8999999761581421,
+                "stop": [
+                  "<|im_end|>",
+                  "<|im_start|>"
+                ],
+                "max_tokens": 128,
+                "n_predict": 128,
+                "n_keep": 0,
+                "n_discard": 0,
+                "ignore_eos": false,
+                "stream": true,
+                "logit_bias": [],
+                "n_probs": 0,
+                "min_keep": 0,
+                "grammar": "",
+                "grammar_lazy": false,
+                "grammar_triggers": [],
+                "preserved_tokens": [],
+                "chat_format": "Content-only",
+                "reasoning_format": "deepseek",
+                "reasoning_in_content": false,
+                "generation_prompt": "",
+                "samplers": [
+                  "penalties",
+                  "dry",
+                  "top_n_sigma",
+                  "top_k",
+                  "typ_p",
+                  "top_p",
+                  "min_p",
+                  "xtc",
+                  "temperature"
+                ],
+                "speculative.types": "none",
+                "timings_per_token": false,
+                "post_sampling_probs": false,
+                "backend_sampling": false,
+                "lora": []
+              },
+              "prompt": "<|im_start|>user\nWrite a Python binary_search(items, target) function. Return the index or -1. Output only the function.<|im_end|>\n<|im_start|>assistant\n",
+              "has_new_line": true,
+              "truncated": false,
+              "stop_type": "limit",
+              "stopping_word": "",
+              "tokens_cached": 161,
+              "timings": {
+                "cache_n": 0,
+                "prompt_n": 34,
+                "prompt_ms": 11.78,
+                "prompt_per_token_ms": 0.3464705882352941,
+                "prompt_per_second": 2886.247877758914,
+                "predicted_n": 128,
+                "predicted_ms": 457.982,
+                "predicted_per_token_ms": 3.6061574803149608,
+                "predicted_per_second": 277.30347480905357
+              }
+            }
+          },
+          "peak_memory_bytes": 248070144,
+          "memory_samples": 9,
+          "memory_metric": "sampled_process_tree_rss",
+          "decode_tokens_per_second": 279.486966736684,
+          "prefill_tokens_per_second": 2886.247877758913,
+          "system_after": {
+            "chip": "Apple M2",
+            "architecture": "arm64",
+            "os": "macOS-26.7.3-arm64-arm-64bit",
+            "python": "3.12.9",
+            "physical_ram_bytes": 8589934592,
+            "available_ram_bytes": 1554956288,
+            "system_swap": {
+              "total": 3221225472,
+              "used": 2112421888,
+              "free": 1108803584,
+              "percent": 65.6,
+              "sin": 94912217088,
+              "sout": 2229731328
+            }
+          }
+        },
+        {
+          "ordinal": 5,
+          "warmup": false,
+          "started_at": 1794249563.194515,
+          "output": "```python\ndef binary_search(items, target):\n    \"\"\"\n    Returns the index or -1 of the target value in the list if it exists.\n\n    Args:\n        items (list): A list of elements to search.\n        target: The value to search for.\n\n    Returns:\n        int: The index or -1 if the target is not found, or the index of the target if it is found.\n    \"\"\"\n    low = 0\n    high = len(items) - 1\n\n    while low <= high:\n        mid = (low + high) // 2\n        if items[mid] == target:",
+          "ttft_seconds": 0.012692874999629566,
+          "wall_seconds": 0.4689367499995569,
+          "runtime": {
+            "eval_count": 128,
+            "eval_duration": 455932000.0,
+            "prompt_eval_count": 34,
+            "prompt_eval_duration": 11812000.0,
+            "native": {
+              "index": 0,
+              "content": "",
+              "tokens": [],
+              "id_slot": 0,
+              "stop": true,
+              "model": "/Users/yaswanth/Desktop/FeatherAI/.feather/artifacts/aa71ad60-008f-4c9b-a583-1b5eb951a001/model-Q4_K_M.gguf",
+              "tokens_predicted": 128,
+              "tokens_evaluated": 34,
+              "generation_settings": {
+                "seed": 42,
+                "temperature": 0.0,
+                "dynatemp_range": 0.0,
+                "dynatemp_exponent": 1.0,
+                "top_k": 40,
+                "top_p": 0.949999988079071,
+                "min_p": 0.05000000074505806,
+                "top_n_sigma": -1.0,
+                "xtc_probability": 0.0,
+                "xtc_threshold": 0.10000000149011612,
+                "typical_p": 1.0,
+                "repeat_last_n": 64,
+                "repeat_penalty": 1.0,
+                "presence_penalty": 0.0,
+                "frequency_penalty": 0.0,
+                "dry_multiplier": 0.0,
+                "dry_base": 1.75,
+                "dry_allowed_length": 2,
+                "dry_penalty_last_n": 64,
+                "dry_sequence_breakers": [
+                  "\n",
+                  ":",
+                  "\"",
+                  "*"
+                ],
+                "mirostat": 0,
+                "mirostat_tau": 5.0,
+                "mirostat_eta": 0.10000000149011612,
+                "adaptive_target": -1.0,
+                "adaptive_decay": 0.8999999761581421,
+                "stop": [
+                  "<|im_end|>",
+                  "<|im_start|>"
+                ],
+                "max_tokens": 128,
+                "n_predict": 128,
+                "n_keep": 0,
+                "n_discard": 0,
+                "ignore_eos": false,
+                "stream": true,
+                "logit_bias": [],
+                "n_probs": 0,
+                "min_keep": 0,
+                "grammar": "",
+                "grammar_lazy": false,
+                "grammar_triggers": [],
+                "preserved_tokens": [],
+                "chat_format": "Content-only",
+                "reasoning_format": "deepseek",
+                "reasoning_in_content": false,
+                "generation_prompt": "",
+                "samplers": [
+                  "penalties",
+                  "dry",
+                  "top_n_sigma",
+                  "top_k",
+                  "typ_p",
+                  "top_p",
+                  "min_p",
+                  "xtc",
+                  "temperature"
+                ],
+                "speculative.types": "none",
+                "timings_per_token": false,
+                "post_sampling_probs": false,
+                "backend_sampling": false,
+                "lora": []
+              },
+              "prompt": "<|im_start|>user\nWrite a Python binary_search(items, target) function. Return the index or -1. Output only the function.<|im_end|>\n<|im_start|>assistant\n",
+              "has_new_line": true,
+              "truncated": false,
+              "stop_type": "limit",
+              "stopping_word": "",
+              "tokens_cached": 161,
+              "timings": {
+                "cache_n": 0,
+                "prompt_n": 34,
+                "prompt_ms": 11.812,
+                "prompt_per_token_ms": 0.3474117647058823,
+                "prompt_per_second": 2878.428716559431,
+                "predicted_n": 128,
+                "predicted_ms": 455.932,
+                "predicted_per_token_ms": 3.590015748031496,
+                "predicted_per_second": 278.55031013396734
+              }
+            }
+          },
+          "peak_memory_bytes": 248086528,
+          "memory_samples": 10,
+          "memory_metric": "sampled_process_tree_rss",
+          "decode_tokens_per_second": 280.74361966258124,
+          "prefill_tokens_per_second": 2878.428716559431,
+          "system_after": {
+            "chip": "Apple M2",
+            "architecture": "arm64",
+            "os": "macOS-26.7.3-arm64-arm-64bit",
+            "python": "3.12.9",
+            "physical_ram_bytes": 8589934592,
+            "available_ram_bytes": 1560952832,
+            "system_swap": {
+              "total": 3221225472,
+              "used": 2112421888,
+              "free": 1108803584,
+              "percent": 65.6,
+              "sin": 94920982528,
+              "sout": 2229731328
+            }
+          }
+        }
+      ],
+      "summary": {
+        "successful_trials": 5,
+        "failed_trials": 0,
+        "wall_seconds": {
+          "median": 0.4709244160003436,
+          "p95": 0.4735631078001461,
+          "min": 0.4689367499995569,
+          "max": 0.47373679100019217
+        },
+        "ttft_seconds": {
+          "median": 0.012692874999629566,
+          "p95": 0.013030333200731548,
+          "min": 0.012656541000978905,
+          "max": 0.0131085000011808
+        },
+        "decode_tokens_per_second": {
+          "median": 279.486966736684,
+          "p95": 280.6159561474657,
+          "min": 277.8103336762555,
+          "max": 280.74361966258124
+        },
+        "prefill_tokens_per_second": {
+          "median": 2883.555254007294,
+          "p95": 2891.7492351841856,
+          "min": 2873.3203752218374,
+          "max": 2893.1245745405035
+        }
+      }
+    },
+    "error": null,
+    "created_at": 1794249557.875251,
+    "updated_at": 1794249563.799972,
+    "cancel_requested": 0,
+    "pid": null
+  },
+  "evaluation_job": {
+    "id": "5efbd259-9b65-43d0-904c-55e7ec783087",
+    "kind": "evaluation",
+    "status": "completed",
+    "payload": {
+      "backend": "llama.cpp",
+      "artifact_job_id": "aa71ad60-008f-4c9b-a583-1b5eb951a001",
+      "model": "managed-artifact",
+      "suite": "reasoning-small",
+      "repeats": 1,
+      "context": 1024,
+      "tokens": 128,
+      "seed": 42
+    },
+    "result": {
+      "id": "5f835eb9-c7a7-4c04-b3ab-1a86afdeee9e",
+      "kind": "evaluation",
+      "created_at": "2026-11-09T18:39:27.170503+00:00",
+      "model": {
+        "name": "model-Q4_K_M.gguf",
+        "size": 105454144,
+        "digest": "76ab8f094853fd2e48a76620f031f59b3e127970ba84489323a47a877e632b3e",
+        "artifact_sha256": "76ab8f094853fd2e48a76620f031f59b3e127970ba84489323a47a877e632b3e",
+        "details": {
+          "tensor_types": {
+            "F32": 61,
+            "Q8_0": 15,
+            "Q5_0": 166,
+            "Q6_K": 14,
+            "Q4_K": 16
+          },
+          "parameter_count": 134515008
+        }
+      },
+      "suite": "reasoning-small",
+      "split": "public-screening",
+      "suite_sha256": "985c799205f4d9713082585d1e664a4c66656c5af50936da5eb61b571dc702d4",
+      "options": {
+        "seed": 42,
+        "temperature": 0,
+        "num_ctx": 1024,
+        "num_predict": 128
+      },
+      "settings_sha256": "8f96dea911abe7980a08c5b6f893567e2cd1ff2a99a980eb3d2726125d720fe8",
+      "repeats": 1,
+      "backend": "llama.cpp",
+      "source_sha256": "f535f83ec568d040f88ddc04a199fa6da90923bbb41d4dcaed02caa924d6ef57",
+      "runtime_version": "version: 0.9.0-dev (build 1, commit 9d340ec)\nbuilt with AppleClang 17.0.0.17000603 for Darwin arm64",
+      "hardware": {
+        "chip": "Apple M2",
+        "architecture": "arm64",
+        "os": "macOS-26.7.3-arm64-arm-64bit",
+        "python": "3.12.9",
+        "physical_ram_bytes": 8589934592,
+        "available_ram_bytes": 1460158464,
+        "system_swap": {
+          "total": 3221225472,
+          "used": 2112421888,
+          "free": 1108803584,
+          "percent": 65.6,
+          "sin": 95639486464,
+          "sout": 2236416000
+        }
+      },
+      "results": [
+        {
+          "task_id": "arithmetic",
+          "repeat": 0,
+          "prompt": "A box has 7 red and 5 blue marbles. How many marbles are there? Reply with only the integer.",
+          "prompt_sha256": "942ee0e13f2caa5600f1d9191955556f8177d49f454d27763237edc032f5d9e0",
+          "generation": {
+            "output": "To find the total number of marbles in the box, we need to consider the number of red marbles and the number of blue marbles.\n\nThere are 7 red marbles and 5 blue marbles in total.\n\nThe total number of marbles in the box is the sum of the number of red and blue marbles: 7 + 5 = 12.\n\nTherefore, there are 12 marbles in the box.",
+            "ttft_seconds": 0.022447332999945502,
+            "wall_seconds": 0.3967227080011071,
+            "runtime": {
+              "eval_count": 90,
+              "eval_duration": 374159000.0,
+              "prompt_eval_count": 34,
+              "prompt_eval_duration": 19871000.0,
+              "native": {
+                "index": 0,
+                "content": "",
+                "tokens": [],
+                "id_slot": 0,
+                "stop": true,
+                "model": "/Users/yaswanth/Desktop/FeatherAI/.feather/artifacts/aa71ad60-008f-4c9b-a583-1b5eb951a001/model-Q4_K_M.gguf",
+                "tokens_predicted": 90,
+                "tokens_evaluated": 34,
+                "generation_settings": {
+                  "seed": 42,
+                  "temperature": 0.0,
+                  "dynatemp_range": 0.0,
+                  "dynatemp_exponent": 1.0,
+                  "top_k": 40,
+                  "top_p": 0.949999988079071,
+                  "min_p": 0.05000000074505806,
+                  "top_n_sigma": -1.0,
+                  "xtc_probability": 0.0,
+                  "xtc_threshold": 0.10000000149011612,
+                  "typical_p": 1.0,
+                  "repeat_last_n": 64,
+                  "repeat_penalty": 1.0,
+                  "presence_penalty": 0.0,
+                  "frequency_penalty": 0.0,
+                  "dry_multiplier": 0.0,
+                  "dry_base": 1.75,
+                  "dry_allowed_length": 2,
+                  "dry_penalty_last_n": 64,
+                  "dry_sequence_breakers": [
+                    "\n",
+                    ":",
+                    "\"",
+                    "*"
+                  ],
+                  "mirostat": 0,
+                  "mirostat_tau": 5.0,
+                  "mirostat_eta": 0.10000000149011612,
+                  "adaptive_target": -1.0,
+                  "adaptive_decay": 0.8999999761581421,
+                  "stop": [
+                    "<|im_end|>",
+                    "<|im_start|>"
+                  ],
+                  "max_tokens": 128,
+                  "n_predict": 128,
+                  "n_keep": 0,
+                  "n_discard": 0,
+                  "ignore_eos": false,
+                  "stream": true,
+                  "logit_bias": [],
+                  "n_probs": 0,
+                  "min_keep": 0,
+                  "grammar": "",
+                  "grammar_lazy": false,
+                  "grammar_triggers": [],
+                  "preserved_tokens": [],
+                  "chat_format": "Content-only",
+                  "reasoning_format": "deepseek",
+                  "reasoning_in_content": false,
+                  "generation_prompt": "",
+                  "samplers": [
+                    "penalties",
+                    "dry",
+                    "top_n_sigma",
+                    "top_k",
+                    "typ_p",
+                    "top_p",
+                    "min_p",
+                    "xtc",
+                    "temperature"
+                  ],
+                  "speculative.types": "none",
+                  "timings_per_token": false,
+                  "post_sampling_probs": false,
+                  "backend_sampling": false,
+                  "lora": []
+                },
+                "prompt": "<|im_start|>user\nA box has 7 red and 5 blue marbles. How many marbles are there? Reply with only the integer.<|im_end|>\n<|im_start|>assistant\n",
+                "has_new_line": true,
+                "truncated": false,
+                "stop_type": "eos",
+                "stopping_word": "",
+                "tokens_cached": 123,
+                "timings": {
+                  "cache_n": 0,
+                  "prompt_n": 34,
+                  "prompt_ms": 19.871,
+                  "prompt_per_token_ms": 0.5844411764705882,
+                  "prompt_per_second": 1711.0361833828192,
+                  "predicted_n": 90,
+                  "predicted_ms": 374.159,
+                  "predicted_per_token_ms": 4.204033707865168,
+                  "predicted_per_second": 237.8667892526974
+                }
+              }
+            }
+          },
+          "status": "scored",
+          "passed": false,
+          "expected": "12"
+        },
+        {
+          "task_id": "multiplication",
+          "repeat": 0,
+          "prompt": "There are 6 shelves with 8 books on each shelf. How many books are there? Reply with only the integer.",
+          "prompt_sha256": "9d5374f105f185df47233904b291767e807ffc12dfcbf71144a72ff520247751",
+          "generation": {
+            "output": "There are 6 shelves with 8 books on each shelf.",
+            "ttft_seconds": 0.012998874999539112,
+            "wall_seconds": 0.061838625000746106,
+            "runtime": {
+              "eval_count": 14,
+              "eval_duration": 48423000.0,
+              "prompt_eval_count": 35,
+              "prompt_eval_duration": 11837000.0,
+              "native": {
+                "index": 0,
+                "content": "",
+                "tokens": [],
+                "id_slot": 0,
+                "stop": true,
+                "model": "/Users/yaswanth/Desktop/FeatherAI/.feather/artifacts/aa71ad60-008f-4c9b-a583-1b5eb951a001/model-Q4_K_M.gguf",
+                "tokens_predicted": 14,
+                "tokens_evaluated": 35,
+                "generation_settings": {
+                  "seed": 42,
+                  "temperature": 0.0,
+                  "dynatemp_range": 0.0,
+                  "dynatemp_exponent": 1.0,
+                  "top_k": 40,
+                  "top_p": 0.949999988079071,
+                  "min_p": 0.05000000074505806,
+                  "top_n_sigma": -1.0,
+                  "xtc_probability": 0.0,
+                  "xtc_threshold": 0.10000000149011612,
+                  "typical_p": 1.0,
+                  "repeat_last_n": 64,
+                  "repeat_penalty": 1.0,
+                  "presence_penalty": 0.0,
+                  "frequency_penalty": 0.0,
+                  "dry_multiplier": 0.0,
+                  "dry_base": 1.75,
+                  "dry_allowed_length": 2,
+                  "dry_penalty_last_n": 64,
+                  "dry_sequence_breakers": [
+                    "\n",
+                    ":",
+                    "\"",
+                    "*"
+                  ],
+                  "mirostat": 0,
+                  "mirostat_tau": 5.0,
+                  "mirostat_eta": 0.10000000149011612,
+                  "adaptive_target": -1.0,
+                  "adaptive_decay": 0.8999999761581421,
+                  "stop": [
+                    "<|im_end|>",
+                    "<|im_start|>"
+                  ],
+                  "max_tokens": 128,
+                  "n_predict": 128,
+                  "n_keep": 0,
+                  "n_discard": 0,
+                  "ignore_eos": false,
+                  "stream": true,
+                  "logit_bias": [],
+                  "n_probs": 0,
+                  "min_keep": 0,
+                  "grammar": "",
+                  "grammar_lazy": false,
+                  "grammar_triggers": [],
+                  "preserved_tokens": [],
+                  "chat_format": "Content-only",
+                  "reasoning_format": "deepseek",
+                  "reasoning_in_content": false,
+                  "generation_prompt": "",
+                  "samplers": [
+                    "penalties",
+                    "dry",
+                    "top_n_sigma",
+                    "top_k",
+                    "typ_p",
+                    "top_p",
+                    "min_p",
+                    "xtc",
+                    "temperature"
+                  ],
+                  "speculative.types": "none",
+                  "timings_per_token": false,
+                  "post_sampling_probs": false,
+                  "backend_sampling": false,
+                  "lora": []
+                },
+                "prompt": "<|im_start|>user\nThere are 6 shelves with 8 books on each shelf. How many books are there? Reply with only the integer.<|im_end|>\n<|im_start|>assistant\n",
+                "has_new_line": false,
+                "truncated": false,
+                "stop_type": "eos",
+                "stopping_word": "",
+                "tokens_cached": 48,
+                "timings": {
+                  "cache_n": 0,
+                  "prompt_n": 35,
+                  "prompt_ms": 11.837,
+                  "prompt_per_token_ms": 0.3382,
+                  "prompt_per_second": 2956.8302779420465,
+                  "predicted_n": 14,
+                  "predicted_ms": 48.423,
+                  "predicted_per_token_ms": 3.724846153846154,
+                  "predicted_per_second": 268.46746380852073
+                }
+              }
+            }
+          },
+          "status": "scored",
+          "passed": false,
+          "expected": "48"
+        },
+        {
+          "task_id": "subtraction",
+          "repeat": 0,
+          "prompt": "Lina has 23 coins and gives away 9. How many remain? Reply with only the integer.",
+          "prompt_sha256": "7f18dc17da6bfcc23c83540347a95877209c33309fa3f2074ba9ee534c4d8a8a",
+          "generation": {
+            "output": "Lina has 23 coins, and she gives away 9 coins. To find the total number of coins remaining, we need to subtract the number of coins she gave away from the total number of coins.\n\nThe total number of coins is 23 (coins) + 9 (coins) = 32 coins.\n\nNow, we subtract the number of coins she gave away from the total number of coins: 32 - 9 = 21 coins.\n\nTherefore, the number of coins remaining is 21.",
+            "ttft_seconds": 0.01332854199972644,
+            "wall_seconds": 0.6272877499995957,
+            "runtime": {
+              "eval_count": 116,
+              "eval_duration": 613727000.0,
+              "prompt_eval_count": 33,
+              "prompt_eval_duration": 12205000.0,
+              "native": {
+                "index": 0,
+                "content": "",
+                "tokens": [],
+                "id_slot": 0,
+                "stop": true,
+                "model": "/Users/yaswanth/Desktop/FeatherAI/.feather/artifacts/aa71ad60-008f-4c9b-a583-1b5eb951a001/model-Q4_K_M.gguf",
+                "tokens_predicted": 116,
+                "tokens_evaluated": 33,
+                "generation_settings": {
+                  "seed": 42,
+                  "temperature": 0.0,
+                  "dynatemp_range": 0.0,
+                  "dynatemp_exponent": 1.0,
+                  "top_k": 40,
+                  "top_p": 0.949999988079071,
+                  "min_p": 0.05000000074505806,
+                  "top_n_sigma": -1.0,
+                  "xtc_probability": 0.0,
+                  "xtc_threshold": 0.10000000149011612,
+                  "typical_p": 1.0,
+                  "repeat_last_n": 64,
+                  "repeat_penalty": 1.0,
+                  "presence_penalty": 0.0,
+                  "frequency_penalty": 0.0,
+                  "dry_multiplier": 0.0,
+                  "dry_base": 1.75,
+                  "dry_allowed_length": 2,
+                  "dry_penalty_last_n": 64,
+                  "dry_sequence_breakers": [
+                    "\n",
+                    ":",
+                    "\"",
+                    "*"
+                  ],
+                  "mirostat": 0,
+                  "mirostat_tau": 5.0,
+                  "mirostat_eta": 0.10000000149011612,
+                  "adaptive_target": -1.0,
+                  "adaptive_decay": 0.8999999761581421,
+                  "stop": [
+                    "<|im_end|>",
+                    "<|im_start|>"
+                  ],
+                  "max_tokens": 128,
+                  "n_predict": 128,
+                  "n_keep": 0,
+                  "n_discard": 0,
+                  "ignore_eos": false,
+                  "stream": true,
+                  "logit_bias": [],
+                  "n_probs": 0,
+                  "min_keep": 0,
+                  "grammar": "",
+                  "grammar_lazy": false,
+                  "grammar_triggers": [],
+                  "preserved_tokens": [],
+                  "chat_format": "Content-only",
+                  "reasoning_format": "deepseek",
+                  "reasoning_in_content": false,
+                  "generation_prompt": "",
+                  "samplers": [
+                    "penalties",
+                    "dry",
+                    "top_n_sigma",
+                    "top_k",
+                    "typ_p",
+                    "top_p",
+                    "min_p",
+                    "xtc",
+                    "temperature"
+                  ],
+                  "speculative.types": "none",
+                  "timings_per_token": false,
+                  "post_sampling_probs": false,
+                  "backend_sampling": false,
+                  "lora": []
+                },
+                "prompt": "<|im_start|>user\nLina has 23 coins and gives away 9. How many remain? Reply with only the integer.<|im_end|>\n<|im_start|>assistant\n",
+                "has_new_line": true,
+                "truncated": false,
+                "stop_type": "eos",
+                "stopping_word": "",
+                "tokens_cached": 148,
+                "timings": {
+                  "cache_n": 0,
+                  "prompt_n": 33,
+                  "prompt_ms": 12.205,
+                  "prompt_per_token_ms": 0.36984848484848487,
+                  "prompt_per_second": 2703.809913969684,
+                  "predicted_n": 116,
+                  "predicted_ms": 613.727,
+                  "predicted_per_token_ms": 5.33675652173913,
+                  "predicted_per_second": 187.37973072718
+                }
+              }
+            }
+          },
+          "status": "scored",
+          "passed": false,
+          "expected": "14"
+        }
+      ],
+      "perplexity": {
+        "status": "unsupported",
+        "reason": "Backend did not provide held-out token log probabilities"
+      },
+      "summary": {
+        "scored": 3,
+        "passed": 0,
+        "accuracy": 0.0,
+        "accuracy_ci95": [
+          0.0,
+          0.5614970317550454
+        ],
+        "unsupported": 0,
+        "failed": 0,
+        "uncertainty_note": "Wilson interval is descriptive for this small public suite; repeated deterministic tasks are not independent evidence."
+      },
+      "status": "completed"
+    },
+    "error": null,
+    "created_at": 1794249563.841276,
+    "updated_at": 1794249568.363766,
+    "cancel_requested": 0,
+    "pid": null
+  },
+  "recommendation": {
+    "status": "completed",
+    "objective": "fastest",
+    "eligible": [
+      {
+        "id": "ed98919f-52d2-482e-b183-39455fee6c70",
+        "source_sha256": "f535f83ec568d040f88ddc04a199fa6da90923bbb41d4dcaed02caa924d6ef57",
+        "artifact_sha256": "76ab8f094853fd2e48a76620f031f59b3e127970ba84489323a47a877e632b3e",
+        "workload_sha256": "bfc8afec6922a0f27d714b9752bfc2d8173158e58b12b443865382b8370b537d",
+        "settings_sha256": "21a1c54484af2103f1b11a975bb2030acdcdd47f8f2f154de67251b999656afe",
+        "peak_memory_bytes": 248086528,
+        "file_size_bytes": 105454144,
+        "latency_seconds": 0.4709244160003436,
+        "decode_tokens_per_second": 279.486966736684,
+        "measured_trials": 5,
+        "quality": 0.0,
+        "quality_ci": [
+          0.0,
+          0.5614970317550454
+        ],
+        "quality_trials": 3,
+        "evidence": {
+          "benchmark_id": "ed98919f-52d2-482e-b183-39455fee6c70",
+          "evaluation_id": "5f835eb9-c7a7-4c04-b3ab-1a86afdeee9e",
+          "evaluation_suite": "reasoning-small",
+          "benchmark_complete": true,
+          "memory_metric": "sampled_process_tree_rss",
+          "memory_note": "Managed llama.cpp: sampled process-tree RSS every 50ms during requests; excludes startup peak and unaccounted GPU allocations, may miss short peaks. Ollama process memory is not measured.",
+          "join_policy": "Exact artifact_sha256 and verified source_sha256; model display names are never joined"
+        },
+        "reasons": [
+          "Measured peak memory 248086528 <= 1073741824 bytes",
+          "Quality constraint uses lower confidence bound 0.0",
+          "Ranked by measured decode_tokens_per_second"
+        ],
+        "confidence": {
+          "measured_trials": 5,
+          "quality_trials": 3,
+          "quality_ci95": [
+            0.0,
+            0.5614970317550454
+          ],
+          "level": "limited"
+        },
+        "rank": 1
+      }
+    ],
+    "rejected": [],
+    "memory_limit_bytes": 1073741824,
+    "limitations": [
+      "Only supplied measurements are considered; no metric is inferred from quantization width.",
+      "Measured peak memory is workload-specific and does not guarantee fit for larger contexts.",
+      "Sampled process RSS is not total GPU or unified-memory allocation; unsampled peaks may be missed.",
+      "Public screening quality and repeated deterministic trials do not establish held-out generalization.",
+      "Minimum quality is zero: ranking is diagnostic only and does not establish useful output quality."
+    ],
+    "selected_id": "ed98919f-52d2-482e-b183-39455fee6c70"
+  },
+  "exported_experiment": {
+    "id": "ed98919f-52d2-482e-b183-39455fee6c70",
+    "metadata": {
+      "created_at": "2026-11-09T18:39:20.752785+00:00",
+      "model": {
+        "name": "model-Q4_K_M.gguf",
+        "size": 105454144,
+        "digest": "76ab8f094853fd2e48a76620f031f59b3e127970ba84489323a47a877e632b3e",
+        "artifact_sha256": "76ab8f094853fd2e48a76620f031f59b3e127970ba84489323a47a877e632b3e",
+        "details": {
+          "tensor_types": {
+            "F32": 61,
+            "Q8_0": 15,
+            "Q5_0": 166,
+            "Q6_K": 14,
+            "Q4_K": 16
+          },
+          "parameter_count": 134515008
+        }
+      },
+      "backend": "llama.cpp",
+      "runtime_version": "version: 0.9.0-dev (build 1, commit 9d340ec)\nbuilt with AppleClang 17.0.0.17000603 for Darwin arm64",
+      "hardware": {
+        "chip": "Apple M2",
+        "architecture": "arm64",
+        "os": "macOS-26.7.3-arm64-arm-64bit",
+        "python": "3.12.9",
+        "physical_ram_bytes": 8589934592,
+        "available_ram_bytes": 1575272448,
+        "system_swap": {
+          "total": 3221225472,
+          "used": 2112421888,
+          "free": 1108803584,
+          "percent": 65.6,
+          "sin": 94907760640,
+          "sout": 2229731328
+        }
+      },
+      "source_sha256": "f535f83ec568d040f88ddc04a199fa6da90923bbb41d4dcaed02caa924d6ef57",
+      "backend_settings": {
+        "prompt_template": "chatml-v1: <|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant\n",
+        "cache_prompt": false,
+        "threads": 2,
+        "parallel": 1,
+        "server_executable_sha256": "4de055b01d5b27044bfd0dfd6f0a4b022b4359cb59c37d18451d99ed7a77cb67"
+      },
+      "settings_sha256": "6e81a7a05d5b5e79961332116e6f77bd562bb5f09c104a33763cfa5418acfe48",
+      "prompt": "Write a Python binary_search(items, target) function. Return the index or -1. Output only the function.",
+      "prompt_sha256": "acdd3811c7e64f44c88f99a5d52d14ed65c6edb72014dd73e3e7d520dbfbe630",
+      "options": {
+        "seed": 42,
+        "temperature": 0,
+        "num_ctx": 1024,
+        "num_predict": 128
+      },
+      "repeats": 5,
+      "warmups": 1,
+      "packages": {
+        "feather-ai": "0.1.0",
+        "httpx": "0.28.1",
+        "numpy": "2.5.4",
+        "psutil": "7.2.2"
+      },
+      "memory_note": "Managed llama.cpp: sampled process-tree RSS every 50ms during requests; excludes startup peak and unaccounted GPU allocations, may miss short peaks. Ollama process memory is not measured.",
+      "load_note": "Warmups are excluded; model residency before the first request is unknown.",
+      "peak_memory_bytes": 248086528,
+      "memory_metric": "sampled_process_tree_rss"
+    },
+    "trials": [
+      {
+        "ordinal": 0,
+        "warmup": true,
+        "started_at": 1794249560.756315,
+        "output": "```python\ndef binary_search(items, target):\n    \"\"\"\n    Returns the index or -1 of the target value in the list if it exists.\n\n    Args:\n        items (list): A list of elements to search.\n        target: The value to search for.\n\n    Returns:\n        int: The index or -1 if the target is not found, or the index of the target if it is found.\n    \"\"\"\n    low = 0\n    high = len(items) - 1\n\n    while low <= high:\n        mid = (low + high) // 2\n        if items[mid] == target:",
+        "ttft_seconds": 0.02185341599943058,
+        "wall_seconds": 0.4960824579993641,
+        "runtime": {
+          "eval_count": 128,
+          "eval_duration": 474109000.0,
+          "prompt_eval_count": 34,
+          "prompt_eval_duration": 19777000.0,
+          "native": {
+            "index": 0,
+            "content": "",
+            "tokens": [],
+            "id_slot": 0,
+            "stop": true,
+            "model": "/Users/yaswanth/Desktop/FeatherAI/.feather/artifacts/aa71ad60-008f-4c9b-a583-1b5eb951a001/model-Q4_K_M.gguf",
+            "tokens_predicted": 128,
+            "tokens_evaluated": 34,
+            "generation_settings": {
+              "seed": 42,
+              "temperature": 0.0,
+              "dynatemp_range": 0.0,
+              "dynatemp_exponent": 1.0,
+              "top_k": 40,
+              "top_p": 0.949999988079071,
+              "min_p": 0.05000000074505806,
+              "top_n_sigma": -1.0,
+              "xtc_probability": 0.0,
+              "xtc_threshold": 0.10000000149011612,
+              "typical_p": 1.0,
+              "repeat_last_n": 64,
+              "repeat_penalty": 1.0,
+              "presence_penalty": 0.0,
+              "frequency_penalty": 0.0,
+              "dry_multiplier": 0.0,
+              "dry_base": 1.75,
+              "dry_allowed_length": 2,
+              "dry_penalty_last_n": 64,
+              "dry_sequence_breakers": [
+                "\n",
+                ":",
+                "\"",
+                "*"
+              ],
+              "mirostat": 0,
+              "mirostat_tau": 5.0,
+              "mirostat_eta": 0.10000000149011612,
+              "adaptive_target": -1.0,
+              "adaptive_decay": 0.8999999761581421,
+              "stop": [
+                "<|im_end|>",
+                "<|im_start|>"
+              ],
+              "max_tokens": 128,
+              "n_predict": 128,
+              "n_keep": 0,
+              "n_discard": 0,
+              "ignore_eos": false,
+              "stream": true,
+              "logit_bias": [],
+              "n_probs": 0,
+              "min_keep": 0,
+              "grammar": "",
+              "grammar_lazy": false,
+              "grammar_triggers": [],
+              "preserved_tokens": [],
+              "chat_format": "Content-only",
+              "reasoning_format": "deepseek",
+              "reasoning_in_content": false,
+              "generation_prompt": "",
+              "samplers": [
+                "penalties",
+                "dry",
+                "top_n_sigma",
+                "top_k",
+                "typ_p",
+                "top_p",
+                "min_p",
+                "xtc",
+                "temperature"
+              ],
+              "speculative.types": "none",
+              "timings_per_token": false,
+              "post_sampling_probs": false,
+              "backend_sampling": false,
+              "lora": []
+            },
+            "prompt": "<|im_start|>user\nWrite a Python binary_search(items, target) function. Return the index or -1. Output only the function.<|im_end|>\n<|im_start|>assistant\n",
+            "has_new_line": true,
+            "truncated": false,
+            "stop_type": "limit",
+            "stopping_word": "",
+            "tokens_cached": 161,
+            "timings": {
+              "cache_n": 0,
+              "prompt_n": 34,
+              "prompt_ms": 19.777,
+              "prompt_per_token_ms": 0.5816764705882354,
+              "prompt_per_second": 1719.1687313546038,
+              "predicted_n": 128,
+              "predicted_ms": 474.109,
+              "predicted_per_token_ms": 3.7331417322834644,
+              "predicted_per_second": 267.8708904492427
+            }
+          }
+        },
+        "peak_memory_bytes": 244187136,
+        "memory_samples": 10,
+        "memory_metric": "sampled_process_tree_rss",
+        "decode_tokens_per_second": 269.98011005907927,
+        "prefill_tokens_per_second": 1719.1687313546038,
+        "system_after": {
+          "chip": "Apple M2",
+          "architecture": "arm64",
+          "os": "macOS-26.7.3-arm64-arm-64bit",
+          "python": "3.12.9",
+          "physical_ram_bytes": 8589934592,
+          "available_ram_bytes": 1569505280,
+          "system_swap": {
+            "total": 3221225472,
+            "used": 2112421888,
+            "free": 1108803584,
+            "percent": 65.6,
+            "sin": 94908284928,
+            "sout": 2229731328
+          }
+        }
+      },
+      {
+        "ordinal": 1,
+        "warmup": false,
+        "started_at": 1794249561.2637,
+        "output": "```python\ndef binary_search(items, target):\n    \"\"\"\n    Returns the index or -1 of the target value in the list if it exists.\n\n    Args:\n        items (list): A list of elements to search.\n        target: The value to search for.\n\n    Returns:\n        int: The index or -1 if the target is not found, or the index of the target if it is found.\n    \"\"\"\n    low = 0\n    high = len(items) - 1\n\n    while low <= high:\n        mid = (low + high) // 2\n        if items[mid] == target:",
+        "ttft_seconds": 0.0131085000011808,
+        "wall_seconds": 0.47036395800023456,
+        "runtime": {
+          "eval_count": 128,
+          "eval_duration": 456971000.0,
+          "prompt_eval_count": 34,
+          "prompt_eval_duration": 11791000.0,
+          "native": {
+            "index": 0,
+            "content": "",
+            "tokens": [],
+            "id_slot": 0,
+            "stop": true,
+            "model": "/Users/yaswanth/Desktop/FeatherAI/.feather/artifacts/aa71ad60-008f-4c9b-a583-1b5eb951a001/model-Q4_K_M.gguf",
+            "tokens_predicted": 128,
+            "tokens_evaluated": 34,
+            "generation_settings": {
+              "seed": 42,
+              "temperature": 0.0,
+              "dynatemp_range": 0.0,
+              "dynatemp_exponent": 1.0,
+              "top_k": 40,
+              "top_p": 0.949999988079071,
+              "min_p": 0.05000000074505806,
+              "top_n_sigma": -1.0,
+              "xtc_probability": 0.0,
+              "xtc_threshold": 0.10000000149011612,
+              "typical_p": 1.0,
+              "repeat_last_n": 64,
+              "repeat_penalty": 1.0,
+              "presence_penalty": 0.0,
+              "frequency_penalty": 0.0,
+              "dry_multiplier": 0.0,
+              "dry_base": 1.75,
+              "dry_allowed_length": 2,
+              "dry_penalty_last_n": 64,
+              "dry_sequence_breakers": [
+                "\n",
+                ":",
+                "\"",
+                "*"
+              ],
+              "mirostat": 0,
+              "mirostat_tau": 5.0,
+              "mirostat_eta": 0.10000000149011612,
+              "adaptive_target": -1.0,
+              "adaptive_decay": 0.8999999761581421,
+              "stop": [
+                "<|im_end|>",
+                "<|im_start|>"
+              ],
+              "max_tokens": 128,
+              "n_predict": 128,
+              "n_keep": 0,
+              "n_discard": 0,
+              "ignore_eos": false,
+              "stream": true,
+              "logit_bias": [],
+              "n_probs": 0,
+              "min_keep": 0,
+              "grammar": "",
+              "grammar_lazy": false,
+              "grammar_triggers": [],
+              "preserved_tokens": [],
+              "chat_format": "Content-only",
+              "reasoning_format": "deepseek",
+              "reasoning_in_content": false,
+              "generation_prompt": "",
+              "samplers": [
+                "penalties",
+                "dry",
+                "top_n_sigma",
+                "top_k",
+                "typ_p",
+                "top_p",
+                "min_p",
+                "xtc",
+                "temperature"
+              ],
+              "speculative.types": "none",
+              "timings_per_token": false,
+              "post_sampling_probs": false,
+              "backend_sampling": false,
+              "lora": []
+            },
+            "prompt": "<|im_start|>user\nWrite a Python binary_search(items, target) function. Return the index or -1. Output only the function.<|im_end|>\n<|im_start|>assistant\n",
+            "has_new_line": true,
+            "truncated": false,
+            "stop_type": "limit",
+            "stopping_word": "",
+            "tokens_cached": 161,
+            "timings": {
+              "cache_n": 0,
+              "prompt_n": 34,
+              "prompt_ms": 11.791,
+              "prompt_per_token_ms": 0.3467941176470588,
+              "prompt_per_second": 2883.555254007294,
+              "predicted_n": 128,
+              "predicted_ms": 456.971,
+              "predicted_per_token_ms": 3.598196850393701,
+              "predicted_per_second": 277.91697941444863
+            }
+          }
+        },
+        "peak_memory_bytes": 247988224,
+        "memory_samples": 9,
+        "memory_metric": "sampled_process_tree_rss",
+        "decode_tokens_per_second": 280.10530208700334,
+        "prefill_tokens_per_second": 2883.555254007294,
+        "system_after": {
+          "chip": "Apple M2",
+          "architecture": "arm64",
+          "os": "macOS-26.7.3-arm64-arm-64bit",
+          "python": "3.12.9",
+          "physical_ram_bytes": 8589934592,
+          "available_ram_bytes": 1569505280,
+          "system_swap": {
+            "total": 3221225472,
+            "used": 2112421888,
+            "free": 1108803584,
+            "percent": 65.6,
+            "sin": 94908284928,
+            "sout": 2229731328
+          }
+        }
+      },
+      {
+        "ordinal": 2,
+        "warmup": false,
+        "started_at": 1794249561.74402,
+        "output": "```python\ndef binary_search(items, target):\n    \"\"\"\n    Returns the index or -1 of the target value in the list if it exists.\n\n    Args:\n        items (list): A list of elements to search.\n        target: The value to search for.\n\n    Returns:\n        int: The index or -1 if the target is not found, or the index of the target if it is found.\n    \"\"\"\n    low = 0\n    high = len(items) - 1\n\n    while low <= high:\n        mid = (low + high) // 2\n        if items[mid] == target:",
+        "ttft_seconds": 0.012717665998934535,
+        "wall_seconds": 0.47373679100019217,
+        "runtime": {
+          "eval_count": 128,
+          "eval_duration": 460746000.0,
+          "prompt_eval_count": 34,
+          "prompt_eval_duration": 11833000.0,
+          "native": {
+            "index": 0,
+            "content": "",
+            "tokens": [],
+            "id_slot": 0,
+            "stop": true,
+            "model": "/Users/yaswanth/Desktop/FeatherAI/.feather/artifacts/aa71ad60-008f-4c9b-a583-1b5eb951a001/model-Q4_K_M.gguf",
+            "tokens_predicted": 128,
+            "tokens_evaluated": 34,
+            "generation_settings": {
+              "seed": 42,
+              "temperature": 0.0,
+              "dynatemp_range": 0.0,
+              "dynatemp_exponent": 1.0,
+              "top_k": 40,
+              "top_p": 0.949999988079071,
+              "min_p": 0.05000000074505806,
+              "top_n_sigma": -1.0,
+              "xtc_probability": 0.0,
+              "xtc_threshold": 0.10000000149011612,
+              "typical_p": 1.0,
+              "repeat_last_n": 64,
+              "repeat_penalty": 1.0,
+              "presence_penalty": 0.0,
+              "frequency_penalty": 0.0,
+              "dry_multiplier": 0.0,
+              "dry_base": 1.75,
+              "dry_allowed_length": 2,
+              "dry_penalty_last_n": 64,
+              "dry_sequence_breakers": [
+                "\n",
+                ":",
+                "\"",
+                "*"
+              ],
+              "mirostat": 0,
+              "mirostat_tau": 5.0,
+              "mirostat_eta": 0.10000000149011612,
+              "adaptive_target": -1.0,
+              "adaptive_decay": 0.8999999761581421,
+              "stop": [
+                "<|im_end|>",
+                "<|im_start|>"
+              ],
+              "max_tokens": 128,
+              "n_predict": 128,
+              "n_keep": 0,
+              "n_discard": 0,
+              "ignore_eos": false,
+              "stream": true,
+              "logit_bias": [],
+              "n_probs": 0,
+              "min_keep": 0,
+              "grammar": "",
+              "grammar_lazy": false,
+              "grammar_triggers": [],
+              "preserved_tokens": [],
+              "chat_format": "Content-only",
+              "reasoning_format": "deepseek",
+              "reasoning_in_content": false,
+              "generation_prompt": "",
+              "samplers": [
+                "penalties",
+                "dry",
+                "top_n_sigma",
+                "top_k",
+                "typ_p",
+                "top_p",
+                "min_p",
+                "xtc",
+                "temperature"
+              ],
+              "speculative.types": "none",
+              "timings_per_token": false,
+              "post_sampling_probs": false,
+              "backend_sampling": false,
+              "lora": []
+            },
+            "prompt": "<|im_start|>user\nWrite a Python binary_search(items, target) function. Return the index or -1. Output only the function.<|im_end|>\n<|im_start|>assistant\n",
+            "has_new_line": true,
+            "truncated": false,
+            "stop_type": "limit",
+            "stopping_word": "",
+            "tokens_cached": 161,
+            "timings": {
+              "cache_n": 0,
+              "prompt_n": 34,
+              "prompt_ms": 11.833,
+              "prompt_per_token_ms": 0.34802941176470586,
+              "prompt_per_second": 2873.3203752218374,
+              "predicted_n": 128,
+              "predicted_ms": 460.746,
+              "predicted_per_token_ms": 3.6279212598425197,
+              "predicted_per_second": 275.6399404444097
+            }
+          }
+        },
+        "peak_memory_bytes": 248020992,
+        "memory_samples": 10,
+        "memory_metric": "sampled_process_tree_rss",
+        "decode_tokens_per_second": 277.8103336762555,
+        "prefill_tokens_per_second": 2873.3203752218374,
+        "system_after": {
+          "chip": "Apple M2",
+          "architecture": "arm64",
+          "os": "macOS-26.7.3-arm64-arm-64bit",
+          "python": "3.12.9",
+          "physical_ram_bytes": 8589934592,
+          "available_ram_bytes": 1554956288,
+          "system_swap": {
+            "total": 3221225472,
+            "used": 2112421888,
+            "free": 1108803584,
+            "percent": 65.6,
+            "sin": 94912217088,
+            "sout": 2229731328
+          }
+        }
+      },
+      {
+        "ordinal": 3,
+        "warmup": false,
+        "started_at": 1794249562.230284,
+        "output": "```python\ndef binary_search(items, target):\n    \"\"\"\n    Returns the index or -1 of the target value in the list if it exists.\n\n    Args:\n        items (list): A list of elements to search.\n        target: The value to search for.\n\n    Returns:\n        int: The index or -1 if the target is not found, or the index of the target if it is found.\n    \"\"\"\n    low = 0\n    high = len(items) - 1\n\n    while low <= high:\n        mid = (low + high) // 2\n        if items[mid] == target:",
+        "ttft_seconds": 0.01266287500038743,
+        "wall_seconds": 0.4728683749999618,
+        "runtime": {
+          "eval_count": 128,
+          "eval_duration": 459933000.0,
+          "prompt_eval_count": 34,
+          "prompt_eval_duration": 11752000.0,
+          "native": {
+            "index": 0,
+            "content": "",
+            "tokens": [],
+            "id_slot": 0,
+            "stop": true,
+            "model": "/Users/yaswanth/Desktop/FeatherAI/.feather/artifacts/aa71ad60-008f-4c9b-a583-1b5eb951a001/model-Q4_K_M.gguf",
+            "tokens_predicted": 128,
+            "tokens_evaluated": 34,
+            "generation_settings": {
+              "seed": 42,
+              "temperature": 0.0,
+              "dynatemp_range": 0.0,
+              "dynatemp_exponent": 1.0,
+              "top_k": 40,
+              "top_p": 0.949999988079071,
+              "min_p": 0.05000000074505806,
+              "top_n_sigma": -1.0,
+              "xtc_probability": 0.0,
+              "xtc_threshold": 0.10000000149011612,
+              "typical_p": 1.0,
+              "repeat_last_n": 64,
+              "repeat_penalty": 1.0,
+              "presence_penalty": 0.0,
+              "frequency_penalty": 0.0,
+              "dry_multiplier": 0.0,
+              "dry_base": 1.75,
+              "dry_allowed_length": 2,
+              "dry_penalty_last_n": 64,
+              "dry_sequence_breakers": [
+                "\n",
+                ":",
+                "\"",
+                "*"
+              ],
+              "mirostat": 0,
+              "mirostat_tau": 5.0,
+              "mirostat_eta": 0.10000000149011612,
+              "adaptive_target": -1.0,
+              "adaptive_decay": 0.8999999761581421,
+              "stop": [
+                "<|im_end|>",
+                "<|im_start|>"
+              ],
+              "max_tokens": 128,
+              "n_predict": 128,
+              "n_keep": 0,
+              "n_discard": 0,
+              "ignore_eos": false,
+              "stream": true,
+              "logit_bias": [],
+              "n_probs": 0,
+              "min_keep": 0,
+              "grammar": "",
+              "grammar_lazy": false,
+              "grammar_triggers": [],
+              "preserved_tokens": [],
+              "chat_format": "Content-only",
+              "reasoning_format": "deepseek",
+              "reasoning_in_content": false,
+              "generation_prompt": "",
+              "samplers": [
+                "penalties",
+                "dry",
+                "top_n_sigma",
+                "top_k",
+                "typ_p",
+                "top_p",
+                "min_p",
+                "xtc",
+                "temperature"
+              ],
+              "speculative.types": "none",
+              "timings_per_token": false,
+              "post_sampling_probs": false,
+              "backend_sampling": false,
+              "lora": []
+            },
+            "prompt": "<|im_start|>user\nWrite a Python binary_search(items, target) function. Return the index or -1. Output only the function.<|im_end|>\n<|im_start|>assistant\n",
+            "has_new_line": true,
+            "truncated": false,
+            "stop_type": "limit",
+            "stopping_word": "",
+            "tokens_cached": 161,
+            "timings": {
+              "cache_n": 0,
+              "prompt_n": 34,
+              "prompt_ms": 11.752,
+              "prompt_per_token_ms": 0.3456470588235294,
+              "prompt_per_second": 2893.1245745405035,
+              "predicted_n": 128,
+              "predicted_ms": 459.933,
+              "predicted_per_token_ms": 3.62151968503937,
+              "predicted_per_second": 276.12717504506094
+            }
+          }
+        },
+        "peak_memory_bytes": 248037376,
+        "memory_samples": 10,
+        "memory_metric": "sampled_process_tree_rss",
+        "decode_tokens_per_second": 278.3014047698252,
+        "prefill_tokens_per_second": 2893.1245745405035,
+        "system_after": {
+          "chip": "Apple M2",
+          "architecture": "arm64",
+          "os": "macOS-26.7.3-arm64-arm-64bit",
+          "python": "3.12.9",
+          "physical_ram_bytes": 8589934592,
+          "available_ram_bytes": 1554956288,
+          "system_swap": {
+            "total": 3221225472,
+            "used": 2112421888,
+            "free": 1108803584,
+            "percent": 65.6,
+            "sin": 94912217088,
+            "sout": 2229731328
+          }
+        }
+      },
+      {
+        "ordinal": 4,
+        "warmup": false,
+        "started_at": 1794249562.71359,
+        "output": "```python\ndef binary_search(items, target):\n    \"\"\"\n    Returns the index or -1 of the target value in the list if it exists.\n\n    Args:\n        items (list): A list of elements to search.\n        target: The value to search for.\n\n    Returns:\n        int: The index or -1 if the target is not found, or the index of the target if it is found.\n    \"\"\"\n    low = 0\n    high = len(items) - 1\n\n    while low <= high:\n        mid = (low + high) // 2\n        if items[mid] == target:",
+        "ttft_seconds": 0.012656541000978905,
+        "wall_seconds": 0.4709244160003436,
+        "runtime": {
+          "eval_count": 128,
+          "eval_duration": 457982000.0,
+          "prompt_eval_count": 34,
+          "prompt_eval_duration": 11780000.0,
+          "native": {
+            "index": 0,
+            "content": "",
+            "tokens": [],
+            "id_slot": 0,
+            "stop": true,
+            "model": "/Users/yaswanth/Desktop/FeatherAI/.feather/artifacts/aa71ad60-008f-4c9b-a583-1b5eb951a001/model-Q4_K_M.gguf",
+            "tokens_predicted": 128,
+            "tokens_evaluated": 34,
+            "generation_settings": {
+              "seed": 42,
+              "temperature": 0.0,
+              "dynatemp_range": 0.0,
+              "dynatemp_exponent": 1.0,
+              "top_k": 40,
+              "top_p": 0.949999988079071,
+              "min_p": 0.05000000074505806,
+              "top_n_sigma": -1.0,
+              "xtc_probability": 0.0,
+              "xtc_threshold": 0.10000000149011612,
+              "typical_p": 1.0,
+              "repeat_last_n": 64,
+              "repeat_penalty": 1.0,
+              "presence_penalty": 0.0,
+              "frequency_penalty": 0.0,
+              "dry_multiplier": 0.0,
+              "dry_base": 1.75,
+              "dry_allowed_length": 2,
+              "dry_penalty_last_n": 64,
+              "dry_sequence_breakers": [
+                "\n",
+                ":",
+                "\"",
+                "*"
+              ],
+              "mirostat": 0,
+              "mirostat_tau": 5.0,
+              "mirostat_eta": 0.10000000149011612,
+              "adaptive_target": -1.0,
+              "adaptive_decay": 0.8999999761581421,
+              "stop": [
+                "<|im_end|>",
+                "<|im_start|>"
+              ],
+              "max_tokens": 128,
+              "n_predict": 128,
+              "n_keep": 0,
+              "n_discard": 0,
+              "ignore_eos": false,
+              "stream": true,
+              "logit_bias": [],
+              "n_probs": 0,
+              "min_keep": 0,
+              "grammar": "",
+              "grammar_lazy": false,
+              "grammar_triggers": [],
+              "preserved_tokens": [],
+              "chat_format": "Content-only",
+              "reasoning_format": "deepseek",
+              "reasoning_in_content": false,
+              "generation_prompt": "",
+              "samplers": [
+                "penalties",
+                "dry",
+                "top_n_sigma",
+                "top_k",
+                "typ_p",
+                "top_p",
+                "min_p",
+                "xtc",
+                "temperature"
+              ],
+              "speculative.types": "none",
+              "timings_per_token": false,
+              "post_sampling_probs": false,
+              "backend_sampling": false,
+              "lora": []
+            },
+            "prompt": "<|im_start|>user\nWrite a Python binary_search(items, target) function. Return the index or -1. Output only the function.<|im_end|>\n<|im_start|>assistant\n",
+            "has_new_line": true,
+            "truncated": false,
+            "stop_type": "limit",
+            "stopping_word": "",
+            "tokens_cached": 161,
+            "timings": {
+              "cache_n": 0,
+              "prompt_n": 34,
+              "prompt_ms": 11.78,
+              "prompt_per_token_ms": 0.3464705882352941,
+              "prompt_per_second": 2886.247877758914,
+              "predicted_n": 128,
+              "predicted_ms": 457.982,
+              "predicted_per_token_ms": 3.6061574803149608,
+              "predicted_per_second": 277.30347480905357
+            }
+          }
+        },
+        "peak_memory_bytes": 248070144,
+        "memory_samples": 9,
+        "memory_metric": "sampled_process_tree_rss",
+        "decode_tokens_per_second": 279.486966736684,
+        "prefill_tokens_per_second": 2886.247877758913,
+        "system_after": {
+          "chip": "Apple M2",
+          "architecture": "arm64",
+          "os": "macOS-26.7.3-arm64-arm-64bit",
+          "python": "3.12.9",
+          "physical_ram_bytes": 8589934592,
+          "available_ram_bytes": 1554956288,
+          "system_swap": {
+            "total": 3221225472,
+            "used": 2112421888,
+            "free": 1108803584,
+            "percent": 65.6,
+            "sin": 94912217088,
+            "sout": 2229731328
+          }
+        }
+      },
+      {
+        "ordinal": 5,
+        "warmup": false,
+        "started_at": 1794249563.194515,
+        "output": "```python\ndef binary_search(items, target):\n    \"\"\"\n    Returns the index or -1 of the target value in the list if it exists.\n\n    Args:\n        items (list): A list of elements to search.\n        target: The value to search for.\n\n    Returns:\n        int: The index or -1 if the target is not found, or the index of the target if it is found.\n    \"\"\"\n    low = 0\n    high = len(items) - 1\n\n    while low <= high:\n        mid = (low + high) // 2\n        if items[mid] == target:",
+        "ttft_seconds": 0.012692874999629566,
+        "wall_seconds": 0.4689367499995569,
+        "runtime": {
+          "eval_count": 128,
+          "eval_duration": 455932000.0,
+          "prompt_eval_count": 34,
+          "prompt_eval_duration": 11812000.0,
+          "native": {
+            "index": 0,
+            "content": "",
+            "tokens": [],
+            "id_slot": 0,
+            "stop": true,
+            "model": "/Users/yaswanth/Desktop/FeatherAI/.feather/artifacts/aa71ad60-008f-4c9b-a583-1b5eb951a001/model-Q4_K_M.gguf",
+            "tokens_predicted": 128,
+            "tokens_evaluated": 34,
+            "generation_settings": {
+              "seed": 42,
+              "temperature": 0.0,
+              "dynatemp_range": 0.0,
+              "dynatemp_exponent": 1.0,
+              "top_k": 40,
+              "top_p": 0.949999988079071,
+              "min_p": 0.05000000074505806,
+              "top_n_sigma": -1.0,
+              "xtc_probability": 0.0,
+              "xtc_threshold": 0.10000000149011612,
+              "typical_p": 1.0,
+              "repeat_last_n": 64,
+              "repeat_penalty": 1.0,
+              "presence_penalty": 0.0,
+              "frequency_penalty": 0.0,
+              "dry_multiplier": 0.0,
+              "dry_base": 1.75,
+              "dry_allowed_length": 2,
+              "dry_penalty_last_n": 64,
+              "dry_sequence_breakers": [
+                "\n",
+                ":",
+                "\"",
+                "*"
+              ],
+              "mirostat": 0,
+              "mirostat_tau": 5.0,
+              "mirostat_eta": 0.10000000149011612,
+              "adaptive_target": -1.0,
+              "adaptive_decay": 0.8999999761581421,
+              "stop": [
+                "<|im_end|>",
+                "<|im_start|>"
+              ],
+              "max_tokens": 128,
+              "n_predict": 128,
+              "n_keep": 0,
+              "n_discard": 0,
+              "ignore_eos": false,
+              "stream": true,
+              "logit_bias": [],
+              "n_probs": 0,
+              "min_keep": 0,
+              "grammar": "",
+              "grammar_lazy": false,
+              "grammar_triggers": [],
+              "preserved_tokens": [],
+              "chat_format": "Content-only",
+              "reasoning_format": "deepseek",
+              "reasoning_in_content": false,
+              "generation_prompt": "",
+              "samplers": [
+                "penalties",
+                "dry",
+                "top_n_sigma",
+                "top_k",
+                "typ_p",
+                "top_p",
+                "min_p",
+                "xtc",
+                "temperature"
+              ],
+              "speculative.types": "none",
+              "timings_per_token": false,
+              "post_sampling_probs": false,
+              "backend_sampling": false,
+              "lora": []
+            },
+            "prompt": "<|im_start|>user\nWrite a Python binary_search(items, target) function. Return the index or -1. Output only the function.<|im_end|>\n<|im_start|>assistant\n",
+            "has_new_line": true,
+            "truncated": false,
+            "stop_type": "limit",
+            "stopping_word": "",
+            "tokens_cached": 161,
+            "timings": {
+              "cache_n": 0,
+              "prompt_n": 34,
+              "prompt_ms": 11.812,
+              "prompt_per_token_ms": 0.3474117647058823,
+              "prompt_per_second": 2878.428716559431,
+              "predicted_n": 128,
+              "predicted_ms": 455.932,
+              "predicted_per_token_ms": 3.590015748031496,
+              "predicted_per_second": 278.55031013396734
+            }
+          }
+        },
+        "peak_memory_bytes": 248086528,
+        "memory_samples": 10,
+        "memory_metric": "sampled_process_tree_rss",
+        "decode_tokens_per_second": 280.74361966258124,
+        "prefill_tokens_per_second": 2878.428716559431,
+        "system_after": {
+          "chip": "Apple M2",
+          "architecture": "arm64",
+          "os": "macOS-26.7.3-arm64-arm-64bit",
+          "python": "3.12.9",
+          "physical_ram_bytes": 8589934592,
+          "available_ram_bytes": 1560952832,
+          "system_swap": {
+            "total": 3221225472,
+            "used": 2112421888,
+            "free": 1108803584,
+            "percent": 65.6,
+            "sin": 94920982528,
+            "sout": 2229731328
+          }
+        }
+      }
+    ],
+    "summary": {
+      "successful_trials": 5,
+      "failed_trials": 0,
+      "wall_seconds": {
+        "median": 0.4709244160003436,
+        "p95": 0.4735631078001461,
+        "min": 0.4689367499995569,
+        "max": 0.47373679100019217
+      },
+      "ttft_seconds": {
+        "median": 0.012692874999629566,
+        "p95": 0.013030333200731548,
+        "min": 0.012656541000978905,
+        "max": 0.0131085000011808
+      },
+      "decode_tokens_per_second": {
+        "median": 279.486966736684,
+        "p95": 280.6159561474657,
+        "min": 277.8103336762555,
+        "max": 280.74361966258124
+      },
+      "prefill_tokens_per_second": {
+        "median": 2883.555254007294,
+        "p95": 2891.7492351841856,
+        "min": 2873.3203752218374,
+        "max": 2893.1245745405035
+      }
+    }
+  },
+  "coding_status": "unsupported: Docker daemon unavailable"
+}

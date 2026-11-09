@@ -1,0 +1,10 @@
+{
+  "kind": "real-run",
+  "command": "codex exec --json --sandbox read-only --output-schema <review-schema>",
+  "cli_version": "0.142.3",
+  "exit_code": 1,
+  "status": "blocked",
+  "error_code": "model_not_found",
+  "error": "The 'gpt-6.1-sol' model is not supported when using Codex with a ChatGPT account.",
+  "action": "No credentials, global configuration, permissions or paid services changed. Interactive independent agent reviews completed separately."
+}

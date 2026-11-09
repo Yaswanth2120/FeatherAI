@@ -1,0 +1,25 @@
+{
+  "kind": "real-run",
+  "model": "SmolLM2-135M-Instruct",
+  "source_repository": {
+    "repository": "bartowski/SmolLM2-135M-Instruct-GGUF",
+    "revision": "09816acd5d99df7be770d85ea30822623dab342c",
+    "url": "https://huggingface.co/bartowski/SmolLM2-135M-Instruct-GGUF/resolve/09816acd5d99df7be770d85ea30822623dab342c/SmolLM2-135M-Instruct-f16.gguf",
+    "reason": "Qwen 0.5B RAM admission failed; smaller fallback uses higher-precision source only"
+  },
+  "source_precision": "F16",
+  "created_by_feather": true,
+  "source": {
+    "path": "models/SmolLM2-135M-Instruct-f16.gguf",
+    "sha256": "f535f83ec568d040f88ddc04a199fa6da90923bbb41d4dcaed02caa924d6ef57"
+  },
+  "output": {
+    "path": ".feather/case-study/Q4_K_M/model-Q4_K_M.gguf",
+    "sha256": "76ab8f094853fd2e48a76620f031f59b3e127970ba84489323a47a877e632b3e"
+  },
+  "generation_validated": true,
+  "baseline_output": "To find the sum of 2 + 2, we need to add the two numbers together. The numbers are 2 and 2, so we add",
+  "quantized_output": "To solve this problem, we need to follow a series of logical steps. First, let's add the two numbers together: 2 + 2 = ",
+  "toolchain_commit": "9d340ec341e079d2c28afd50871afce358cdbf48",
+  "validation_scope": "Loads and generates nonempty text; arithmetic correctness is evaluated separately."
+}

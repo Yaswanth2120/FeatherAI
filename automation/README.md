@@ -49,3 +49,7 @@ uv run python automation/orchestrator.py --block-task task04 --reason 'Docker da
 ```
 
 The evidence file must already be committed/tracked and the working tree clean. The state records its SHA-256, current commit and reason as `origin: externally-observed`, preserving the attempt count. Completed tasks cannot be downgraded through this operation. Pending independent tasks remain eligible according to their dependencies. Use the same command for a blocked dependent integration/report task only when its reason and committed evidence accurately identify the unmet requirement.
+
+## Observed account blocker
+
+A real bounded read-only CLI smoke invocation on2026-11-09 exited1: the account rejected its configured `gpt-6.1-sol` model with `model_not_found` ("not supported when using Codex with a ChatGPT account"). See `experiments/automation-cli-smoke.json`. Runner unit tests and dry-run pass, but unattended model execution is not verified successful for this account. Configure a model supported by the selected CLI account before live execution; no automatic model substitution, credential change or paid fallback is performed. Interactive multi-agent reviews and validated completion adoption are separate from live CLI execution.

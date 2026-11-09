@@ -1,0 +1,34 @@
+{
+  "observed_date": "2026-11-09",
+  "qwen_0_5b": {
+    "status": "blocked",
+    "source_repository": "Qwen/Qwen2.5-Coder-0.5B-Instruct-GGUF",
+    "source_revision": "ebb2015119c907b064c512bf053e945850b5875f",
+    "source_size_bytes": 1266425728,
+    "memory_admission_estimate_bytes": 2801286912,
+    "observed_available_bytes": 1807138816,
+    "action": "Used smaller SmolLM2-135M F16 source. Did not override admission guard."
+  },
+  "coding_evaluation": {
+    "status": "blocked",
+    "command": [
+      "docker",
+      "info",
+      "--format",
+      "{{.ServerVersion}}"
+    ],
+    "exit_code": 1,
+    "error": "Cannot connect to the Docker daemon at unix:///Users/yaswanth/.docker/run/docker.sock. Is the docker daemon running?",
+    "action": "Marked unsupported; no host execution fallback."
+  },
+  "autonomous_cli_execution": {
+    "kind": "real-run",
+    "command": "codex exec --json --sandbox read-only --output-schema <review-schema>",
+    "cli_version": "0.142.3",
+    "exit_code": 1,
+    "status": "blocked",
+    "error_code": "model_not_found",
+    "error": "The 'gpt-6.1-sol' model is not supported when using Codex with a ChatGPT account.",
+    "action": "No credentials, global configuration, permissions or paid services changed. Interactive independent agent reviews completed separately."
+  }
+}
