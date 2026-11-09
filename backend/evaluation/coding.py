@@ -1,125 +1,99 @@
-"""Docker isolation with bounded output; no generated code executes in the host interpreter."""
-import json
-import os
+"""Unit-test scoring of generated Python inside an ExecutionBackend; never in the host interpreter."""
 import re
-import selectors
 import shutil
 import subprocess
-import tempfile
-import time
-import uuid
 
-IMAGE = 'python:3.12-alpine'
-MAX_OUTPUT = 65536
-MAX_CODE = 16384
+from backend.evaluation.sandbox import (ExecutionBackend, Limits, _bounded_run, discover, from_legacy)  # noqa: F401
 
+MAX_CODE = Limits.max_code_bytes
+FENCE = re.compile(r"```[ \t]*([A-Za-z0-9_+-]*)[^\n]*\n(.*?)(?:```|\Z)", re.S)
 
-def availability(image: str = IMAGE) -> dict:
-    binary = shutil.which('docker')
-    if binary is None:
-        return {'status': 'unsupported', 'reason': 'Docker CLI is not installed'}
-    try:
-        result = subprocess.run([binary, 'image', 'inspect', '--format', '{{.Id}}', image], capture_output=True, text=True, timeout=5)
-    except (OSError, subprocess.TimeoutExpired) as error:
-        return {'status': 'unsupported', 'reason': f'Docker unavailable: {type(error).__name__}'}
-    if result.returncode:
-        return {'status': 'unsupported', 'reason': f'Docker daemon or local image {image} unavailable; no automatic pull'}
-    return {'status': 'available', 'binary': binary, 'image_id': result.stdout.strip()}
+# Outcome categories for one problem.
+OUTCOMES = ("passed", "partial_pass", "wrong_answer", "compile_error", "missing_function", "runtime_error",
+            "timeout", "memory_limit", "output_limit", "code_too_large", "no_code")
 
 
-def _bounded_run(command: list[str], payload: str, timeout: float) -> tuple[int, bytes]:
-    with tempfile.TemporaryFile() as source:
-        source.write(payload.encode())
-        source.seek(0)
-        process = subprocess.Popen(command, stdin=source, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-        output = bytearray()
-        deadline = time.monotonic() + timeout
-        try:
-            with selectors.DefaultSelector() as selector:
-                selector.register(process.stdout, selectors.EVENT_READ)
-                while selector.get_map():
-                    remaining = deadline - time.monotonic()
-                    if remaining <= 0:
-                        raise subprocess.TimeoutExpired(command, timeout)
-                    for key, _ in selector.select(min(remaining, .1)):
-                        chunk = os.read(key.fileobj.fileno(), 4096)
-                        if not chunk:
-                            selector.unregister(key.fileobj)
-                            break
-                        output.extend(chunk)
-                        if len(output) > MAX_OUTPUT:
-                            raise ValueError('Generated program exceeded output limit')
-            return process.wait(timeout=max(.01, deadline - time.monotonic())), bytes(output)
-        finally:
-            if process.poll() is None:
-                process.kill()
-            process.wait(timeout=5)
-            process.stdout.close()
+def availability() -> dict:
+    status = discover().status()
+    return status if status["status"] == "available" else {**status, "status": "blocked"}
 
 
-def score_code(code: str, task: dict, timeout: float = 5, sandbox: dict | None = None) -> dict:
-    sandbox = sandbox or availability()
-    if sandbox['status'] != 'available':
-        return sandbox.copy()
-    if len(code.encode()) > MAX_CODE:
-        return {'status': 'scored', 'passed': False, 'reason': 'Generated code exceeds size limit'}
-    if code.strip().startswith('```'):
-        parts = code.strip().splitlines()
-        if parts[-1].strip() == '```':
-            code = '\n'.join(parts[1:-1])
-    name = 'feather-eval-' + uuid.uuid4().hex
+def extract_code(text: str) -> str:
+    """Prefer the first ```python fenced block, then any fenced block, then the raw text."""
+    blocks = FENCE.findall(text or "")
+    for language, body in blocks:
+        if language.lower() in {"python", "py", "python3"}:
+            return body.strip("\n")
+    if blocks:
+        return blocks[0][1].strip("\n")
+    return (text or "").strip()
+
+
+def _equal(a, b) -> bool:
+    if type(a) is not type(b):
+        return False
+    if isinstance(a, list):
+        return len(a) == len(b) and all(_equal(x, y) for x, y in zip(a, b))
+    if isinstance(a, dict):
+        return a.keys() == b.keys() and all(_equal(a[k], b[k]) for k in a)
+    return a == b
+
+
+def score_code(code: str, task: dict, timeout: float | None = None, sandbox=None, limits: Limits | None = None) -> dict:
+    """Score one problem. ``task['cases']`` is a list of (arguments, expected) pairs kept on the host."""
+    backend = from_legacy(sandbox)
+    status = backend.status()
+    if status["status"] != "available":
+        return {"status": "blocked", "reason": status.get("reason", "Sandbox unavailable"), "backend": status.get("backend")}
+    limits = limits or Limits(**({"wall_seconds": max(timeout, 1.0)} if timeout else {}))
+    program = extract_code(code)
+    base = {"status": "scored", "passed": False, "test_cases": len(task["cases"]), "cases_passed": 0,
+            "sandbox_image": status.get("image_id"), "sandbox_backend": backend.name}
+    if not program:
+        return {**base, "outcome": "no_code", "reason": "Response contained no code"}
+    if len(program.encode()) > limits.max_code_bytes:
+        return {**base, "outcome": "code_too_large", "reason": "Generated code exceeds size limit"}
     # Expected answers remain on the host. The container receives code and test inputs only.
-    payload = {'code': code, 'function': task['function'], 'inputs': [case[0] for case in task['cases']]}
-    harness = '''import contextlib, io, json, os, resource, sys
-resource.setrlimit(resource.RLIMIT_CPU, (2, 2))
-resource.setrlimit(resource.RLIMIT_FSIZE, (65536, 65536))
-resource.setrlimit(resource.RLIMIT_NOFILE, (32, 32))
-payload = json.loads(sys.stdin.read())
-namespace = {}
-with open(os.devnull, 'w') as sink, contextlib.redirect_stdout(sink), contextlib.redirect_stderr(sink):
-    exec(compile(payload['code'], '<generated>', 'exec'), namespace)
-    fn = namespace[payload['function']]
-    results = [fn(*args) for args in payload['inputs']]
-encoded = json.dumps(results)
-if len(encoded) > 65536: raise ValueError('result too large')
-sys.stdout.write(encoded)
-'''
-    command = [sandbox['binary'], 'run', '--rm', '--pull=never', '--name', name, '-i',
-               '--network', 'none', '--read-only', '--cap-drop', 'ALL', '--security-opt', 'no-new-privileges',
-               '--pids-limit', '32', '--memory', '128m', '--memory-swap', '128m', '--cpus', '0.5',
-               '--user', '65534:65534', '--log-driver', 'none', '--tmpfs', '/tmp:rw,noexec,nosuid,size=8m',
-               *(['--label', 'feather.job=' + _job_identifier(os.environ['FEATHER_JOB_ID'])] if os.environ.get('FEATHER_JOB_ID') else []),
-               sandbox['image_id'], 'python', '-I', '-c', harness]
-    try:
-        status, output = _bounded_run(command, json.dumps(payload), timeout)
-        if status in {125, 126, 127}:
-            return {'status': 'failed', 'reason': f'Docker infrastructure failed with code {status}'}
-        if status:
-            return {'status': 'scored', 'passed': False, 'reason': f'Container exited with code {status}'}
-        actual = json.loads(output)
-        expected = [case[1] for case in task['cases']]
-        def equal(a, b):
-            if type(a) is not type(b):
-                return False
-            if isinstance(a, list):
-                return len(a) == len(b) and all(equal(x, y) for x, y in zip(a, b))
-            return a == b
-        matches = [equal(a, b) for a, b in zip(actual, expected)] if isinstance(actual, list) else []
-        return {'status': 'scored', 'passed': isinstance(actual, list) and len(actual) == len(expected) and all(matches), 'test_cases': len(expected),
-                'cases_passed': sum(matches),
-                'sandbox_image': sandbox['image_id']}
-    except subprocess.TimeoutExpired:
-        return {'status': 'scored', 'passed': False, 'reason': 'Execution timeout'}
-    except (ValueError, OSError) as error:
-        return {'status': 'scored', 'passed': False, 'reason': str(error)[:500]}
-    finally:
-        # A killed Docker client does not necessarily stop its container.
-        try:
-            cleanup = subprocess.run([sandbox['binary'], 'rm', '-f', name], capture_output=True, text=True, timeout=5)
-            if cleanup.returncode and 'No such container' not in cleanup.stderr:
-                raise RuntimeError(f'Container cleanup failed for {name}; inspect Docker before continuing')
-        except (OSError, subprocess.TimeoutExpired) as error:
-            raise RuntimeError(f'Container cleanup not confirmed for {name}: {type(error).__name__}') from error
+    record = backend.run_tests(program, task["function"], [case[0] for case in task["cases"]], limits)
+    category = record.get("category")
+    if category == "blocked":
+        return {"status": "blocked", "reason": record.get("reason")}
+    if category == "infrastructure_error":
+        return {"status": "failed", "reason": record.get("reason"), "execution": record}
+    if category != "executed":
+        return {**base, "outcome": category, "reason": record.get("reason"), "execution": _slim(record)}
+    harness = record["harness"]
+    if harness.get("phase") in {"compile", "load"}:
+        error = harness.get("error")
+        outcome = ("compile_error" if harness["phase"] == "compile" else "missing_function" if error == "MissingFunction"
+                   else "timeout" if error == "Timeout" else "memory_limit" if error == "MemoryError"
+                   else "output_limit" if error == "OutputLimit" else "runtime_error")
+        return {**base, "outcome": outcome, "reason": f"{error}: {harness.get('message', '')}".strip(": "),
+                "execution": _slim(record)}
+    if harness.get("error") == "OutputLimit":
+        return {**base, "outcome": "output_limit", "reason": "Result exceeded output limit", "execution": _slim(record)}
+    cases = harness.get("cases", [])
+    results = []
+    for index, (case, observed) in enumerate(zip(task["cases"], cases)):
+        if observed.get("ok"):
+            results.append({"index": index, "passed": _equal(observed["value"], case[1])})
+        else:
+            results.append({"index": index, "passed": False, "error": observed.get("error"),
+                            "message": observed.get("message", "")[:200]})
+    passed = sum(row["passed"] for row in results)
+    complete = len(cases) == len(task["cases"])
+    errors = [row["error"] for row in results if row.get("error")]
+    outcome = ("passed" if complete and passed == len(task["cases"]) else
+               "partial_pass" if passed else
+               "timeout" if errors and all(e == "Timeout" for e in errors) else
+               "memory_limit" if errors and all(e == "MemoryError" for e in errors) else
+               "runtime_error" if errors else "wrong_answer")
+    return {**base, "passed": outcome == "passed", "cases_passed": passed, "outcome": outcome,
+            "case_results": results, "execution": _slim(record)}
+
+
+def _slim(record: dict) -> dict:
+    return {key: record.get(key) for key in ("container", "exit_code", "seconds", "category", "image_id")}
 
 
 def _job_identifier(job_id: str) -> str:

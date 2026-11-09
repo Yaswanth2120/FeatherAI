@@ -1,0 +1,1983 @@
+{
+ "items": [
+  {
+   "cases": [
+    [
+     [
+      0
+     ],
+     0
+    ],
+    [
+     [
+      7
+     ],
+     7
+    ],
+    [
+     [
+      1234
+     ],
+     10
+    ],
+    [
+     [
+      9999
+     ],
+     36
+    ],
+    [
+     [
+      10203
+     ],
+     6
+    ]
+   ],
+   "function": "add_digits",
+   "id": "add_digits",
+   "prompt": "Write a Python function `add_digits(n)` that returns the sum of the decimal digits of the non-negative integer n. Use only the Python standard library. Respond with the complete function in a single Python code block and no explanation.",
+   "signature": "add_digits(n)",
+   "split": "heldout"
+  },
+  {
+   "cases": [
+    [
+     [
+      0
+     ],
+     false
+    ],
+    [
+     [
+      1
+     ],
+     false
+    ],
+    [
+     [
+      2
+     ],
+     true
+    ],
+    [
+     [
+      3
+     ],
+     true
+    ],
+    [
+     [
+      4
+     ],
+     false
+    ],
+    [
+     [
+      17
+     ],
+     true
+    ],
+    [
+     [
+      21
+     ],
+     false
+    ],
+    [
+     [
+      97
+     ],
+     true
+    ],
+    [
+     [
+      100
+     ],
+     false
+    ]
+   ],
+   "function": "is_prime",
+   "id": "is_prime",
+   "prompt": "Write a Python function `is_prime(n)` that returns True if the integer n is a prime number and False otherwise (numbers below 2 are not prime). Use only the Python standard library. Respond with the complete function in a single Python code block and no explanation.",
+   "signature": "is_prime(n)",
+   "split": "heldout"
+  },
+  {
+   "cases": [
+    [
+     [
+      "hello world"
+     ],
+     "world hello"
+    ],
+    [
+     [
+      "a"
+     ],
+     "a"
+    ],
+    [
+     [
+      ""
+     ],
+     ""
+    ],
+    [
+     [
+      "one two three"
+     ],
+     "three two one"
+    ],
+    [
+     [
+      "keep  it"
+     ],
+     "it  keep"
+    ]
+   ],
+   "function": "reverse_words",
+   "id": "reverse_words",
+   "prompt": "Write a Python function `reverse_words(s)` that returns the words of s (separated by single spaces) in reverse order, joined by single spaces. Use only the Python standard library. Respond with the complete function in a single Python code block and no explanation.",
+   "signature": "reverse_words(s)",
+   "split": "screening"
+  },
+  {
+   "cases": [
+    [
+     [
+      ""
+     ],
+     0
+    ],
+    [
+     [
+      "xyz"
+     ],
+     0
+    ],
+    [
+     [
+      "Education"
+     ],
+     5
+    ],
+    [
+     [
+      "AEIOU aeiou"
+     ],
+     10
+    ],
+    [
+     [
+      "rhythm"
+     ],
+     0
+    ]
+   ],
+   "function": "count_vowels",
+   "id": "count_vowels",
+   "prompt": "Write a Python function `count_vowels(s)` that returns how many characters of s are vowels (a, e, i, o, u), case-insensitive. Use only the Python standard library. Respond with the complete function in a single Python code block and no explanation.",
+   "signature": "count_vowels(s)",
+   "split": "heldout"
+  },
+  {
+   "cases": [
+    [
+     [
+      0
+     ],
+     []
+    ],
+    [
+     [
+      1
+     ],
+     [
+      "1"
+     ]
+    ],
+    [
+     [
+      5
+     ],
+     [
+      "1",
+      "2",
+      "Fizz",
+      "4",
+      "Buzz"
+     ]
+    ],
+    [
+     [
+      15
+     ],
+     [
+      "1",
+      "2",
+      "Fizz",
+      "4",
+      "Buzz",
+      "Fizz",
+      "7",
+      "8",
+      "Fizz",
+      "Buzz",
+      "11",
+      "Fizz",
+      "13",
+      "14",
+      "FizzBuzz"
+     ]
+    ]
+   ],
+   "function": "fizzbuzz",
+   "id": "fizzbuzz",
+   "prompt": "Write a Python function `fizzbuzz(n)` that returns a list of strings for 1..n where multiples of 3 are 'Fizz', multiples of 5 are 'Buzz', multiples of both are 'FizzBuzz' and other numbers are their decimal string. Use only the Python standard library. Respond with the complete function in a single Python code block and no explanation.",
+   "signature": "fizzbuzz(n)",
+   "split": "screening"
+  },
+  {
+   "cases": [
+    [
+     [
+      0
+     ],
+     1
+    ],
+    [
+     [
+      1
+     ],
+     1
+    ],
+    [
+     [
+      5
+     ],
+     120
+    ],
+    [
+     [
+      10
+     ],
+     3628800
+    ],
+    [
+     [
+      20
+     ],
+     2432902008176640000
+    ]
+   ],
+   "function": "factorial",
+   "id": "factorial",
+   "prompt": "Write a Python function `factorial(n)` that returns n! for a non-negative integer n (0! is 1). Use only the Python standard library. Respond with the complete function in a single Python code block and no explanation.",
+   "signature": "factorial(n)",
+   "split": "heldout"
+  },
+  {
+   "cases": [
+    [
+     [
+      0
+     ],
+     0
+    ],
+    [
+     [
+      1
+     ],
+     1
+    ],
+    [
+     [
+      2
+     ],
+     1
+    ],
+    [
+     [
+      10
+     ],
+     55
+    ],
+    [
+     [
+      30
+     ],
+     832040
+    ],
+    [
+     [
+      50
+     ],
+     12586269025
+    ]
+   ],
+   "function": "fibonacci",
+   "id": "fibonacci",
+   "prompt": "Write a Python function `fibonacci(n)` that returns the n-th Fibonacci number where fibonacci(0) == 0 and fibonacci(1) == 1. Use only the Python standard library. Respond with the complete function in a single Python code block and no explanation.",
+   "signature": "fibonacci(n)",
+   "split": "heldout"
+  },
+  {
+   "cases": [
+    [
+     [
+      0,
+      0
+     ],
+     0
+    ],
+    [
+     [
+      0,
+      5
+     ],
+     5
+    ],
+    [
+     [
+      12,
+      18
+     ],
+     6
+    ],
+    [
+     [
+      17,
+      5
+     ],
+     1
+    ],
+    [
+     [
+      100,
+      75
+     ],
+     25
+    ],
+    [
+     [
+      270,
+      192
+     ],
+     6
+    ]
+   ],
+   "function": "gcd",
+   "id": "gcd",
+   "prompt": "Write a Python function `gcd(a, b)` that returns the greatest common divisor of non-negative integers a and b, with gcd(0, 0) == 0. Use only the Python standard library. Respond with the complete function in a single Python code block and no explanation.",
+   "signature": "gcd(a, b)",
+   "split": "screening"
+  },
+  {
+   "cases": [
+    [
+     [
+      []
+     ],
+     []
+    ],
+    [
+     [
+      [
+       1,
+       2,
+       3
+      ]
+     ],
+     [
+      1,
+      2,
+      3
+     ]
+    ],
+    [
+     [
+      [
+       1,
+       [
+        2,
+        [
+         3,
+         [
+          4
+         ]
+        ]
+       ],
+       5
+      ]
+     ],
+     [
+      1,
+      2,
+      3,
+      4,
+      5
+     ]
+    ],
+    [
+     [
+      [
+       [
+        []
+       ],
+       [
+        6
+       ]
+      ]
+     ],
+     [
+      6
+     ]
+    ]
+   ],
+   "function": "flatten",
+   "id": "flatten",
+   "prompt": "Write a Python function `flatten(nested)` that returns a flat list of all integers in an arbitrarily nested list, in left-to-right order. Use only the Python standard library. Respond with the complete function in a single Python code block and no explanation.",
+   "signature": "flatten(nested)",
+   "split": "heldout"
+  },
+  {
+   "cases": [
+    [
+     [
+      [
+       1
+      ]
+     ],
+     null
+    ],
+    [
+     [
+      [
+       3,
+       3
+      ]
+     ],
+     null
+    ],
+    [
+     [
+      [
+       1,
+       2
+      ]
+     ],
+     1
+    ],
+    [
+     [
+      [
+       5,
+       1,
+       5,
+       3
+      ]
+     ],
+     3
+    ],
+    [
+     [
+      [
+       -2,
+       -7,
+       -3
+      ]
+     ],
+     -3
+    ]
+   ],
+   "function": "second_largest",
+   "id": "second_largest",
+   "prompt": "Write a Python function `second_largest(items)` that returns the second largest distinct value in a list of integers, or None if there are fewer than two distinct values. Use only the Python standard library. Respond with the complete function in a single Python code block and no explanation.",
+   "signature": "second_largest(items)",
+   "split": "heldout"
+  },
+  {
+   "cases": [
+    [
+     [
+      "listen",
+      "silent"
+     ],
+     true
+    ],
+    [
+     [
+      "abc",
+      "abd"
+     ],
+     false
+    ],
+    [
+     [
+      "",
+      ""
+     ],
+     true
+    ],
+    [
+     [
+      "aab",
+      "abb"
+     ],
+     false
+    ],
+    [
+     [
+      "Tea",
+      "eat"
+     ],
+     false
+    ]
+   ],
+   "function": "is_anagram",
+   "id": "is_anagram",
+   "prompt": "Write a Python function `is_anagram(a, b)` that returns True if string b is a rearrangement of exactly the characters of string a (case-sensitive). Use only the Python standard library. Respond with the complete function in a single Python code block and no explanation.",
+   "signature": "is_anagram(a, b)",
+   "split": "heldout"
+  },
+  {
+   "cases": [
+    [
+     [
+      ""
+     ],
+     ""
+    ],
+    [
+     [
+      "a"
+     ],
+     "a1"
+    ],
+    [
+     [
+      "aaabcc"
+     ],
+     "a3b1c2"
+    ],
+    [
+     [
+      "abcd"
+     ],
+     "a1b1c1d1"
+    ],
+    [
+     [
+      "zzzzzzzzzzzz"
+     ],
+     "z12"
+    ]
+   ],
+   "function": "run_length_encode",
+   "id": "run_length_encode",
+   "prompt": "Write a Python function `run_length_encode(s)` that returns a run-length encoding where each run of a repeated character becomes the character followed by the run length, e.g. 'aab' becomes 'a2b1'. Use only the Python standard library. Respond with the complete function in a single Python code block and no explanation.",
+   "signature": "run_length_encode(s)",
+   "split": "heldout"
+  },
+  {
+   "cases": [
+    [
+     [
+      [],
+      3
+     ],
+     []
+    ],
+    [
+     [
+      [
+       1,
+       2,
+       3,
+       4,
+       5
+      ],
+      2
+     ],
+     [
+      [
+       1,
+       2
+      ],
+      [
+       3,
+       4
+      ],
+      [
+       5
+      ]
+     ]
+    ],
+    [
+     [
+      [
+       1,
+       2,
+       3
+      ],
+      3
+     ],
+     [
+      [
+       1,
+       2,
+       3
+      ]
+     ]
+    ],
+    [
+     [
+      [
+       1,
+       2
+      ],
+      5
+     ],
+     [
+      [
+       1,
+       2
+      ]
+     ]
+    ]
+   ],
+   "function": "chunk",
+   "id": "chunk",
+   "prompt": "Write a Python function `chunk(items, size)` that splits the list items into consecutive sublists of length size (the last one may be shorter). Use only the Python standard library. Respond with the complete function in a single Python code block and no explanation.",
+   "signature": "chunk(items, size)",
+   "split": "heldout"
+  },
+  {
+   "cases": [
+    [
+     [
+      [],
+      4
+     ],
+     []
+    ],
+    [
+     [
+      [
+       1,
+       2,
+       3,
+       4,
+       5
+      ],
+      2
+     ],
+     [
+      3,
+      4,
+      5,
+      1,
+      2
+     ]
+    ],
+    [
+     [
+      [
+       1,
+       2,
+       3
+      ],
+      3
+     ],
+     [
+      1,
+      2,
+      3
+     ]
+    ],
+    [
+     [
+      [
+       1,
+       2,
+       3
+      ],
+      7
+     ],
+     [
+      2,
+      3,
+      1
+     ]
+    ]
+   ],
+   "function": "rotate_left",
+   "id": "rotate_left",
+   "prompt": "Write a Python function `rotate_left(items, k)` that returns a new list rotated left by k positions (k may exceed the length; an empty list stays empty). Use only the Python standard library. Respond with the complete function in a single Python code block and no explanation.",
+   "signature": "rotate_left(items, k)",
+   "split": "heldout"
+  },
+  {
+   "cases": [
+    [
+     [
+      []
+     ],
+     []
+    ],
+    [
+     [
+      [
+       [
+        1,
+        2,
+        3
+       ]
+      ]
+     ],
+     [
+      [
+       1
+      ],
+      [
+       2
+      ],
+      [
+       3
+      ]
+     ]
+    ],
+    [
+     [
+      [
+       [
+        1,
+        2
+       ],
+       [
+        3,
+        4
+       ],
+       [
+        5,
+        6
+       ]
+      ]
+     ],
+     [
+      [
+       1,
+       3,
+       5
+      ],
+      [
+       2,
+       4,
+       6
+      ]
+     ]
+    ]
+   ],
+   "function": "transpose",
+   "id": "transpose",
+   "prompt": "Write a Python function `transpose(matrix)` that returns the transpose of a rectangular matrix given as a list of row lists (an empty matrix gives []). Use only the Python standard library. Respond with the complete function in a single Python code block and no explanation.",
+   "signature": "transpose(matrix)",
+   "split": "heldout"
+  },
+  {
+   "cases": [
+    [
+     [
+      [],
+      []
+     ],
+     []
+    ],
+    [
+     [
+      [
+       1,
+       3,
+       5
+      ],
+      [
+       2,
+       4,
+       6
+      ]
+     ],
+     [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    ],
+    [
+     [
+      [
+       1,
+       1
+      ],
+      [
+       1
+      ]
+     ],
+     [
+      1,
+      1,
+      1
+     ]
+    ],
+    [
+     [
+      [],
+      [
+       0,
+       2
+      ]
+     ],
+     [
+      0,
+      2
+     ]
+    ],
+    [
+     [
+      [
+       -5,
+       10
+      ],
+      [
+       -6,
+       11
+      ]
+     ],
+     [
+      -6,
+      -5,
+      10,
+      11
+     ]
+    ]
+   ],
+   "function": "merge_sorted",
+   "id": "merge_sorted",
+   "prompt": "Write a Python function `merge_sorted(a, b)` that merges two ascending lists of integers into one ascending list. Use only the Python standard library. Respond with the complete function in a single Python code block and no explanation.",
+   "signature": "merge_sorted(a, b)",
+   "split": "heldout"
+  },
+  {
+   "cases": [
+    [
+     [
+      ""
+     ],
+     {}
+    ],
+    [
+     [
+      "a b a"
+     ],
+     {
+      "a": 2,
+      "b": 1
+     }
+    ],
+    [
+     [
+      "The the THE cat"
+     ],
+     {
+      "cat": 1,
+      "the": 3
+     }
+    ],
+    [
+     [
+      "one\ttwo\nthree two"
+     ],
+     {
+      "one": 1,
+      "three": 1,
+      "two": 2
+     }
+    ]
+   ],
+   "function": "word_counts",
+   "id": "word_counts",
+   "prompt": "Write a Python function `word_counts(text)` that returns a dictionary mapping each lowercase word to how many times it appears; words are separated by whitespace and compared case-insensitively. Use only the Python standard library. Respond with the complete function in a single Python code block and no explanation.",
+   "signature": "word_counts(text)",
+   "split": "heldout"
+  },
+  {
+   "cases": [
+    [
+     [
+      "hello world"
+     ],
+     "Hello World"
+    ],
+    [
+     [
+      "PYTHON is FUN"
+     ],
+     "Python Is Fun"
+    ],
+    [
+     [
+      ""
+     ],
+     ""
+    ],
+    [
+     [
+      "a"
+     ],
+     "A"
+    ]
+   ],
+   "function": "title_case",
+   "id": "title_case",
+   "prompt": "Write a Python function `title_case(s)` that returns s where every space-separated word has its first character uppercased and the rest lowercased. Use only the Python standard library. Respond with the complete function in a single Python code block and no explanation.",
+   "signature": "title_case(s)",
+   "split": "screening"
+  },
+  {
+   "cases": [
+    [
+     [
+      ""
+     ],
+     true
+    ],
+    [
+     [
+      "()[]{}"
+     ],
+     true
+    ],
+    [
+     [
+      "([)]"
+     ],
+     false
+    ],
+    [
+     [
+      "{[()()]}"
+     ],
+     true
+    ],
+    [
+     [
+      "(("
+     ],
+     false
+    ],
+    [
+     [
+      "a(b)c]"
+     ],
+     false
+    ]
+   ],
+   "function": "balanced_brackets",
+   "id": "balanced_brackets",
+   "prompt": "Write a Python function `balanced_brackets(s)` that returns True if the brackets (), [] and {} in s are balanced and properly nested; other characters are ignored. Use only the Python standard library. Respond with the complete function in a single Python code block and no explanation.",
+   "signature": "balanced_brackets(s)",
+   "split": "heldout"
+  },
+  {
+   "cases": [
+    [
+     [
+      "0"
+     ],
+     0
+    ],
+    [
+     [
+      "1"
+     ],
+     1
+    ],
+    [
+     [
+      "101"
+     ],
+     5
+    ],
+    [
+     [
+      "11111111"
+     ],
+     255
+    ],
+    [
+     [
+      "100000000000"
+     ],
+     2048
+    ]
+   ],
+   "function": "binary_to_int",
+   "id": "binary_to_int",
+   "prompt": "Write a Python function `binary_to_int(s)` that converts a non-empty string of '0' and '1' characters to the integer it represents in base 2. Use only the Python standard library. Respond with the complete function in a single Python code block and no explanation.",
+   "signature": "binary_to_int(s)",
+   "split": "heldout"
+  },
+  {
+   "cases": [
+    [
+     [
+      1
+     ],
+     "I"
+    ],
+    [
+     [
+      4
+     ],
+     "IV"
+    ],
+    [
+     [
+      9
+     ],
+     "IX"
+    ],
+    [
+     [
+      14
+     ],
+     "XIV"
+    ],
+    [
+     [
+      40
+     ],
+     "XL"
+    ],
+    [
+     [
+      1994
+     ],
+     "MCMXCIV"
+    ],
+    [
+     [
+      3999
+     ],
+     "MMMCMXCIX"
+    ]
+   ],
+   "function": "int_to_roman",
+   "id": "int_to_roman",
+   "prompt": "Write a Python function `int_to_roman(n)` that converts an integer from 1 to 3999 to an uppercase Roman numeral using standard subtractive notation. Use only the Python standard library. Respond with the complete function in a single Python code block and no explanation.",
+   "signature": "int_to_roman(n)",
+   "split": "heldout"
+  },
+  {
+   "cases": [
+    [
+     [
+      "I"
+     ],
+     1
+    ],
+    [
+     [
+      "IV"
+     ],
+     4
+    ],
+    [
+     [
+      "IX"
+     ],
+     9
+    ],
+    [
+     [
+      "LVIII"
+     ],
+     58
+    ],
+    [
+     [
+      "MCMXCIV"
+     ],
+     1994
+    ],
+    [
+     [
+      "MMMCMXCIX"
+     ],
+     3999
+    ]
+   ],
+   "function": "roman_to_int",
+   "id": "roman_to_int",
+   "prompt": "Write a Python function `roman_to_int(s)` that converts a valid uppercase Roman numeral (standard subtractive notation) to an integer. Use only the Python standard library. Respond with the complete function in a single Python code block and no explanation.",
+   "signature": "roman_to_int(s)",
+   "split": "screening"
+  },
+  {
+   "cases": [
+    [
+     [
+      []
+     ],
+     ""
+    ],
+    [
+     [
+      [
+       "flower",
+       "flow",
+       "flight"
+      ]
+     ],
+     "fl"
+    ],
+    [
+     [
+      [
+       "dog",
+       "racecar"
+      ]
+     ],
+     ""
+    ],
+    [
+     [
+      [
+       "same",
+       "same"
+      ]
+     ],
+     "same"
+    ],
+    [
+     [
+      [
+       "a"
+      ]
+     ],
+     "a"
+    ]
+   ],
+   "function": "longest_common_prefix",
+   "id": "longest_common_prefix",
+   "prompt": "Write a Python function `longest_common_prefix(words)` that returns the longest string that is a prefix of every string in the list words ('' for an empty list). Use only the Python standard library. Respond with the complete function in a single Python code block and no explanation.",
+   "signature": "longest_common_prefix(words)",
+   "split": "heldout"
+  },
+  {
+   "cases": [
+    [
+     [
+      [
+       2,
+       7,
+       11,
+       15
+      ],
+      9
+     ],
+     [
+      0,
+      1
+     ]
+    ],
+    [
+     [
+      [
+       3,
+       2,
+       4
+      ],
+      6
+     ],
+     [
+      1,
+      2
+     ]
+    ],
+    [
+     [
+      [
+       1,
+       2
+      ],
+      7
+     ],
+     []
+    ],
+    [
+     [
+      [
+       0,
+       0,
+       0
+      ],
+      0
+     ],
+     [
+      0,
+      1
+     ]
+    ],
+    [
+     [
+      [],
+      1
+     ],
+     []
+    ]
+   ],
+   "function": "two_sum",
+   "id": "two_sum",
+   "prompt": "Write a Python function `two_sum(nums, target)` that returns [i, j] with i < j for the first pair (smallest i, then smallest j) whose values sum to target, or [] if none exists. Use only the Python standard library. Respond with the complete function in a single Python code block and no explanation.",
+   "signature": "two_sum(nums, target)",
+   "split": "heldout"
+  },
+  {
+   "cases": [
+    [
+     [
+      [
+       1
+      ]
+     ],
+     1
+    ],
+    [
+     [
+      [
+       -3,
+       -1,
+       -2
+      ]
+     ],
+     -1
+    ],
+    [
+     [
+      [
+       -2,
+       1,
+       -3,
+       4,
+       -1,
+       2,
+       1,
+       -5,
+       4
+      ]
+     ],
+     6
+    ],
+    [
+     [
+      [
+       5,
+       4,
+       -1,
+       7,
+       8
+      ]
+     ],
+     23
+    ]
+   ],
+   "function": "max_subarray_sum",
+   "id": "max_subarray_sum",
+   "prompt": "Write a Python function `max_subarray_sum(nums)` that returns the largest sum of a non-empty contiguous sublist of the non-empty integer list nums. Use only the Python standard library. Respond with the complete function in a single Python code block and no explanation.",
+   "signature": "max_subarray_sum(nums)",
+   "split": "heldout"
+  },
+  {
+   "cases": [
+    [
+     [
+      1,
+      1
+     ],
+     1
+    ],
+    [
+     [
+      2,
+      2
+     ],
+     2
+    ],
+    [
+     [
+      3,
+      7
+     ],
+     28
+    ],
+    [
+     [
+      3,
+      2
+     ],
+     3
+    ],
+    [
+     [
+      10,
+      10
+     ],
+     48620
+    ]
+   ],
+   "function": "unique_paths",
+   "id": "unique_paths",
+   "prompt": "Write a Python function `unique_paths(m, n)` that returns the number of paths from the top-left to the bottom-right cell of a grid with m rows and n columns when each step moves one cell right or one cell down. Use only the Python standard library. Respond with the complete function in a single Python code block and no explanation.",
+   "signature": "unique_paths(m, n)",
+   "split": "screening"
+  },
+  {
+   "cases": [
+    [
+     [
+      [],
+      1
+     ],
+     -1
+    ],
+    [
+     [
+      [
+       1,
+       3,
+       5
+      ],
+      3
+     ],
+     1
+    ],
+    [
+     [
+      [
+       1,
+       3,
+       5
+      ],
+      2
+     ],
+     -1
+    ],
+    [
+     [
+      [
+       4
+      ],
+      4
+     ],
+     0
+    ],
+    [
+     [
+      [
+       1,
+       2,
+       3,
+       4,
+       5,
+       6,
+       7
+      ],
+      7
+     ],
+     6
+    ]
+   ],
+   "function": "binary_search",
+   "id": "binary_search",
+   "prompt": "Write a Python function `binary_search(items, target)` that returns the index of target in a sorted list of distinct integers, or -1 if absent. Use only the Python standard library. Respond with the complete function in a single Python code block and no explanation.",
+   "signature": "binary_search(items, target)",
+   "split": "heldout"
+  },
+  {
+   "cases": [
+    [
+     [
+      ""
+     ],
+     true
+    ],
+    [
+     [
+      "racecar"
+     ],
+     true
+    ],
+    [
+     [
+      "abc"
+     ],
+     false
+    ],
+    [
+     [
+      "Aa"
+     ],
+     false
+    ],
+    [
+     [
+      "abba"
+     ],
+     true
+    ]
+   ],
+   "function": "is_palindrome",
+   "id": "is_palindrome",
+   "prompt": "Write a Python function `is_palindrome(text)` that returns whether text equals its reverse (case-sensitive). Use only the Python standard library. Respond with the complete function in a single Python code block and no explanation.",
+   "signature": "is_palindrome(text)",
+   "split": "heldout"
+  },
+  {
+   "cases": [
+    [
+     [
+      []
+     ],
+     []
+    ],
+    [
+     [
+      [
+       2,
+       1,
+       2,
+       3,
+       1
+      ]
+     ],
+     [
+      2,
+      1,
+      3
+     ]
+    ],
+    [
+     [
+      [
+       0,
+       0
+      ]
+     ],
+     [
+      0
+     ]
+    ],
+    [
+     [
+      [
+       5,
+       4,
+       3
+      ]
+     ],
+     [
+      5,
+      4,
+      3
+     ]
+    ]
+   ],
+   "function": "deduplicate",
+   "id": "deduplicate",
+   "prompt": "Write a Python function `deduplicate(items)` that returns a list with duplicates removed, preserving the order of first occurrence. Use only the Python standard library. Respond with the complete function in a single Python code block and no explanation.",
+   "signature": "deduplicate(items)",
+   "split": "heldout"
+  },
+  {
+   "cases": [
+    [
+     [
+      "abc",
+      1
+     ],
+     "bcd"
+    ],
+    [
+     [
+      "xyz",
+      3
+     ],
+     "abc"
+    ],
+    [
+     [
+      "Hello, world!",
+      13
+     ],
+     "Hryyb, jbeyq!"
+    ],
+    [
+     [
+      "",
+      5
+     ],
+     ""
+    ],
+    [
+     [
+      "abc",
+      26
+     ],
+     "abc"
+    ]
+   ],
+   "function": "caesar_shift",
+   "id": "caesar_shift",
+   "prompt": "Write a Python function `caesar_shift(text, k)` that shifts each lowercase letter a-z forward by k positions in the alphabet, wrapping around; all other characters are unchanged. Use only the Python standard library. Respond with the complete function in a single Python code block and no explanation.",
+   "signature": "caesar_shift(text, k)",
+   "split": "screening"
+  },
+  {
+   "cases": [
+    [
+     [
+      0
+     ],
+     [
+      1
+     ]
+    ],
+    [
+     [
+      1
+     ],
+     [
+      1,
+      1
+     ]
+    ],
+    [
+     [
+      4
+     ],
+     [
+      1,
+      4,
+      6,
+      4,
+      1
+     ]
+    ],
+    [
+     [
+      10
+     ],
+     [
+      1,
+      10,
+      45,
+      120,
+      210,
+      252,
+      210,
+      120,
+      45,
+      10,
+      1
+     ]
+    ]
+   ],
+   "function": "pascal_row",
+   "id": "pascal_row",
+   "prompt": "Write a Python function `pascal_row(n)` that returns row n (0-indexed) of Pascal's triangle as a list of integers. Use only the Python standard library. Respond with the complete function in a single Python code block and no explanation.",
+   "signature": "pascal_row(n)",
+   "split": "heldout"
+  },
+  {
+   "cases": [
+    [
+     [
+      0
+     ],
+     0
+    ],
+    [
+     [
+      10
+     ],
+     23
+    ],
+    [
+     [
+      16
+     ],
+     60
+    ],
+    [
+     [
+      1000
+     ],
+     233168
+    ]
+   ],
+   "function": "sum_of_multiples",
+   "id": "sum_of_multiples",
+   "prompt": "Write a Python function `sum_of_multiples(limit)` that returns the sum of all non-negative integers below limit that are divisible by 3 or 5. Use only the Python standard library. Respond with the complete function in a single Python code block and no explanation.",
+   "signature": "sum_of_multiples(limit)",
+   "split": "heldout"
+  },
+  {
+   "cases": [
+    [
+     [
+      [
+       1
+      ]
+     ],
+     1
+    ],
+    [
+     [
+      [
+       1,
+       2,
+       2,
+       3
+      ]
+     ],
+     2
+    ],
+    [
+     [
+      [
+       4,
+       4,
+       1,
+       1
+      ]
+     ],
+     1
+    ],
+    [
+     [
+      [
+       -1,
+       -1,
+       5,
+       5,
+       5,
+       -1
+      ]
+     ],
+     -1
+    ]
+   ],
+   "function": "mode",
+   "id": "mode",
+   "prompt": "Write a Python function `mode(items)` that returns the most frequent value in a non-empty list of integers; if several values tie, return the smallest of them. Use only the Python standard library. Respond with the complete function in a single Python code block and no explanation.",
+   "signature": "mode(items)",
+   "split": "heldout"
+  },
+  {
+   "cases": [
+    [
+     [
+      [
+       3
+      ]
+     ],
+     3.0
+    ],
+    [
+     [
+      [
+       3,
+       1,
+       2
+      ]
+     ],
+     2.0
+    ],
+    [
+     [
+      [
+       4,
+       1,
+       3,
+       2
+      ]
+     ],
+     2.5
+    ],
+    [
+     [
+      [
+       -5,
+       5
+      ]
+     ],
+     0.0
+    ]
+   ],
+   "function": "median",
+   "id": "median",
+   "prompt": "Write a Python function `median(items)` that returns the median of a non-empty list of integers as a float (the mean of the two middle values for even lengths). Use only the Python standard library. Respond with the complete function in a single Python code block and no explanation.",
+   "signature": "median(items)",
+   "split": "heldout"
+  },
+  {
+   "cases": [
+    [
+     [
+      ""
+     ],
+     ""
+    ],
+    [
+     [
+      "a  b"
+     ],
+     "a b"
+    ],
+    [
+     [
+      "  lead and trail  "
+     ],
+     "lead and trail"
+    ],
+    [
+     [
+      "   "
+     ],
+     ""
+    ],
+    [
+     [
+      "no_spaces"
+     ],
+     "no_spaces"
+    ]
+   ],
+   "function": "compress_spaces",
+   "id": "compress_spaces",
+   "prompt": "Write a Python function `compress_spaces(s)` that replaces every run of space characters in s with a single space and removes leading and trailing spaces. Use only the Python standard library. Respond with the complete function in a single Python code block and no explanation.",
+   "signature": "compress_spaces(s)",
+   "split": "heldout"
+  },
+  {
+   "cases": [
+    [
+     [
+      1
+     ],
+     2
+    ],
+    [
+     [
+      2
+     ],
+     3
+    ],
+    [
+     [
+      6
+     ],
+     13
+    ],
+    [
+     [
+      25
+     ],
+     97
+    ],
+    [
+     [
+      100
+     ],
+     541
+    ]
+   ],
+   "function": "nth_prime",
+   "id": "nth_prime",
+   "prompt": "Write a Python function `nth_prime(n)` that returns the n-th prime number, counting from nth_prime(1) == 2. Use only the Python standard library. Respond with the complete function in a single Python code block and no explanation.",
+   "signature": "nth_prime(n)",
+   "split": "screening"
+  },
+  {
+   "cases": [
+    [
+     [
+      "",
+      ""
+     ],
+     0
+    ],
+    [
+     [
+      "karolin",
+      "kathrin"
+     ],
+     3
+    ],
+    [
+     [
+      "1011101",
+      "1001001"
+     ],
+     2
+    ],
+    [
+     [
+      "same",
+      "same"
+     ],
+     0
+    ]
+   ],
+   "function": "hamming_distance",
+   "id": "hamming_distance",
+   "prompt": "Write a Python function `hamming_distance(a, b)` that returns the number of positions at which two equal-length strings differ. Use only the Python standard library. Respond with the complete function in a single Python code block and no explanation.",
+   "signature": "hamming_distance(a, b)",
+   "split": "screening"
+  },
+  {
+   "cases": [
+    [
+     [
+      0
+     ],
+     false
+    ],
+    [
+     [
+      1
+     ],
+     true
+    ],
+    [
+     [
+      2
+     ],
+     true
+    ],
+    [
+     [
+      6
+     ],
+     false
+    ],
+    [
+     [
+      64
+     ],
+     true
+    ],
+    [
+     [
+      -8
+     ],
+     false
+    ],
+    [
+     [
+      1024
+     ],
+     true
+    ]
+   ],
+   "function": "is_power_of_two",
+   "id": "is_power_of_two",
+   "prompt": "Write a Python function `is_power_of_two(n)` that returns True if the integer n is a positive power of two (1, 2, 4, ...) and False otherwise. Use only the Python standard library. Respond with the complete function in a single Python code block and no explanation.",
+   "signature": "is_power_of_two(n)",
+   "split": "screening"
+  },
+  {
+   "cases": [
+    [
+     [
+      1
+     ],
+     0
+    ],
+    [
+     [
+      2
+     ],
+     1
+    ],
+    [
+     [
+      6
+     ],
+     8
+    ],
+    [
+     [
+      7
+     ],
+     16
+    ],
+    [
+     [
+      27
+     ],
+     111
+    ]
+   ],
+   "function": "collatz_steps",
+   "id": "collatz_steps",
+   "prompt": "Write a Python function `collatz_steps(n)` that returns how many steps the Collatz process takes to reach 1 from the positive integer n (halve even numbers, map odd n to 3n+1). Use only the Python standard library. Respond with the complete function in a single Python code block and no explanation.",
+   "signature": "collatz_steps(n)",
+   "split": "heldout"
+  },
+  {
+   "cases": [
+    [
+     [
+      {}
+     ],
+     {}
+    ],
+    [
+     [
+      {
+       "a": "x"
+      }
+     ],
+     {
+      "x": "a"
+     }
+    ],
+    [
+     [
+      {
+       "one": "1",
+       "two": "2"
+      }
+     ],
+     {
+      "1": "one",
+      "2": "two"
+     }
+    ]
+   ],
+   "function": "invert_dict",
+   "id": "invert_dict",
+   "prompt": "Write a Python function `invert_dict(d)` that returns a new dictionary with keys and values swapped (all values are distinct strings). Use only the Python standard library. Respond with the complete function in a single Python code block and no explanation.",
+   "signature": "invert_dict(d)",
+   "split": "heldout"
+  }
+ ],
+ "name": "coding",
+ "notes": "Hidden unit tests; expected values computed from trusted reference implementations. Prompts never include test cases.",
+ "split_seed": 20261109,
+ "version": "v1"
+}

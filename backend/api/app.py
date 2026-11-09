@@ -40,7 +40,7 @@ class EvaluationRequest(StrictModel):
     backend: Literal['ollama', 'llama.cpp'] = 'ollama'
     artifact_job_id: str | None = Field(default=None, pattern=r'^[0-9a-fA-F-]{36}$')
     model: str = Field(min_length=1, max_length=200)
-    suite: Literal['reasoning-small', 'coding-small'] = 'reasoning-small'
+    suite: Literal['reasoning-small', 'coding-small', 'reasoning-v1', 'coding-v1'] = 'reasoning-small'
     repeats: int = Field(default=1, ge=1, le=5)
     context: int = Field(default=1024, ge=128, le=4096)
     tokens: int = Field(default=128, ge=1, le=1024)

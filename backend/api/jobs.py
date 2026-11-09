@@ -13,7 +13,8 @@ import time
 import uuid
 import psutil
 
-TERMINAL = {'completed', 'failed', 'cancelled', 'interrupted', 'partial', 'unsupported', 'cleanup_required'}
+TERMINAL = {'completed', 'failed', 'cancelled', 'interrupted', 'partial', 'unsupported', 'blocked', 'cleanup_required'}
+CODING_SUITES = {'coding-small', 'coding-v1'}
 
 
 class Jobs:
@@ -75,7 +76,7 @@ class Jobs:
         if job['status'] in TERMINAL:
             return job
         with self.connect() as db:
-            db.execute("UPDATE jobs SET cancel_requested=1,status=CASE WHEN status='queued' THEN 'cancelled' ELSE status END,updated_at=? WHERE id=? AND status NOT IN ('completed','failed','cancelled','interrupted','partial','unsupported','cleanup_required')",
+            db.execute("UPDATE jobs SET cancel_requested=1,status=CASE WHEN status='queued' THEN 'cancelled' ELSE status END,updated_at=? WHERE id=? AND status NOT IN ('completed','failed','cancelled','interrupted','partial','unsupported','blocked','cleanup_required')",
                        (time.time(), identifier))
         return self.get(identifier)
 
@@ -154,11 +155,11 @@ class Jobs:
 
     @staticmethod
     def cleanup(job):
-        if job['kind'] != 'evaluation' or job['payload'].get('suite') != 'coding-small':
+        if job['kind'] != 'evaluation' or job['payload'].get('suite') not in CODING_SUITES:
             return None
         try:
             result = job.get('result')
-            if isinstance(result, dict) and result.get('status') == 'unsupported':
+            if isinstance(result, dict) and result.get('status') in {'unsupported', 'blocked'}:
                 return None
             from backend.evaluation.coding import cleanup_job
             cleanup_job(job['id'])
@@ -169,7 +170,7 @@ class Jobs:
     @staticmethod
     def result_status(job, result):
         if job['kind'] == 'evaluation':
-            return result.get('status') if result.get('status') in {'completed', 'partial', 'unsupported'} else 'failed'
+            return result.get('status') if result.get('status') in {'completed', 'partial', 'unsupported', 'blocked'} else 'failed'
         if job['kind'] == 'benchmark':
             summary = result.get('summary', {})
             if summary.get('failed_trials', 0):

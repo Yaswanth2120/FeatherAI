@@ -4,6 +4,12 @@ import subprocess
 from types import SimpleNamespace
 import pytest
 from backend.evaluation.coding import score_code, _bounded_run, availability
+
+SANDBOX = {'status': 'available', 'binary': 'docker', 'image_id': 'sha256:test'}
+
+
+def harness_output(*values):
+    return json.dumps({'phase': 'cases', 'cases': [{'ok': True, 'value': value} for value in values]}).encode()
 from backend.evaluation.runner import evaluate, compare_evaluations
 from backend.evaluation.scoring import perplexity, wilson_interval, accuracy_summary
 from backend.evaluation.suites import CODING
@@ -32,42 +38,45 @@ def test_missing_scores_are_never_passes():
 
 
 def test_docker_unavailable_does_not_execute_code(monkeypatch):
-    monkeypatch.setattr('backend.evaluation.coding.shutil.which', lambda _: None)
-    assert availability()['status'] == 'unsupported'
-    assert score_code("raise RuntimeError('host execution forbidden')", CODING[0])['status'] == 'unsupported'
+    monkeypatch.setattr('backend.evaluation.sandbox.shutil.which', lambda _: None)
+    assert availability()['status'] == 'blocked'
+    result = score_code("raise RuntimeError('host execution forbidden')", CODING[0])
+    assert result['status'] == 'blocked' and 'no host fallback' in result['reason'].lower()
 
 
 def test_docker_limits_no_host_mounts_and_cleanup(monkeypatch):
-    import backend.evaluation.coding as module
+    import backend.evaluation.sandbox as module
     commands = []
-    def fake(command, payload, timeout):
+    def fake(command, payload, timeout, max_output):
         commands.append(command)
         sent = json.loads(payload)
         assert 'expected' not in sent
-        assert 'answer' not in sent
-        return 0, b'[-1, 1, -1, 0]'
+        assert 'answer' not in sent and 'cases' not in sent
+        return 0, harness_output(-1, 1, -1, 0)
     monkeypatch.setattr(module, '_bounded_run', fake)
-    monkeypatch.setattr(module.subprocess, 'run', lambda command, **kwargs: (commands.append(command) or SimpleNamespace(returncode=0, stderr='')))
-    result = score_code('def binary_search(a,b): return -1', CODING[0], sandbox={'status':'available','binary':'docker','image_id':'sha256:test'})
-    assert result['passed']
+    monkeypatch.setattr(module.subprocess, 'run', lambda command, **kwargs: (commands.append(command) or SimpleNamespace(returncode=0, stderr='', stdout='false')))
+    result = score_code('def binary_search(a,b): return -1', CODING[0], sandbox=SANDBOX)
+    assert result['passed'] and result['outcome'] == 'passed'
     command = commands[0]
-    for flag in ['--network', '--read-only', '--cap-drop', '--pids-limit', '--memory', '--memory-swap', '--cpus', '--user']:
+    for flag in ['--network', '--read-only', '--cap-drop', '--pids-limit', '--memory', '--memory-swap', '--cpus', '--user',
+                 'no-new-privileges', '--pull=never']:
         assert flag in command
+    assert command[command.index('--user') + 1] == '65534:65534'
     assert 'none' in command
     assert not any(flag in command for flag in ['-v', '--volume', '--mount', '--privileged'])
     assert commands[-1][1:3] == ['rm', '-f']
 
 
 def test_docker_timeout_is_failed_score_and_cleans_up(monkeypatch):
-    import backend.evaluation.coding as module
+    import backend.evaluation.sandbox as module
     calls = []
     def timeout(*args):
         raise subprocess.TimeoutExpired('docker', 5)
     monkeypatch.setattr(module, '_bounded_run', timeout)
-    monkeypatch.setattr(module.subprocess, 'run', lambda command, **kwargs: (calls.append(command) or SimpleNamespace(returncode=0, stderr='')))
-    result = score_code('while True: pass', CODING[0], sandbox={'status':'available','binary':'docker','image_id':'sha256:test'})
+    monkeypatch.setattr(module.subprocess, 'run', lambda command, **kwargs: (calls.append(command) or SimpleNamespace(returncode=0, stderr='', stdout='')))
+    result = score_code('while True: pass', CODING[0], sandbox=SANDBOX)
     assert result['passed'] is False
-    assert result['reason'] == 'Execution timeout'
+    assert result['reason'] == 'Execution timeout' and result['outcome'] == 'timeout'
     assert calls[-1][1:3] == ['rm', '-f']
 
 
@@ -102,9 +111,9 @@ def test_coding_skips_generation_if_no_sandbox(monkeypatch):
         def models(self): return [{'name':'model'}]
         def version(self): return 'test'
         def generate(self, *args): raise AssertionError('Should not run inference')
-    monkeypatch.setattr('backend.evaluation.runner.availability', lambda: {'status':'unsupported','reason':'no docker'})
+    monkeypatch.setattr('backend.evaluation.runner.availability', lambda: {'status':'blocked','reason':'no docker'})
     result = evaluate(Backend(), 'model', suite='coding-small')
-    assert result['status'] == 'unsupported'
+    assert result['status'] == 'blocked'
     assert result['summary']['accuracy'] is None
 
 
@@ -120,10 +129,10 @@ def test_quality_comparison_requires_identity_and_complete_results():
 
 
 def test_coding_boolean_is_not_integer_correctness(monkeypatch):
-    import backend.evaluation.coding as module
-    monkeypatch.setattr(module, '_bounded_run', lambda *args: (0, b'[[], [true, false, 3], [false]]'))
-    monkeypatch.setattr(module.subprocess, 'run', lambda *args, **kwargs: SimpleNamespace(returncode=0, stderr=''))
-    result = score_code('pass', CODING[2], sandbox={'status':'available','binary':'docker','image_id':'sha256:test'})
+    import backend.evaluation.sandbox as module
+    monkeypatch.setattr(module, '_bounded_run', lambda *args: (0, harness_output([], [True, False, 3], [False])))
+    monkeypatch.setattr(module.subprocess, 'run', lambda *args, **kwargs: SimpleNamespace(returncode=0, stderr='', stdout='false'))
+    result = score_code('pass', CODING[2], sandbox=SANDBOX)
     assert result['passed'] is False
     assert result['cases_passed'] == 1
 
@@ -135,12 +144,12 @@ def test_bounded_execution_timeout_kills_client():
 
 
 def test_coding_labels_worker_job_for_external_cleanup(monkeypatch):
-    import backend.evaluation.coding as module
+    import backend.evaluation.sandbox as module
     calls = []
     monkeypatch.setenv('FEATHER_JOB_ID','job-123')
-    monkeypatch.setattr(module, '_bounded_run', lambda command, *args: (calls.append(command) or (0,b'[-1,1,-1,0]')))
-    monkeypatch.setattr(module.subprocess, 'run', lambda *args, **kwargs: SimpleNamespace(returncode=0, stderr=''))
-    score_code('pass',CODING[0],sandbox={'status':'available','binary':'docker','image_id':'sha256:test'})
+    monkeypatch.setattr(module, '_bounded_run', lambda command, *args: (calls.append(command) or (0, harness_output(-1, 1, -1, 0))))
+    monkeypatch.setattr(module.subprocess, 'run', lambda *args, **kwargs: SimpleNamespace(returncode=0, stderr='', stdout='false'))
+    score_code('pass', CODING[0], sandbox=SANDBOX)
     assert '--label' in calls[0]
     assert 'feather.job=job-123' in calls[0]
 

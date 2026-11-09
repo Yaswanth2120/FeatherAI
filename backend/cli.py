@@ -13,6 +13,52 @@ from backend.core.artifacts import inspect_gguf
 from backend.quantization.gguf_adapter import convert, TARGETS
 
 
+SANDBOX_PROBES = [
+    ("correct", "def f(x):\n    return x * x", "passed"),
+    ("incorrect", "def f(x):\n    return x + 1", "wrong_answer"),
+    ("partial", "def f(x):\n    return 4 if x == 2 else -1", "partial_pass"),
+    ("infinite_loop", "def f(x):\n    while True:\n        pass", "timeout"),
+    ("memory_bomb", "def f(x):\n    a = []\n    while True:\n        a.append(bytearray(10**7))", "memory_limit"),
+    ("fork_bomb", "import os\ndef f(x):\n    while True:\n        os.fork()", "runtime_error"),
+    ("syntax_error", "def f(x) return x", "compile_error"),
+    ("output_flood", "def f(x):\n    return 'x' * 10**6", "output_limit"),
+]
+ISOLATION_PROBE = ("import os, socket\ndef f(x):\n    try:\n        socket.create_connection(('1.1.1.1', 53), timeout=2); net = 'open'\n"
+                   "    except OSError: net = 'blocked'\n    try:\n        open('/etc/feather', 'w'); fs = 'writable'\n"
+                   "    except OSError: fs = 'read-only'\n    return [net, fs, os.getuid()]")
+
+
+def sandbox_command(args) -> int:
+    from backend.evaluation.sandbox import DockerExecutionBackend, PINNED_IMAGE, discover
+    if args.action == "prepare":
+        return subprocess.run(["docker", "pull", PINNED_IMAGE]).returncode
+    backend = discover()
+    status = backend.status()
+    if args.action == "status" or status["status"] != "available":
+        print(json.dumps(status, indent=2))
+        return 0 if status["status"] == "available" else 1
+    from backend.evaluation.coding import score_code
+    from datetime import datetime, timezone
+    task = {"function": "f", "cases": [([2], 4), ([3], 9), ([0], 0)]}
+    rows = []
+    for name, code, expected in SANDBOX_PROBES:
+        result = score_code(code, task, sandbox=backend)
+        rows.append({"probe": name, "expected_outcome": expected, "observed_outcome": result.get("outcome"),
+                     "ok": result.get("outcome") == expected, "seconds": (result.get("execution") or {}).get("seconds")})
+    isolation = score_code(ISOLATION_PROBE, {"function": "f", "cases": [([0], ["blocked", "read-only", 65534])]}, sandbox=backend)
+    rows.append({"probe": "network_filesystem_user", "expected_outcome": "passed (network blocked, root read-only, uid 65534)",
+                 "observed_outcome": isolation.get("outcome"), "ok": isolation.get("passed") is True})
+    leftovers = subprocess.run(["docker", "ps", "-aq", "--filter", "name=feather-eval-"], capture_output=True, text=True).stdout.split()
+    report = {"kind": "real-run", "created_at": datetime.now(timezone.utc).isoformat(), "sandbox": status, "probes": rows,
+              "leftover_containers": len(leftovers), "status": "passed" if all(r["ok"] for r in rows) and not leftovers else "failed",
+              "limitation": "Docker isolation is not an absolute security boundary; a compromised daemon, VM or kernel defeats it."}
+    text = json.dumps(report, indent=2)
+    if args.output:
+        args.output.write_text(text + "\n")
+    print(text)
+    return 0 if report["status"] == "passed" else 1
+
+
 def automation_command(args) -> int:
     root = Path(__file__).resolve().parents[1]
     if str(root) not in sys.path:
@@ -81,7 +127,14 @@ def main():
     doctor.add_argument("--json", action="store_true")
     selftest = automation.add_parser("selftest", help="Run two dependent tasks through live Codex in a throwaway repository")
     selftest.add_argument("--timeout", type=int, default=600)
+    sandbox = commands.add_parser("sandbox", help="Coding-evaluation isolation").add_subparsers(dest="action", required=True)
+    sandbox.add_parser("status", help="Report whether isolated execution is available")
+    sandbox.add_parser("prepare", help="Explicitly pull the pinned sandbox image (about 20 MB)")
+    sandbox_check = sandbox.add_parser("selftest", help="Run isolation acceptance probes inside the sandbox")
+    sandbox_check.add_argument("--output", type=Path)
     args = parser.parse_args()
+    if args.command == "sandbox":
+        sys.exit(sandbox_command(args))
     if args.command == "automation":
         sys.exit(automation_command(args))
     backend = None

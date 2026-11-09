@@ -1,0 +1,1609 @@
+{
+ "answer_format": "Answer: <integer>",
+ "items": [
+  {
+   "answer": 420,
+   "category": "arithmetic",
+   "id": "arithmetic-screening-001",
+   "prompt": "What is 698 - 278?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 698 - 278?",
+   "split": "screening"
+  },
+  {
+   "answer": 264,
+   "category": "arithmetic",
+   "id": "arithmetic-screening-002",
+   "prompt": "What is 472 - 208?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 472 - 208?",
+   "split": "screening"
+  },
+  {
+   "answer": 370,
+   "category": "arithmetic",
+   "id": "arithmetic-screening-003",
+   "prompt": "What is 597 - 227?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 597 - 227?",
+   "split": "screening"
+  },
+  {
+   "answer": 37,
+   "category": "arithmetic",
+   "id": "arithmetic-screening-004",
+   "prompt": "What is 24 * 3 - 35?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 24 * 3 - 35?",
+   "split": "screening"
+  },
+  {
+   "answer": 312,
+   "category": "arithmetic",
+   "id": "arithmetic-screening-005",
+   "prompt": "What is 26 * 12?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 26 * 12?",
+   "split": "screening"
+  },
+  {
+   "answer": 11,
+   "category": "arithmetic",
+   "id": "arithmetic-screening-006",
+   "prompt": "What is 154 divided by 14?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 154 divided by 14?",
+   "split": "screening"
+  },
+  {
+   "answer": 698,
+   "category": "arithmetic",
+   "id": "arithmetic-screening-007",
+   "prompt": "What is 373 + 325?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 373 + 325?",
+   "split": "screening"
+  },
+  {
+   "answer": 576,
+   "category": "arithmetic",
+   "id": "arithmetic-screening-008",
+   "prompt": "What is 48 * 12?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 48 * 12?",
+   "split": "screening"
+  },
+  {
+   "answer": -20,
+   "category": "arithmetic",
+   "id": "arithmetic-screening-009",
+   "prompt": "What is 19 * 2 - 58?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 19 * 2 - 58?",
+   "split": "screening"
+  },
+  {
+   "answer": 846,
+   "category": "arithmetic",
+   "id": "arithmetic-screening-010",
+   "prompt": "What is 47 * 18?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 47 * 18?",
+   "split": "screening"
+  },
+  {
+   "answer": 651,
+   "category": "arithmetic",
+   "id": "arithmetic-heldout-001",
+   "prompt": "What is 937 - 286?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 937 - 286?",
+   "split": "heldout"
+  },
+  {
+   "answer": 32,
+   "category": "arithmetic",
+   "id": "arithmetic-heldout-002",
+   "prompt": "What is 160 divided by 5?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 160 divided by 5?",
+   "split": "heldout"
+  },
+  {
+   "answer": 384,
+   "category": "arithmetic",
+   "id": "arithmetic-heldout-003",
+   "prompt": "What is 48 * 8?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 48 * 8?",
+   "split": "heldout"
+  },
+  {
+   "answer": 474,
+   "category": "arithmetic",
+   "id": "arithmetic-heldout-004",
+   "prompt": "What is 597 - 123?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 597 - 123?",
+   "split": "heldout"
+  },
+  {
+   "answer": 1750,
+   "category": "arithmetic",
+   "id": "arithmetic-heldout-005",
+   "prompt": "What is 970 + 780?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 970 + 780?",
+   "split": "heldout"
+  },
+  {
+   "answer": 11,
+   "category": "arithmetic",
+   "id": "arithmetic-heldout-006",
+   "prompt": "What is 88 divided by 8?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 88 divided by 8?",
+   "split": "heldout"
+  },
+  {
+   "answer": 1085,
+   "category": "arithmetic",
+   "id": "arithmetic-heldout-007",
+   "prompt": "What is 891 + 194?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 891 + 194?",
+   "split": "heldout"
+  },
+  {
+   "answer": 308,
+   "category": "arithmetic",
+   "id": "arithmetic-heldout-008",
+   "prompt": "What is 22 * 14?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 22 * 14?",
+   "split": "heldout"
+  },
+  {
+   "answer": 702,
+   "category": "arithmetic",
+   "id": "arithmetic-heldout-009",
+   "prompt": "What is 39 * 18?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 39 * 18?",
+   "split": "heldout"
+  },
+  {
+   "answer": 598,
+   "category": "arithmetic",
+   "id": "arithmetic-heldout-010",
+   "prompt": "What is 46 * 13?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 46 * 13?",
+   "split": "heldout"
+  },
+  {
+   "answer": 186,
+   "category": "arithmetic",
+   "id": "arithmetic-heldout-011",
+   "prompt": "What is 423 - 237?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 423 - 237?",
+   "split": "heldout"
+  },
+  {
+   "answer": 132,
+   "category": "arithmetic",
+   "id": "arithmetic-heldout-012",
+   "prompt": "What is 22 * 6?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 22 * 6?",
+   "split": "heldout"
+  },
+  {
+   "answer": 1365,
+   "category": "arithmetic",
+   "id": "arithmetic-heldout-013",
+   "prompt": "What is 394 + 971?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 394 + 971?",
+   "split": "heldout"
+  },
+  {
+   "answer": 60,
+   "category": "arithmetic",
+   "id": "arithmetic-heldout-014",
+   "prompt": "What is 12 * 5?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 12 * 5?",
+   "split": "heldout"
+  },
+  {
+   "answer": 237,
+   "category": "arithmetic",
+   "id": "arithmetic-heldout-015",
+   "prompt": "What is 427 - 190?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 427 - 190?",
+   "split": "heldout"
+  },
+  {
+   "answer": 767,
+   "category": "arithmetic",
+   "id": "arithmetic-heldout-016",
+   "prompt": "What is 881 - 114?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 881 - 114?",
+   "split": "heldout"
+  },
+  {
+   "answer": 841,
+   "category": "arithmetic",
+   "id": "arithmetic-heldout-017",
+   "prompt": "What is 729 + 112?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 729 + 112?",
+   "split": "heldout"
+  },
+  {
+   "answer": 30,
+   "category": "arithmetic",
+   "id": "arithmetic-heldout-018",
+   "prompt": "What is 150 divided by 5?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 150 divided by 5?",
+   "split": "heldout"
+  },
+  {
+   "answer": 1464,
+   "category": "arithmetic",
+   "id": "arithmetic-heldout-019",
+   "prompt": "What is 543 + 921?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 543 + 921?",
+   "split": "heldout"
+  },
+  {
+   "answer": 149,
+   "category": "arithmetic",
+   "id": "arithmetic-heldout-020",
+   "prompt": "What is 27 * 7 - 40?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 27 * 7 - 40?",
+   "split": "heldout"
+  },
+  {
+   "answer": 11,
+   "category": "arithmetic",
+   "id": "arithmetic-heldout-021",
+   "prompt": "What is 99 divided by 9?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 99 divided by 9?",
+   "split": "heldout"
+  },
+  {
+   "answer": 33,
+   "category": "arithmetic",
+   "id": "arithmetic-heldout-022",
+   "prompt": "What is 165 divided by 5?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 165 divided by 5?",
+   "split": "heldout"
+  },
+  {
+   "answer": 195,
+   "category": "arithmetic",
+   "id": "arithmetic-heldout-023",
+   "prompt": "What is 13 * 15?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 13 * 15?",
+   "split": "heldout"
+  },
+  {
+   "answer": 398,
+   "category": "arithmetic",
+   "id": "arithmetic-heldout-024",
+   "prompt": "What is 563 - 165?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 563 - 165?",
+   "split": "heldout"
+  },
+  {
+   "answer": 962,
+   "category": "arithmetic",
+   "id": "arithmetic-heldout-025",
+   "prompt": "What is 524 + 438?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 524 + 438?",
+   "split": "heldout"
+  },
+  {
+   "answer": 14,
+   "category": "arithmetic",
+   "id": "arithmetic-heldout-026",
+   "prompt": "What is 140 divided by 10?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 140 divided by 10?",
+   "split": "heldout"
+  },
+  {
+   "answer": 13,
+   "category": "arithmetic",
+   "id": "arithmetic-heldout-027",
+   "prompt": "What is 14 * 4 - 43?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 14 * 4 - 43?",
+   "split": "heldout"
+  },
+  {
+   "answer": 87,
+   "category": "arithmetic",
+   "id": "arithmetic-heldout-028",
+   "prompt": "What is 33 * 4 - 45?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 33 * 4 - 45?",
+   "split": "heldout"
+  },
+  {
+   "answer": 76,
+   "category": "arithmetic",
+   "id": "arithmetic-heldout-029",
+   "prompt": "What is 27 * 4 - 32?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 27 * 4 - 32?",
+   "split": "heldout"
+  },
+  {
+   "answer": 725,
+   "category": "arithmetic",
+   "id": "arithmetic-heldout-030",
+   "prompt": "What is 427 + 298?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 427 + 298?",
+   "split": "heldout"
+  },
+  {
+   "answer": 618,
+   "category": "arithmetic",
+   "id": "arithmetic-heldout-031",
+   "prompt": "What is 317 + 301?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 317 + 301?",
+   "split": "heldout"
+  },
+  {
+   "answer": 92,
+   "category": "arithmetic",
+   "id": "arithmetic-heldout-032",
+   "prompt": "What is 18 * 6 - 16?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 18 * 6 - 16?",
+   "split": "heldout"
+  },
+  {
+   "answer": 1307,
+   "category": "arithmetic",
+   "id": "arithmetic-heldout-033",
+   "prompt": "What is 670 + 637?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 670 + 637?",
+   "split": "heldout"
+  },
+  {
+   "answer": 100,
+   "category": "arithmetic",
+   "id": "arithmetic-heldout-034",
+   "prompt": "What is 25 * 4?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 25 * 4?",
+   "split": "heldout"
+  },
+  {
+   "answer": 183,
+   "category": "arithmetic",
+   "id": "arithmetic-heldout-035",
+   "prompt": "What is 25 * 8 - 17?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 25 * 8 - 17?",
+   "split": "heldout"
+  },
+  {
+   "answer": 26,
+   "category": "arithmetic",
+   "id": "arithmetic-heldout-036",
+   "prompt": "What is 156 divided by 6?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 156 divided by 6?",
+   "split": "heldout"
+  },
+  {
+   "answer": 50,
+   "category": "arithmetic",
+   "id": "arithmetic-heldout-037",
+   "prompt": "What is 13 * 8 - 54?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 13 * 8 - 54?",
+   "split": "heldout"
+  },
+  {
+   "answer": 25,
+   "category": "arithmetic",
+   "id": "arithmetic-heldout-038",
+   "prompt": "What is 300 divided by 12?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 300 divided by 12?",
+   "split": "heldout"
+  },
+  {
+   "answer": 32,
+   "category": "arithmetic",
+   "id": "arithmetic-heldout-039",
+   "prompt": "What is 416 divided by 13?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 416 divided by 13?",
+   "split": "heldout"
+  },
+  {
+   "answer": 873,
+   "category": "arithmetic",
+   "id": "arithmetic-heldout-040",
+   "prompt": "What is 491 + 382?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is 491 + 382?",
+   "split": "heldout"
+  },
+  {
+   "answer": 9,
+   "category": "multi_step",
+   "id": "multi_step-screening-001",
+   "prompt": "Ivan had 30 stickers, gave 18 to Fatima, and then bought 6 more. After that, Ivan gave half of the stickers to a sibling. How many stickers does Ivan keep?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "Ivan had 30 stickers, gave 18 to Fatima, and then bought 6 more. After that, Ivan gave half of the stickers to a sibling. How many stickers does Ivan keep?",
+   "split": "screening"
+  },
+  {
+   "answer": 16,
+   "category": "multi_step",
+   "id": "multi_step-screening-002",
+   "prompt": "Pencils cost $4 each and notebooks cost $5 each. Mateo buys 6 pencils and 2 notebooks and pays with $50. How many dollars of change does Mateo receive?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "Pencils cost $4 each and notebooks cost $5 each. Mateo buys 6 pencils and 2 notebooks and pays with $50. How many dollars of change does Mateo receive?",
+   "split": "screening"
+  },
+  {
+   "answer": 59,
+   "category": "multi_step",
+   "id": "multi_step-screening-003",
+   "prompt": "Eli had 74 stickers, gave 23 to Lena, and then bought 8 more. How many stickers does Eli have now?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "Eli had 74 stickers, gave 23 to Lena, and then bought 8 more. How many stickers does Eli have now?",
+   "split": "screening"
+  },
+  {
+   "answer": 63,
+   "category": "multi_step",
+   "id": "multi_step-screening-004",
+   "prompt": "Ivan had 70 stickers, gave 21 to Omar, and then bought 14 more. How many stickers does Ivan have now?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "Ivan had 70 stickers, gave 21 to Omar, and then bought 14 more. How many stickers does Ivan have now?",
+   "split": "screening"
+  },
+  {
+   "answer": 19,
+   "category": "multi_step",
+   "id": "multi_step-screening-005",
+   "prompt": "Pencils cost $3 each and notebooks cost $4 each. Dara buys 3 pencils and 3 notebooks and pays with $40. How many dollars of change does Dara receive?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "Pencils cost $3 each and notebooks cost $4 each. Dara buys 3 pencils and 3 notebooks and pays with $40. How many dollars of change does Dara receive?",
+   "split": "screening"
+  },
+  {
+   "answer": 16,
+   "category": "multi_step",
+   "id": "multi_step-screening-006",
+   "prompt": "Pencils cost $7 each and notebooks cost $8 each. Gus buys 4 pencils and 2 notebooks and pays with $60. How many dollars of change does Gus receive?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "Pencils cost $7 each and notebooks cost $8 each. Gus buys 4 pencils and 2 notebooks and pays with $60. How many dollars of change does Gus receive?",
+   "split": "screening"
+  },
+  {
+   "answer": 165,
+   "category": "multi_step",
+   "id": "multi_step-screening-007",
+   "prompt": "A machine makes 11 parts per hour. It runs 3 hours a day for 5 days. How many parts does it make in total?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "A machine makes 11 parts per hour. It runs 3 hours a day for 5 days. How many parts does it make in total?",
+   "split": "screening"
+  },
+  {
+   "answer": 7,
+   "category": "multi_step",
+   "id": "multi_step-screening-008",
+   "prompt": "29 cookies are shared equally among 4 children, and any cookies that cannot be shared equally are kept aside. How many cookies does each child get?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "29 cookies are shared equally among 4 children, and any cookies that cannot be shared equally are kept aside. How many cookies does each child get?",
+   "split": "screening"
+  },
+  {
+   "answer": 36,
+   "category": "multi_step",
+   "id": "multi_step-screening-009",
+   "prompt": "A machine makes 3 parts per hour. It runs 3 hours a day for 4 days. How many parts does it make in total?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "A machine makes 3 parts per hour. It runs 3 hours a day for 4 days. How many parts does it make in total?",
+   "split": "screening"
+  },
+  {
+   "answer": 84,
+   "category": "multi_step",
+   "id": "multi_step-screening-010",
+   "prompt": "A machine makes 7 parts per hour. It runs 6 hours a day for 2 days. How many parts does it make in total?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "A machine makes 7 parts per hour. It runs 6 hours a day for 2 days. How many parts does it make in total?",
+   "split": "screening"
+  },
+  {
+   "answer": 11,
+   "category": "multi_step",
+   "id": "multi_step-heldout-001",
+   "prompt": "77 cookies are shared equally among 7 children, and any cookies that cannot be shared equally are kept aside. How many cookies does each child get?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "77 cookies are shared equally among 7 children, and any cookies that cannot be shared equally are kept aside. How many cookies does each child get?",
+   "split": "heldout"
+  },
+  {
+   "answer": 60,
+   "category": "multi_step",
+   "id": "multi_step-heldout-002",
+   "prompt": "A machine makes 5 parts per hour. It runs 6 hours a day for 2 days. How many parts does it make in total?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "A machine makes 5 parts per hour. It runs 6 hours a day for 2 days. How many parts does it make in total?",
+   "split": "heldout"
+  },
+  {
+   "answer": 89,
+   "category": "multi_step",
+   "id": "multi_step-heldout-003",
+   "prompt": "Ava had 77 stickers, gave 6 to Ben, and then bought 18 more. How many stickers does Ava have now?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "Ava had 77 stickers, gave 6 to Ben, and then bought 18 more. How many stickers does Ava have now?",
+   "split": "heldout"
+  },
+  {
+   "answer": 14,
+   "category": "multi_step",
+   "id": "multi_step-heldout-004",
+   "prompt": "Pencils cost $3 each and notebooks cost $10 each. Nia buys 2 pencils and 1 notebooks and pays with $30. How many dollars of change does Nia receive?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "Pencils cost $3 each and notebooks cost $10 each. Nia buys 2 pencils and 1 notebooks and pays with $30. How many dollars of change does Nia receive?",
+   "split": "heldout"
+  },
+  {
+   "answer": 59,
+   "category": "multi_step",
+   "id": "multi_step-heldout-005",
+   "prompt": "Ben had 72 stickers, gave 25 to Priya, and then bought 12 more. How many stickers does Ben have now?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "Ben had 72 stickers, gave 25 to Priya, and then bought 12 more. How many stickers does Ben have now?",
+   "split": "heldout"
+  },
+  {
+   "answer": 6,
+   "category": "multi_step",
+   "id": "multi_step-heldout-006",
+   "prompt": "25 cookies are shared equally among 4 children, and any cookies that cannot be shared equally are kept aside. How many cookies does each child get?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "25 cookies are shared equally among 4 children, and any cookies that cannot be shared equally are kept aside. How many cookies does each child get?",
+   "split": "heldout"
+  },
+  {
+   "answer": 20,
+   "category": "multi_step",
+   "id": "multi_step-heldout-007",
+   "prompt": "Pencils cost $4 each and notebooks cost $3 each. Mateo buys 6 pencils and 2 notebooks and pays with $50. How many dollars of change does Mateo receive?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "Pencils cost $4 each and notebooks cost $3 each. Mateo buys 6 pencils and 2 notebooks and pays with $50. How many dollars of change does Mateo receive?",
+   "split": "heldout"
+  },
+  {
+   "answer": 44,
+   "category": "multi_step",
+   "id": "multi_step-heldout-008",
+   "prompt": "A machine makes 11 parts per hour. It runs 2 hours a day for 2 days. How many parts does it make in total?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "A machine makes 11 parts per hour. It runs 2 hours a day for 2 days. How many parts does it make in total?",
+   "split": "heldout"
+  },
+  {
+   "answer": 128,
+   "category": "multi_step",
+   "id": "multi_step-heldout-009",
+   "prompt": "A machine makes 8 parts per hour. It runs 8 hours a day for 2 days. How many parts does it make in total?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "A machine makes 8 parts per hour. It runs 8 hours a day for 2 days. How many parts does it make in total?",
+   "split": "heldout"
+  },
+  {
+   "answer": 20,
+   "category": "multi_step",
+   "id": "multi_step-heldout-010",
+   "prompt": "Pencils cost $4 each and notebooks cost $11 each. Mateo buys 2 pencils and 2 notebooks and pays with $50. How many dollars of change does Mateo receive?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "Pencils cost $4 each and notebooks cost $11 each. Mateo buys 2 pencils and 2 notebooks and pays with $50. How many dollars of change does Mateo receive?",
+   "split": "heldout"
+  },
+  {
+   "answer": 120,
+   "category": "multi_step",
+   "id": "multi_step-heldout-011",
+   "prompt": "A machine makes 8 parts per hour. It runs 5 hours a day for 3 days. How many parts does it make in total?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "A machine makes 8 parts per hour. It runs 5 hours a day for 3 days. How many parts does it make in total?",
+   "split": "heldout"
+  },
+  {
+   "answer": 75,
+   "category": "multi_step",
+   "id": "multi_step-heldout-012",
+   "prompt": "Hana has 8 baskets with 9 apples in each basket, plus 3 loose apples. How many apples does Hana have in total?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "Hana has 8 baskets with 9 apples in each basket, plus 3 loose apples. How many apples does Hana have in total?",
+   "split": "heldout"
+  },
+  {
+   "answer": 96,
+   "category": "multi_step",
+   "id": "multi_step-heldout-013",
+   "prompt": "A machine makes 6 parts per hour. It runs 4 hours a day for 4 days. How many parts does it make in total?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "A machine makes 6 parts per hour. It runs 4 hours a day for 4 days. How many parts does it make in total?",
+   "split": "heldout"
+  },
+  {
+   "answer": 108,
+   "category": "multi_step",
+   "id": "multi_step-heldout-014",
+   "prompt": "A machine makes 9 parts per hour. It runs 4 hours a day for 3 days. How many parts does it make in total?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "A machine makes 9 parts per hour. It runs 4 hours a day for 3 days. How many parts does it make in total?",
+   "split": "heldout"
+  },
+  {
+   "answer": 12,
+   "category": "multi_step",
+   "id": "multi_step-heldout-015",
+   "prompt": "72 cookies are shared equally among 6 children, and any cookies that cannot be shared equally are kept aside. How many cookies does each child get?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "72 cookies are shared equally among 6 children, and any cookies that cannot be shared equally are kept aside. How many cookies does each child get?",
+   "split": "heldout"
+  },
+  {
+   "answer": 13,
+   "category": "multi_step",
+   "id": "multi_step-heldout-016",
+   "prompt": "39 cookies are shared equally among 3 children, and any cookies that cannot be shared equally are kept aside. How many cookies does each child get?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "39 cookies are shared equally among 3 children, and any cookies that cannot be shared equally are kept aside. How many cookies does each child get?",
+   "split": "heldout"
+  },
+  {
+   "answer": 12,
+   "category": "multi_step",
+   "id": "multi_step-heldout-017",
+   "prompt": "Pencils cost $8 each and notebooks cost $12 each. Lena buys 3 pencils and 2 notebooks and pays with $60. How many dollars of change does Lena receive?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "Pencils cost $8 each and notebooks cost $12 each. Lena buys 3 pencils and 2 notebooks and pays with $60. How many dollars of change does Lena receive?",
+   "split": "heldout"
+  },
+  {
+   "answer": 4,
+   "category": "multi_step",
+   "id": "multi_step-heldout-018",
+   "prompt": "Pencils cost $9 each and notebooks cost $3 each. Chen buys 6 pencils and 4 notebooks and pays with $70. How many dollars of change does Chen receive?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "Pencils cost $9 each and notebooks cost $3 each. Chen buys 6 pencils and 4 notebooks and pays with $70. How many dollars of change does Chen receive?",
+   "split": "heldout"
+  },
+  {
+   "answer": 8,
+   "category": "multi_step",
+   "id": "multi_step-heldout-019",
+   "prompt": "26 cookies are shared equally among 3 children, and any cookies that cannot be shared equally are kept aside. How many cookies does each child get?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "26 cookies are shared equally among 3 children, and any cookies that cannot be shared equally are kept aside. How many cookies does each child get?",
+   "split": "heldout"
+  },
+  {
+   "answer": 50,
+   "category": "multi_step",
+   "id": "multi_step-heldout-020",
+   "prompt": "A machine makes 5 parts per hour. It runs 2 hours a day for 5 days. How many parts does it make in total?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "A machine makes 5 parts per hour. It runs 2 hours a day for 5 days. How many parts does it make in total?",
+   "split": "heldout"
+  },
+  {
+   "answer": 13,
+   "category": "multi_step",
+   "id": "multi_step-heldout-021",
+   "prompt": "80 cookies are shared equally among 6 children, and any cookies that cannot be shared equally are kept aside. How many cookies does each child get?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "80 cookies are shared equally among 6 children, and any cookies that cannot be shared equally are kept aside. How many cookies does each child get?",
+   "split": "heldout"
+  },
+  {
+   "answer": 41,
+   "category": "multi_step",
+   "id": "multi_step-heldout-022",
+   "prompt": "Ava has 5 baskets with 6 apples in each basket, plus 11 loose apples. How many apples does Ava have in total?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "Ava has 5 baskets with 6 apples in each basket, plus 11 loose apples. How many apples does Ava have in total?",
+   "split": "heldout"
+  },
+  {
+   "answer": 20,
+   "category": "multi_step",
+   "id": "multi_step-heldout-023",
+   "prompt": "Pencils cost $2 each and notebooks cost $10 each. Kofi buys 5 pencils and 3 notebooks and pays with $60. How many dollars of change does Kofi receive?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "Pencils cost $2 each and notebooks cost $10 each. Kofi buys 5 pencils and 3 notebooks and pays with $60. How many dollars of change does Kofi receive?",
+   "split": "heldout"
+  },
+  {
+   "answer": 111,
+   "category": "multi_step",
+   "id": "multi_step-heldout-024",
+   "prompt": "Fatima has 8 baskets with 12 apples in each basket, plus 15 loose apples. How many apples does Fatima have in total?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "Fatima has 8 baskets with 12 apples in each basket, plus 15 loose apples. How many apples does Fatima have in total?",
+   "split": "heldout"
+  },
+  {
+   "answer": 144,
+   "category": "multi_step",
+   "id": "multi_step-heldout-025",
+   "prompt": "A machine makes 3 parts per hour. It runs 8 hours a day for 6 days. How many parts does it make in total?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "A machine makes 3 parts per hour. It runs 8 hours a day for 6 days. How many parts does it make in total?",
+   "split": "heldout"
+  },
+  {
+   "answer": 88,
+   "category": "multi_step",
+   "id": "multi_step-heldout-026",
+   "prompt": "Ivan has 7 baskets with 11 apples in each basket, plus 11 loose apples. How many apples does Ivan have in total?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "Ivan has 7 baskets with 11 apples in each basket, plus 11 loose apples. How many apples does Ivan have in total?",
+   "split": "heldout"
+  },
+  {
+   "answer": 17,
+   "category": "multi_step",
+   "id": "multi_step-heldout-027",
+   "prompt": "Ava had 36 stickers, gave 18 to Chen, and then bought 16 more. After that, Ava gave half of the stickers to a sibling. How many stickers does Ava keep?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "Ava had 36 stickers, gave 18 to Chen, and then bought 16 more. After that, Ava gave half of the stickers to a sibling. How many stickers does Ava keep?",
+   "split": "heldout"
+  },
+  {
+   "answer": 4,
+   "category": "multi_step",
+   "id": "multi_step-heldout-028",
+   "prompt": "29 cookies are shared equally among 7 children, and any cookies that cannot be shared equally are kept aside. How many cookies does each child get?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "29 cookies are shared equally among 7 children, and any cookies that cannot be shared equally are kept aside. How many cookies does each child get?",
+   "split": "heldout"
+  },
+  {
+   "answer": 19,
+   "category": "multi_step",
+   "id": "multi_step-heldout-029",
+   "prompt": "Pencils cost $2 each and notebooks cost $5 each. Gus buys 3 pencils and 1 notebooks and pays with $30. How many dollars of change does Gus receive?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "Pencils cost $2 each and notebooks cost $5 each. Gus buys 3 pencils and 1 notebooks and pays with $30. How many dollars of change does Gus receive?",
+   "split": "heldout"
+  },
+  {
+   "answer": 12,
+   "category": "multi_step",
+   "id": "multi_step-heldout-030",
+   "prompt": "60 cookies are shared equally among 5 children, and any cookies that cannot be shared equally are kept aside. How many cookies does each child get?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "60 cookies are shared equally among 5 children, and any cookies that cannot be shared equally are kept aside. How many cookies does each child get?",
+   "split": "heldout"
+  },
+  {
+   "answer": 240,
+   "category": "multi_step",
+   "id": "multi_step-heldout-031",
+   "prompt": "A machine makes 10 parts per hour. It runs 4 hours a day for 6 days. How many parts does it make in total?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "A machine makes 10 parts per hour. It runs 4 hours a day for 6 days. How many parts does it make in total?",
+   "split": "heldout"
+  },
+  {
+   "answer": 504,
+   "category": "multi_step",
+   "id": "multi_step-heldout-032",
+   "prompt": "A machine makes 12 parts per hour. It runs 7 hours a day for 6 days. How many parts does it make in total?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "A machine makes 12 parts per hour. It runs 7 hours a day for 6 days. How many parts does it make in total?",
+   "split": "heldout"
+  },
+  {
+   "answer": 126,
+   "category": "multi_step",
+   "id": "multi_step-heldout-033",
+   "prompt": "A machine makes 6 parts per hour. It runs 7 hours a day for 3 days. How many parts does it make in total?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "A machine makes 6 parts per hour. It runs 7 hours a day for 3 days. How many parts does it make in total?",
+   "split": "heldout"
+  },
+  {
+   "answer": 105,
+   "category": "multi_step",
+   "id": "multi_step-heldout-034",
+   "prompt": "A machine makes 7 parts per hour. It runs 5 hours a day for 3 days. How many parts does it make in total?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "A machine makes 7 parts per hour. It runs 5 hours a day for 3 days. How many parts does it make in total?",
+   "split": "heldout"
+  },
+  {
+   "answer": 30,
+   "category": "multi_step",
+   "id": "multi_step-heldout-035",
+   "prompt": "Omar has 3 trays with 5 cookies in each tray, plus 15 loose cookies. How many cookies does Omar have in total?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "Omar has 3 trays with 5 cookies in each tray, plus 15 loose cookies. How many cookies does Omar have in total?",
+   "split": "heldout"
+  },
+  {
+   "answer": 10,
+   "category": "multi_step",
+   "id": "multi_step-heldout-036",
+   "prompt": "42 cookies are shared equally among 4 children, and any cookies that cannot be shared equally are kept aside. How many cookies does each child get?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "42 cookies are shared equally among 4 children, and any cookies that cannot be shared equally are kept aside. How many cookies does each child get?",
+   "split": "heldout"
+  },
+  {
+   "answer": 9,
+   "category": "multi_step",
+   "id": "multi_step-heldout-037",
+   "prompt": "63 cookies are shared equally among 7 children, and any cookies that cannot be shared equally are kept aside. How many cookies does each child get?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "63 cookies are shared equally among 7 children, and any cookies that cannot be shared equally are kept aside. How many cookies does each child get?",
+   "split": "heldout"
+  },
+  {
+   "answer": 12,
+   "category": "multi_step",
+   "id": "multi_step-heldout-038",
+   "prompt": "Pencils cost $7 each and notebooks cost $5 each. Gus buys 4 pencils and 2 notebooks and pays with $50. How many dollars of change does Gus receive?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "Pencils cost $7 each and notebooks cost $5 each. Gus buys 4 pencils and 2 notebooks and pays with $50. How many dollars of change does Gus receive?",
+   "split": "heldout"
+  },
+  {
+   "answer": 1,
+   "category": "multi_step",
+   "id": "multi_step-heldout-039",
+   "prompt": "Pencils cost $3 each and notebooks cost $10 each. Nia buys 3 pencils and 4 notebooks and pays with $50. How many dollars of change does Nia receive?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "Pencils cost $3 each and notebooks cost $10 each. Nia buys 3 pencils and 4 notebooks and pays with $50. How many dollars of change does Nia receive?",
+   "split": "heldout"
+  },
+  {
+   "answer": 95,
+   "category": "multi_step",
+   "id": "multi_step-heldout-040",
+   "prompt": "Ben had 90 stickers, gave 6 to Mateo, and then bought 11 more. How many stickers does Ben have now?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "Ben had 90 stickers, gave 6 to Mateo, and then bought 11 more. How many stickers does Ben have now?",
+   "split": "heldout"
+  },
+  {
+   "answer": 4,
+   "category": "programming_concepts",
+   "id": "programming_concepts-screening-001",
+   "prompt": "In Python, what does len([3, [3, 7], [8], 1]) return?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what does len([3, [3, 7], [8], 1]) return?",
+   "split": "screening"
+  },
+  {
+   "answer": 65,
+   "category": "programming_concepts",
+   "id": "programming_concepts-screening-002",
+   "prompt": "In Python, what is the value of x after running: x = 9; x += 5; x *= 5; x -= 5\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what is the value of x after running: x = 9; x += 5; x *= 5; x -= 5",
+   "split": "screening"
+  },
+  {
+   "answer": 5,
+   "category": "programming_concepts",
+   "id": "programming_concepts-screening-003",
+   "prompt": "In Python, what does len(list(range(13))[2:7]) return?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what does len(list(range(13))[2:7]) return?",
+   "split": "screening"
+  },
+  {
+   "answer": 30,
+   "category": "programming_concepts",
+   "id": "programming_concepts-screening-004",
+   "prompt": "In Python, what does sum(range(2, 12, 2)) return?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what does sum(range(2, 12, 2)) return?",
+   "split": "screening"
+  },
+  {
+   "answer": 93,
+   "category": "programming_concepts",
+   "id": "programming_concepts-screening-005",
+   "prompt": "In Python, what is the value of [23, 62, 76, 93, 88][3]?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what is the value of [23, 62, 76, 93, 88][3]?",
+   "split": "screening"
+  },
+  {
+   "answer": 3,
+   "category": "programming_concepts",
+   "id": "programming_concepts-screening-006",
+   "prompt": "In Python, what is the value of 27 // 7?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what is the value of 27 // 7?",
+   "split": "screening"
+  },
+  {
+   "answer": 1,
+   "category": "programming_concepts",
+   "id": "programming_concepts-screening-007",
+   "prompt": "In Python, what is the value of 55 % 3?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what is the value of 55 % 3?",
+   "split": "screening"
+  },
+  {
+   "answer": 4,
+   "category": "programming_concepts",
+   "id": "programming_concepts-screening-008",
+   "prompt": "In Python, what is the value of 81 % 7?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what is the value of 81 % 7?",
+   "split": "screening"
+  },
+  {
+   "answer": 2,
+   "category": "programming_concepts",
+   "id": "programming_concepts-screening-009",
+   "prompt": "In Python, what does len(list(range(9))[3:5]) return?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what does len(list(range(9))[3:5]) return?",
+   "split": "screening"
+  },
+  {
+   "answer": 5,
+   "category": "programming_concepts",
+   "id": "programming_concepts-screening-010",
+   "prompt": "In Python, what does len(set([4, 4, 5, 3, 6, 4, 2, 4, 2])) return?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what does len(set([4, 4, 5, 3, 6, 4, 2, 4, 2])) return?",
+   "split": "screening"
+  },
+  {
+   "answer": 8,
+   "category": "programming_concepts",
+   "id": "programming_concepts-heldout-001",
+   "prompt": "In Python, what does len(\"quantize\") return?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what does len(\"quantize\") return?",
+   "split": "heldout"
+  },
+  {
+   "answer": -11,
+   "category": "programming_concepts",
+   "id": "programming_concepts-heldout-002",
+   "prompt": "In Python, what is the value of -31 // 3?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what is the value of -31 // 3?",
+   "split": "heldout"
+  },
+  {
+   "answer": 4,
+   "category": "programming_concepts",
+   "id": "programming_concepts-heldout-003",
+   "prompt": "In Python, what does len([3, [6, 4], [9], 1]) return?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what does len([3, [6, 4], [9], 1]) return?",
+   "split": "heldout"
+  },
+  {
+   "answer": 7,
+   "category": "programming_concepts",
+   "id": "programming_concepts-heldout-004",
+   "prompt": "In Python, what does len(list(range(8))[1:8]) return?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what does len(list(range(8))[1:8]) return?",
+   "split": "heldout"
+  },
+  {
+   "answer": -6,
+   "category": "programming_concepts",
+   "id": "programming_concepts-heldout-005",
+   "prompt": "In Python, what is the value of -32 // 6?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what is the value of -32 // 6?",
+   "split": "heldout"
+  },
+  {
+   "answer": 4,
+   "category": "programming_concepts",
+   "id": "programming_concepts-heldout-006",
+   "prompt": "In Python, what is the value of 44 // 9?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what is the value of 44 // 9?",
+   "split": "heldout"
+  },
+  {
+   "answer": 3,
+   "category": "programming_concepts",
+   "id": "programming_concepts-heldout-007",
+   "prompt": "In Python, what does \"bookkeeper\".count(\"e\") return?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what does \"bookkeeper\".count(\"e\") return?",
+   "split": "heldout"
+  },
+  {
+   "answer": 6,
+   "category": "programming_concepts",
+   "id": "programming_concepts-heldout-008",
+   "prompt": "In Python, what is the value of 31 // 5?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what is the value of 31 // 5?",
+   "split": "heldout"
+  },
+  {
+   "answer": 4,
+   "category": "programming_concepts",
+   "id": "programming_concepts-heldout-009",
+   "prompt": "In Python, what does len([7, [1, 2], [9], 4]) return?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what does len([7, [1, 2], [9], 4]) return?",
+   "split": "heldout"
+  },
+  {
+   "answer": -14,
+   "category": "programming_concepts",
+   "id": "programming_concepts-heldout-010",
+   "prompt": "In Python, what is the value of -27 // 2?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what is the value of -27 // 2?",
+   "split": "heldout"
+  },
+  {
+   "answer": 5,
+   "category": "programming_concepts",
+   "id": "programming_concepts-heldout-011",
+   "prompt": "In Python, what does len(set([4, 1, 2, 1, 3, 3, 2, 1, 6])) return?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what does len(set([4, 1, 2, 1, 3, 3, 2, 1, 6])) return?",
+   "split": "heldout"
+  },
+  {
+   "answer": 64,
+   "category": "programming_concepts",
+   "id": "programming_concepts-heldout-012",
+   "prompt": "In Python, what is the value of [62, 64, 34, 79, 78][1]?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what is the value of [62, 64, 34, 79, 78][1]?",
+   "split": "heldout"
+  },
+  {
+   "answer": 33,
+   "category": "programming_concepts",
+   "id": "programming_concepts-heldout-013",
+   "prompt": "In Python, what is the value of [74, 34, 84, 33, 47][-2]?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what is the value of [74, 34, 84, 33, 47][-2]?",
+   "split": "heldout"
+  },
+  {
+   "answer": 24,
+   "category": "programming_concepts",
+   "id": "programming_concepts-heldout-014",
+   "prompt": "In Python, what is the value of [75, 80, 52, 81, 24][-1]?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what is the value of [75, 80, 52, 81, 24][-1]?",
+   "split": "heldout"
+  },
+  {
+   "answer": 0,
+   "category": "programming_concepts",
+   "id": "programming_concepts-heldout-015",
+   "prompt": "In Python, what is the value of 40 % 5?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what is the value of 40 % 5?",
+   "split": "heldout"
+  },
+  {
+   "answer": 125,
+   "category": "programming_concepts",
+   "id": "programming_concepts-heldout-016",
+   "prompt": "In Python, what is the value of 5 ** 3?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what is the value of 5 ** 3?",
+   "split": "heldout"
+  },
+  {
+   "answer": 29,
+   "category": "programming_concepts",
+   "id": "programming_concepts-heldout-017",
+   "prompt": "In Python, what is the value of [33, 10, 28, 29, 27][-2]?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what is the value of [33, 10, 28, 29, 27][-2]?",
+   "split": "heldout"
+  },
+  {
+   "answer": 4,
+   "category": "programming_concepts",
+   "id": "programming_concepts-heldout-018",
+   "prompt": "In Python, what does len([7, [2, 6], [3], 7]) return?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what does len([7, [2, 6], [3], 7]) return?",
+   "split": "heldout"
+  },
+  {
+   "answer": 4,
+   "category": "programming_concepts",
+   "id": "programming_concepts-heldout-019",
+   "prompt": "In Python, what does len([8, [7, 4], [7], 5]) return?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what does len([8, [7, 4], [7], 5]) return?",
+   "split": "heldout"
+  },
+  {
+   "answer": 4,
+   "category": "programming_concepts",
+   "id": "programming_concepts-heldout-020",
+   "prompt": "In Python, what does len([4, [2, 4], [9], 2]) return?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what does len([4, [2, 4], [9], 2]) return?",
+   "split": "heldout"
+  },
+  {
+   "answer": 4,
+   "category": "programming_concepts",
+   "id": "programming_concepts-heldout-021",
+   "prompt": "In Python, what is the value of 94 % 6?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what is the value of 94 % 6?",
+   "split": "heldout"
+  },
+  {
+   "answer": 96,
+   "category": "programming_concepts",
+   "id": "programming_concepts-heldout-022",
+   "prompt": "In Python, what is the value of [21, 42, 54, 72, 96][-1]?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what is the value of [21, 42, 54, 72, 96][-1]?",
+   "split": "heldout"
+  },
+  {
+   "answer": -7,
+   "category": "programming_concepts",
+   "id": "programming_concepts-heldout-023",
+   "prompt": "In Python, what is the value of -34 // 5?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what is the value of -34 // 5?",
+   "split": "heldout"
+  },
+  {
+   "answer": 1,
+   "category": "programming_concepts",
+   "id": "programming_concepts-heldout-024",
+   "prompt": "In Python, what is the value of 89 % 8?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what is the value of 89 % 8?",
+   "split": "heldout"
+  },
+  {
+   "answer": 145,
+   "category": "programming_concepts",
+   "id": "programming_concepts-heldout-025",
+   "prompt": "In Python, what does sum(range(1, 30, 3)) return?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what does sum(range(1, 30, 3)) return?",
+   "split": "heldout"
+  },
+  {
+   "answer": 4,
+   "category": "programming_concepts",
+   "id": "programming_concepts-heldout-026",
+   "prompt": "In Python, what does len([8, [7, 9], [8], 4]) return?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what does len([8, [7, 9], [8], 4]) return?",
+   "split": "heldout"
+  },
+  {
+   "answer": 0,
+   "category": "programming_concepts",
+   "id": "programming_concepts-heldout-027",
+   "prompt": "In Python, what is the value of 24 % 6?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what is the value of 24 % 6?",
+   "split": "heldout"
+  },
+  {
+   "answer": 8,
+   "category": "programming_concepts",
+   "id": "programming_concepts-heldout-028",
+   "prompt": "In Python, what is the value of 43 // 5?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what is the value of 43 // 5?",
+   "split": "heldout"
+  },
+  {
+   "answer": 39,
+   "category": "programming_concepts",
+   "id": "programming_concepts-heldout-029",
+   "prompt": "In Python, what is the value of x after running: x = 2; x += 8; x *= 4; x -= 1\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what is the value of x after running: x = 2; x += 8; x *= 4; x -= 1",
+   "split": "heldout"
+  },
+  {
+   "answer": 2,
+   "category": "programming_concepts",
+   "id": "programming_concepts-heldout-030",
+   "prompt": "In Python, what does \"committee\".count(\"t\") return?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what does \"committee\".count(\"t\") return?",
+   "split": "heldout"
+  },
+  {
+   "answer": 12,
+   "category": "programming_concepts",
+   "id": "programming_concepts-heldout-031",
+   "prompt": "In Python, what is the value of 88 // 7?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what is the value of 88 // 7?",
+   "split": "heldout"
+  },
+  {
+   "answer": -10,
+   "category": "programming_concepts",
+   "id": "programming_concepts-heldout-032",
+   "prompt": "In Python, what is the value of -37 // 4?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what is the value of -37 // 4?",
+   "split": "heldout"
+  },
+  {
+   "answer": 4,
+   "category": "programming_concepts",
+   "id": "programming_concepts-heldout-033",
+   "prompt": "In Python, what does \"mississippi\".count(\"s\") return?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what does \"mississippi\".count(\"s\") return?",
+   "split": "heldout"
+  },
+  {
+   "answer": 4,
+   "category": "programming_concepts",
+   "id": "programming_concepts-heldout-034",
+   "prompt": "In Python, what does len(set([4, 6, 6, 5, 1, 6, 5, 4, 6])) return?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what does len(set([4, 6, 6, 5, 1, 6, 5, 4, 6])) return?",
+   "split": "heldout"
+  },
+  {
+   "answer": 6,
+   "category": "programming_concepts",
+   "id": "programming_concepts-heldout-035",
+   "prompt": "In Python, what does len(set([2, 4, 5, 1, 6, 3, 4, 5, 4])) return?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what does len(set([2, 4, 5, 1, 6, 3, 4, 5, 4])) return?",
+   "split": "heldout"
+  },
+  {
+   "answer": 27,
+   "category": "programming_concepts",
+   "id": "programming_concepts-heldout-036",
+   "prompt": "In Python, what is the value of 3 ** 3?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what is the value of 3 ** 3?",
+   "split": "heldout"
+  },
+  {
+   "answer": 3,
+   "category": "programming_concepts",
+   "id": "programming_concepts-heldout-037",
+   "prompt": "In Python, what is the value of 25 // 8?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what is the value of 25 // 8?",
+   "split": "heldout"
+  },
+  {
+   "answer": 4,
+   "category": "programming_concepts",
+   "id": "programming_concepts-heldout-038",
+   "prompt": "In Python, what does len([4, [7, 2], [6], 4]) return?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what does len([4, [7, 2], [6], 4]) return?",
+   "split": "heldout"
+  },
+  {
+   "answer": -5,
+   "category": "programming_concepts",
+   "id": "programming_concepts-heldout-039",
+   "prompt": "In Python, what is the value of -26 // 6?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what is the value of -26 // 6?",
+   "split": "heldout"
+  },
+  {
+   "answer": 21,
+   "category": "programming_concepts",
+   "id": "programming_concepts-heldout-040",
+   "prompt": "In Python, what is the value of [84, 62, 38, 19, 21][-1]?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In Python, what is the value of [84, 62, 38, 19, 21][-1]?",
+   "split": "heldout"
+  },
+  {
+   "answer": 2584,
+   "category": "algorithmic",
+   "id": "algorithmic-screening-001",
+   "prompt": "In the Fibonacci sequence where F(1) = 1 and F(2) = 1, what is F(18)?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In the Fibonacci sequence where F(1) = 1 and F(2) = 1, what is F(18)?",
+   "split": "screening"
+  },
+  {
+   "answer": 7,
+   "category": "algorithmic",
+   "id": "algorithmic-screening-002",
+   "prompt": "A binary search on a sorted list of 75 distinct elements halves the remaining range each step. In the worst case, how many elements must it compare (that is, what is floor(log2(75)) + 1)?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "A binary search on a sorted list of 75 distinct elements halves the remaining range each step. In the worst case, how many elements must it compare (that is, what is floor(log2(75)) + 1)?",
+   "split": "screening"
+  },
+  {
+   "answer": 10,
+   "category": "algorithmic",
+   "id": "algorithmic-screening-003",
+   "prompt": "What is the least common multiple of 10 and 2?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is the least common multiple of 10 and 2?",
+   "split": "screening"
+  },
+  {
+   "answer": 24,
+   "category": "algorithmic",
+   "id": "algorithmic-screening-004",
+   "prompt": "What is the greatest common divisor of 120 and 144?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is the greatest common divisor of 120 and 144?",
+   "split": "screening"
+  },
+  {
+   "answer": 16,
+   "category": "algorithmic",
+   "id": "algorithmic-screening-005",
+   "prompt": "How many prime numbers are less than 58?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "How many prime numbers are less than 58?",
+   "split": "screening"
+  },
+  {
+   "answer": 58,
+   "category": "algorithmic",
+   "id": "algorithmic-screening-006",
+   "prompt": "What is the difference between the largest and smallest numbers in [57, 95, 45, 55, 37, 85]?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is the difference between the largest and smallest numbers in [57, 95, 45, 55, 37, 85]?",
+   "split": "screening"
+  },
+  {
+   "answer": 11,
+   "category": "algorithmic",
+   "id": "algorithmic-screening-007",
+   "prompt": "What is the greatest common divisor of 132 and 55?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is the greatest common divisor of 132 and 55?",
+   "split": "screening"
+  },
+  {
+   "answer": 23,
+   "category": "algorithmic",
+   "id": "algorithmic-screening-008",
+   "prompt": "If the list [63, 17, 23, 42, 66, 43, 81] is sorted in ascending order, what number is at position 2 (counting from 1)?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "If the list [63, 17, 23, 42, 66, 43, 81] is sorted in ascending order, what number is at position 2 (counting from 1)?",
+   "split": "screening"
+  },
+  {
+   "answer": 22,
+   "category": "algorithmic",
+   "id": "algorithmic-screening-009",
+   "prompt": "What is the least common multiple of 2 and 11?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is the least common multiple of 2 and 11?",
+   "split": "screening"
+  },
+  {
+   "answer": 144,
+   "category": "algorithmic",
+   "id": "algorithmic-screening-010",
+   "prompt": "In the Fibonacci sequence where F(1) = 1 and F(2) = 1, what is F(12)?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In the Fibonacci sequence where F(1) = 1 and F(2) = 1, what is F(12)?",
+   "split": "screening"
+  },
+  {
+   "answer": 12,
+   "category": "algorithmic",
+   "id": "algorithmic-heldout-001",
+   "prompt": "What is the greatest common divisor of 84 and 120?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is the greatest common divisor of 84 and 120?",
+   "split": "heldout"
+  },
+  {
+   "answer": 33,
+   "category": "algorithmic",
+   "id": "algorithmic-heldout-002",
+   "prompt": "If the list [49, 21, 98, 74, 95, 33, 65] is sorted in ascending order, what number is at position 2 (counting from 1)?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "If the list [49, 21, 98, 74, 95, 33, 65] is sorted in ascending order, what number is at position 2 (counting from 1)?",
+   "split": "heldout"
+  },
+  {
+   "answer": 45,
+   "category": "algorithmic",
+   "id": "algorithmic-heldout-003",
+   "prompt": "If the list [41, 7, 45, 75, 16, 11, 27] is sorted in ascending order, what number is at position 6 (counting from 1)?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "If the list [41, 7, 45, 75, 16, 11, 27] is sorted in ascending order, what number is at position 6 (counting from 1)?",
+   "split": "heldout"
+  },
+  {
+   "answer": 7,
+   "category": "algorithmic",
+   "id": "algorithmic-heldout-004",
+   "prompt": "What is the greatest common divisor of 91 and 98?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is the greatest common divisor of 91 and 98?",
+   "split": "heldout"
+  },
+  {
+   "answer": 4,
+   "category": "algorithmic",
+   "id": "algorithmic-heldout-005",
+   "prompt": "What is the least common multiple of 4 and 4?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is the least common multiple of 4 and 4?",
+   "split": "heldout"
+  },
+  {
+   "answer": 63,
+   "category": "algorithmic",
+   "id": "algorithmic-heldout-006",
+   "prompt": "What is the difference between the largest and smallest numbers in [18, 77, 50, 14, 75, 22]?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is the difference between the largest and smallest numbers in [18, 77, 50, 14, 75, 22]?",
+   "split": "heldout"
+  },
+  {
+   "answer": 56,
+   "category": "algorithmic",
+   "id": "algorithmic-heldout-007",
+   "prompt": "What is the difference between the largest and smallest numbers in [92, 44, 36, 41, 60, 39]?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is the difference between the largest and smallest numbers in [92, 44, 36, 41, 60, 39]?",
+   "split": "heldout"
+  },
+  {
+   "answer": 26,
+   "category": "algorithmic",
+   "id": "algorithmic-heldout-008",
+   "prompt": "What is the sum of the digits of 70919?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is the sum of the digits of 70919?",
+   "split": "heldout"
+  },
+  {
+   "answer": 30,
+   "category": "algorithmic",
+   "id": "algorithmic-heldout-009",
+   "prompt": "If the list [74, 15, 30, 47, 32, 52, 71] is sorted in ascending order, what number is at position 2 (counting from 1)?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "If the list [74, 15, 30, 47, 32, 52, 71] is sorted in ascending order, what number is at position 2 (counting from 1)?",
+   "split": "heldout"
+  },
+  {
+   "answer": 10,
+   "category": "algorithmic",
+   "id": "algorithmic-heldout-010",
+   "prompt": "How many prime numbers are less than 30?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "How many prime numbers are less than 30?",
+   "split": "heldout"
+  },
+  {
+   "answer": 5,
+   "category": "algorithmic",
+   "id": "algorithmic-heldout-011",
+   "prompt": "How many 1 bits are in the binary representation of 79?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "How many 1 bits are in the binary representation of 79?",
+   "split": "heldout"
+  },
+  {
+   "answer": 6,
+   "category": "algorithmic",
+   "id": "algorithmic-heldout-012",
+   "prompt": "What is the greatest common divisor of 78 and 36?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is the greatest common divisor of 78 and 36?",
+   "split": "heldout"
+  },
+  {
+   "answer": 21,
+   "category": "algorithmic",
+   "id": "algorithmic-heldout-013",
+   "prompt": "How many integers from 1 to 151 inclusive are divisible by 7?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "How many integers from 1 to 151 inclusive are divisible by 7?",
+   "split": "heldout"
+  },
+  {
+   "answer": 987,
+   "category": "algorithmic",
+   "id": "algorithmic-heldout-014",
+   "prompt": "In the Fibonacci sequence where F(1) = 1 and F(2) = 1, what is F(16)?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In the Fibonacci sequence where F(1) = 1 and F(2) = 1, what is F(16)?",
+   "split": "heldout"
+  },
+  {
+   "answer": 57,
+   "category": "algorithmic",
+   "id": "algorithmic-heldout-015",
+   "prompt": "If the list [1, 24, 32, 57, 63, 45, 28] is sorted in ascending order, what number is at position 6 (counting from 1)?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "If the list [1, 24, 32, 57, 63, 45, 28] is sorted in ascending order, what number is at position 6 (counting from 1)?",
+   "split": "heldout"
+  },
+  {
+   "answer": 10,
+   "category": "algorithmic",
+   "id": "algorithmic-heldout-016",
+   "prompt": "A binary search on a sorted list of 685 distinct elements halves the remaining range each step. In the worst case, how many elements must it compare (that is, what is floor(log2(685)) + 1)?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "A binary search on a sorted list of 685 distinct elements halves the remaining range each step. In the worst case, how many elements must it compare (that is, what is floor(log2(685)) + 1)?",
+   "split": "heldout"
+  },
+  {
+   "answer": 62,
+   "category": "algorithmic",
+   "id": "algorithmic-heldout-017",
+   "prompt": "If the list [63, 97, 54, 67, 62, 53, 56] is sorted in ascending order, what number is at position 4 (counting from 1)?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "If the list [63, 97, 54, 67, 62, 53, 56] is sorted in ascending order, what number is at position 4 (counting from 1)?",
+   "split": "heldout"
+  },
+  {
+   "answer": 4,
+   "category": "algorithmic",
+   "id": "algorithmic-heldout-018",
+   "prompt": "How many 1 bits are in the binary representation of 147?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "How many 1 bits are in the binary representation of 147?",
+   "split": "heldout"
+  },
+  {
+   "answer": 1,
+   "category": "algorithmic",
+   "id": "algorithmic-heldout-019",
+   "prompt": "How many 1 bits are in the binary representation of 16?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "How many 1 bits are in the binary representation of 16?",
+   "split": "heldout"
+  },
+  {
+   "answer": 9,
+   "category": "algorithmic",
+   "id": "algorithmic-heldout-020",
+   "prompt": "How many prime numbers are less than 26?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "How many prime numbers are less than 26?",
+   "split": "heldout"
+  },
+  {
+   "answer": 5,
+   "category": "algorithmic",
+   "id": "algorithmic-heldout-021",
+   "prompt": "How many 1 bits are in the binary representation of 206?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "How many 1 bits are in the binary representation of 206?",
+   "split": "heldout"
+  },
+  {
+   "answer": 77,
+   "category": "algorithmic",
+   "id": "algorithmic-heldout-022",
+   "prompt": "What is the difference between the largest and smallest numbers in [63, 21, 9, 11, 66, 86]?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is the difference between the largest and smallest numbers in [63, 21, 9, 11, 66, 86]?",
+   "split": "heldout"
+  },
+  {
+   "answer": 233,
+   "category": "algorithmic",
+   "id": "algorithmic-heldout-023",
+   "prompt": "In the Fibonacci sequence where F(1) = 1 and F(2) = 1, what is F(13)?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In the Fibonacci sequence where F(1) = 1 and F(2) = 1, what is F(13)?",
+   "split": "heldout"
+  },
+  {
+   "answer": 29,
+   "category": "algorithmic",
+   "id": "algorithmic-heldout-024",
+   "prompt": "What is the sum of the digits of 844823?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is the sum of the digits of 844823?",
+   "split": "heldout"
+  },
+  {
+   "answer": 48,
+   "category": "algorithmic",
+   "id": "algorithmic-heldout-025",
+   "prompt": "How many integers from 1 to 192 inclusive are divisible by 4?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "How many integers from 1 to 192 inclusive are divisible by 4?",
+   "split": "heldout"
+  },
+  {
+   "answer": 5,
+   "category": "algorithmic",
+   "id": "algorithmic-heldout-026",
+   "prompt": "How many 1 bits are in the binary representation of 55?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "How many 1 bits are in the binary representation of 55?",
+   "split": "heldout"
+  },
+  {
+   "answer": 67,
+   "category": "algorithmic",
+   "id": "algorithmic-heldout-027",
+   "prompt": "What is the difference between the largest and smallest numbers in [67, 1, 68, 57, 17, 42]?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is the difference between the largest and smallest numbers in [67, 1, 68, 57, 17, 42]?",
+   "split": "heldout"
+  },
+  {
+   "answer": 10,
+   "category": "algorithmic",
+   "id": "algorithmic-heldout-028",
+   "prompt": "What is the greatest common divisor of 100 and 130?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is the greatest common divisor of 100 and 130?",
+   "split": "heldout"
+  },
+  {
+   "answer": 4,
+   "category": "algorithmic",
+   "id": "algorithmic-heldout-029",
+   "prompt": "How many 1 bits are in the binary representation of 77?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "How many 1 bits are in the binary representation of 77?",
+   "split": "heldout"
+  },
+  {
+   "answer": 34,
+   "category": "algorithmic",
+   "id": "algorithmic-heldout-030",
+   "prompt": "In the Fibonacci sequence where F(1) = 1 and F(2) = 1, what is F(9)?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "In the Fibonacci sequence where F(1) = 1 and F(2) = 1, what is F(9)?",
+   "split": "heldout"
+  },
+  {
+   "answer": 88,
+   "category": "algorithmic",
+   "id": "algorithmic-heldout-031",
+   "prompt": "If the list [87, 20, 95, 88, 85, 7, 91] is sorted in ascending order, what number is at position 5 (counting from 1)?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "If the list [87, 20, 95, 88, 85, 7, 91] is sorted in ascending order, what number is at position 5 (counting from 1)?",
+   "split": "heldout"
+  },
+  {
+   "answer": 66,
+   "category": "algorithmic",
+   "id": "algorithmic-heldout-032",
+   "prompt": "What is the difference between the largest and smallest numbers in [16, 34, 40, 82, 51, 20]?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is the difference between the largest and smallest numbers in [16, 34, 40, 82, 51, 20]?",
+   "split": "heldout"
+  },
+  {
+   "answer": 11,
+   "category": "algorithmic",
+   "id": "algorithmic-heldout-033",
+   "prompt": "How many integers from 1 to 45 inclusive are divisible by 4?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "How many integers from 1 to 45 inclusive are divisible by 4?",
+   "split": "heldout"
+  },
+  {
+   "answer": 91,
+   "category": "algorithmic",
+   "id": "algorithmic-heldout-034",
+   "prompt": "If the list [39, 84, 95, 63, 91, 27, 13] is sorted in ascending order, what number is at position 6 (counting from 1)?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "If the list [39, 84, 95, 63, 91, 27, 13] is sorted in ascending order, what number is at position 6 (counting from 1)?",
+   "split": "heldout"
+  },
+  {
+   "answer": 72,
+   "category": "algorithmic",
+   "id": "algorithmic-heldout-035",
+   "prompt": "If the list [19, 74, 54, 72, 24, 18, 27] is sorted in ascending order, what number is at position 6 (counting from 1)?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "If the list [19, 74, 54, 72, 24, 18, 27] is sorted in ascending order, what number is at position 6 (counting from 1)?",
+   "split": "heldout"
+  },
+  {
+   "answer": 3,
+   "category": "algorithmic",
+   "id": "algorithmic-heldout-036",
+   "prompt": "How many 1 bits are in the binary representation of 112?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "How many 1 bits are in the binary representation of 112?",
+   "split": "heldout"
+  },
+  {
+   "answer": 62,
+   "category": "algorithmic",
+   "id": "algorithmic-heldout-037",
+   "prompt": "If the list [86, 18, 79, 88, 77, 95, 62] is sorted in ascending order, what number is at position 2 (counting from 1)?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "If the list [86, 18, 79, 88, 77, 95, 62] is sorted in ascending order, what number is at position 2 (counting from 1)?",
+   "split": "heldout"
+  },
+  {
+   "answer": 9,
+   "category": "algorithmic",
+   "id": "algorithmic-heldout-038",
+   "prompt": "How many prime numbers are less than 29?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "How many prime numbers are less than 29?",
+   "split": "heldout"
+  },
+  {
+   "answer": 89,
+   "category": "algorithmic",
+   "id": "algorithmic-heldout-039",
+   "prompt": "If the list [89, 76, 72, 70, 77, 51, 95] is sorted in ascending order, what number is at position 6 (counting from 1)?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "If the list [89, 76, 72, 70, 77, 51, 95] is sorted in ascending order, what number is at position 6 (counting from 1)?",
+   "split": "heldout"
+  },
+  {
+   "answer": 132,
+   "category": "algorithmic",
+   "id": "algorithmic-heldout-040",
+   "prompt": "What is the least common multiple of 12 and 11?\nThink step by step, then give the final answer on the last line in the form \"Answer: <integer>\".",
+   "question": "What is the least common multiple of 12 and 11?",
+   "split": "heldout"
+  }
+ ],
+ "name": "reasoning",
+ "notes": "Answers computed by the generator; questions unique within the suite.",
+ "seed": 20261109,
+ "version": "v1"
+}
