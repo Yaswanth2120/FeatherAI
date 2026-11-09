@@ -36,7 +36,7 @@ def test_rejects_requantization(tmp_path):
     source = tmp_path / 'source.gguf'
     write_model(source, True)
     with pytest.raises(ValueError, match='requantization'):
-        convert(source, tmp_path / 'job', executable='/usr/bin/true')
+        convert(source, tmp_path / 'job', executable='/usr/bin/true', measure_memory=False)
     assert not (tmp_path / 'job').exists()
 
 
@@ -59,13 +59,13 @@ def test_conversion_validates_output_and_lineage(tmp_path, monkeypatch):
         write_model(command[2], True)
         return SimpleNamespace(returncode=0)
     monkeypatch.setattr(subprocess, 'run', fake_quantizer)
-    result = convert(source, tmp_path / 'job', target='Q8_0', executable='/usr/bin/true')
+    result = convert(source, tmp_path / 'job', target='Q8_0', executable='/usr/bin/true', measure_memory=False)
     assert result['status'] == 'converted'
     assert result['artifact']['tensor_types'] == {'Q8_0': 1}
     assert result['storage_reduction_fraction'] > 0
     assert result['source']['sha256'] != result['artifact']['sha256']
     with pytest.raises(FileExistsError):
-        convert(source, tmp_path / 'job', executable='/usr/bin/true')
+        convert(source, tmp_path / 'job', executable='/usr/bin/true', measure_memory=False)
 
 
 def test_rejects_insufficient_memory(tmp_path, monkeypatch):
@@ -74,7 +74,7 @@ def test_rejects_insufficient_memory(tmp_path, monkeypatch):
     write_model(source)
     monkeypatch.setattr(psutil, 'virtual_memory', lambda: SimpleNamespace(available=1))
     with pytest.raises(ValueError, match='RAM'):
-        convert(source, tmp_path / 'job', executable='/usr/bin/true')
+        convert(source, tmp_path / 'job', executable='/usr/bin/true', measure_memory=False)
 
 
 def test_timeout_persists_failure(tmp_path, monkeypatch):
@@ -84,7 +84,7 @@ def test_timeout_persists_failure(tmp_path, monkeypatch):
         raise subprocess.TimeoutExpired(command, kwargs['timeout'])
     monkeypatch.setattr(subprocess, 'run', timeout)
     with pytest.raises(subprocess.TimeoutExpired):
-        convert(source, tmp_path / 'job', executable='/usr/bin/true')
+        convert(source, tmp_path / 'job', executable='/usr/bin/true', measure_memory=False)
     assert json.loads((tmp_path / 'job/manifest.json').read_text())['status'] == 'failed'
 
 

@@ -1,0 +1,79 @@
+{
+  "kind": "real-run",
+  "stage": "quantization",
+  "model": "SmolLM2-135M-Instruct F16 (bartowski rev 09816acd)",
+  "toolchain_commit": "9d340ec341e079d2c28afd50871afce358cdbf48",
+  "metric_sources": {
+    "peak_memory_footprint_bytes": "/usr/bin/time -l",
+    "max_rss_bytes": "/usr/bin/time -l",
+    "sampled_peak_rss_bytes": "psutil every 100 ms"
+  },
+  "conversions": [
+    {
+      "target": "Q8_0",
+      "status": "converted",
+      "source_sha256": "f535f83ec568d040f88ddc04a199fa6da90923bbb41d4dcaed02caa924d6ef57",
+      "source_size_bytes": 270885952,
+      "output_sha256": "a2c82248c1a296e6bb29621630b2c0ce6e01c1442ce9721b7009926652662956",
+      "output_size_bytes": 144811072,
+      "executable_sha256": "963dc27a67e05f3bfb4990459cbcad47c99022b41ac0b9c1f955a7e8de73733b",
+      "admission_estimate_bytes": 810207360,
+      "available_ram_bytes_at_admission": 1443201024,
+      "peak_memory_footprint_bytes": 250037088,
+      "max_rss_bytes": 273416192,
+      "sampled_peak_rss_bytes": 272007168,
+      "wall_seconds": 3.5680977499978326,
+      "pressure_before": 2,
+      "swap_used_before_bytes": 2832140861,
+      "footprint_to_source_ratio": 0.9230345322595392,
+      "max_rss_to_source_ratio": 1.0093406098814603,
+      "system_delta": {
+        "seconds": 3.5792088508605957,
+        "swap_used_delta_bytes": 133882184,
+        "pageins": 46928,
+        "pageouts": 1117,
+        "swapins": 1080,
+        "swapouts": 9196,
+        "page_size": 16384,
+        "max_pressure_level": 2
+      }
+    },
+    {
+      "target": "Q4_K_M",
+      "status": "converted",
+      "source_sha256": "f535f83ec568d040f88ddc04a199fa6da90923bbb41d4dcaed02caa924d6ef57",
+      "source_size_bytes": 270885952,
+      "output_sha256": "76ab8f094853fd2e48a76620f031f59b3e127970ba84489323a47a877e632b3e",
+      "output_size_bytes": 105454144,
+      "executable_sha256": "963dc27a67e05f3bfb4990459cbcad47c99022b41ac0b9c1f955a7e8de73733b",
+      "admission_estimate_bytes": 810207360,
+      "available_ram_bytes_at_admission": 1511768064,
+      "peak_memory_footprint_bytes": 254264112,
+      "max_rss_bytes": 300187648,
+      "sampled_peak_rss_bytes": 301154304,
+      "wall_seconds": 1.101054082999326,
+      "pressure_before": 2,
+      "swap_used_before_bytes": 2966023045,
+      "footprint_to_source_ratio": 0.9386389737921884,
+      "max_rss_to_source_ratio": 1.1081698618317424,
+      "system_delta": {
+        "seconds": 1.1014201641082764,
+        "swap_used_delta_bytes": -8388608,
+        "pageins": 7709,
+        "pageouts": 1091,
+        "swapins": 12,
+        "swapouts": 0,
+        "page_size": 16384,
+        "max_pressure_level": 2
+      }
+    }
+  ],
+  "qwen_prior_rejection": {
+    "stage": "quantization pre-flight admission (llama-quantize never started)",
+    "evidence": "experiments/resource-blockers.json",
+    "rule": "2 x source_size + 256 MiB",
+    "estimate_bytes": 2801286912,
+    "available_bytes": 1807138816
+  },
+  "conclusion": "Measured llama-quantize peak is 0.92-0.94 x source size (footprint) and 1.01-1.11 x (max RSS) for this source; the v0.1 rule overestimates by about 1.8x. Single-model evidence; linear scaling is assumed and is checked on the next conversion."
+}
