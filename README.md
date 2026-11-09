@@ -10,21 +10,34 @@ A local-first laboratory for quantizing language models, measuring performance, 
 
 See [the final report](docs/FINAL_REPORT.md).
 
+## Measured results
+
+SmolLM2-135M-Instruct on an Apple M2 with 8 GiB RAM, using the same F16 source and Feather-created quantizations:
+
+| Variant | Decode tok/s, median [95% CI] | Median peak process footprint | Coding pass rate (30 held-out problems) | Mean KLD vs F16 |
+| --- | ---: | ---: | ---: | ---: |
+| F16 (source) | 220.8 [207.1, 225.8] | 472.1 MiB | 36.7% | Reference |
+| Q8_0 | 252.6 [244.9, 256.4] | 300.5 MiB | 26.7% | 0.0012 |
+| Q4_K_M | 262.8 [246.2, 268.5] | 264.2 MiB | 36.7% | 0.0445 |
+
+These are measurements from this machine, not hardware-independent promises. The study used 15 server sessions and 20 measured requests per variant; 13 sessions were flagged for memory pressure. Coding comparisons have wide confidence intervals (30 problems), so no quality difference was detected. The F16 reasoning baseline solved only 3/160 held-out items, making reasoning degradation uninformative. The fallback-model switch and other protocol deviations are documented; see the [full study and limitations](docs/studies/quantization-study-v0.2.md) and [decision record](docs/DECISIONS.md).
+
 ## Install and open
 
-Requires Python 3.12+, [uv](https://docs.astral.sh/uv/), Node 20.19+ and npm. Ollama is optional for installed-runtime inference. llama.cpp is required for local GGUF conversion/native inference; Docker is required for generated-code scoring.
+The native study targets **macOS on Apple Silicon**. Requires Git, Python 3.12+, [uv](https://docs.astral.sh/uv/), Node 20.19+ and npm. Native llama.cpp builds also require CMake and Xcode Command Line Tools. Ollama is optional for installed-runtime inference. llama.cpp is required for local GGUF conversion/native inference; Docker is required for generated-code scoring.
 
 ```sh
-cd /Users/yaswanth/Desktop/FeatherAI
+git clone https://github.com/Yaswanth2120/FeatherAI.git
+cd FeatherAI
 uv sync --locked
 npm --prefix frontend ci
 npm --prefix frontend run build
 uv run feather serve
 ```
 
-Open **http://127.0.0.1:8000**. The same localhost server serves API and dashboard; API docs are at `/docs`. Stop with Ctrl-C. No cloud account is required, and nothing is published.
+Open **http://127.0.0.1:8000**. The same localhost server serves API and dashboard; API docs are at `/docs`. Stop with Ctrl-C. No cloud account is required to use the local lab; starting the server does not publish a service.
 
-This checkout already has a local llama.cpp build under ignored `.feather/tools/llama.cpp`. To enable native jobs with it:
+A fresh clone includes source code and committed reports, but **not model weights, compiled llama.cpp tools, runtime databases or ignored study working files**. You can open the dashboard before installing native tools; model discovery needs a running Ollama service. To enable GGUF conversion and native inference, build the pinned toolchain below, then start the server with:
 
 ```sh
 uv run feather serve --quantizer .feather/tools/llama.cpp/build/bin/llama-quantize --server .feather/tools/llama.cpp/build/bin/llama-server
@@ -37,8 +50,27 @@ mkdir -p .feather/tools
 git clone https://github.com/ggml-org/llama.cpp.git .feather/tools/llama.cpp
 git -C .feather/tools/llama.cpp checkout 9d340ec341e079d2c28afd50871afce358cdbf48
 cmake -S .feather/tools/llama.cpp -B .feather/tools/llama.cpp/build -DCMAKE_BUILD_TYPE=Release -DLLAMA_CURL=OFF
-cmake --build .feather/tools/llama.cpp/build --target llama-quantize llama-server -j 2
+cmake --build .feather/tools/llama.cpp/build --target llama-quantize llama-server llama-perplexity -j 2
 ```
+
+## Download the study source weights
+
+Run from the cloned repository root. This explicit download is approximately **271 MB (258 MiB)**. It imports the higher-precision F16 source from [bartowski/SmolLM2-135M-Instruct-GGUF](https://huggingface.co/bartowski/SmolLM2-135M-Instruct-GGUF), pinned to revision `09816acd5d99df7be770d85ea30822623dab342c`. Feather creates Q8/Q4 itself; this does not download a prequantized variant.
+
+```sh
+mkdir -p models
+curl --fail --location --retry 3 \
+  'https://huggingface.co/bartowski/SmolLM2-135M-Instruct-GGUF/resolve/09816acd5d99df7be770d85ea30822623dab342c/SmolLM2-135M-Instruct-f16.gguf' \
+  --output models/SmolLM2-135M-Instruct-f16.gguf.partial &&
+printf '%s  %s\n' \
+  'f535f83ec568d040f88ddc04a199fa6da90923bbb41d4dcaed02caa924d6ef57' \
+  'models/SmolLM2-135M-Instruct-f16.gguf.partial' | shasum -a 256 --check &&
+mv models/SmolLM2-135M-Instruct-f16.gguf.partial models/SmolLM2-135M-Instruct-f16.gguf
+```
+
+Proceed only after the checksum reports `OK`. The partial file is promoted to the model filename only after verification. Source provenance and the full expected hash are also recorded in [experiments/quantization-evidence.json](experiments/quantization-evidence.json). Weights remain gitignored. See the upstream model repository for its license and terms.
+
+A fresh clone can read the committed results, but acceptance checks that re-hash local source/output files also require the corresponding weights and generated artifacts; downloading the F16 source alone does not restore ignored study outputs.
 
 ## CLI
 
@@ -49,8 +81,8 @@ uv run feather benchmark run --model qwen3:1.7b --repeats 5 --warmups 1 --contex
 uv run feather benchmark report --latest
 uv run feather benchmark report --latest --output report.json
 uv run feather benchmark report --latest --format csv --output trials.csv
-uv run feather artifact models/source-f16.gguf
-uv run feather quantize --source models/source-f16.gguf --output-dir experiments/my-q4 --target Q4_K_M --executable /path/to/llama-quantize
+uv run feather artifact models/SmolLM2-135M-Instruct-f16.gguf
+uv run feather quantize --source models/SmolLM2-135M-Instruct-f16.gguf --output-dir experiments/my-q4 --target Q4_K_M --executable .feather/tools/llama.cpp/build/bin/llama-quantize
 ```
 
 The model name must exactly match `models list`; Feather does not silently download models. Global `--db` and `--ollama-url` flags precede the command. The standalone benchmark CLI uses Ollama. The `study` command and dashboard additionally support owned native llama.cpp inference.
@@ -69,10 +101,10 @@ The output directory must be new; its parent must exist. The source must contain
 uv run feather sandbox status                       # is isolated coding execution available? (blocked => no code runs)
 uv run feather sandbox prepare                      # explicit pull of the pinned python:3.12-alpine digest (~20 MB)
 uv run feather sandbox selftest --output experiments/sandbox-selftest.json
-uv run feather automation doctor [--probe]          # Codex automation preflight
+uv run feather automation doctor                    # offline preflight; add --probe to test account/model access
 uv run feather e2e --source models/SmolLM2-135M-Instruct-f16.gguf   # one traceable API workflow (task08)
-uv run feather quant-study --source models/<source-f16>.gguf --out .feather/study-<name> \
-    --phases convert,validate,dryrun,benchmark,quality,perplexity --export experiments/studies/<name>
+uv run feather quant-study --source models/SmolLM2-135M-Instruct-f16.gguf --out .feather/study-smollm2-local \
+    --phases convert,validate,dryrun,benchmark,quality,perplexity --export experiments/studies/smollm2-local
 ```
 
 `quant-study` follows the protocol pre-registered in [docs/DECISIONS.md](docs/DECISIONS.md):
@@ -81,11 +113,7 @@ uv run feather quant-study --source models/<source-f16>.gguf --out .feather/stud
 - Quality is measured on the hash-pinned `reasoning-v1` and `coding-v1` held-out splits, with paired comparisons.
 - PPL and KLD are computed with `llama-perplexity`.
 
-Phases are resumable. For the cleanest numbers, run the study from Terminal with VS Code, browsers and Docker closed, except for the quality phase, which needs Docker for coding. The tools directory also needs `llama-perplexity`:
-
-```sh
-cmake --build .feather/tools/llama.cpp/build --target llama-perplexity
-```
+Phases are resumable. For the cleanest numbers, run the study from Terminal with VS Code, browsers and Docker closed, except for the quality phase, which needs Docker for coding. The toolchain build above includes `llama-perplexity` for PPL/KLD.
 
 ## Dashboard workflow
 
@@ -111,3 +139,7 @@ uv run python automation/orchestrator.py --status
 The browser test uses installed Google Chrome by default; see `frontend/playwright.config.ts`. It exercises real saved local data and exports, not production mock data. CI runs Python tests and the frontend build. Agent roles and bounded development automation are documented in [automation/README.md](automation/README.md).
 
 Reports retain raw timing fields, prompts, outputs, failures, seeds, context, hashes, runtime build, hardware and uncertainty. Review exported content before sharing. System RAM is distinguished from sampled process RSS; GPU allocations and unsampled/startup peaks are not fully captured. [Methodology and limitations](docs/METHODOLOGY.md) explain what each number means.
+
+## License
+
+Original Feather AI code and documentation are available under the [MIT License](LICENSE). Third-party dependencies, model weights and third-party dataset/corpus material retain their own licenses; the MIT license does not replace those terms.
