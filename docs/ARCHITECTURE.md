@@ -35,7 +35,7 @@ Start `uv run feather serve`. `/docs` provides the generated request schema. Rel
 | GET `/api/experiments`, `/api/evaluations` | Saved performance / quality |
 | GET `/api/experiments/{id}/export?format=json` | Reproducible JSON; CSV supported |
 | POST `/api/comparisons` | `{experiment_ids:["id-a","id-b"]}` |
-| POST `/api/recommendations` | IDs plus available/max memory bytes, minimum quality, optional maximum latency, fastest/smallest/lowest_latency objective, and `quality_suite` (`reasoning-small`, `coding-small`, `reasoning-v1` or `coding-v1`; default `reasoning-small`) |
+| POST `/api/recommendations` | IDs plus available/max memory bytes, minimum quality, optional maximum latency, fastest/smallest/lowest_latency objective, `quality_suite` (`reasoning-small`, `coding-small`, `reasoning-v1` or `coding-v1`; default `reasoning-small`), and optional `quality_split` (`heldout` or `screening`; v1 suites default to `heldout`) |
 | GET `/api/status` | Automation health (offline doctor checks), sandbox isolation status, system memory state |
 | GET `/api/studies` | Status-explicit summaries of `experiments/studies/*/study.json`. A malformed study is returned as `invalid`. |
 
