@@ -68,6 +68,7 @@ class RecommendationRequest(ComparisonRequest):
     max_latency_seconds: float | None = Field(default=None, gt=0, allow_inf_nan=False)
     objective: Literal['fastest', 'smallest', 'lowest_latency'] = 'fastest'
     quality_suite: Literal['reasoning-small', 'coding-small', 'reasoning-v1', 'coding-v1'] = 'reasoning-small'
+    quality_split: Literal['heldout', 'screening'] | None = None  # v1 suites default to held-out
 
 
 def create_app(data_dir: str | Path | None = None, model_root: str | Path | None = None,
@@ -297,7 +298,8 @@ def create_app(data_dir: str | Path | None = None, model_root: str | Path | None
         completed = [job['result'] for job in jobs.list()
                      if job['kind'] == 'evaluation' and job['status'] == 'completed' and job['result']]
         evaluations = list({item['id']: item for item in persisted + completed}.values())
-        configurations = configurations_from_reports(reports, evaluations, suite=body.quality_suite)
+        split = body.quality_split or ('heldout' if body.quality_suite.endswith('-v1') else None)
+        configurations = configurations_from_reports(reports, evaluations, suite=body.quality_suite, split=split)
         try:
             return recommend(configurations, body.available_memory_bytes, body.max_memory_bytes,
                              body.min_quality, body.max_latency_seconds, body.objective)

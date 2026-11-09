@@ -76,7 +76,9 @@ def recommend(configurations: list[dict], available_memory_bytes: int, max_memor
         if max_latency_seconds is not None and config['latency_seconds'] > max_latency_seconds:
             reasons.append('Measured latency exceeds the requirement')
         if reasons:
-            result['rejected'].append({'id': config['id'], 'reasons': reasons, 'evidence_missing': False})
+            result['rejected'].append({'id': config['id'], 'reasons': reasons, 'evidence_missing': False,
+                                       'quality': config.get('quality'), 'quality_ci': config.get('quality_ci'),
+                                       'peak_memory_bytes': config.get('peak_memory_bytes'), 'evidence': config.get('evidence')})
         else:
             item = dict(config)
             item['reasons'] = [f'Measured peak memory {config["peak_memory_bytes"]} <= {limit} bytes',

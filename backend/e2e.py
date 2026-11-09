@@ -111,8 +111,11 @@ class Workflow:
     def run(self, constraints: dict) -> dict:
         try:
             self.start_api()
+            from backend.study.run import _tree_digest
             self.record["environment"] = {"repository_commit": subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True, text=True).stdout.strip(),
                                           "repository_dirty": bool(subprocess.run(["git", "status", "--porcelain"], cwd=ROOT, capture_output=True, text=True).stdout.strip()),
+                                          "working_tree_diff_sha256": _tree_digest(ROOT),
+                                          "untracked_files": subprocess.run(["git", "ls-files", "--others", "--exclude-standard"], cwd=ROOT, capture_output=True, text=True).stdout.split(),
                                           "toolchain_commit": subprocess.run(["git", "rev-parse", "HEAD"], cwd=self.tools.parents[1], capture_output=True, text=True).stdout.strip(),
                                           "hardware": {k: v for k, v in hardware().items() if k != "system_swap"}}
             source = inspect_gguf(self.source)
@@ -155,7 +158,9 @@ class Workflow:
                                               {"num_ctx": SETTINGS["context"], "num_predict": 32, "seed": SETTINGS["seed"], "temperature": 0})
                     version = backend.version()
                 validations[target] = {"artifact_sha256": q["artifact_sha256"], "prompt": VALIDATION_PROMPT, "output": output["output"],
-                                       "nonempty": bool(output["output"].strip()), "runtime_version": version}
+                                       "nonempty": bool(output["output"].strip()), "runtime_version": version,
+                                       "criterion": "runtime compatibility: the exact artifact loads in llama-server and returns non-empty text; correctness is measured by the evaluation stage",
+                                       "contains_expected_answer_4": "4" in output["output"]}
                 self.log(f"  validate {target}: {output['output'].strip()[:30]!r}")
             self.stage("generation_validation", status="completed" if all(v["nonempty"] for v in validations.values()) else "failed",
                        results=validations)
@@ -199,7 +204,7 @@ class Workflow:
             request = {"experiment_ids": [b["experiment_id"] for b in benchmarks.values()], "available_memory_bytes": available,
                        "max_memory_bytes": constraints["max_memory_bytes"], "min_quality": constraints["min_quality"],
                        "max_latency_seconds": constraints["max_latency_seconds"], "objective": constraints["objective"],
-                       "quality_suite": constraints["quality_suite"]}
+                       "quality_suite": constraints["quality_suite"], "quality_split": constraints["quality_split"]}
             response = self.client.post("/api/recommendations", json=request)
             recommendation = response.json()
             self.keep("recommendation.json", {"request": request, "response": recommendation, "http_status": response.status_code})

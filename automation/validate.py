@@ -47,6 +47,11 @@ def validate_workflow(data, record=None):
     wid = record.get('workflow_id')
     require(record.get('kind') == 'real-run' and record.get('status') == 'completed' and wid == data.get('workflow_id') == folder.name,
             'Workflow identity or status mismatch')
+    environment = record.get('environment') or {}
+    require(environment.get('repository_dirty') is False and re.fullmatch(r'[0-9a-f]{40}', str(environment.get('repository_commit'))),
+            'Workflow must run from a clean, committed tree')
+    ancestor = subprocess.run(['git', 'merge-base', '--is-ancestor', environment['repository_commit'], 'HEAD'], cwd=ROOT)
+    require(ancestor.returncode == 0, 'Workflow code commit is not in the current history')
     stages = record.get('stages', {})
     names = ['import', 'preflight', 'quantization', 'generation_validation', 'benchmark', 'evaluation', 'recommendation', 'export']
     for name in names:
@@ -84,8 +89,31 @@ def validate_workflow(data, record=None):
         require(evaluation['dataset_sha256'] == SHA256['coding-v1'] and evaluation['split'] == 'heldout', f'{target} wrong dataset')
         require((evaluation.get('sandbox') or {}).get('status') == 'available', f'{target} coding was not sandboxed')
         require(evaluation['summary']['scored'] == evaluation['summary']['items'] == heldout, f'{target} coding items not all scored')
-    settings = {stages['benchmark']['results'][t]['settings_sha256'] for t in artifacts}
-    require(None not in settings, 'Benchmark settings identity missing')
+    for stage in ('benchmark', 'evaluation'):
+        hashes = {stages[stage]['results'][t]['settings_sha256'] for t in artifacts}
+        require(len(hashes) == 1 and None not in hashes, f'{stage} settings differ across configurations')
+    expected_payloads = {
+        'benchmark': {'context': record['settings']['context'], 'seed': record['settings']['seed'], 'repeats': record['settings']['benchmark_repeats'],
+                      'warmups': record['settings']['benchmark_warmups'], 'tokens': record['settings']['benchmark_tokens']},
+        'evaluation': {'context': record['settings']['context'], 'seed': record['settings']['seed'], 'tokens': record['settings']['coding_tokens'],
+                       'suite': record['settings']['quality_suite']}}
+    for target, item in artifacts.items():
+        for stage, key in [('quantization', None), ('benchmark', 'experiment_id'), ('evaluation', 'evaluation_id')]:
+            entry = artifacts[target] if stage == 'quantization' else stages[stage]['results'][target]
+            job = json.loads((folder / 'jobs' / f"{entry['job_id']}.json").read_text())
+            require(job['status'] == entry['status'] == 'completed', f'{target} {stage} job record mismatch')
+            if stage == 'quantization':
+                require(job['result']['artifact']['sha256'] == item['artifact_sha256'] and job['result']['source']['sha256'] == source['sha256'],
+                        f'{target} quantization job does not match the stage record')
+            else:
+                require(job['result']['id'] == entry[key], f'{target} {stage} job id mismatch')
+                require(job['payload'].get('artifact_job_id') == item['job_id'], f'{target} {stage} used a different artifact job')
+                require(all(job['payload'].get(k) == v for k, v in expected_payloads[stage].items()), f'{target} {stage} payload differs from workflow settings')
+        exported = json.loads((folder / f'exports/benchmark-{target}.json').read_text())
+        require(exported['id'] == stages['benchmark']['results'][target]['experiment_id'], f'{target} benchmark export mismatch')
+        exported = json.loads((folder / f'exports/evaluation-{target}.json').read_text())
+        require(exported['id'] == stages['evaluation']['results'][target]['evaluation_id'] and exported['split'] == 'heldout',
+                f'{target} evaluation export mismatch')
     recommendation = stages['recommendation']
     request = recommendation['request']
     for key in ['max_memory_bytes', 'min_quality', 'max_latency_seconds', 'objective', 'quality_suite']:
@@ -93,6 +121,9 @@ def validate_workflow(data, record=None):
     require(sorted(request['experiment_ids']) == sorted(stages['benchmark']['results'][t]['experiment_id'] for t in artifacts),
             'Recommendation must use exactly this workflow\'s benchmarks')
     require(recommendation['outcome'] in constraints['expected_valid_outcomes'] and recommendation['http_status'] == 200, 'Invalid recommendation outcome')
+    require(request.get('quality_split') == constraints['quality_split'], 'Recommendation split differs from the pre-registered value')
+    require(data.get('recommendation_outcome') == recommendation['outcome'] and data.get('status') == record['status'],
+            'Summary evidence does not match the workflow record')
     saved = json.loads((folder / 'recommendation.json').read_text())
     require(saved['request'] == request and saved['response'].get('status') == recommendation['outcome'], 'Saved recommendation does not match the stage record')
     files = stages['export']['files']

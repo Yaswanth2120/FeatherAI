@@ -30,6 +30,9 @@ def test_real_workflow_passes_gate():
     (lambda r: r['stages']['evaluation']['results']['Q8_0']['summary'].update(scored=29), 'not all scored'),
     (lambda r: r['stages']['quantization']['artifacts']['Q4_K_M'].update(source_sha256='1' * 64), 'imported source'),
     (lambda r: r.update(status='failed'), 'identity or status'),
+    (lambda r: r['environment'].update(repository_dirty=True), 'clean, committed tree'),
+    (lambda r: r['stages']['recommendation']['request'].update(quality_split='screening'), 'split differs'),
+    (lambda r: r['stages']['evaluation']['results']['Q8_0'].update(settings_sha256='x'), 'settings differ'),
 ])
 def test_gate_rejects_tampered_workflow(mutate, message):
     tampered = copy.deepcopy(record)

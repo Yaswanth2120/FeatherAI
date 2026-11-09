@@ -18,7 +18,7 @@ def _quality_complete(report: dict) -> bool:
 
 
 def configurations_from_reports(benchmarks: list[dict], evaluations: list[dict],
-                                suite: str = 'reasoning-small') -> list[dict]:
+                                suite: str = 'reasoning-small', split: str | None = None) -> list[dict]:
     """Return recommendation inputs, retaining None for any missing measured evidence.
 
     The newest completed evaluation in the requested public screening suite is selected
@@ -32,6 +32,7 @@ def configurations_from_reports(benchmarks: list[dict], evaluations: list[dict],
         source = metadata.get('source_sha256')
         artifact = model.get('artifact_sha256')
         matches = [item for item in evaluations if _quality_complete(item) and item.get('suite') == suite and
+                   (split is None or item.get('split') == split) and
                    source and artifact and item.get('source_sha256') == source and
                    item.get('model', {}).get('artifact_sha256') == artifact]
         quality = max(matches, key=lambda item: (str(item.get('created_at', '')), str(item.get('id', '')))) if matches else None
@@ -63,7 +64,8 @@ def configurations_from_reports(benchmarks: list[dict], evaluations: list[dict],
             'quality': quality_summary.get('accuracy'), 'quality_ci': quality_summary.get('accuracy_ci95'),
             'quality_trials': quality_summary.get('scored', 0),
             'evidence': {'benchmark_id': report.get('id'), 'evaluation_id': quality.get('id') if quality else None,
-                         'evaluation_suite': suite, 'benchmark_complete': complete,
+                         'evaluation_suite': suite, 'evaluation_split': quality.get('split') if quality else None,
+                         'benchmark_complete': complete,
                          'memory_metric': metadata.get('memory_metric'),
                          'memory_note': metadata.get('memory_note'),
                          'join_policy': 'Exact artifact_sha256 and verified source_sha256; model display names are never joined'},
