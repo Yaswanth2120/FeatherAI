@@ -71,3 +71,13 @@ Sources: https://learn.chatgpt.com/docs/agent-configuration/subagents and https:
 - **Sensitivity analysis.** 13 of 15 sessions carried a memory-pressure flag. The unflagged-only analysis is not estimable for F16 or Q4_K_M; this is reported, not worked around.
 - **Provenance.** The study code (`backend/study/`) was uncommitted at run time, on top of commit `1f6f8f1`. After the run, `run.py` was changed only to fix `toolchain_commit` resolution and to handle blocked phases. The corrected `toolchain_commit` is recorded under `provenance_corrections`. Future runs record `working_tree_diff_sha256` and the untracked files.
 - **Review fixes after the run.** Sandbox exit classification, the accuracy denominator, phase status for partial or failed runs, and the perplexity exit-code check were all fixed after the study. Each was verified not to change any recorded SmolLM2 result: every item scored, every exit code 0, no infrastructure failures, and one benchmark run of 15 sessions.
+
+### task08 end-to-end workflow (recorded 2026-11-09, before the workflow ran)
+- **One workflow, one identifier.** A single SmolLM2-135M run goes through the local API under one `workflow_id`: import (source hash verified), quantization jobs for Q8_0 and Q4_K_M, generation validation of each artifact, benchmark jobs, held-out `coding-v1` evaluation jobs in the Docker sandbox, a recommendation, and JSON/CSV exports. Historical runs are never reused.
+- **Recommendation constraints.** Fixed in `experiments/e2e/recommendation-constraints.json`: objective fastest, ≤ 1 GiB, coding pass-rate lower 95% bound ≥ 0.70. A truthful `no_eligible_configuration` result is accepted; the constraints will not be relaxed.
+- **Settings.** Context 2048, seed 42 and temperature 0 for every inference stage. Benchmark: 5 measured requests plus 1 warm-up per artifact. Coding: 384 tokens.
+- **Stricter task08 gate.**
+  - The v0.1 gate checked only seven true/false flags.
+  - The v0.2 gate also requires that the source and artifact hashes chain consistently across all stages, that each stage record belongs to the `workflow_id`, that the sandbox was available and every coding item was scored, and that the constraints file is unchanged.
+  - It also requires that the exported files exist with their recorded hashes, and that the interrupted-job and failure regression tests pass.
+  - This makes the specification stricter; nothing is relaxed.

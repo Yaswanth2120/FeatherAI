@@ -1,0 +1,16 @@
+{
+  "recorded_at": "2026-11-09",
+  "recorded_before_workflow_run": true,
+  "purpose": "Pre-registered constraints for the task08 end-to-end recommendation stage. Must not be changed after the workflow runs.",
+  "objective": "fastest",
+  "max_memory_bytes": 1073741824,
+  "min_quality": 0.70,
+  "max_latency_seconds": null,
+  "quality_suite": "coding-v1",
+  "quality_split": "heldout",
+  "quality_bound": "Wilson 95% lower bound of the held-out coding pass rate (recommender rule)",
+  "available_memory_bytes": "measured live by GET /api/hardware immediately before the recommendation request",
+  "basis": "min_quality 0.70 and objective 'fastest' are the dashboard's existing defaults (frontend minQuality=70); 1 GiB is the v0.1 study's memory cap. None were chosen from v0.2 results.",
+  "expected_valid_outcomes": ["completed", "no_eligible_configuration"],
+  "note": "A truthful no_eligible_configuration result is a valid recommendation outcome; the constraints are not relaxed to obtain an eligible configuration."
+}
