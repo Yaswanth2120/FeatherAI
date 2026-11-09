@@ -25,11 +25,12 @@ Status here is based only on acceptance gates and committed evidence.
 | Codex automation recovery | **Code complete; live run BLOCKED** | `experiments/automation-model-probes.json`: with codex-cli 0.142.3 and a ChatGPT login, 4 models are refused for the account and 4 need a newer CLI. The doctor, model resolution and non-retryable blocking are covered by `tests/test_automation_config.py` (mocked). The live self-test has not run. |
 | Secure coding evaluation | **Complete** | `backend/evaluation/sandbox.py`. Real Docker self-test: `experiments/sandbox-selftest.json` (9/9 probes; network blocked, read-only root, uid 65534, memory and fork limits, no leftover containers). Real-container tests in `tests/test_sandbox.py` ran, none skipped. |
 | Qwen memory diagnosis | **Diagnosed; Qwen BLOCKED** | Rejected by the quantization and runtime pre-flight guards; no OOM was ever observed. Evidence: `experiments/memory/quantize-smollm.json`, `experiments/studies/qwen2.5-coder-0.5b/study.json`. |
+| Optional 1.5B experiment | **BLOCKED** | Requires approval for a roughly 3.1 GB download and sufficient free memory; not attempted. |
 | Reasoning evaluation rebuild | **Complete** | `reasoning-v1` and `coding-v1` are hash-pinned. The v0.1 0/3 result was caused both by an exact-match scoring defect and by model weakness (SmolLM2 solved 3/160 held-out items under strict scoring). |
 | Benchmark reliability | **Complete** | 15 sessions, 20 measured trials per variant, session-clustered bootstrap. Raw trials in `experiments/studies/smollm2-135m/benchmark/`. |
 | Quantization study | **Complete for SmolLM2-135M; primary Qwen study BLOCKED** | `docs/studies/quantization-study-v0.2.md`, `experiments/studies/` |
 | API and dashboard integration | **Complete** | `/api/status` and `/api/studies`; status and study panels. The Playwright test asserts COMPLETE/INCOMPLETE and blocked labels against real data. |
-| Final validation | 158 pytest passed, 0 skipped; frontend build passed; 1 browser test passed | See FINAL_REPORT.md |
+| Final validation | 181 pytest passed, 0 skipped; frontend build passed; 1 browser test passed | See FINAL_REPORT.md |
 
 **v0.1 task queue (`automation/tasks.yaml`)**
 
@@ -37,7 +38,7 @@ Status here is based only on acceptance gates and committed evidence.
 |---|---|
 | task04 | **Completed.** Adopted at `16fbe37` after three independent review rounds. The orchestrator re-ran the acceptance and regression gates at that commit. The gate rebuilds the evidence from `experiments/studies/smollm2-135m`, requires an exact match and completed coding, and rejects tampering. |
 | task08 | **Completed.** Adopted at `b862de3` after three independent review rounds; the orchestrator re-ran the acceptance and regression gates. Evidence is workflow `8cab4706` (section above). |
-| task09 | Documentation updated; follows task08. |
+| task09 | **Unadopted, awaiting independent documentation review.** task08 is complete; adoption requires approval with no findings and passing gates. |
 
 
 ---

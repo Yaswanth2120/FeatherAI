@@ -6,7 +6,7 @@ A local-first laboratory for quantizing language models, measuring performance, 
 - **Working:** coding evaluation runs in a hardened Docker sandbox, and the reasoning and coding datasets are hash-pinned.
 - **Complete study:** the pre-registered quantization study is complete for SmolLM2-135M ([study](docs/studies/quantization-study-v0.2.md)).
 - **End-to-end:** one traceable SmolLM2 workflow went through the API (task08 complete); its recommendation truthfully found no configuration that meets the pre-registered 70% coding requirement.
-- **Blocked:** the primary Qwen2.5-Coder-0.5B study (memory guards) and live Codex automation (CLI/account model availability).
+- **Blocked:** the primary Qwen2.5-Coder-0.5B study (memory guards), live Codex automation (CLI/account model availability), and the optional 1.5B experiment (approval for a roughly 3.1 GB download and sufficient free memory).
 
 See [the final report](docs/FINAL_REPORT.md).
 
@@ -92,8 +92,8 @@ cmake --build .feather/tools/llama.cpp/build --target llama-perplexity
 1. **Overview:** actual hardware, job counts, saved benchmark chart.
 2. **Model Library:** installed Ollama models and Feather-created artifacts.
 3. **Quantization Studio:** enter an FP16 GGUF filename relative to `models/` (e.g. `SmolLM2-135M-Instruct-f16.gguf`) and target precision. RAM/disk admission runs before conversion.
-4. **Benchmark & Evaluation:** choose an installed model or completed quantization artifact. Native jobs validate artifact path/hash before loading. Heavy jobs are sequential; inspect, cancel and review persisted results. Reasoning scores use public screening tasks, not a held-out benchmark.
-5. **Comparison Reports:** select saved runs, inspect comparability, export JSON/CSV and apply memory/quality constraints. Missing evidence returns insufficient evidence. Default 70% minimum quality rejects the tested model; a 0% threshold is diagnostic only.
+4. **Benchmark & Evaluation:** choose an installed model or completed quantization artifact. Native jobs validate artifact path/hash before loading. Heavy jobs are sequential; inspect, cancel and review persisted results. Choose legacy three-item screening suites or the hash-pinned reasoning-v1 and coding-v1 held-out suites. Saved results identify their suite and split.
+5. **Comparison Reports:** select saved runs, inspect comparability, export JSON/CSV and apply memory/quality constraints. Choose the quality evidence suite; the dashboard defaults to coding-v1 held-out evidence and a 70% minimum quality requirement. Missing evidence returns insufficient evidence; the measured SmolLM2 configurations do not meet that quality requirement. A 0% threshold is diagnostic only.
 
 For frontend development, `npm --prefix frontend run dev` serves a localhost Vite proxy. Production uses the same-origin FastAPI static mount. See [architecture and API usage](docs/ARCHITECTURE.md).
 

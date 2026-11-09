@@ -6,6 +6,8 @@
 - **Live Codex automation:** the CLI and account have no usable model.
 - **The pre-registered Qwen study:** both memory guards reject it under current memory availability.
 
+**Optional 1.5B experiment: BLOCKED** pending approval for a roughly 3.1 GB download and sufficient free memory; it was not attempted.
+
 **Task queue:** task01–task08 are completed; each was adopted only after its acceptance gate passed and a commit-bound independent review approved it. task04 was adopted at `16fbe37` and task08 at `b862de3`. task09 (this documentation) is adopted only after review.
 
 Everything else is implemented and verified with real runs.
