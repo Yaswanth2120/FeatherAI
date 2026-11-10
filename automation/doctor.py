@@ -18,7 +18,7 @@ PROBE_PROMPT = "Reply with exactly the single word OK and do nothing else."
 
 def _run(argv, timeout=20, cwd=None):
     try:
-        result = subprocess.run(argv, capture_output=True, text=True, timeout=timeout, cwd=cwd)
+        result = subprocess.run(argv, capture_output=True, text=True, timeout=timeout, cwd=cwd, stdin=subprocess.DEVNULL)
         return result.returncode, (result.stdout + result.stderr).strip()
     except (OSError, subprocess.TimeoutExpired) as error:
         return 127, f"{type(error).__name__}: {error}"

@@ -112,7 +112,8 @@ def invoke(argv: list[str], root: Path, log: Path, timeout: int, env: dict | Non
     result: dict[str, Any] = {"argv": argv, "started_at": started, "timeout_seconds": timeout}
     with log.open("w") as stream:
         try:
-            process = subprocess.Popen(argv, cwd=root, stdout=stream, stderr=subprocess.STDOUT,
+            # stdin must be closed: `codex exec` otherwise waits for "additional input from stdin" forever.
+            process = subprocess.Popen(argv, cwd=root, stdin=subprocess.DEVNULL, stdout=stream, stderr=subprocess.STDOUT,
                                        start_new_session=True, env=env)
         except OSError as error:
             result.update(exit_code=127, error=f"{type(error).__name__}: {error}", finished_at=time.time())

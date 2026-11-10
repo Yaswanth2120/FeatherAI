@@ -172,3 +172,12 @@ def test_task04_gate_requires_reproducible_cited_study(tmp_path, monkeypatch):
         monkeypatch.setattr(validate, 'evidence', lambda name, c=candidate: c)
         with pytest.raises(ValueError):
             validate.validate('task04')
+
+
+def test_invoke_closes_stdin_so_codex_never_waits_for_input(tmp_path):
+    from automation.orchestrator import invoke
+    import sys
+    log = tmp_path / 'child.log'
+    # A child that blocks on stdin would hit the timeout; with stdin closed it reads EOF immediately.
+    code = invoke([sys.executable, '-c', 'import sys; data = sys.stdin.read(); print(len(data))'], tmp_path, log, 10)
+    assert code == 0 and log.read_text().strip() == '0'
