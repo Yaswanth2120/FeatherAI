@@ -1,0 +1,190 @@
+{
+ "kind": "real-run",
+ "suite": "coding-v2",
+ "created_at": "2026-11-10T19:31:13.653956+00:00",
+ "runs": {
+  "screening-F16": {
+   "status": "completed",
+   "artifact_sha256": "bb69b303c65113199b19c72f9c75bca449200b6cdf807e0f7d8822f669c02e64",
+   "summary": {
+    "items": 40,
+    "scored": 40,
+    "passed": 15,
+    "complete": true,
+    "accuracy": 0.375,
+    "accuracy_ci95": [
+     0.24222979167233266,
+     0.5296756086269889
+    ],
+    "accuracy_over_scored_items": 0.375,
+    "outcomes": {
+     "partial_pass": 8,
+     "passed": 15,
+     "runtime_error": 7,
+     "wrong_answer": 9,
+     "compile_error": 1
+    },
+    "not_scored": 0,
+    "lenient_accuracy": null
+   },
+   "file": "screening-F16.json"
+  },
+  "heldout-F16": {
+   "status": "completed",
+   "artifact_sha256": "bb69b303c65113199b19c72f9c75bca449200b6cdf807e0f7d8822f669c02e64",
+   "summary": {
+    "items": 360,
+    "scored": 360,
+    "passed": 138,
+    "complete": true,
+    "accuracy": 0.38333333333333336,
+    "accuracy_ci95": [
+     0.3345918677764441,
+     0.4345383454975844
+    ],
+    "accuracy_over_scored_items": 0.38333333333333336,
+    "outcomes": {
+     "passed": 138,
+     "runtime_error": 93,
+     "wrong_answer": 79,
+     "truncated": 18,
+     "partial_pass": 28,
+     "timeout": 1,
+     "missing_function": 2,
+     "compile_error": 1
+    },
+    "not_scored": 0,
+    "lenient_accuracy": null
+   },
+   "file": "heldout-F16.json"
+  },
+  "heldout-Q8_0": {
+   "status": "completed",
+   "artifact_sha256": "0d93a22a0efbdbacb9306457836164baf2b50dc744f4cd64050150c551119108",
+   "summary": {
+    "items": 360,
+    "scored": 360,
+    "passed": 137,
+    "complete": true,
+    "accuracy": 0.38055555555555554,
+    "accuracy_ci95": [
+     0.33191201711523133,
+     0.4317212964748455
+    ],
+    "accuracy_over_scored_items": 0.38055555555555554,
+    "outcomes": {
+     "passed": 137,
+     "runtime_error": 96,
+     "wrong_answer": 76,
+     "truncated": 19,
+     "partial_pass": 28,
+     "timeout": 2,
+     "missing_function": 2
+    },
+    "not_scored": 0,
+    "lenient_accuracy": null
+   },
+   "file": "heldout-Q8_0.json"
+  },
+  "heldout-Q4_K_M": {
+   "status": "completed",
+   "artifact_sha256": "3dc9c14a9c9a560ab29b2572e2549947566a30e2c024ba8518b1164d6f33a2a2",
+   "summary": {
+    "items": 360,
+    "scored": 360,
+    "passed": 135,
+    "complete": true,
+    "accuracy": 0.375,
+    "accuracy_ci95": [
+     0.32655745871039177,
+     0.4260820555117816
+    ],
+    "accuracy_over_scored_items": 0.375,
+    "outcomes": {
+     "passed": 135,
+     "runtime_error": 94,
+     "wrong_answer": 88,
+     "partial_pass": 26,
+     "missing_function": 4,
+     "truncated": 12,
+     "compile_error": 1
+    },
+    "not_scored": 0,
+    "lenient_accuracy": null
+   },
+   "file": "heldout-Q4_K_M.json"
+  }
+ },
+ "repository_commit": "30397f7c352aa0653eaf3eba986f82d1a1819279",
+ "repository_dirty": false,
+ "working_tree_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+ "study": "experiments/studies/qwen2.5-coder-0.5b-clean",
+ "resumptions": [
+  {
+   "at": "2026-11-10T19:51:16.219675+00:00",
+   "repository_commit": "02e53ec4fd3c00633bc3602bd9293c2ea8643c6f",
+   "repository_dirty": false,
+   "reason": "Previous Claude Code session ended during heldout-Q8_0; no partial Q8_0 result was written. Completed runs (screening-F16, heldout-F16) are kept unchanged.",
+   "code_changes_since_start": "02e53ec only adds the frozen reasoning-v2 dataset and its hash entry in backend/evaluation/datasets/__init__.py; coding-v2 evaluation code unchanged."
+  }
+ ],
+ "analysis": {
+  "baseline_solved": 138,
+  "items": 360,
+  "baseline_informative": true,
+  "comparisons": {
+   "Q8_0": {
+    "items": 360,
+    "baseline_accuracy": 0.38333333333333336,
+    "candidate_accuracy": 0.38055555555555554,
+    "difference": -0.002777777777777778,
+    "difference_ci95": [
+     -0.013888888888888888,
+     0.008333333333333333
+    ],
+    "ci_method": "paired bootstrap over items, 10000 resamples, seed 20261110",
+    "baseline_only_correct": 3,
+    "candidate_only_correct": 2,
+    "mcnemar_exact_p": 1.0,
+    "difference_ci90": [
+     -0.013888888888888888,
+     0.008333333333333333
+    ],
+    "equivalence_within_10pp": true,
+    "equivalence_label": "equivalent within +/-10 pp",
+    "p": 1.0,
+    "holm_adjusted_p": 1.0,
+    "reject_at_family_0.05": false
+   },
+   "Q4_K_M": {
+    "items": 360,
+    "baseline_accuracy": 0.38333333333333336,
+    "candidate_accuracy": 0.375,
+    "difference": -0.008333333333333333,
+    "difference_ci95": [
+     -0.03888888888888889,
+     0.022222222222222223
+    ],
+    "ci_method": "paired bootstrap over items, 10000 resamples, seed 20261110",
+    "baseline_only_correct": 17,
+    "candidate_only_correct": 14,
+    "mcnemar_exact_p": 0.720100131817162,
+    "difference_ci90": [
+     -0.03333333333333333,
+     0.016666666666666666
+    ],
+    "equivalence_within_10pp": true,
+    "equivalence_label": "equivalent within +/-10 pp",
+    "p": 0.720100131817162,
+    "holm_adjusted_p": 1.0,
+    "reject_at_family_0.05": false
+   }
+  },
+  "pass_rates": {
+   "F16": 0.38333333333333336,
+   "Q8_0": 0.38055555555555554,
+   "Q4_K_M": 0.375
+  }
+ },
+ "finished_at": "2026-11-10T21:00:42.617805+00:00"
+}
