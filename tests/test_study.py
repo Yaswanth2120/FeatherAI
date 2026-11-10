@@ -193,3 +193,17 @@ def test_server_session_stays_in_callers_process_group_and_uses_path_lookup(tmp_
     with pytest.raises(Stop):
         session.start()
     assert not captured.get('start_new_session') and 'preexec_fn' not in captured
+
+
+def test_holm_and_coding_v2_analysis_rules():
+    from backend.study.coding_v2_run import holm, analyze
+    adjusted = holm({'a': 0.01, 'b': 0.04})
+    assert adjusted['a']['holm_adjusted_p'] == pytest.approx(0.02) and adjusted['a']['reject_at_family_0.05']
+    assert adjusted['b']['holm_adjusted_p'] == pytest.approx(0.04) and adjusted['b']['reject_at_family_0.05']
+    assert holm({'a': 0.03, 'b': 0.04})['a']['reject_at_family_0.05'] is False
+    rows = lambda passes: {'results': [{'task_id': str(i), 'passed': p} for i, p in enumerate(passes)]}
+    same = [True] * 150 + [False] * 210
+    result = analyze({'F16': rows(same), 'Q8_0': rows(same), 'Q4_K_M': rows([False] * 40 + same[40:])})
+    assert result['baseline_informative'] and result['comparisons']['Q8_0']['equivalence_label'] == 'equivalent within +/-10 pp'
+    q4 = result['comparisons']['Q4_K_M']
+    assert q4['difference'] == pytest.approx(-40 / 360) and q4['reject_at_family_0.05'] and q4['equivalence_label'] == 'not shown equivalent'
