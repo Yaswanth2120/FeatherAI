@@ -386,3 +386,11 @@ def test_studies_endpoint_isolates_malformed_study(tmp_path):
     by_id = {item['id']: item for item in response.json()}
     assert by_id['broken']['invalid'] is True and by_id['broken']['complete'] is False
     assert by_id['good']['complete'] is False and by_id['good']['phases']['benchmark'] == 'not_run'
+
+
+def test_sessions_method_requires_llama_cpp(tmp_path):
+    with TestClient(create_app(tmp_path / 'data', tmp_path / 'models')) as client:
+        response = client.post('/api/jobs/benchmark', json={'model': 'x', 'method': 'sessions-v2'})
+        assert response.status_code == 422
+        queued = client.post('/api/jobs/benchmark', json={'model': 'x', 'sessions': 2}).json()
+        assert queued['payload']['method'] == 'legacy-sampled-rss-v1'

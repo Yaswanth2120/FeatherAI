@@ -25,6 +25,34 @@ def execute(request):
     if kind in {'benchmark', 'evaluation'}:
         selection = payload.pop('backend', 'ollama')
         artifact_job_id = payload.pop('artifact_job_id', None)
+        method = payload.pop('method', None) or 'legacy-sampled-rss-v1'
+        sessions, cooldown = payload.pop('sessions', 4), payload.pop('cooldown', 10)
+        if kind == 'benchmark' and method == 'sessions-v2':
+            if selection != 'llama.cpp':
+                raise ValueError('sessions-v2 requires a managed llama.cpp artifact')
+            from backend.api.jobs import Jobs
+            from backend.core.artifacts import inspect_gguf
+            from backend.storage.database import Database
+            from backend.benchmarks.sessions import run_sessions
+            artifact_job = Jobs(root, config).get(artifact_job_id)
+            if artifact_job['kind'] != 'quantization' or artifact_job['status'] != 'completed':
+                raise ValueError('Artifact job must be a completed quantization')
+            manifest = artifact_job['result']
+            artifact_path = Path(manifest['artifact']['path']).resolve(strict=True)
+            if not artifact_path.is_relative_to(root / 'artifacts'):
+                raise ValueError('Artifact must be inside managed artifact storage')
+            inspected = inspect_gguf(artifact_path)
+            if inspected['sha256'] != manifest['artifact']['sha256']:
+                raise ValueError('Artifact changed after conversion')
+            inspected.pop('tensors', None)
+            db = Database(root / 'experiments.sqlite3')
+            try:
+                return run_sessions(inspected, config['server_executable'], db, root / 'jobs' / request['id'],
+                                    manifest['source']['sha256'], sessions=sessions, measured=payload['repeats'],
+                                    warmups=payload['warmups'], cooldown=cooldown, context=payload['context'],
+                                    tokens=payload['tokens'], seed=payload['seed'])
+            finally:
+                db.connection.close()
         if selection == 'llama.cpp':
             from backend.api.jobs import Jobs
             from backend.core.artifacts import inspect_gguf

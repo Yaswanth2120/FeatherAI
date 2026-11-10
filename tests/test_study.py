@@ -152,3 +152,16 @@ def test_context_manager_never_starts_a_started_session(tmp_path, monkeypatch):
     with session as entered:
         assert entered is session
     assert len(starts) == 1
+
+
+def test_benchmark_summary_labels_method_and_only_clusters_sessions_v2():
+    from backend.benchmarks.runner import summarize
+    trials = [{'warmup': True, 'session': 1}] + [
+        {'warmup': False, 'session': s, 'decode_tokens_per_second': v, 'wall_seconds': 1, 'ttft_seconds': .1, 'prefill_tokens_per_second': 9}
+        for s, values in [(1, [100, 101]), (2, [110, 111])] for v in values]
+    legacy = summarize(trials)
+    assert legacy['method'] == 'legacy-sampled-rss-v1' and 'median_ci95' not in legacy['decode_tokens_per_second']
+    v2 = summarize(trials, {'method': 'sessions-v2'})
+    assert v2['method'] == 'sessions-v2' and v2['decode_tokens_per_second']['sessions_used'] == 2
+    low, high = v2['decode_tokens_per_second']['median_ci95']
+    assert low <= v2['decode_tokens_per_second']['median'] <= high

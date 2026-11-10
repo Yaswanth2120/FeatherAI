@@ -37,7 +37,7 @@ def configurations_from_reports(benchmarks: list[dict], evaluations: list[dict],
                    item.get('model', {}).get('artifact_sha256') == artifact]
         quality = max(matches, key=lambda item: (str(item.get('created_at', '')), str(item.get('id', '')))) if matches else None
         rows = report.get('trials', [])
-        summary = summarize(rows)
+        summary = summarize(rows, metadata)
         settings = metadata.get('settings_sha256')
         prompt = metadata.get('prompt_sha256')
         quality_summary = accuracy_summary(quality['results']) if quality else {}

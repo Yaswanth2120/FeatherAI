@@ -200,7 +200,7 @@ def main():
                              args.tokens, args.seed, args.prompt_file.read_text() if args.prompt_file else PROMPT)
             else:
                 result = db.report(args.id)
-                result["summary"] = summarize(result["trials"])
+                result["summary"] = summarize(result["trials"], result["metadata"])
                 if args.format == "csv":
                     stream = args.output.open("w", newline="") if args.output else sys.stdout
                     try:

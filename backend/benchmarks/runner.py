@@ -12,12 +12,32 @@ from backend.core.hardware import inspect
 PROMPT = "Write a Python binary_search(items, target) function. Return the index or -1. Output only the function."
 
 
-def summarize(trials):
+def summarize(trials, metadata=None):
+    """Descriptive summary; session-clustered 95% CI for the median only for the sessions-v2 method.
+
+    Legacy reports keep their original method label and never receive a confidence interval.
+    """
+    from backend.benchmarks.sessions import LEGACY_METHOD, LEGACY_NOTE, METHOD, METHOD_NOTE
+    from backend.study.stats import describe, median_ci
+    method = (metadata or {}).get("method") or LEGACY_METHOD
     measured = [t for t in trials if not t["warmup"] and not t.get("error")]
-    result = {"successful_trials": len(measured), "failed_trials": sum(bool(t.get("error")) for t in trials if not t["warmup"])}
+    result = {"method": method, "method_note": METHOD_NOTE if method == METHOD else LEGACY_NOTE,
+              "successful_trials": len(measured), "failed_trials": sum(bool(t.get("error")) for t in trials if not t["warmup"])}
     for key in ["wall_seconds", "ttft_seconds", "decode_tokens_per_second", "prefill_tokens_per_second"]:
         values = [t[key] for t in measured if t.get(key) is not None]
-        result[key] = {"median": float(np.median(values)), "p95": float(np.percentile(values, 95)), "min": min(values), "max": max(values)} if values else None
+        if not values:
+            result[key] = None
+            continue
+        entry = {"median": float(np.median(values)), "p95": float(np.percentile(values, 95)), "min": min(values), "max": max(values)}
+        if method == METHOD:
+            groups = {}
+            for t in measured:
+                if t.get(key) is not None:
+                    groups.setdefault(t["session"], []).append(t[key])
+            entry.update({k: v for k, v in describe(values).items() if k in ("mean", "sd", "n")},
+                         median_ci95=median_ci(list(groups.values())), sessions_used=len(groups),
+                         ci_method="two-stage session-clustered bootstrap, 10000 resamples, seed 20261109")
+        result[key] = entry
     return result
 
 
@@ -33,7 +53,7 @@ def run(backend, db, model, repeats=5, warmups=1, context=2048, tokens=128, seed
     hardware = inspect()
     settings_identity = {"options": options, "backend": getattr(backend, "name", "ollama"), "runtime_version": backend.version(),
                          "hardware": {key: hardware[key] for key in ["chip", "architecture", "os", "physical_ram_bytes"]}, "warmups": warmups, "repeats": repeats, "backend_settings": getattr(backend, "benchmark_settings", {})}
-    metadata = {"created_at": datetime.now(timezone.utc).isoformat(), "model": selected,
+    metadata = {"created_at": datetime.now(timezone.utc).isoformat(), "method": "legacy-sampled-rss-v1", "model": selected,
         "backend": getattr(backend, "name", "ollama"), "runtime_version": backend.version(), "hardware": hardware,
         "source_sha256": getattr(backend, "source_sha256", None),
         "backend_settings": getattr(backend, "benchmark_settings", {}),

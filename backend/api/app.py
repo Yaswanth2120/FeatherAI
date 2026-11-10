@@ -39,6 +39,10 @@ class BenchmarkRequest(StrictModel):
     context: int = Field(default=1024, ge=128, le=4096)
     tokens: int = Field(default=128, ge=1, le=1024)
     seed: int = Field(default=42, ge=0, le=2**31-1)
+    # llama.cpp jobs default to the study method; Ollama only supports the legacy single-process method.
+    method: Literal['sessions-v2', 'legacy-sampled-rss-v1'] | None = None
+    sessions: int = Field(default=4, ge=1, le=10)
+    cooldown: int = Field(default=10, ge=0, le=120)
 
 
 class EvaluationRequest(StrictModel):
@@ -122,7 +126,7 @@ def create_app(data_dir: str | Path | None = None, model_root: str | Path | None
             raise HTTPException(404, str(error)) from error
         finally:
             db.connection.close()
-        result['summary'] = summarize(result['trials'])
+        result['summary'] = summarize(result['trials'], result['metadata'])
         return result
 
     @app.get('/api/health')
@@ -209,7 +213,12 @@ def create_app(data_dir: str | Path | None = None, model_root: str | Path | None
 
     @app.post('/api/jobs/benchmark', status_code=202)
     def benchmark(body: BenchmarkRequest):
-        return submit('benchmark', inference_payload(body))
+        payload = inference_payload(body)
+        method = payload['method'] or ('sessions-v2' if payload['backend'] == 'llama.cpp' else 'legacy-sampled-rss-v1')
+        if method == 'sessions-v2' and payload['backend'] != 'llama.cpp':
+            raise HTTPException(422, 'sessions-v2 requires a managed llama.cpp artifact')
+        payload['method'] = method
+        return submit('benchmark', payload)
 
     @app.post('/api/jobs/evaluation', status_code=202)
     def evaluation(body: EvaluationRequest):
