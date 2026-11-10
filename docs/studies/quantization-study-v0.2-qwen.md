@@ -67,8 +67,8 @@ Quantization speeds up decoding much more on this 0.5B model (×1.47 and ×1.77)
 
 | Comparison | Δ | 95% CI | McNemar p | Pre-registered label |
 |---|---:|---|---:|---|
-| reasoning overall, Q8_0 | −3.75 pp | [−7.5, −0.6] | 0.070 | detectable change |
-| reasoning programming concepts, Q8_0 | −12.5 pp | [−22.5, −2.5] | 0.062 | detectable change |
+| reasoning overall, Q8_0 | −3.75 pp | [−7.5, −0.6] | 0.070 | detectable change (pre-registered label; unresolved, see below) |
+| reasoning programming concepts, Q8_0 | −12.5 pp | [−22.5, −2.5] | 0.062 | detectable change (pre-registered label; unresolved) |
 | reasoning arithmetic, Q8_0 | −2.5 pp | [−10, +5] | 1.0 | no detectable change |
 | reasoning overall, Q4_K_M | −1.25 pp | [−7.5, +5.0] | 0.845 | no detectable change |
 | coding, Q8_0 | 0 pp | [0, 0] | 1.0 | no detectable change |
@@ -119,7 +119,7 @@ The run followed the plan in `docs/DECISIONS.md` ("coding-v2 run on Qwen2.5-Code
 **Completeness and provenance.**
 - Every run scored every item: screening-F16 40/40; held-out F16, Q8_0 and Q4_K_M each 360/360. No item failed infrastructure or was blocked.
 - The dataset SHA-256 is `37e35bd0…` in every run. Artifact hashes are re-verified: F16 `bb69b303`, Q8_0 `0d93a22a`, Q4_K_M `3dc9c14a`. The sandbox was available throughout.
-- The run started at clean commit `30397f7`. The previous Claude Code session ended during the Q8_0 held-out run, before any partial Q8_0 result was written. The runner resumed from Q8_0 at clean commit `02e53ec`, which only added the frozen reasoning-v2 file and its hash entry; the coding-v2 code was unchanged. The resumption is recorded in `run.json`.
+- The run started at clean commit `30397f7`. The previous Claude Code session ended during the Q8_0 held-out run, before any partial Q8_0 result was written. The runner resumed from Q8_0 at clean commit `02e53ec`, which only added the frozen reasoning-v2 file and its hash entry; the coding-v2 code was unchanged. The resumption is recorded in `run.json`. That note was added manually; the runner does not write it.
 
 **Exclusions.** These were made at freeze time, before any model ran:
 - 26 MBPP problems were excluded by the parsing rules: 13 need test imports, 6 have non-literal arguments or expected values, 6 are not a single `==` comparison, and 1 has an expected value that cannot be encoded.
@@ -147,4 +147,5 @@ For Q8_0 the 95% and 90% intervals are identical because only 5 problems differ 
 **What this does and does not show.**
 - **Bounded conclusion.** On these 360 held-out coding problems, Q8_0 and Q4_K_M preserved coding performance within the pre-registered ±10 pp margin. That is an equivalence claim for this coding evaluation only; it says nothing about equal overall capability.
 - This says nothing about the Q8_0 *reasoning* signal from §3. That is tested only by the separate `reasoning-v2` replication, which has not been run.
+- **Known defect in these reports:** each item's `execution.seconds` field holds the machine's monotonic clock minus 1 (roughly machine uptime), not the run time. A variable reuse in `sandbox.py`, introduced in `fc93634`, caused it; it is fixed after this run. The analysis never uses that field, and the committed evidence is left unmodified.
 - "Runtime error" is the largest failure category for every variant. Those are failures in the generated code (exceptions inside the sandbox), not infrastructure failures.

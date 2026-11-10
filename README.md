@@ -7,6 +7,7 @@ A local-first laboratory for quantizing language models, measuring performance, 
 - **Complete study:** the pre-registered quantization study is complete for SmolLM2-135M ([study](docs/studies/quantization-study-v0.2.md)).
 - **End-to-end:** one traceable SmolLM2 workflow went through the API (task08 complete); its recommendation truthfully found no configuration that meets the pre-registered 70% coding requirement.
 - **Qwen2.5-Coder-0.5B study:** complete under clean conditions ([report](docs/studies/quantization-study-v0.2-qwen.md)). Q4_K_M decodes 1.77× faster than F16 with 55% less peak memory; no detectable quality loss at these sample sizes.
+- **coding-v2 (360 held-out MBPP problems):** on Qwen, Q8_0 and Q4_K_M preserved coding performance within the pre-registered ±10 pp margin (−0.28 pp and −0.83 pp vs F16). This is a coding-only result; MBPP is public, so contamination is possible.
 - **Live Codex automation:** verified with codex-cli 0.167.0 (`experiments/automation-selftest-live.json`).
 - **Qwen end-to-end:** completed on retry (workflow `5cf6580c`, passes the task08 gate). The recommendation is `no_eligible_configuration`: coding lower bounds 0.52 and 0.46 are below the pre-registered 0.70. The first attempt (`e14e38ca`) was rejected by the memory guard and is preserved.
 - **Deferred:** the optional 1.5B experiment.

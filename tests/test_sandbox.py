@@ -121,3 +121,9 @@ def test_real_container_exit_tricks_are_runtime_errors():
     for code in ['import os\nos._exit(125)', 'import os\nos._exit(0)', 'import sys\nsys.stdout.write("x")\nimport os\nos._exit(0)']:
         result = score_code(code, TASK, sandbox=real)
         assert result['status'] == 'scored' and result['outcome'] == 'runtime_error', (code, result)
+
+
+def test_execution_seconds_is_elapsed_time_not_clock_value(monkeypatch):
+    fake_docker(monkeypatch, 0, json.dumps({'phase': 'cases', 'cases': [{'ok': True, 'value': 4}] * 3}).encode())
+    result = score_code('def f(x): return x', TASK, sandbox=VERIFIED)
+    assert 0 <= result['execution']['seconds'] < 60

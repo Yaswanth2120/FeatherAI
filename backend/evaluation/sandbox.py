@@ -259,7 +259,7 @@ class DockerExecutionBackend(ExecutionBackend):
         payload = json.dumps({"code": code, "function": function, "inputs": inputs,
                               "per_case_seconds": limits.per_case_seconds, "cpu_seconds": limits.cpu_seconds,
                               "max_output_bytes": limits.max_output_bytes, "canonical": canonical})
-        started = time.monotonic()
+        clock_start = time.monotonic()
         record: dict = {"container": name, "image_id": status["image_id"], "limits": asdict(limits)}
         try:
             code_, output = _bounded_run(self.command(name, limits), payload, limits.wall_seconds, limits.max_output_bytes)
@@ -290,7 +290,7 @@ class DockerExecutionBackend(ExecutionBackend):
         except OSError as error:
             record.update(category="infrastructure_error", reason=str(error)[:300])
         finally:
-            record["seconds"] = round(time.monotonic() - started, 3)
+            record["seconds"] = round(time.monotonic() - clock_start, 3)
             self._remove(name)
         return record
 
