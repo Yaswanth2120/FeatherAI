@@ -137,3 +137,14 @@ def test_coding_v2_frozen_counts_and_no_leakage():
             rendered = json.dumps(expected)
             if len(rendered) > 6:
                 assert rendered not in item['prompt']
+
+
+def test_reasoning_v2_frozen_disjoint_from_v1():
+    from backend.evaluation.datasets import reasoning_v2
+    data = load('reasoning-v2')
+    stored = {k: v for k, v in data.items() if k != 'sha256'}
+    assert stored == json.loads(json.dumps(reasoning_v2.build(), sort_keys=True))
+    counts = Counter((i['category'], i['split']) for i in data['items'])
+    assert all(counts[(c, 'heldout')] == 150 and counts[(c, 'screening')] == 10 for c in reasoning_v1.CATEGORIES)
+    v1 = {i['question'] for i in load('reasoning-v1')['items']}
+    assert not any(i['question'] in v1 for i in data['items'])

@@ -128,3 +128,4 @@ Sources: https://learn.chatgpt.com/docs/agent-configuration/subagents and https:
 - **Primary hypothesis.** Two-sided: Q8_0's held-out pass rate on reasoning-v2 differs from F16's. The direction of interest is a drop, but the test is two-sided. Test: exact two-sided McNemar with Holm correction across {Q8_0, Q4_K_M}. Per-category results are exploratory only. *(Wording fixed 2026-11-10, before any data, to match the two-sided test.)*
 - **Equivalence.** Margin ±5 pp, using the 90% paired-bootstrap CI.
 - **Freeze rule.** The dataset is frozen and hash-pinned, and this plan committed, before any model runs on reasoning-v2.
+- **Freeze record (2026-11-10).** `reasoning-v2` was built and frozen before any model ran on it: 600 held-out items (150 per category) + 40 screening, seed 20261110, no question shared with reasoning-v1, SHA-256 `16202bdd…`. Running it on the Qwen variants is the next step of the replication.

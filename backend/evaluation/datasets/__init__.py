@@ -10,6 +10,8 @@ SHA256 = {
     "coding-v1": "e41bfe10854cd6fa6e8ad69b9e56d34c73da66e6b48ec9dd86d5e74565d531bb",
     # Frozen 2026-11-10 from MBPP sanitized (pinned) after sandboxed reference checks; before any model ran on it.
     "coding-v2": "37e35bd02721dfd6354e1ae5565e53caad6a4464bdef84b7ba8081892aa606e2",
+    # Reasoning replication set, frozen 2026-11-10 before any model ran on it (plan in docs/DECISIONS.md).
+    "reasoning-v2": "16202bdd23f78d5f2d0b247e707a5dc84afecc58b6b2df3fcc50bd5fd7fa1dda",
 }
 
 
