@@ -49,7 +49,7 @@ class EvaluationRequest(StrictModel):
     backend: Literal['ollama', 'llama.cpp'] = 'ollama'
     artifact_job_id: str | None = Field(default=None, pattern=r'^[0-9a-fA-F-]{36}$')
     model: str = Field(min_length=1, max_length=200)
-    suite: Literal['reasoning-small', 'coding-small', 'reasoning-v1', 'coding-v1'] = 'reasoning-small'
+    suite: Literal['reasoning-small', 'coding-small', 'reasoning-v1', 'coding-v1', 'coding-v2'] = 'reasoning-small'
     repeats: int = Field(default=1, ge=1, le=5)
     context: int = Field(default=1024, ge=128, le=4096)
     tokens: int = Field(default=128, ge=1, le=1024)
@@ -71,7 +71,7 @@ class RecommendationRequest(ComparisonRequest):
     min_quality: float = Field(default=0, ge=0, le=1, allow_inf_nan=False)
     max_latency_seconds: float | None = Field(default=None, gt=0, allow_inf_nan=False)
     objective: Literal['fastest', 'smallest', 'lowest_latency'] = 'fastest'
-    quality_suite: Literal['reasoning-small', 'coding-small', 'reasoning-v1', 'coding-v1'] = 'reasoning-small'
+    quality_suite: Literal['reasoning-small', 'coding-small', 'reasoning-v1', 'coding-v1', 'coding-v2'] = 'reasoning-small'
     quality_split: Literal['heldout', 'screening'] | None = None  # v1 suites default to held-out
 
 

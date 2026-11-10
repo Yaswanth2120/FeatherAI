@@ -141,6 +141,8 @@ def main():
     e2e.add_argument("--constraints", type=Path, default=Path("experiments/e2e/recommendation-constraints.json"))
     e2e.add_argument("--tools", type=Path, default=Path(".feather/tools/llama.cpp/build/bin"))
     e2e.add_argument("--out", type=Path, default=Path("experiments/e2e"))
+    e2e.add_argument("--evidence-out", type=Path, default=Path("experiments/e2e-evidence-v0.2.json"),
+                     help="Summary pointer to write; use a new file for additional workflows (task08 evidence is never overwritten)")
     sandbox = commands.add_parser("sandbox", help="Coding-evaluation isolation").add_subparsers(dest="action", required=True)
     sandbox.add_parser("status", help="Report whether isolated execution is available")
     sandbox.add_parser("prepare", help="Explicitly pull the pinned sandbox image (about 20 MB)")
@@ -156,7 +158,9 @@ def main():
             record = workflow.run(json.loads(args.constraints.read_text()))
         finally:
             evidence = summary_evidence(workflow.out)
-            Path("experiments/e2e-evidence-v0.2.json").write_text(json.dumps(evidence, indent=2) + "\n")
+            if args.evidence_out.exists() and json.loads(args.evidence_out.read_text()).get("status") == "completed":
+                raise SystemExit(f"{args.evidence_out} already points to a completed workflow; choose a new --evidence-out")
+            args.evidence_out.write_text(json.dumps(evidence, indent=2) + "\n")
             print(json.dumps(evidence, indent=2))
         sys.exit(0 if record["status"] == "completed" else 1)
     if args.command == "quant-study":

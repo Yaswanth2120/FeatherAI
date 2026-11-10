@@ -14,7 +14,7 @@ import uuid
 import psutil
 
 TERMINAL = {'completed', 'failed', 'cancelled', 'interrupted', 'partial', 'unsupported', 'blocked', 'cleanup_required'}
-CODING_SUITES = {'coding-small', 'coding-v1'}
+CODING_SUITES = {'coding-small', 'coding-v1', 'coding-v2'}
 
 
 class Jobs:

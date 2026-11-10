@@ -11,8 +11,8 @@ from backend.evaluation.datasets import load as load_dataset
 from backend.evaluation.scoring import accuracy_summary, category_summary, paired_comparison, perplexity, wilson_interval
 from backend.evaluation.suites import CODING, REASONING
 
-DATASET_SUITES = {'reasoning-v1': 'reasoning-v1', 'coding-v1': 'coding-v1'}
-DEFAULT_TOKENS = {'reasoning-v1': 256, 'coding-v1': 384}
+DATASET_SUITES = {'reasoning-v1': 'reasoning-v1', 'coding-v1': 'coding-v1', 'coding-v2': 'coding-v2'}
+DEFAULT_TOKENS = {'reasoning-v1': 256, 'coding-v1': 384, 'coding-v2': 384}
 # Pre-specified (docs/DECISIONS.md, 2026-11-09, before held-out results existed): a category can
 # measure quantization loss only if the baseline solves at least this many held-out items.
 MIN_BASELINE_CORRECT = 10
@@ -88,7 +88,7 @@ def evaluate_dataset(backend, model: str, suite: str = 'reasoning-v1', split: st
         raise ValueError('Model is not installed')
     settings = {'seed': seed, 'temperature': 0, 'num_ctx': context, 'num_predict': tokens}
     sandbox = None
-    if suite == 'coding-v1':
+    if suite.startswith('coding-'):
         from backend.evaluation.sandbox import discover
         sandbox = discover()
     report = {'id': str(uuid.uuid4()), 'kind': 'evaluation', 'created_at': datetime.now(timezone.utc).isoformat(),
@@ -112,8 +112,9 @@ def evaluate_dataset(backend, model: str, suite: str = 'reasoning-v1', split: st
                 row['generation'] = {'output': raw['output'], 'ttft_seconds': raw.get('ttft_seconds'),
                                      'wall_seconds': raw.get('wall_seconds'), 'truncated': truncated,
                                      'eval_count': (raw.get('runtime') or {}).get('eval_count')}
-                if suite == 'coding-v1':
-                    scored = score_code(raw['output'], {'function': item['function'], 'cases': item['cases']}, sandbox=sandbox)
+                if suite.startswith('coding-'):
+                    scored = score_code(raw['output'], {'function': item['function'], 'cases': item['cases'],
+                                                        'comparison': item.get('comparison', 'strict-json')}, sandbox=sandbox)
                     row.update(scored)
                     row['category'] = scored.get('outcome') or scored.get('status')
                     if truncated and scored.get('outcome') in {'compile_error', 'no_code'}:

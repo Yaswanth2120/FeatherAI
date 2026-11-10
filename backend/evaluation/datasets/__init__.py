@@ -8,6 +8,8 @@ HERE = Path(__file__).resolve().parent
 SHA256 = {
     "reasoning-v1": "02e5f81bd76d0bc2159de994ef1ec7d08d1f411662e610aadfe0ce49c9f7d5dd",
     "coding-v1": "e41bfe10854cd6fa6e8ad69b9e56d34c73da66e6b48ec9dd86d5e74565d531bb",
+    # Frozen 2026-11-10 from MBPP sanitized (pinned) after sandboxed reference checks; before any model ran on it.
+    "coding-v2": "37e35bd02721dfd6354e1ae5565e53caad6a4464bdef84b7ba8081892aa606e2",
 }
 
 

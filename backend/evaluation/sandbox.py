@@ -68,6 +68,31 @@ def emit(obj):
     out.write(text); out.flush(); os._exit(0)
 def describe(error):
     return {"error": type(error).__name__, "message": str(error)[:300]}
+def canon(v, depth=0):
+    if depth > 50:
+        raise ValueError("too deep")
+    if v is None or isinstance(v, (bool, int, float, str)):
+        return v
+    if isinstance(v, list):
+        return [canon(x, depth + 1) for x in v]
+    if isinstance(v, tuple):
+        return {"__tuple__": [canon(x, depth + 1) for x in v]}
+    if isinstance(v, (set, frozenset)):
+        return {"__set__": sorted((canon(x, depth + 1) for x in v), key=lambda x: json.dumps(x, sort_keys=True))}
+    if isinstance(v, dict):
+        return {"__dict__": sorted(([canon(k, depth + 1), canon(x, depth + 1)] for k, x in v.items()), key=lambda x: json.dumps(x, sort_keys=True))}
+    raise TypeError(type(v).__name__)
+def uncanon(v):
+    if isinstance(v, list):
+        return [uncanon(x) for x in v]
+    if isinstance(v, dict):
+        if set(v) == {"__tuple__"}:
+            return tuple(uncanon(x) for x in v["__tuple__"])
+        if set(v) == {"__set__"}:
+            return set(uncanon(x) for x in v["__set__"])
+        if set(v) == {"__dict__"}:
+            return {uncanon(k): uncanon(x) for k, x in v["__dict__"]}
+    return v
 try:
     compiled = compile(payload["code"], "<generated>", "exec")
 except (SyntaxError, ValueError) as error:
@@ -87,14 +112,17 @@ if not callable(function):
     emit({"phase": "load", "error": "MissingFunction", "message": payload["function"]})
 cases = []
 for arguments in payload["inputs"]:
+    if payload.get("canonical"):
+        arguments = [uncanon(a) for a in arguments]
     signal.setitimer(signal.ITIMER_REAL, payload["per_case_seconds"])
     try:
         value = function(*arguments)
         signal.setitimer(signal.ITIMER_REAL, 0)
         try:
-            json.dumps(value)
-            cases.append({"ok": True, "value": value})
-        except (TypeError, ValueError):
+            encoded = canon(value) if payload.get("canonical") else value
+            json.dumps(encoded)
+            cases.append({"ok": True, "value": encoded})
+        except (TypeError, ValueError, RecursionError):
             cases.append({"ok": False, "error": "UnserializableResult", "message": type(value).__name__})
     except CaseTimeout:
         cases.append({"ok": False, "error": "Timeout"})
@@ -150,7 +178,7 @@ class ExecutionBackend(ABC):
         """Return {'status': 'available'|'blocked', 'backend': name, 'reason'?: str, ...}."""
 
     @abstractmethod
-    def run_tests(self, code: str, function: str, inputs: list, limits: Limits = Limits()) -> dict:
+    def run_tests(self, code: str, function: str, inputs: list, limits: Limits = Limits(), canonical: bool = False) -> dict:
         """Execute untrusted ``code`` against ``inputs``; return a structured execution record."""
 
 
@@ -163,7 +191,7 @@ class UnavailableExecutionBackend(ExecutionBackend):
     def status(self) -> dict:
         return {"status": "blocked", "backend": self.name, "reason": self.reason}
 
-    def run_tests(self, code, function, inputs, limits=Limits()):
+    def run_tests(self, code, function, inputs, limits=Limits(), canonical=False):
         return {"category": "blocked", "reason": self.reason}
 
 
@@ -223,14 +251,14 @@ class DockerExecutionBackend(ExecutionBackend):
                 "--tmpfs", f"/tmp:rw,noexec,nosuid,nodev,size={limits.tmpfs_mb}m", "--workdir", "/tmp",
                 *_job_label(), status["image_id"], "python", "-I", "-S", "-c", HARNESS]
 
-    def run_tests(self, code, function, inputs, limits=Limits()):
+    def run_tests(self, code, function, inputs, limits=Limits(), canonical=False):
         status = self.status()
         if status["status"] != "available":
             return {"category": "blocked", "reason": status["reason"]}
         name = "feather-eval-" + uuid.uuid4().hex
         payload = json.dumps({"code": code, "function": function, "inputs": inputs,
                               "per_case_seconds": limits.per_case_seconds, "cpu_seconds": limits.cpu_seconds,
-                              "max_output_bytes": limits.max_output_bytes})
+                              "max_output_bytes": limits.max_output_bytes, "canonical": canonical})
         started = time.monotonic()
         record: dict = {"container": name, "image_id": status["image_id"], "limits": asdict(limits)}
         try:

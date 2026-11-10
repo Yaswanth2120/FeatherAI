@@ -103,3 +103,37 @@ def test_baseline_validity_labels_uninformative_categories():
     strong = compare_dataset_evaluations(evaluation([True] * 30 + [False] * 10), evaluation([True] * 30 + [False] * 10))
     assert strong['categories']['overall']['informative'] and strong['categories']['overall']['evidence'] == 'no detectable change'
     assert compare_dataset_evaluations(evaluation([True]), evaluation([True], source='other'))['status'] == 'incomparable'
+
+
+def test_coding_v2_canonical_round_trip_and_parser():
+    from backend.evaluation.coding import decode
+    from backend.evaluation.datasets.coding_v2 import canon, parse_test, candidates
+    for value in [(1, 2), {3, 1}, {'a': (1, [2])}, [True, 1, 1.0], None, frozenset({(1, 2)})]:
+        assert decode(canon(value)) == value
+    assert decode(canon((1, 2))) != [1, 2]  # tuples stay tuples
+    assert parse_test('assert f((1, 2), "x") == [3]')[0] == ('f', [(1, 2), 'x'], [3])
+    assert parse_test('assert math.isclose(f(1), 2.0)')[0] is None
+    assert parse_test('assert f(x) == 1')[1] == 'non-literal argument or expected value'
+    items, excluded = candidates()
+    assert len(items) >= 340 and sum(len(v) for v in excluded.values()) + len(items) == 427
+    assert all('assert' not in item['prompt'] for item in items)
+
+
+def test_coding_v2_arguments_keep_tuples_and_sets():
+    from backend.evaluation.datasets.coding_v2 import candidates
+    import json
+    items, _ = candidates()
+    json.dumps([item['cases'] for item in items])  # fully JSON-encodable
+    assert any('__set__' in json.dumps(item['cases'][0][0]) for item in items)
+
+
+def test_coding_v2_frozen_counts_and_no_leakage():
+    data = load('coding-v2')
+    counts = Counter(item['split'] for item in data['items'])
+    assert counts == {'screening': 40, 'heldout': 360} and data['source']['commit'].startswith('f82046ba')
+    for item in data['items']:
+        assert item['comparison'] == 'python-eq' and 'reference' not in item
+        for _, expected in item['cases']:
+            rendered = json.dumps(expected)
+            if len(rendered) > 6:
+                assert rendered not in item['prompt']

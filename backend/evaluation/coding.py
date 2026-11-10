@@ -54,7 +54,11 @@ def score_code(code: str, task: dict, timeout: float | None = None, sandbox=None
     if len(program.encode()) > limits.max_code_bytes:
         return {**base, "outcome": "code_too_large", "reason": "Generated code exceeds size limit"}
     # Expected answers remain on the host. The container receives code and test inputs only.
-    record = backend.run_tests(program, task["function"], [case[0] for case in task["cases"]], limits)
+    semantics = task.get("comparison", "strict-json")
+    if semantics == "python-eq":
+        record = backend.run_tests(program, task["function"], [case[0] for case in task["cases"]], limits, canonical=True)
+    else:
+        record = backend.run_tests(program, task["function"], [case[0] for case in task["cases"]], limits)
     category = record.get("category")
     if category == "blocked":
         return {"status": "blocked", "reason": record.get("reason")}
@@ -76,7 +80,14 @@ def score_code(code: str, task: dict, timeout: float | None = None, sandbox=None
     results = []
     for index, (case, observed) in enumerate(zip(task["cases"], cases)):
         if observed.get("ok"):
-            results.append({"index": index, "passed": _equal(observed["value"], case[1])})
+            if semantics == "python-eq":  # MBPP semantics: the dataset's own `assert f(...) == expected`
+                try:
+                    same = bool(decode(observed["value"]) == decode(case[1]))
+                except Exception:
+                    same = False
+                results.append({"index": index, "passed": same})
+            else:
+                results.append({"index": index, "passed": _equal(observed["value"], case[1])})
         else:
             results.append({"index": index, "passed": False, "error": observed.get("error"),
                             "message": observed.get("message", "")[:200]})
@@ -90,6 +101,27 @@ def score_code(code: str, task: dict, timeout: float | None = None, sandbox=None
                "runtime_error" if errors else "wrong_answer")
     return {**base, "passed": outcome == "passed", "cases_passed": passed, "outcome": outcome,
             "case_results": results, "execution": _slim(record)}
+
+
+def decode(value):
+    """Inverse of the harness's type-preserving encoding (coding-v2)."""
+    if isinstance(value, list):
+        return [decode(x) for x in value]
+    if isinstance(value, dict):
+        if set(value) == {"__tuple__"}:
+            return tuple(decode(x) for x in value["__tuple__"])
+        if set(value) == {"__set__"}:
+            items = [decode(x) for x in value["__set__"]]
+            try:
+                return set(items)
+            except TypeError:
+                return ("__unhashable_set__", items)
+        if set(value) == {"__dict__"}:
+            try:
+                return {decode(k): decode(v) for k, v in value["__dict__"]}
+            except TypeError:
+                return ("__unhashable_dict__", value["__dict__"])
+    return value
 
 
 def _slim(record: dict) -> dict:

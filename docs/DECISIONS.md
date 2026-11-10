@@ -97,3 +97,7 @@ Sources: https://learn.chatgpt.com/docs/agent-configuration/subagents and https:
   - The prompt shows the task text and the function signature from the first test's call. Test inputs and outputs are never shown.
 - **Splits.** A seeded shuffle (seed 20261110) puts 40 problems in screening and the rest in held-out. The dataset is frozen and hash-pinned before any model runs on it.
 - **Disclosed limitation.** MBPP is public, and models such as Qwen2.5-Coder may have seen it in training. That can inflate absolute pass rates. It affects variant-vs-F16 differences only through ceiling effects, so absolute pass rates must not be quoted as capability claims.
+- **Correction and freeze record (2026-11-10).**
+  - **License.** The design above calls MBPP "CC-BY-4.0". At the pinned commit, the google-research repository is Apache-2.0 and the MBPP README states no separate data license; CC-BY-4.0 is what the Hugging Face dataset card lists, and that was not verified. See `backend/evaluation/datasets/third_party/mbpp/NOTICE.md`.
+  - **Freeze.** 401 problems passed the filter. 400 references passed their own tests in the sandbox; mbpp-123 failed and was excluded.
+  - **Result.** 40 screening + **360 held-out**, SHA-256 `37e35bd0…`, frozen before any model saw it. Arguments and expected values use the type-preserving encoding, decoded inside the sandbox.
