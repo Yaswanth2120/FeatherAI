@@ -1,0 +1,77 @@
+{
+ "request": {
+  "experiment_ids": [
+   "be6b5eff-7030-4170-b6b3-fa3adc706266",
+   "75a7e3c8-6c78-4f3b-9853-5aa271a6363c"
+  ],
+  "available_memory_bytes": 2800336896,
+  "max_memory_bytes": 1073741824,
+  "min_quality": 0.7,
+  "max_latency_seconds": null,
+  "objective": "fastest",
+  "quality_suite": "coding-v1",
+  "quality_split": "heldout"
+ },
+ "response": {
+  "status": "no_eligible_configuration",
+  "objective": "fastest",
+  "eligible": [],
+  "rejected": [
+   {
+    "id": "be6b5eff-7030-4170-b6b3-fa3adc706266",
+    "reasons": [
+     "Measured quality or lower confidence bound is below the requirement"
+    ],
+    "evidence_missing": false,
+    "quality": 0.7,
+    "quality_ci": [
+     0.5212421254128504,
+     0.8333525173175619
+    ],
+    "peak_memory_bytes": 943252860,
+    "evidence": {
+     "benchmark_id": "be6b5eff-7030-4170-b6b3-fa3adc706266",
+     "evaluation_id": "6522a0e9-c880-42e5-b36d-5af55793d47b",
+     "evaluation_suite": "coding-v1",
+     "evaluation_split": "heldout",
+     "benchmark_complete": true,
+     "memory_metric": "median over sessions of /usr/bin/time -l peak memory footprint (--load-mode none)",
+     "memory_note": null,
+     "join_policy": "Exact artifact_sha256 and verified source_sha256; model display names are never joined"
+    }
+   },
+   {
+    "id": "75a7e3c8-6c78-4f3b-9853-5aa271a6363c",
+    "reasons": [
+     "Measured quality or lower confidence bound is below the requirement"
+    ],
+    "evidence_missing": false,
+    "quality": 0.6333333333333333,
+    "quality_ci": [
+     0.4551356365479487,
+     0.7812607919389929
+    ],
+    "peak_memory_bytes": 757810400,
+    "evidence": {
+     "benchmark_id": "75a7e3c8-6c78-4f3b-9853-5aa271a6363c",
+     "evaluation_id": "67c40652-a24a-4c6e-8ee9-1806c192dc69",
+     "evaluation_suite": "coding-v1",
+     "evaluation_split": "heldout",
+     "benchmark_complete": true,
+     "memory_metric": "median over sessions of /usr/bin/time -l peak memory footprint (--load-mode none)",
+     "memory_note": null,
+     "join_policy": "Exact artifact_sha256 and verified source_sha256; model display names are never joined"
+    }
+   }
+  ],
+  "memory_limit_bytes": 1073741824,
+  "limitations": [
+   "Only supplied measurements are considered; no metric is inferred from quantization width.",
+   "Measured peak memory is workload-specific and does not guarantee fit for larger contexts.",
+   "Sampled process RSS is not total GPU or unified-memory allocation; unsampled peaks may be missed.",
+   "Public screening quality and repeated deterministic trials do not establish held-out generalization."
+  ],
+  "reason": "No fully measured configuration satisfies every constraint"
+ },
+ "http_status": 200
+}

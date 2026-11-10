@@ -1,0 +1,18 @@
+0.00.000.881 I srv  llama_server: initializing ...
+0.00.161.260 I cmn  common_param: common_params_print_info: verbosity = 3 (adjust with the `-lv N` CLI arg)
+0.00.163.413 W srv  server_setup: security: no API key is set and CORS allows all origins (see https://github.com/ggml-org/llama.cpp/pull/25655)
+0.00.165.470 I srv    load_model: loading model '/Users/yaswanth/Desktop/FeatherAI/.feather/e2e/5cf6580c-2151-4cd5-9b42-109f21f8452d/artifacts/2304e8cc-3bec-4b50-8cea-7ab9724003d0/model-Q8_0.gguf'
+0.00.305.604 W load: control-looking token: 128247 '</s>' was not control-type; this is probably a bug in the model. its type will be overridden
+0.00.369.701 I cmn          init: llama threadpool init, n_threads = 2
+0.00.394.459 I srv    load_model: initializing, n_slots = 1, n_ctx_slot = 2048, kv_unified = 'false'
+0.00.402.003 I srv  server_run_i: model loaded
+0.00.402.007 I srv  server_on_li: listening on http://127.0.0.1:51591
+0.00.427.210 I slot get_availabl: id  0 | task -1 | selected slot by LRU, n_tokens = 0, t_last = -1
+0.00.427.231 I slot launch_slot_: id  0 | task 0 | processing task, is_child = 0
+0.00.464.114 I slot print_timing: id  0 | task 0 | prompt eval time =      27.33 ms /    22 tokens (    1.24 ms per token,   804.86 tokens per second)
+0.00.464.116 I slot print_timing: id  0 | task 0 |        eval time =       9.52 ms /     2 tokens (    9.52 ms per token,   105.08 tokens per second)
+0.00.464.117 I slot print_timing: id  0 | task 0 |       total time =      36.85 ms /    24 tokens
+0.00.464.117 I slot print_timing: id  0 | task 0 |    graphs reused =          0
+0.00.464.118 I slot print_timing: id  0 | task 0 |   graph reallocs =          0    /     0        (same size) / (changed size)
+0.00.464.130 I slot      release: id  0 | task 0 | stop processing: n_tokens = 23, truncated = 0
+0.00.464.467 I srv    operator(): operator(): cleaning up before exit...

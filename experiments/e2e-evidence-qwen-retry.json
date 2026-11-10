@@ -1,0 +1,15 @@
+{
+  "kind": "real-run",
+  "status": "completed",
+  "workflow": "experiments/e2e/5cf6580c-2151-4cd5-9b42-109f21f8452d/workflow.json",
+  "workflow_id": "5cf6580c-2151-4cd5-9b42-109f21f8452d",
+  "imported": true,
+  "quantized": true,
+  "generation_validated": true,
+  "benchmarked": true,
+  "evaluated": true,
+  "coding_evaluated": true,
+  "recommended": true,
+  "exported": true,
+  "recommendation_outcome": "no_eligible_configuration"
+}

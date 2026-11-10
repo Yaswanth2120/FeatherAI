@@ -1,0 +1,592 @@
+{
+  "id": "75a7e3c8-6c78-4f3b-9853-5aa271a6363c",
+  "metadata": {
+    "created_at": "2026-11-10T19:26:31.416332+00:00",
+    "method": "sessions-v2",
+    "method_note": "sessions-v2: fresh llama-server per session (--load-mode none, /usr/bin/time -l peak footprint including startup), warmups excluded, fixed-length outputs (ignore_eos), session-clustered bootstrap 95% CI for medians.",
+    "model": {
+      "name": "model-Q4_K_M.gguf",
+      "size": 491400064,
+      "digest": "3dc9c14a9c9a560ab29b2572e2549947566a30e2c024ba8518b1164d6f33a2a2",
+      "artifact_sha256": "3dc9c14a9c9a560ab29b2572e2549947566a30e2c024ba8518b1164d6f33a2a2",
+      "details": {
+        "tensor_types": {
+          "Q8_0": 13,
+          "F32": 121,
+          "Q5_0": 133,
+          "Q6_K": 12,
+          "Q4_K": 12
+        },
+        "parameter_count": 630167424
+      }
+    },
+    "backend": "llama.cpp",
+    "runtime_version": "version: 0.9.0-dev (build 1, commit 9d340ec)\nbuilt with AppleClang 17.0.0.17000603 for Darwin arm64",
+    "hardware": {
+      "chip": "Apple M2",
+      "architecture": "arm64",
+      "os": "macOS-26.7.3-arm64-arm-64bit",
+      "python": "3.12.9",
+      "physical_ram_bytes": 8589934592,
+      "available_ram_bytes": 2537701376,
+      "system_swap": {
+        "total": 3221225472,
+        "used": 1865482240,
+        "free": 1355743232,
+        "percent": 57.9,
+        "sin": 189440196608,
+        "sout": 1681965056
+      }
+    },
+    "source_sha256": "bb69b303c65113199b19c72f9c75bca449200b6cdf807e0f7d8822f669c02e64",
+    "backend_settings": {
+      "context": 2048,
+      "threads": 4,
+      "load_mode": "none",
+      "parallel": 1,
+      "cache_ram_mib": 0,
+      "fit": "off",
+      "server_warmup": false,
+      "n_gpu_layers": "default (all)",
+      "prompt_template": "chatml-v1: <|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant\n",
+      "executable_sha256": "4de055b01d5b27044bfd0dfd6f0a4b022b4359cb59c37d18451d99ed7a77cb67",
+      "method": "sessions-v2"
+    },
+    "design": {
+      "sessions": 4,
+      "measured_per_session": 5,
+      "warmups_per_session": 1,
+      "cooldown_seconds": 10
+    },
+    "settings_sha256": "88d7a3ab9ea2ff7bcd21aa19bb6e4a11c466c7b94822a8d19b5cdce12174d014",
+    "prompt": "You are reviewing a small Python service that reads sensor readings from a CSV file, removes rows with missing values, converts temperatures from Fahrenheit to Celsius, groups the readings by device identifier, and reports the minimum, maximum and average temperature for each device. Write a clear, well-structured Python implementation of this service using only the standard library. Include a function that parses the file, a function that cleans and converts the readings, a function that aggregates statistics per device, and a short main function that prints a formatted report. Explain each function briefly in comments.\n",
+    "prompt_sha256": "e5c537d94d1d5a00b86a6881f9d1563c967d075b6d9141daced99341267d88ba",
+    "options": {
+      "seed": 42,
+      "temperature": 0,
+      "num_ctx": 2048,
+      "num_predict": 128,
+      "ignore_eos": true
+    },
+    "repeats": 20,
+    "warmups": 4,
+    "packages": {
+      "feather-ai": "0.1.0",
+      "httpx": "0.28.1",
+      "numpy": "2.5.4",
+      "psutil": "7.2.2"
+    },
+    "memory_metric": "median over sessions of /usr/bin/time -l peak memory footprint (--load-mode none)",
+    "sessions": [
+      {
+        "session": 1,
+        "error": null,
+        "load_seconds": 0.5936186660001113,
+        "time_l": {
+          "max_rss_bytes": 759414784,
+          "peak_memory_footprint_bytes": 756090128,
+          "page_reclaims": 51286,
+          "page_faults": 1095,
+          "involuntary_context_switches": 23068,
+          "instructions_retired": 263845361629,
+          "real_seconds": 6.2,
+          "user_seconds": 12.49,
+          "sys_seconds": 0.45
+        },
+        "metal": {
+          "device": "Apple M2",
+          "offloaded_layers": [
+            25,
+            25
+          ],
+          "verified": true
+        },
+        "buffers_mib": {
+          "model_CPU": 89.26,
+          "model_MTL0": 373.71,
+          "kv_MTL0": 24.0,
+          "compute_MTL0": 37.51,
+          "compute_CPU": 9.02,
+          "kv_cells": 2048,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16"
+        },
+        "started": true,
+        "flags": [
+          "docker_vm_running"
+        ]
+      },
+      {
+        "session": 2,
+        "error": null,
+        "load_seconds": 0.3362392919989361,
+        "time_l": {
+          "max_rss_bytes": 809648128,
+          "peak_memory_footprint_bytes": 757974264,
+          "page_reclaims": 50170,
+          "page_faults": 30,
+          "involuntary_context_switches": 16631,
+          "instructions_retired": 265853705664,
+          "real_seconds": 5.85,
+          "user_seconds": 12.5,
+          "sys_seconds": 0.37
+        },
+        "metal": {
+          "device": "Apple M2",
+          "offloaded_layers": [
+            25,
+            25
+          ],
+          "verified": true
+        },
+        "buffers_mib": {
+          "model_CPU": 89.26,
+          "model_MTL0": 373.71,
+          "kv_MTL0": 24.0,
+          "compute_MTL0": 37.51,
+          "compute_CPU": 9.02,
+          "kv_cells": 2048,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16"
+        },
+        "started": true,
+        "flags": [
+          "docker_vm_running"
+        ]
+      },
+      {
+        "session": 3,
+        "error": null,
+        "load_seconds": 0.2853954160000285,
+        "time_l": {
+          "max_rss_bytes": 809353216,
+          "peak_memory_footprint_bytes": 757646536,
+          "page_reclaims": 50157,
+          "page_faults": 21,
+          "involuntary_context_switches": 20366,
+          "instructions_retired": 265893968376,
+          "real_seconds": 5.83,
+          "user_seconds": 12.53,
+          "sys_seconds": 0.39
+        },
+        "metal": {
+          "device": "Apple M2",
+          "offloaded_layers": [
+            25,
+            25
+          ],
+          "verified": true
+        },
+        "buffers_mib": {
+          "model_CPU": 89.26,
+          "model_MTL0": 373.71,
+          "kv_MTL0": 24.0,
+          "compute_MTL0": 37.51,
+          "compute_CPU": 9.02,
+          "kv_cells": 2048,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16"
+        },
+        "started": true,
+        "flags": [
+          "docker_vm_running"
+        ]
+      },
+      {
+        "session": 4,
+        "error": null,
+        "load_seconds": 0.33973704100026225,
+        "time_l": {
+          "max_rss_bytes": 810467328,
+          "peak_memory_footprint_bytes": 758809872,
+          "page_reclaims": 50218,
+          "page_faults": 30,
+          "involuntary_context_switches": 16901,
+          "instructions_retired": 265847662754,
+          "real_seconds": 5.84,
+          "user_seconds": 12.5,
+          "sys_seconds": 0.36
+        },
+        "metal": {
+          "device": "Apple M2",
+          "offloaded_layers": [
+            25,
+            25
+          ],
+          "verified": true
+        },
+        "buffers_mib": {
+          "model_CPU": 89.26,
+          "model_MTL0": 373.71,
+          "kv_MTL0": 24.0,
+          "compute_MTL0": 37.51,
+          "compute_CPU": 9.02,
+          "kv_cells": 2048,
+          "kv_type_k": "f16",
+          "kv_type_v": "f16"
+        },
+        "started": true,
+        "flags": [
+          "docker_vm_running"
+        ]
+      }
+    ],
+    "peak_memory_bytes": 757810400
+  },
+  "trials": [
+    {
+      "ordinal": 0,
+      "session": 1,
+      "warmup": true,
+      "started_at": 1794338792.07961,
+      "decode_tokens_per_second": 140.95332903132027,
+      "prefill_tokens_per_second": 1794.9771064360575,
+      "ttft_seconds": 0.06800670900156547,
+      "wall_seconds": 0.9762652090012125,
+      "output_tokens": 128,
+      "prompt_tokens": 118
+    },
+    {
+      "ordinal": 1,
+      "session": 1,
+      "warmup": false,
+      "started_at": 1794338793.057927,
+      "decode_tokens_per_second": 149.35038416885928,
+      "prefill_tokens_per_second": 2379.0802233916006,
+      "ttft_seconds": 0.050852458998633665,
+      "wall_seconds": 0.9078937919985037,
+      "output_tokens": 128,
+      "prompt_tokens": 118
+    },
+    {
+      "ordinal": 2,
+      "session": 1,
+      "warmup": false,
+      "started_at": 1794338793.968588,
+      "decode_tokens_per_second": 148.69214800909344,
+      "prefill_tokens_per_second": 2376.923696720651,
+      "ttft_seconds": 0.05064441699869349,
+      "wall_seconds": 0.9116944589986815,
+      "output_tokens": 128,
+      "prompt_tokens": 118
+    },
+    {
+      "ordinal": 3,
+      "session": 1,
+      "warmup": false,
+      "started_at": 1794338794.880918,
+      "decode_tokens_per_second": 149.59440049459647,
+      "prefill_tokens_per_second": 2378.2650757820056,
+      "ttft_seconds": 0.050604083999132854,
+      "wall_seconds": 0.9064515419995587,
+      "output_tokens": 128,
+      "prompt_tokens": 118
+    },
+    {
+      "ordinal": 4,
+      "session": 1,
+      "warmup": false,
+      "started_at": 1794338795.78823,
+      "decode_tokens_per_second": 145.90003795680676,
+      "prefill_tokens_per_second": 2370.668006027122,
+      "ttft_seconds": 0.050736584000333096,
+      "wall_seconds": 0.9282502500009286,
+      "output_tokens": 128,
+      "prompt_tokens": 118
+    },
+    {
+      "ordinal": 5,
+      "session": 1,
+      "warmup": false,
+      "started_at": 1794338796.717113,
+      "decode_tokens_per_second": 148.29575735106704,
+      "prefill_tokens_per_second": 2379.7999354630524,
+      "ttft_seconds": 0.05057091700109595,
+      "wall_seconds": 0.9139261250002164,
+      "output_tokens": 128,
+      "prompt_tokens": 118
+    },
+    {
+      "ordinal": 6,
+      "session": 2,
+      "warmup": true,
+      "started_at": 1794338808.147342,
+      "decode_tokens_per_second": 149.43058774085466,
+      "prefill_tokens_per_second": 1952.3494374586367,
+      "ttft_seconds": 0.061998958999538445,
+      "wall_seconds": 0.9187764170001174,
+      "output_tokens": 128,
+      "prompt_tokens": 118
+    },
+    {
+      "ordinal": 7,
+      "session": 2,
+      "warmup": false,
+      "started_at": 1794338809.067643,
+      "decode_tokens_per_second": 148.9841145687841,
+      "prefill_tokens_per_second": 2377.6900137019425,
+      "ttft_seconds": 0.0506468749990745,
+      "wall_seconds": 0.9099935840004036,
+      "output_tokens": 128,
+      "prompt_tokens": 118
+    },
+    {
+      "ordinal": 8,
+      "session": 2,
+      "warmup": false,
+      "started_at": 1794338809.9784698,
+      "decode_tokens_per_second": 149.35700641885072,
+      "prefill_tokens_per_second": 2377.4983881366857,
+      "ttft_seconds": 0.0506227919995581,
+      "wall_seconds": 0.9078158749998693,
+      "output_tokens": 128,
+      "prompt_tokens": 118
+    },
+    {
+      "ordinal": 9,
+      "session": 2,
+      "warmup": false,
+      "started_at": 1794338810.887006,
+      "decode_tokens_per_second": 149.70497593609468,
+      "prefill_tokens_per_second": 2370.3822743617043,
+      "ttft_seconds": 0.050764790999892284,
+      "wall_seconds": 0.9059716659994592,
+      "output_tokens": 128,
+      "prompt_tokens": 118
+    },
+    {
+      "ordinal": 10,
+      "session": 2,
+      "warmup": false,
+      "started_at": 1794338811.793812,
+      "decode_tokens_per_second": 149.18345369019258,
+      "prefill_tokens_per_second": 2374.8188697472224,
+      "ttft_seconds": 0.05063950000112527,
+      "wall_seconds": 0.908874917000503,
+      "output_tokens": 128,
+      "prompt_tokens": 118
+    },
+    {
+      "ordinal": 11,
+      "session": 2,
+      "warmup": false,
+      "started_at": 1794338812.703568,
+      "decode_tokens_per_second": 149.83483051105384,
+      "prefill_tokens_per_second": 2379.4640156480004,
+      "ttft_seconds": 0.050594040998475975,
+      "wall_seconds": 0.9050559579991386,
+      "output_tokens": 128,
+      "prompt_tokens": 118
+    },
+    {
+      "ordinal": 12,
+      "session": 3,
+      "warmup": true,
+      "started_at": 1794338824.068037,
+      "decode_tokens_per_second": 148.67021461939262,
+      "prefill_tokens_per_second": 1968.208429936784,
+      "ttft_seconds": 0.06123875000048429,
+      "wall_seconds": 0.9223817920010333,
+      "output_tokens": 128,
+      "prompt_tokens": 118
+    },
+    {
+      "ordinal": 13,
+      "session": 3,
+      "warmup": false,
+      "started_at": 1794338824.991037,
+      "decode_tokens_per_second": 149.90115892333492,
+      "prefill_tokens_per_second": 2377.163117709865,
+      "ttft_seconds": 0.050679374999162974,
+      "wall_seconds": 0.9047530419993564,
+      "output_tokens": 128,
+      "prompt_tokens": 118
+    },
+    {
+      "ordinal": 14,
+      "session": 3,
+      "warmup": false,
+      "started_at": 1794338825.896605,
+      "decode_tokens_per_second": 149.55454943770994,
+      "prefill_tokens_per_second": 2371.19202636444,
+      "ttft_seconds": 0.05077170799995656,
+      "wall_seconds": 0.9068147910002153,
+      "output_tokens": 128,
+      "prompt_tokens": 118
+    },
+    {
+      "ordinal": 15,
+      "session": 3,
+      "warmup": false,
+      "started_at": 1794338826.803989,
+      "decode_tokens_per_second": 149.64354440087635,
+      "prefill_tokens_per_second": 2371.001446712747,
+      "ttft_seconds": 0.050682791999861365,
+      "wall_seconds": 0.9062426250002318,
+      "output_tokens": 128,
+      "prompt_tokens": 118
+    },
+    {
+      "ordinal": 16,
+      "session": 3,
+      "warmup": false,
+      "started_at": 1794338827.7111611,
+      "decode_tokens_per_second": 145.86761602173428,
+      "prefill_tokens_per_second": 2377.163117709865,
+      "ttft_seconds": 0.050698999999440275,
+      "wall_seconds": 0.9283680419994198,
+      "output_tokens": 128,
+      "prompt_tokens": 118
+    },
+    {
+      "ordinal": 17,
+      "session": 3,
+      "warmup": false,
+      "started_at": 1794338828.640814,
+      "decode_tokens_per_second": 147.63518423256232,
+      "prefill_tokens_per_second": 2303.697629924642,
+      "ttft_seconds": 0.05226495899842121,
+      "wall_seconds": 0.9194574590001139,
+      "output_tokens": 128,
+      "prompt_tokens": 118
+    },
+    {
+      "ordinal": 18,
+      "session": 4,
+      "warmup": true,
+      "started_at": 1794338840.090284,
+      "decode_tokens_per_second": 149.66664094271275,
+      "prefill_tokens_per_second": 1926.4048062167367,
+      "ttft_seconds": 0.0627083749986923,
+      "wall_seconds": 0.918107957999382,
+      "output_tokens": 128,
+      "prompt_tokens": 118
+    },
+    {
+      "ordinal": 19,
+      "session": 4,
+      "warmup": false,
+      "started_at": 1794338841.009675,
+      "decode_tokens_per_second": 149.25756024524884,
+      "prefill_tokens_per_second": 2373.7678535505934,
+      "ttft_seconds": 0.05085700000017823,
+      "wall_seconds": 0.9085097080005653,
+      "output_tokens": 128,
+      "prompt_tokens": 118
+    },
+    {
+      "ordinal": 20,
+      "session": 4,
+      "warmup": false,
+      "started_at": 1794338841.918721,
+      "decode_tokens_per_second": 149.91941831265694,
+      "prefill_tokens_per_second": 2378.4568249617028,
+      "ttft_seconds": 0.05058400000052643,
+      "wall_seconds": 0.9045504999994591,
+      "output_tokens": 128,
+      "prompt_tokens": 118
+    },
+    {
+      "ordinal": 21,
+      "session": 4,
+      "warmup": false,
+      "started_at": 1794338842.824115,
+      "decode_tokens_per_second": 149.79607838547915,
+      "prefill_tokens_per_second": 2372.860906111122,
+      "ttft_seconds": 0.05067929100005131,
+      "wall_seconds": 0.9053864580000663,
+      "output_tokens": 128,
+      "prompt_tokens": 118
+    },
+    {
+      "ordinal": 22,
+      "session": 4,
+      "warmup": false,
+      "started_at": 1794338843.7303832,
+      "decode_tokens_per_second": 149.53271028037383,
+      "prefill_tokens_per_second": 2382.9718486207034,
+      "ttft_seconds": 0.05048504200021853,
+      "wall_seconds": 0.9066979170002014,
+      "output_tokens": 128,
+      "prompt_tokens": 118
+    },
+    {
+      "ordinal": 23,
+      "session": 4,
+      "warmup": false,
+      "started_at": 1794338844.6378481,
+      "decode_tokens_per_second": 149.9505046185927,
+      "prefill_tokens_per_second": 2373.051784816491,
+      "ttft_seconds": 0.050627292001081514,
+      "wall_seconds": 0.9044418329995096,
+      "output_tokens": 128,
+      "prompt_tokens": 118
+    }
+  ],
+  "summary": {
+    "method": "sessions-v2",
+    "method_note": "sessions-v2: fresh llama-server per session (--load-mode none, /usr/bin/time -l peak footprint including startup), warmups excluded, fixed-length outputs (ignore_eos), session-clustered bootstrap 95% CI for medians.",
+    "successful_trials": 20,
+    "failed_trials": 0,
+    "wall_seconds": {
+      "median": 0.9073153330000423,
+      "p95": 0.9282561396008532,
+      "min": 0.9044418329995096,
+      "max": 0.9283680419994198,
+      "n": 20,
+      "mean": 0.9100575271498201,
+      "sd": 0.007213467980552934,
+      "median_ci95": [
+        0.9053864580000663,
+        0.9116944589986815
+      ],
+      "sessions_used": 4,
+      "ci_method": "two-stage session-clustered bootstrap, 10000 resamples, seed 20261109"
+    },
+    "ttft_seconds": {
+      "median": 0.0506630829995629,
+      "p95": 0.05092739795009038,
+      "min": 0.05048504200021853,
+      "max": 0.05226495899842121,
+      "n": 20,
+      "mean": 0.05075034594974568,
+      "sd": 0.0003681887998238005,
+      "median_ci95": [
+        0.05061343799934548,
+        0.050736584000333096
+      ],
+      "sessions_used": 4,
+      "ci_method": "two-stage session-clustered bootstrap, 10000 resamples, seed 20261109"
+    },
+    "decode_tokens_per_second": {
+      "median": 149.44485834961228,
+      "p95": 149.92097262795374,
+      "min": 145.86761602173428,
+      "max": 149.9505046185927,
+      "n": 20,
+      "mean": 148.99777169819842,
+      "sd": 1.2133627023328721,
+      "median_ci95": [
+        148.69214800909344,
+        149.79607838547915
+      ],
+      "sessions_used": 4,
+      "ci_method": "two-stage session-clustered bootstrap, 10000 resamples, seed 20261109"
+    },
+    "prefill_tokens_per_second": {
+      "median": 2377.0434072152584,
+      "p95": 2379.958531120935,
+      "min": 2303.697629924642,
+      "max": 2382.9718486207034,
+      "n": 20,
+      "mean": 2372.295852773108,
+      "sd": 16.528433708299595,
+      "median_ci95": [
+        2371.19202636444,
+        2378.3609503718544
+      ],
+      "sessions_used": 4,
+      "ci_method": "two-stage session-clustered bootstrap, 10000 resamples, seed 20261109"
+    }
+  }
+}

@@ -1,0 +1,556 @@
+{
+ "kind": "real-run",
+ "workflow_id": "5cf6580c-2151-4cd5-9b42-109f21f8452d",
+ "started_at": "2026-11-10T19:24:43.668316+00:00",
+ "status": "completed",
+ "settings": {
+  "context": 2048,
+  "seed": 42,
+  "temperature": 0,
+  "benchmark_repeats": 5,
+  "benchmark_warmups": 1,
+  "benchmark_method": "sessions-v2",
+  "benchmark_sessions": 4,
+  "benchmark_cooldown": 10,
+  "benchmark_tokens": 128,
+  "coding_tokens": 384,
+  "quality_suite": "coding-v1"
+ },
+ "stages": {
+  "import": {
+   "workflow_id": "5cf6580c-2151-4cd5-9b42-109f21f8452d",
+   "recorded_at": 1794338688.5564532,
+   "status": "completed",
+   "source": {
+    "path": "/Users/yaswanth/Desktop/FeatherAI/models/qwen2.5-coder-0.5b-instruct-fp16.gguf",
+    "sha256": "bb69b303c65113199b19c72f9c75bca449200b6cdf807e0f7d8822f669c02e64",
+    "size_bytes": 1266425728,
+    "architecture": "qwen2",
+    "tokenizer_sha256": "2a79a01a91fbc7fbb416c63be850e165bb1adb07bd6c705909ec9504624e39aa",
+    "tensor_count": 291,
+    "tensor_types": {
+     "F16": 170,
+     "F32": 121
+    },
+    "parameter_count": 630167424,
+    "higher_precision": true
+   }
+  },
+  "preflight": {
+   "workflow_id": "5cf6580c-2151-4cd5-9b42-109f21f8452d",
+   "recorded_at": 1794338688.780046,
+   "status": "completed",
+   "sandbox": {
+    "status": "available",
+    "backend": "docker",
+    "binary": "/usr/local/bin/docker",
+    "image": "docker.io/library/python@sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+    "server_version": "29.9.3",
+    "security_options": [
+     "name=seccomp,profile=builtin",
+     "name=cgroupns"
+    ],
+    "daemon_os": "Docker Desktop",
+    "daemon_memory_bytes": 2065739776,
+    "isolation": "Linux container, no network, read-only root, all capabilities dropped, non-root user"
+   },
+   "available_memory_bytes": 2527166464,
+   "timing": "before quantization"
+  },
+  "quantization": {
+   "workflow_id": "5cf6580c-2151-4cd5-9b42-109f21f8452d",
+   "recorded_at": 1794338712.990077,
+   "status": "completed",
+   "artifacts": {
+    "Q8_0": {
+     "job_id": "2304e8cc-3bec-4b50-8cea-7ab9724003d0",
+     "status": "completed",
+     "error": null,
+     "source_sha256": "bb69b303c65113199b19c72f9c75bca449200b6cdf807e0f7d8822f669c02e64",
+     "artifact_sha256": "0d93a22a0efbdbacb9306457836164baf2b50dc744f4cd64050150c551119108",
+     "artifact_path": "/Users/yaswanth/Desktop/FeatherAI/.feather/e2e/5cf6580c-2151-4cd5-9b42-109f21f8452d/artifacts/2304e8cc-3bec-4b50-8cea-7ab9724003d0/model-Q8_0.gguf",
+     "artifact_size_bytes": 675710848,
+     "memory": {
+      "stage": "quantization",
+      "metric_source": "/usr/bin/time -l (whole llama-quantize process)",
+      "max_rss_bytes": 1082261504,
+      "peak_memory_footprint_bytes": 1044366728,
+      "page_reclaims": 75949,
+      "page_faults": 3398,
+      "involuntary_context_switches": 10916,
+      "instructions_retired": 20812171095,
+      "real_seconds": 2.12,
+      "user_seconds": 1.28,
+      "sys_seconds": 1.14,
+      "sampled_peak_rss_bytes": 1083211776,
+      "wall_seconds": 2.1526368750000984,
+      "system_delta": {
+       "seconds": 2.167613983154297,
+       "swap_used_delta_bytes": 0,
+       "pageins": 37276,
+       "pageouts": 454,
+       "swapins": 4,
+       "swapouts": 0,
+       "page_size": 16384,
+       "max_pressure_level": 1
+      },
+      "pressure_before": 1,
+      "swap_used_before_bytes": 2024863170
+     },
+     "admission": {
+      "memory_admission_estimate_bytes": 2168074048,
+      "memory_admission_rule": "1.5 x source_size + 256 MiB (v0.2, measured basis: experiments/memory/quantize-smollm.json)",
+      "available_ram_bytes": 2660270080
+     }
+    },
+    "Q4_K_M": {
+     "job_id": "26604f1a-6438-4975-8f8e-cb6d09a374bf",
+     "status": "completed",
+     "error": null,
+     "source_sha256": "bb69b303c65113199b19c72f9c75bca449200b6cdf807e0f7d8822f669c02e64",
+     "artifact_sha256": "3dc9c14a9c9a560ab29b2572e2549947566a30e2c024ba8518b1164d6f33a2a2",
+     "artifact_path": "/Users/yaswanth/Desktop/FeatherAI/.feather/e2e/5cf6580c-2151-4cd5-9b42-109f21f8452d/artifacts/26604f1a-6438-4975-8f8e-cb6d09a374bf/model-Q4_K_M.gguf",
+     "artifact_size_bytes": 491400064,
+     "memory": {
+      "stage": "quantization",
+      "metric_source": "/usr/bin/time -l (whole llama-quantize process)",
+      "max_rss_bytes": 1052016640,
+      "peak_memory_footprint_bytes": 1042482544,
+      "page_reclaims": 94701,
+      "page_faults": 1303,
+      "involuntary_context_switches": 17514,
+      "instructions_retired": 55364087558,
+      "real_seconds": 2.52,
+      "user_seconds": 6.02,
+      "sys_seconds": 1.05,
+      "sampled_peak_rss_bytes": 1044807680,
+      "wall_seconds": 2.567833040999176,
+      "system_delta": {
+       "seconds": 2.5819449424743652,
+       "swap_used_delta_bytes": 0,
+       "pageins": 50768,
+       "pageouts": 408,
+       "swapins": 9,
+       "swapouts": 0,
+       "page_size": 16384,
+       "max_pressure_level": 1
+      },
+      "pressure_before": 1,
+      "swap_used_before_bytes": 2024863170
+     },
+     "admission": {
+      "memory_admission_estimate_bytes": 2168074048,
+      "memory_admission_rule": "1.5 x source_size + 256 MiB (v0.2, measured basis: experiments/memory/quantize-smollm.json)",
+      "available_ram_bytes": 2680487936
+     }
+    }
+   }
+  },
+  "generation_validation": {
+   "workflow_id": "5cf6580c-2151-4cd5-9b42-109f21f8452d",
+   "recorded_at": 1794338722.485524,
+   "status": "completed",
+   "results": {
+    "Q8_0": {
+     "artifact_sha256": "0d93a22a0efbdbacb9306457836164baf2b50dc744f4cd64050150c551119108",
+     "prompt": "What is 2 + 2? Answer with only the number.",
+     "output": "4",
+     "nonempty": true,
+     "runtime_version": "version: 0.9.0-dev (build 1, commit 9d340ec)\nbuilt with AppleClang 17.0.0.17000603 for Darwin arm64",
+     "criterion": "runtime compatibility: the exact artifact loads in llama-server and returns non-empty text; correctness is measured by the evaluation stage",
+     "contains_expected_answer_4": true
+    },
+    "Q4_K_M": {
+     "artifact_sha256": "3dc9c14a9c9a560ab29b2572e2549947566a30e2c024ba8518b1164d6f33a2a2",
+     "prompt": "What is 2 + 2? Answer with only the number.",
+     "output": "4",
+     "nonempty": true,
+     "runtime_version": "version: 0.9.0-dev (build 1, commit 9d340ec)\nbuilt with AppleClang 17.0.0.17000603 for Darwin arm64",
+     "criterion": "runtime compatibility: the exact artifact loads in llama-server and returns non-empty text; correctness is measured by the evaluation stage",
+     "contains_expected_answer_4": true
+    }
+   }
+  },
+  "benchmark": {
+   "workflow_id": "5cf6580c-2151-4cd5-9b42-109f21f8452d",
+   "recorded_at": 1794338846.5903292,
+   "status": "completed",
+   "results": {
+    "Q8_0": {
+     "job_id": "87c277b5-6586-4e05-81cc-9ce3dc005e17",
+     "status": "completed",
+     "error": null,
+     "experiment_id": "be6b5eff-7030-4170-b6b3-fa3adc706266",
+     "source_sha256": "bb69b303c65113199b19c72f9c75bca449200b6cdf807e0f7d8822f669c02e64",
+     "artifact_sha256": "0d93a22a0efbdbacb9306457836164baf2b50dc744f4cd64050150c551119108",
+     "settings_sha256": "88d7a3ab9ea2ff7bcd21aa19bb6e4a11c466c7b94822a8d19b5cdce12174d014",
+     "summary": {
+      "method": "sessions-v2",
+      "method_note": "sessions-v2: fresh llama-server per session (--load-mode none, /usr/bin/time -l peak footprint including startup), warmups excluded, fixed-length outputs (ignore_eos), session-clustered bootstrap 95% CI for medians.",
+      "successful_trials": 20,
+      "failed_trials": 0,
+      "wall_seconds": {
+       "median": 1.0858716040002037,
+       "p95": 1.1349490083493037,
+       "min": 1.0708937079998577,
+       "max": 1.1487835419993644,
+       "n": 20,
+       "mean": 1.0881875562496135,
+       "sd": 0.021273195183806784,
+       "median_ci95": [
+        1.0720336875001522,
+        1.0936412920000294
+       ],
+       "sessions_used": 4,
+       "ci_method": "two-stage session-clustered bootstrap, 10000 resamples, seed 20261109"
+      },
+      "ttft_seconds": {
+       "median": 0.04378302100030851,
+       "p95": 0.04588902530040286,
+       "min": 0.04343437499846914,
+       "max": 0.04787895799927355,
+       "n": 20,
+       "mean": 0.044220912499986297,
+       "sd": 0.001035248755103915,
+       "median_ci95": [
+        0.04364095900018583,
+        0.04441202050020365
+       ],
+       "sessions_used": 4,
+       "ci_method": "two-stage session-clustered bootstrap, 10000 resamples, seed 20261109"
+      },
+      "decode_tokens_per_second": {
+       "median": 122.94957513897002,
+       "p95": 124.62573978230358,
+       "min": 115.8566057272989,
+       "max": 124.65537172134462,
+       "n": 20,
+       "mean": 122.68378731094302,
+       "sd": 2.3953233108652325,
+       "median_ci95": [
+        122.03120948182497,
+        124.49827605664112
+       ],
+       "sessions_used": 4,
+       "ci_method": "two-stage session-clustered bootstrap, 10000 resamples, seed 20261109"
+      },
+      "prefill_tokens_per_second": {
+       "median": 2758.1372548983186,
+       "p95": 2770.6517077862914,
+       "min": 2563.100047786611,
+       "max": 2782.6907204339113,
+       "n": 20,
+       "mean": 2740.1232119963815,
+       "sd": 48.11694020846499,
+       "median_ci95": [
+        2728.8342460602116,
+        2765.6682135658366
+       ],
+       "sessions_used": 4,
+       "ci_method": "two-stage session-clustered bootstrap, 10000 resamples, seed 20261109"
+      }
+     }
+    },
+    "Q4_K_M": {
+     "job_id": "16a0e416-e27f-468f-b4ab-bad37cdc5d15",
+     "status": "completed",
+     "error": null,
+     "experiment_id": "75a7e3c8-6c78-4f3b-9853-5aa271a6363c",
+     "source_sha256": "bb69b303c65113199b19c72f9c75bca449200b6cdf807e0f7d8822f669c02e64",
+     "artifact_sha256": "3dc9c14a9c9a560ab29b2572e2549947566a30e2c024ba8518b1164d6f33a2a2",
+     "settings_sha256": "88d7a3ab9ea2ff7bcd21aa19bb6e4a11c466c7b94822a8d19b5cdce12174d014",
+     "summary": {
+      "method": "sessions-v2",
+      "method_note": "sessions-v2: fresh llama-server per session (--load-mode none, /usr/bin/time -l peak footprint including startup), warmups excluded, fixed-length outputs (ignore_eos), session-clustered bootstrap 95% CI for medians.",
+      "successful_trials": 20,
+      "failed_trials": 0,
+      "wall_seconds": {
+       "median": 0.9073153330000423,
+       "p95": 0.9282561396008532,
+       "min": 0.9044418329995096,
+       "max": 0.9283680419994198,
+       "n": 20,
+       "mean": 0.9100575271498201,
+       "sd": 0.007213467980552934,
+       "median_ci95": [
+        0.9053864580000663,
+        0.9116944589986815
+       ],
+       "sessions_used": 4,
+       "ci_method": "two-stage session-clustered bootstrap, 10000 resamples, seed 20261109"
+      },
+      "ttft_seconds": {
+       "median": 0.0506630829995629,
+       "p95": 0.05092739795009038,
+       "min": 0.05048504200021853,
+       "max": 0.05226495899842121,
+       "n": 20,
+       "mean": 0.05075034594974568,
+       "sd": 0.0003681887998238005,
+       "median_ci95": [
+        0.05061343799934548,
+        0.050736584000333096
+       ],
+       "sessions_used": 4,
+       "ci_method": "two-stage session-clustered bootstrap, 10000 resamples, seed 20261109"
+      },
+      "decode_tokens_per_second": {
+       "median": 149.44485834961228,
+       "p95": 149.92097262795374,
+       "min": 145.86761602173428,
+       "max": 149.9505046185927,
+       "n": 20,
+       "mean": 148.99777169819842,
+       "sd": 1.2133627023328721,
+       "median_ci95": [
+        148.69214800909344,
+        149.79607838547915
+       ],
+       "sessions_used": 4,
+       "ci_method": "two-stage session-clustered bootstrap, 10000 resamples, seed 20261109"
+      },
+      "prefill_tokens_per_second": {
+       "median": 2377.0434072152584,
+       "p95": 2379.958531120935,
+       "min": 2303.697629924642,
+       "max": 2382.9718486207034,
+       "n": 20,
+       "mean": 2372.295852773108,
+       "sd": 16.528433708299595,
+       "median_ci95": [
+        2371.19202636444,
+        2378.3609503718544
+       ],
+       "sessions_used": 4,
+       "ci_method": "two-stage session-clustered bootstrap, 10000 resamples, seed 20261109"
+      }
+     }
+    }
+   }
+  },
+  "evaluation": {
+   "workflow_id": "5cf6580c-2151-4cd5-9b42-109f21f8452d",
+   "recorded_at": 1794338958.26382,
+   "status": "completed",
+   "results": {
+    "Q8_0": {
+     "job_id": "2be63bed-8c85-4c57-85fa-4336999de817",
+     "status": "completed",
+     "error": null,
+     "evaluation_id": "6522a0e9-c880-42e5-b36d-5af55793d47b",
+     "source_sha256": "bb69b303c65113199b19c72f9c75bca449200b6cdf807e0f7d8822f669c02e64",
+     "artifact_sha256": "0d93a22a0efbdbacb9306457836164baf2b50dc744f4cd64050150c551119108",
+     "dataset_sha256": "e41bfe10854cd6fa6e8ad69b9e56d34c73da66e6b48ec9dd86d5e74565d531bb",
+     "split": "heldout",
+     "settings_sha256": "c8867afd6f92a7b962aede873f63d8254da6d99fe69b7c5a9351e582bcc329fb",
+     "sandbox": {
+      "status": "available",
+      "backend": "docker",
+      "binary": "/usr/local/bin/docker",
+      "image": "docker.io/library/python@sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+      "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+      "server_version": "29.9.3",
+      "security_options": [
+       "name=seccomp,profile=builtin",
+       "name=cgroupns"
+      ],
+      "daemon_os": "Docker Desktop",
+      "daemon_memory_bytes": 2065739776,
+      "isolation": "Linux container, no network, read-only root, all capabilities dropped, non-root user"
+     },
+     "summary": {
+      "items": 30,
+      "scored": 30,
+      "passed": 21,
+      "complete": true,
+      "accuracy": 0.7,
+      "accuracy_ci95": [
+       0.5212421254128504,
+       0.8333525173175619
+      ],
+      "accuracy_over_scored_items": 0.7,
+      "outcomes": {
+       "passed": 21,
+       "runtime_error": 5,
+       "partial_pass": 4
+      },
+      "not_scored": 0,
+      "lenient_accuracy": null
+     }
+    },
+    "Q4_K_M": {
+     "job_id": "fcd27bb7-2580-4e8c-bcec-966c691fa9a8",
+     "status": "completed",
+     "error": null,
+     "evaluation_id": "67c40652-a24a-4c6e-8ee9-1806c192dc69",
+     "source_sha256": "bb69b303c65113199b19c72f9c75bca449200b6cdf807e0f7d8822f669c02e64",
+     "artifact_sha256": "3dc9c14a9c9a560ab29b2572e2549947566a30e2c024ba8518b1164d6f33a2a2",
+     "dataset_sha256": "e41bfe10854cd6fa6e8ad69b9e56d34c73da66e6b48ec9dd86d5e74565d531bb",
+     "split": "heldout",
+     "settings_sha256": "c8867afd6f92a7b962aede873f63d8254da6d99fe69b7c5a9351e582bcc329fb",
+     "sandbox": {
+      "status": "available",
+      "backend": "docker",
+      "binary": "/usr/local/bin/docker",
+      "image": "docker.io/library/python@sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+      "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+      "server_version": "29.9.3",
+      "security_options": [
+       "name=seccomp,profile=builtin",
+       "name=cgroupns"
+      ],
+      "daemon_os": "Docker Desktop",
+      "daemon_memory_bytes": 2065739776,
+      "isolation": "Linux container, no network, read-only root, all capabilities dropped, non-root user"
+     },
+     "summary": {
+      "items": 30,
+      "scored": 30,
+      "passed": 19,
+      "complete": true,
+      "accuracy": 0.6333333333333333,
+      "accuracy_ci95": [
+       0.4551356365479487,
+       0.7812607919389929
+      ],
+      "accuracy_over_scored_items": 0.6333333333333333,
+      "outcomes": {
+       "passed": 19,
+       "partial_pass": 6,
+       "runtime_error": 4,
+       "wrong_answer": 1
+      },
+      "not_scored": 0,
+      "lenient_accuracy": null
+     }
+    }
+   }
+  },
+  "recommendation": {
+   "workflow_id": "5cf6580c-2151-4cd5-9b42-109f21f8452d",
+   "recorded_at": 1794338961.8804789,
+   "status": "completed",
+   "request": {
+    "experiment_ids": [
+     "be6b5eff-7030-4170-b6b3-fa3adc706266",
+     "75a7e3c8-6c78-4f3b-9853-5aa271a6363c"
+    ],
+    "available_memory_bytes": 2800336896,
+    "max_memory_bytes": 1073741824,
+    "min_quality": 0.7,
+    "max_latency_seconds": null,
+    "objective": "fastest",
+    "quality_suite": "coding-v1",
+    "quality_split": "heldout"
+   },
+   "outcome": "no_eligible_configuration",
+   "selected_id": null,
+   "eligible": [],
+   "rejected": [
+    {
+     "id": "be6b5eff-7030-4170-b6b3-fa3adc706266",
+     "reasons": [
+      "Measured quality or lower confidence bound is below the requirement"
+     ],
+     "evidence_missing": false,
+     "quality": 0.7,
+     "quality_ci": [
+      0.5212421254128504,
+      0.8333525173175619
+     ],
+     "peak_memory_bytes": 943252860,
+     "evidence": {
+      "benchmark_id": "be6b5eff-7030-4170-b6b3-fa3adc706266",
+      "evaluation_id": "6522a0e9-c880-42e5-b36d-5af55793d47b",
+      "evaluation_suite": "coding-v1",
+      "evaluation_split": "heldout",
+      "benchmark_complete": true,
+      "memory_metric": "median over sessions of /usr/bin/time -l peak memory footprint (--load-mode none)",
+      "memory_note": null,
+      "join_policy": "Exact artifact_sha256 and verified source_sha256; model display names are never joined"
+     }
+    },
+    {
+     "id": "75a7e3c8-6c78-4f3b-9853-5aa271a6363c",
+     "reasons": [
+      "Measured quality or lower confidence bound is below the requirement"
+     ],
+     "evidence_missing": false,
+     "quality": 0.6333333333333333,
+     "quality_ci": [
+      0.4551356365479487,
+      0.7812607919389929
+     ],
+     "peak_memory_bytes": 757810400,
+     "evidence": {
+      "benchmark_id": "75a7e3c8-6c78-4f3b-9853-5aa271a6363c",
+      "evaluation_id": "67c40652-a24a-4c6e-8ee9-1806c192dc69",
+      "evaluation_suite": "coding-v1",
+      "evaluation_split": "heldout",
+      "benchmark_complete": true,
+      "memory_metric": "median over sessions of /usr/bin/time -l peak memory footprint (--load-mode none)",
+      "memory_note": null,
+      "join_policy": "Exact artifact_sha256 and verified source_sha256; model display names are never joined"
+     }
+    }
+   ],
+   "http_status": 200
+  },
+  "export": {
+   "workflow_id": "5cf6580c-2151-4cd5-9b42-109f21f8452d",
+   "recorded_at": 1794338965.4632058,
+   "status": "completed",
+   "files": {
+    "exports/benchmark-Q8_0.json": {
+     "sha256": "d6c70c25c1609e846ddcdc14e144cb4ac3469459aec1942fd1b0eda5bc8d737b",
+     "http_status": 200,
+     "experiment_id": "be6b5eff-7030-4170-b6b3-fa3adc706266"
+    },
+    "exports/benchmark-Q8_0.csv": {
+     "sha256": "701fb9f912132164b1d4f50df3a03dad179763fd5393793083f09a672cee6862",
+     "http_status": 200,
+     "experiment_id": "be6b5eff-7030-4170-b6b3-fa3adc706266"
+    },
+    "exports/benchmark-Q4_K_M.json": {
+     "sha256": "4e780057c45ec8b3cdaf47c56783d69ae48384f76b05d5eb96e2b17125e4350e",
+     "http_status": 200,
+     "experiment_id": "75a7e3c8-6c78-4f3b-9853-5aa271a6363c"
+    },
+    "exports/benchmark-Q4_K_M.csv": {
+     "sha256": "cd26deb3b3b49969f6393b85bb0b9176c0763e01e13c320ba37dcd19bdf22edf",
+     "http_status": 200,
+     "experiment_id": "75a7e3c8-6c78-4f3b-9853-5aa271a6363c"
+    },
+    "exports/evaluation-Q8_0.json": {
+     "sha256": "408ed273c4f20039fa847b7b5eeac1dae0d1872467f779da74b7db1e4c7c3f97",
+     "http_status": 200,
+     "evaluation_id": "6522a0e9-c880-42e5-b36d-5af55793d47b"
+    },
+    "exports/evaluation-Q4_K_M.json": {
+     "sha256": "59e5c87c196a5d21d93acd5b9e78df54753fc0c8de089343c8f3dc82e006468c",
+     "http_status": 200,
+     "evaluation_id": "67c40652-a24a-4c6e-8ee9-1806c192dc69"
+    }
+   }
+  }
+ },
+ "constraints_file": "experiments/e2e/recommendation-constraints.json",
+ "constraints_sha256": "8c819722f5c46ba3ed80a0d92e0480b54fb8f406e02a7c383fe07c0dc2579a1b",
+ "environment": {
+  "repository_commit": "d984c639c68ef0c42ecaad56f8010b3121c4c67f",
+  "repository_dirty": false,
+  "working_tree_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "untracked_files": [],
+  "toolchain_commit": "9d340ec341e079d2c28afd50871afce358cdbf48",
+  "hardware": {
+   "chip": "Apple M2",
+   "architecture": "arm64",
+   "os": "macOS-26.7.3-arm64-arm-64bit",
+   "python": "3.12.9",
+   "physical_ram_bytes": 8589934592,
+   "available_ram_bytes": 2709864448
+  }
+ },
+ "finished_at": "2026-11-10T19:29:25.464144+00:00"
+}
