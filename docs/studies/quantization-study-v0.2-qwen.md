@@ -112,6 +112,8 @@ The screening dry run (F16, before any held-out output) scored 8/40 on reasoning
 
 ## 7. coding-v2 (pre-registered analysis; this measures coding only)
 
+> **Contamination caveat.** coding-v2 is built from MBPP, a public benchmark that Qwen2.5-Coder may have seen during training. Absolute pass rates must not be read as capability claims. The result is the paired difference between each quantized variant and F16 on the same problems.
+
 The run followed the plan in `docs/DECISIONS.md` ("coding-v2 run on Qwen2.5-Coder-0.5B"). Evidence is in `experiments/studies/qwen2.5-coder-0.5b-clean/coding-v2/`.
 
 **Completeness and provenance.**
@@ -143,7 +145,6 @@ The run followed the plan in `docs/DECISIONS.md` ("coding-v2 run on Qwen2.5-Code
 For Q8_0 the 95% and 90% intervals are identical because only 5 problems differ between the variants, so the bootstrap distribution is very coarse.
 
 **What this does and does not show.**
-- For coding on this suite, both quantized variants are **equivalent to F16 within the pre-registered ±10 pp margin**. Both 90% intervals also lie well inside a tighter ±5 pp, but that margin was not pre-registered for coding and is noted only descriptively.
+- **Bounded conclusion.** On these 360 held-out coding problems, Q8_0 and Q4_K_M preserved coding performance within the pre-registered ±10 pp margin. That is an equivalence claim for this coding evaluation only; it says nothing about equal overall capability.
 - This says nothing about the Q8_0 *reasoning* signal from §3. That is tested only by the separate `reasoning-v2` replication, which has not been run.
-- MBPP is a public benchmark that Qwen2.5-Coder may have seen in training. Absolute pass rates are therefore not capability claims; the paired variant-vs-F16 differences are the result.
 - "Runtime error" is the largest failure category for every variant. Those are failures in the generated code (exceptions inside the sandbox), not infrastructure failures.
