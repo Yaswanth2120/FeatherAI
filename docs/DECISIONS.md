@@ -101,3 +101,29 @@ Sources: https://learn.chatgpt.com/docs/agent-configuration/subagents and https:
   - **License.** The design above calls MBPP "CC-BY-4.0". At the pinned commit, the google-research repository is Apache-2.0 and the MBPP README states no separate data license; CC-BY-4.0 is what the Hugging Face dataset card lists, and that was not verified. See `backend/evaluation/datasets/third_party/mbpp/NOTICE.md`.
   - **Freeze.** 401 problems passed the filter. 400 references passed their own tests in the sandbox; mbpp-123 failed and was excluded.
   - **Result.** 40 screening + **360 held-out**, SHA-256 `37e35bd0…`, frozen before any model saw it. Arguments and expected values use the type-preserving encoding, decoded inside the sandbox.
+
+### coding-v2 run on Qwen2.5-Coder-0.5B: analysis plan (recorded 2026-11-10, before any model output on coding-v2)
+- **Scope.** This run measures **coding** quality only. It cannot confirm or refute the Q8_0 *reasoning* signal from reasoning-v1; that needs the separate replication planned below.
+- **Artifacts.** F16 source `bb69b303…`, plus Q8_0 `0d93a22a…` and Q4_K_M `3dc9c14a…` from `experiments/studies/qwen2.5-coder-0.5b-clean` (hashes re-verified before use).
+- **Data and settings.**
+  - `coding-v2` held-out split only: 360 problems, SHA-256 `37e35bd0…`. mbpp-123 is excluded.
+  - Context 2048, temperature 0, seed 42, `n_predict` 384, ChatML template, llama-server `--load-mode none`.
+  - Runs are sequential (F16, then Q8_0, then Q4_K_M) with the Docker sandbox available.
+- **Screening dry run.** F16 on the 40 screening problems first, as a format check only. Prompts are frozen; any change requires `coding-v3`.
+- **Primary hypotheses.**
+  - H1: Q8_0 ≠ F16 and H2: Q4_K_M ≠ F16 in held-out pass rate.
+  - Test: exact two-sided McNemar on paired outcomes, with Holm correction across {H1, H2} at family α = 0.05.
+- **Effect estimates.** Paired difference with a paired bootstrap over problems: 10 000 resamples, seed 20261110, reporting both 95% and 90% CIs.
+- **Equivalence.** The margin is ±10 pp, the design's detectable effect. "Equivalent within ±10 pp" is claimed only if the 90% CI lies entirely inside (−10, +10) pp, a TOST-style check. Otherwise the result is "not shown equivalent", even when there is no detectable difference.
+- **Baseline validity.** Results are informative only if F16 solves at least 10 problems and at least 25%.
+- **Reported, not tested.** Outcome categories (truncation, runtime errors, timeouts), per-problem outputs, and the unchanged screening-free held-out results. No other subgroup tests.
+
+### Reasoning replication for the Q8_0 signal: plan (recorded 2026-11-10; nothing collected yet)
+- **Signal to replicate.** On reasoning-v1 (160 held-out items), Q8_0 − F16 = −3.75 pp: 7 items correct only for F16 and 1 only for Q8_0. The paired bootstrap 95% CI was [−7.5, −0.6] and the exact McNemar p = 0.070, from one of 12 unadjusted comparisons. This is treated as hypothesis-generating only.
+- **New data.** A new frozen version, `reasoning-v2`, built with the same generator code and the same four categories in equal shares.
+  - It uses a different seed, and every question must differ from all reasoning-v1 questions.
+  - Size: **150 held-out items per category (600 total) plus 40 screening items**.
+  - Basis: discordance ψ ≈ 0.05–0.10 and δ = 3.75 pp, two-sided α = 0.025 (Holm over Q8_0 and Q4_K_M), 80% power, gives about 505–675 items. 600 sits inside that range. At ψ ≥ 0.10 the study may be underpowered, and that will be reported.
+- **Primary hypothesis.** Q8_0 pass rate is lower than F16's on all reasoning-v2 held-out items. Test: exact two-sided McNemar with Holm correction across {Q8_0, Q4_K_M}. Per-category results are exploratory only.
+- **Equivalence.** Margin ±5 pp, using the 90% paired-bootstrap CI.
+- **Freeze rule.** The dataset is frozen and hash-pinned, and this plan committed, before any model runs on reasoning-v2.
