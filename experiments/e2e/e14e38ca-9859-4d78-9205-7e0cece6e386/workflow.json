@@ -1,0 +1,96 @@
+{
+ "kind": "real-run",
+ "workflow_id": "e14e38ca-9859-4d78-9205-7e0cece6e386",
+ "started_at": "2026-11-10T17:01:46.414098+00:00",
+ "status": "failed",
+ "settings": {
+  "context": 2048,
+  "seed": 42,
+  "temperature": 0,
+  "benchmark_repeats": 5,
+  "benchmark_warmups": 1,
+  "benchmark_method": "sessions-v2",
+  "benchmark_sessions": 4,
+  "benchmark_cooldown": 10,
+  "benchmark_tokens": 128,
+  "coding_tokens": 384,
+  "quality_suite": "coding-v1"
+ },
+ "stages": {
+  "import": {
+   "workflow_id": "e14e38ca-9859-4d78-9205-7e0cece6e386",
+   "recorded_at": 1794330111.629262,
+   "status": "completed",
+   "source": {
+    "path": "/Users/yaswanth/Desktop/FeatherAI/models/qwen2.5-coder-0.5b-instruct-fp16.gguf",
+    "sha256": "bb69b303c65113199b19c72f9c75bca449200b6cdf807e0f7d8822f669c02e64",
+    "size_bytes": 1266425728,
+    "architecture": "qwen2",
+    "tokenizer_sha256": "2a79a01a91fbc7fbb416c63be850e165bb1adb07bd6c705909ec9504624e39aa",
+    "tensor_count": 291,
+    "tensor_types": {
+     "F16": 170,
+     "F32": 121
+    },
+    "parameter_count": 630167424,
+    "higher_precision": true
+   }
+  },
+  "quantization": {
+   "workflow_id": "e14e38ca-9859-4d78-9205-7e0cece6e386",
+   "recorded_at": 1794330121.727011,
+   "status": "failed",
+   "artifacts": {
+    "Q8_0": {
+     "job_id": "c4681305-37e6-463f-8931-d89f48ad2036",
+     "status": "failed",
+     "error": "ValueError: Insufficient available RAM for quantization stage: admission estimate 2168074048 bytes (1.5 x source_size + 256 MiB (v0.2, measured basis: experiments/memory/quantize-smollm.json)) exceeds available 1601683456 bytes. Close other applications, use a smaller source, or provide measured evidence for a revised rule; the guard is not bypassed.",
+     "source_sha256": null,
+     "artifact_sha256": null,
+     "artifact_path": null,
+     "artifact_size_bytes": null,
+     "memory": null,
+     "admission": {
+      "memory_admission_estimate_bytes": null,
+      "memory_admission_rule": null,
+      "available_ram_bytes": null
+     }
+    },
+    "Q4_K_M": {
+     "job_id": "3f10db62-84fe-4742-94db-50ccc68fdfd7",
+     "status": "failed",
+     "error": "ValueError: Insufficient available RAM for quantization stage: admission estimate 2168074048 bytes (1.5 x source_size + 256 MiB (v0.2, measured basis: experiments/memory/quantize-smollm.json)) exceeds available 1657618432 bytes. Close other applications, use a smaller source, or provide measured evidence for a revised rule; the guard is not bypassed.",
+     "source_sha256": null,
+     "artifact_sha256": null,
+     "artifact_path": null,
+     "artifact_size_bytes": null,
+     "memory": null,
+     "admission": {
+      "memory_admission_estimate_bytes": null,
+      "memory_admission_rule": null,
+      "available_ram_bytes": null
+     }
+    }
+   }
+  }
+ },
+ "constraints_file": "experiments/e2e/recommendation-constraints.json",
+ "constraints_sha256": "8c819722f5c46ba3ed80a0d92e0480b54fb8f406e02a7c383fe07c0dc2579a1b",
+ "environment": {
+  "repository_commit": "fa7d120d903e61a2cb799162bf8e1df12f710326",
+  "repository_dirty": false,
+  "working_tree_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "untracked_files": [],
+  "toolchain_commit": "9d340ec341e079d2c28afd50871afce358cdbf48",
+  "hardware": {
+   "chip": "Apple M2",
+   "architecture": "arm64",
+   "os": "macOS-26.7.3-arm64-arm-64bit",
+   "python": "3.12.9",
+   "physical_ram_bytes": 8589934592,
+   "available_ram_bytes": 1845100544
+  }
+ },
+ "error": "RuntimeError: Quantization failed",
+ "finished_at": "2026-11-10T17:02:01.728175+00:00"
+}

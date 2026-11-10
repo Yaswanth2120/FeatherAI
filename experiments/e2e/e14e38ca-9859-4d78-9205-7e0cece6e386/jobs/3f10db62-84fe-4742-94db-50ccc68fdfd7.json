@@ -1,0 +1,15 @@
+{
+ "id": "3f10db62-84fe-4742-94db-50ccc68fdfd7",
+ "kind": "quantization",
+ "status": "failed",
+ "payload": {
+  "source": "/Users/yaswanth/Desktop/FeatherAI/models/qwen2.5-coder-0.5b-instruct-fp16.gguf",
+  "target": "Q4_K_M"
+ },
+ "result": null,
+ "error": "ValueError: Insufficient available RAM for quantization stage: admission estimate 2168074048 bytes (1.5 x source_size + 256 MiB (v0.2, measured basis: experiments/memory/quantize-smollm.json)) exceeds available 1657618432 bytes. Close other applications, use a smaller source, or provide measured evidence for a revised rule; the guard is not bypassed.",
+ "created_at": 1794330116.68327,
+ "updated_at": 1794330121.568348,
+ "cancel_requested": 0,
+ "pid": null
+}

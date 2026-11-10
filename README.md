@@ -6,7 +6,9 @@ A local-first laboratory for quantizing language models, measuring performance, 
 - **Working:** coding evaluation runs in a hardened Docker sandbox, and the reasoning and coding datasets are hash-pinned.
 - **Complete study:** the pre-registered quantization study is complete for SmolLM2-135M ([study](docs/studies/quantization-study-v0.2.md)).
 - **End-to-end:** one traceable SmolLM2 workflow went through the API (task08 complete); its recommendation truthfully found no configuration that meets the pre-registered 70% coding requirement.
-- **Blocked:** the primary Qwen2.5-Coder-0.5B study (memory guards), live Codex automation (CLI/account model availability), and the optional 1.5B experiment (approval for a roughly 3.1 GB download and sufficient free memory).
+- **Qwen2.5-Coder-0.5B study:** complete under clean conditions ([report](docs/studies/quantization-study-v0.2-qwen.md)). Q4_K_M decodes 1.77× faster than F16 with 55% less peak memory; no detectable quality loss at these sample sizes.
+- **Live Codex automation:** verified with codex-cli 0.167.0 (`experiments/automation-selftest-live.json`).
+- **Blocked:** the Qwen end-to-end workflow (the quantization memory guard rejected it inside the API workflow: 1.60 GB available vs 2.17 GB required) and the optional 1.5B experiment (deferred).
 
 See [the final report](docs/FINAL_REPORT.md).
 

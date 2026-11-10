@@ -1,3 +1,13 @@
+# Progress: v0.2.1 (2026-11-10)
+
+| Step | Status | Evidence |
+|---|---|---|
+| 1. Qwen study, clean conditions | **Complete.** The guards admitted it naturally (2.33 GB available, Docker off for conversion and benchmark). | `experiments/studies/qwen2.5-coder-0.5b-clean/`, `docs/studies/quantization-study-v0.2-qwen.md` |
+| 2. Live Codex automation | **Verified.** CLI updated 0.142.3 → 0.167.0; `gpt-6.1-sol` accepted. The first self-test hung because the orchestrator left stdin open (fixed in `fb6c29c`). The rerun completed both dependent tasks with commits. | `experiments/automation-selftest-live.json` |
+| 3. Unified benchmark method | **Complete.** API llama.cpp jobs use sessions-v2: fresh server sessions, `/usr/bin/time -l` footprint, session-clustered CIs. Older results are labelled `legacy-sampled-rss-v1`. | `backend/benchmarks/sessions.py` (`70b17c8`) |
+| 4. coding-v2 | **Designed and frozen.** Power analysis was pre-registered before download. MBPP sanitized, pinned: 360 held-out + 40 screening; 400 of 401 references verified in the sandbox. Not yet run on any model. | `docs/DECISIONS.md`, `backend/evaluation/datasets/coding-v2.json` (`51fcce0`) |
+| 5. Qwen end-to-end | **Blocked.** Workflow `e14e38ca` (clean commit `fa7d120`) was rejected by the quantization admission guard inside the API workflow: 1.60/1.66 GB available vs 2.17 GB required. Preserved as a failed run; neither the guard nor the constraints were changed. | `experiments/e2e/e14e38ca…/`, `experiments/e2e-evidence-qwen.json` |
+
 # Progress — v0.2 (2026-11-09)
 
 ## task08: one traceable end-to-end workflow

@@ -1,0 +1,15 @@
+{
+  "kind": "real-run",
+  "status": "failed",
+  "workflow": "experiments/e2e/e14e38ca-9859-4d78-9205-7e0cece6e386/workflow.json",
+  "workflow_id": "e14e38ca-9859-4d78-9205-7e0cece6e386",
+  "imported": true,
+  "quantized": false,
+  "generation_validated": false,
+  "benchmarked": false,
+  "evaluated": false,
+  "coding_evaluated": false,
+  "recommended": false,
+  "exported": false,
+  "recommendation_outcome": null
+}
