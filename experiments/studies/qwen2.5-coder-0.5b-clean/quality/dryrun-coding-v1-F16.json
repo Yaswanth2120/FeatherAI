@@ -1,0 +1,690 @@
+{
+ "id": "af916e3c-c267-4868-aa3a-14e2f727f392",
+ "kind": "evaluation",
+ "created_at": "2026-11-10T16:34:16.453499+00:00",
+ "model": {
+  "name": "qwen2.5-coder-0.5b-instruct-fp16.gguf",
+  "size": 1266425728,
+  "digest": "bb69b303c65113199b19c72f9c75bca449200b6cdf807e0f7d8822f669c02e64",
+  "artifact_sha256": "bb69b303c65113199b19c72f9c75bca449200b6cdf807e0f7d8822f669c02e64",
+  "details": {
+   "tensor_types": {
+    "F16": 170,
+    "F32": 121
+   },
+   "parameter_count": 630167424
+  }
+ },
+ "suite": "coding-v1",
+ "split": "screening",
+ "dataset_version": "v1",
+ "dataset_sha256": "e41bfe10854cd6fa6e8ad69b9e56d34c73da66e6b48ec9dd86d5e74565d531bb",
+ "suite_sha256": "3bde9f61d0ec9977678477a6bc353e3fd09df0608aeab67803b1262b9e687033:e41bfe10854cd6fa6e8ad69b9e56d34c73da66e6b48ec9dd86d5e74565d531bb",
+ "item_limit": null,
+ "options": {
+  "seed": 42,
+  "temperature": 0,
+  "num_ctx": 2048,
+  "num_predict": 384
+ },
+ "settings_sha256": "c8867afd6f92a7b962aede873f63d8254da6d99fe69b7c5a9351e582bcc329fb",
+ "repeats": 1,
+ "backend": "llama.cpp",
+ "source_sha256": "bb69b303c65113199b19c72f9c75bca449200b6cdf807e0f7d8822f669c02e64",
+ "prompt_template": "chatml-v1: <|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant\n",
+ "runtime_version": "version: 0.9.0-dev (build 1, commit 9d340ec)\nbuilt with AppleClang 17.0.0.17000603 for Darwin arm64",
+ "results": [
+  {
+   "task_id": "reverse_words",
+   "category": "partial_pass",
+   "item_category": "coding",
+   "prompt_sha256": "6f4620072ba20ce2bfa70153b3bc9f0c1e5b35ff2dc1f50105a7c2911451d977",
+   "generation": {
+    "output": "```python\ndef reverse_words(s):\n    \"\"\"\n    Reverse the words of the input string s (separated by single spaces) in reverse order,\n    joined by single spaces.\n    \n    :param s: Input string containing words separated by spaces.\n    :return: A string with words in reverse order, separated by spaces.\n    \"\"\"\n    return ' '.join(s.split()[::-1])\n```",
+    "ttft_seconds": 0.061332083999786846,
+    "wall_seconds": 1.0747182089999114,
+    "truncated": false,
+    "eval_count": 81
+   },
+   "status": "scored",
+   "passed": false,
+   "test_cases": 5,
+   "cases_passed": 4,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "partial_pass",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": true
+    },
+    {
+     "index": 1,
+     "passed": true
+    },
+    {
+     "index": 2,
+     "passed": true
+    },
+    {
+     "index": 3,
+     "passed": true
+    },
+    {
+     "index": 4,
+     "passed": false
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-174b7764b75b452f9f6f9a98c7920980",
+    "exit_code": 0,
+    "seconds": 3628.402,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "fizzbuzz",
+   "category": "partial_pass",
+   "item_category": "coding",
+   "prompt_sha256": "3dd586bf5bd40df5deae25032770b5964dbce92502c8f1cc4c827573473dd9c6",
+   "generation": {
+    "output": "```python\ndef fizzbuzz(n):\n    \"\"\"\n    Return a list of strings for 1..n where multiples of 3 are 'Fizz',\n    multiples of 5 are 'Buzz', multiples of both are 'FizzBuzz',\n    and other numbers are their decimal string.\n    \"\"\"\n    return [f\"{i}{'Fizz' if i % 3 == 0 else '' if i % 5 == 0 else ''}\" for i in range(1, n + 1)]\n```",
+    "ttft_seconds": 0.04631966700026169,
+    "wall_seconds": 1.2863434169998982,
+    "truncated": false,
+    "eval_count": 103
+   },
+   "status": "scored",
+   "passed": false,
+   "test_cases": 4,
+   "cases_passed": 2,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "partial_pass",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": true
+    },
+    {
+     "index": 1,
+     "passed": true
+    },
+    {
+     "index": 2,
+     "passed": false
+    },
+    {
+     "index": 3,
+     "passed": false
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-87f9d9d199e5437ba887b738cca3a5a8",
+    "exit_code": 0,
+    "seconds": 3629.917,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "gcd",
+   "category": "passed",
+   "item_category": "coding",
+   "prompt_sha256": "6723303273d1b761dd42ac8a630a300c94f35a130865a6ff3a0ac2c8a874dc96",
+   "generation": {
+    "output": "```python\ndef gcd(a, b):\n    \"\"\"\n    Return the greatest common divisor of non-negative integers a and b, with gcd(0, 0) == 0.\n    \"\"\"\n    while b:\n        a, b = b, a % b\n    return a\n```",
+    "ttft_seconds": 0.04915062500003842,
+    "wall_seconds": 0.7446052089999284,
+    "truncated": false,
+    "eval_count": 60
+   },
+   "status": "scored",
+   "passed": true,
+   "test_cases": 6,
+   "cases_passed": 6,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "passed",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": true
+    },
+    {
+     "index": 1,
+     "passed": true
+    },
+    {
+     "index": 2,
+     "passed": true
+    },
+    {
+     "index": 3,
+     "passed": true
+    },
+    {
+     "index": 4,
+     "passed": true
+    },
+    {
+     "index": 5,
+     "passed": true
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-b5b85a9a3bed4c4d9e2c6fe07ac97866",
+    "exit_code": 0,
+    "seconds": 3630.904,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "title_case",
+   "category": "passed",
+   "item_category": "coding",
+   "prompt_sha256": "c1817fb735437bea63dacc486fc00b76f09d8c556f5a3523c0be635ce89e95f0",
+   "generation": {
+    "output": "```python\ndef title_case(s):\n    \"\"\"\n    Convert a string into title case, where each word's first character is uppercase and the rest are lowercase.\n    \n    Args:\n    s (str): The input string to be converted.\n    \n    Returns:\n    str: The title-cased string.\n    \"\"\"\n    return ' '.join(word.capitalize() for word in s.split())\n```",
+    "ttft_seconds": 0.037966083000355866,
+    "wall_seconds": 0.9706281250000757,
+    "truncated": false,
+    "eval_count": 79
+   },
+   "status": "scored",
+   "passed": true,
+   "test_cases": 4,
+   "cases_passed": 4,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "passed",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": true
+    },
+    {
+     "index": 1,
+     "passed": true
+    },
+    {
+     "index": 2,
+     "passed": true
+    },
+    {
+     "index": 3,
+     "passed": true
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-c132a6ee4ea645cdb902d72b44b5afe4",
+    "exit_code": 0,
+    "seconds": 3632.18,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "roman_to_int",
+   "category": "partial_pass",
+   "item_category": "coding",
+   "prompt_sha256": "cc0785af4fe9f5d9962ed3c0706e335e5555994468af872c96d0b300c33450f7",
+   "generation": {
+    "output": "```python\ndef roman_to_int(s):\n    \"\"\"\n    Convert a valid uppercase Roman numeral (standard subtractive notation) to an integer.\n    \n    Args:\n    s (str): A string representing a Roman numeral.\n    \n    Returns:\n    int: The integer value of the Roman numeral.\n    \n    Examples:\n    >>> roman_to_int(\"III\")\n    3\n    >>> roman_to_int(\"IV\")\n    4\n    >>> roman_to_int(\"IX\")\n    9\n    >>> roman_to_int(\"LVIII\")\n    18\n    >>> roman_to_int(\"MCMXCIV\")\n    194\n    \"\"\"\n    roman_numerals = {\n        \"I\": 1,\n        \"V\": 5,\n        \"X\": 10,\n        \"L\": 50,\n        \"C\": 100,\n        \"D\": 500,\n        \"M\": 1000\n    }\n    total = 0\n    for numeral in s:\n        total += roman_numerals[numeral]\n    return total\n```",
+    "ttft_seconds": 0.032307625000157714,
+    "wall_seconds": 2.738388791000034,
+    "truncated": false,
+    "eval_count": 225
+   },
+   "status": "scored",
+   "passed": false,
+   "test_cases": 6,
+   "cases_passed": 2,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "partial_pass",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": true
+    },
+    {
+     "index": 1,
+     "passed": false
+    },
+    {
+     "index": 2,
+     "passed": false
+    },
+    {
+     "index": 3,
+     "passed": true
+    },
+    {
+     "index": 4,
+     "passed": false
+    },
+    {
+     "index": 5,
+     "passed": false
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-d7bc83e6ee47472ebaa48e337d1b4871",
+    "exit_code": 0,
+    "seconds": 3635.213,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "unique_paths",
+   "category": "partial_pass",
+   "item_category": "coding",
+   "prompt_sha256": "da0e32ca24b62c639d8ddc3ae3f666328a36340255fdc5eeb1159d4d90ebeea2",
+   "generation": {
+    "output": "```python\ndef unique_paths(m, n):\n    \"\"\"\n    Calculate the number of unique paths from the top-left to the bottom-right cell of a grid with m rows and n columns.\n    \n    Args:\n    m (int): Number of rows in the grid.\n    n (int): Number of columns in the grid.\n    \n    Returns:\n    int: Number of unique paths.\n    \"\"\"\n    # Initialize a 2D list to store the number of unique paths to each cell\n    dp = [[0] * n for _ in range(m)]\n    \n    # Base case: there is one path to reach the top-left cell (0, 0)\n    dp[0][0] = 1\n    \n    # Fill the dp table\n    for i in range(1, m):\n        for j in range(1, n):\n            # If the current cell is in the first row or first column, there is only one path to reach it\n            if i == 0 or j == 0:\n                dp[i][j] = 1\n            # Otherwise, the number of paths to reach the cell is the sum of the paths to the cell above and to the left\n            else:\n                dp[i][j] = dp[i - 1][j] + dp[i][j - 1]\n    \n    # The number of unique paths to the bottom-right cell is the last element in the dp table\n    return dp[m - 1][n - 1]\n```",
+    "ttft_seconds": 0.05116304100010893,
+    "wall_seconds": 3.739158290999967,
+    "truncated": false,
+    "eval_count": 310
+   },
+   "status": "scored",
+   "passed": false,
+   "test_cases": 5,
+   "cases_passed": 1,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "partial_pass",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": true
+    },
+    {
+     "index": 1,
+     "passed": false
+    },
+    {
+     "index": 2,
+     "passed": false
+    },
+    {
+     "index": 3,
+     "passed": false
+    },
+    {
+     "index": 4,
+     "passed": false
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-7bf97479958a472e8e60df525be2026a",
+    "exit_code": 0,
+    "seconds": 3639.27,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "caesar_shift",
+   "category": "runtime_error",
+   "item_category": "coding",
+   "prompt_sha256": "a0f6759bea2aebb50501098d13df450bac5a1c6a4a8b0db7d1efec22856883b1",
+   "generation": {
+    "output": "```python\ndef caesar_shift(text, k):\n    \"\"\"\n    Shifts each lowercase letter in the text forward by k positions in the alphabet.\n    Wraps around if necessary.\n    \n    Args:\n    text (str): The input string to be shifted.\n    k (int): The number of positions to shift each letter forward.\n    \n    Returns:\n    str: The shifted string.\n    \"\"\"\n    shifted_text = \"\"\n    for char in text:\n        if char.islower():\n            # Calculate the new character\n            new_char = chr((ord(char) - ord('a') + k) % 26 + ord('a'))\n            shifted_text += new_char\n        else:\n            # Non-lowercase characters remain unchanged\n            shifted_text += char\n    return shifted_text\n\n# Check function to verify the correctness of the solution\ndef check_solution():\n    test_cases = [\n        (\"hello\", 5, \"lipps\"),\n        (\"world\", 8, \"asvph\"),\n        (\"python\", 3, \"qrs\"),\n        (\"shift\", 1, \"shift\"),\n        (\"\", 0, \"\"),\n        (\"abc\", 1, \"bcd\"),\n    ]\n    \n    for text, k, expected in test_cases:\n        result = caesar_shift(text, k)\n        assert result == expected, f\"Expected {expected}, got {result} for text '{text}' with k {k}\"\n    print(\"All test cases passed!\")\n\n# Run the check function to verify the solution\ncheck_solution()\n```\n\nThis Python code snippet defines a function `caesar_shift` that implements the Caesar cipher shift as described. It iterates over each character in the input string, checks if it's a lowercase letter, and then shifts it forward by the specified number of positions. Non-lowercase characters remain unchanged. The `check_solution` function is used",
+    "ttft_seconds": 0.04616662499984159,
+    "wall_seconds": 4.793004083000142,
+    "truncated": true,
+    "eval_count": 384
+   },
+   "status": "scored",
+   "passed": false,
+   "test_cases": 5,
+   "cases_passed": 0,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "runtime_error",
+   "reason": "AssertionError: Expected lipps, got mjqqt for text 'hello' with k 5",
+   "execution": {
+    "container": "feather-eval-c8f3196162444e719e1d4a1287da857d",
+    "exit_code": 0,
+    "seconds": 3644.387,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "nth_prime",
+   "category": "passed",
+   "item_category": "coding",
+   "prompt_sha256": "956a597e9793c09ebc279e98d68f46df0772ce5c41d9736f83e6121bc7eaa3e1",
+   "generation": {
+    "output": "```python\ndef nth_prime(n):\n    \"\"\"\n    Return the n-th prime number, counting from nth_prime(1) == 2.\n    \n    Parameters:\n    n (int): The position in the sequence of prime numbers to return.\n    \n    Returns:\n    int: The n-th prime number.\n    \"\"\"\n    def is_prime(num):\n        \"\"\"Check if a number is prime.\"\"\"\n        if num <= 1:\n            return False\n        if num <= 3:\n            return True\n        if num % 2 == 0 or num % 3 == 0:\n            return False\n        i = 5\n        while i * i <= num:\n            if num % i == 0 or num % (i + 2) == 0:\n                return False\n            i += 6\n        return True\n    \n    count = 0\n    num = 2\n    while count < n:\n        if is_prime(num):\n            count += 1\n        num += 1\n    \n    return num - 1\n\n# Check function to verify the correctness of the solution\ndef check():\n    assert nth_prime(1) == 2, \"Test case 1 failed\"\n    assert nth_prime(2) == 3, \"Test case 2 failed\"\n    assert nth_prime(3) == 5, \"Test case 3 failed\"\n    assert nth_prime(4) == 7, \"Test case 4 failed\"\n    assert nth_prime(5) == 11, \"Test case 5 failed\"\n    assert nth_prime(6) == 13, \"Test case 6 failed\"\n    assert nth_prime(7) == 17, \"Test case 7 failed\"\n    assert nth_prime(8) == 19, \"Test case 8 failed\"\n    assert nth_prime(9)",
+    "ttft_seconds": 0.03797445800000787,
+    "wall_seconds": 4.695917208000083,
+    "truncated": true,
+    "eval_count": 384
+   },
+   "status": "scored",
+   "passed": true,
+   "test_cases": 5,
+   "cases_passed": 5,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "passed",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": true
+    },
+    {
+     "index": 1,
+     "passed": true
+    },
+    {
+     "index": 2,
+     "passed": true
+    },
+    {
+     "index": 3,
+     "passed": true
+    },
+    {
+     "index": 4,
+     "passed": true
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-de68ab590ba044aa8c0fb45457e7a782",
+    "exit_code": 0,
+    "seconds": 3649.47,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "hamming_distance",
+   "category": "passed",
+   "item_category": "coding",
+   "prompt_sha256": "91d81d0cdb41cb3225c17eefb6f910140c22da5b5567ca286328522a109e4e9b",
+   "generation": {
+    "output": "```python\ndef hamming_distance(a, b):\n    \"\"\"\n    Calculate the Hamming distance between two strings of equal length.\n\n    Args:\n    a (str): The first string.\n    b (str): The second string.\n\n    Returns:\n    int: The number of positions at which the two strings differ.\n    \"\"\"\n    return sum(1 for i in range(len(a)) if a[i] != b[i])\n```",
+    "ttft_seconds": 0.05256462499983172,
+    "wall_seconds": 1.078831374999936,
+    "truncated": false,
+    "eval_count": 88
+   },
+   "status": "scored",
+   "passed": true,
+   "test_cases": 4,
+   "cases_passed": 4,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "passed",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": true
+    },
+    {
+     "index": 1,
+     "passed": true
+    },
+    {
+     "index": 2,
+     "passed": true
+    },
+    {
+     "index": 3,
+     "passed": true
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-bb61c297271a48ee94cf847abb66d4f4",
+    "exit_code": 0,
+    "seconds": 3650.793,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  },
+  {
+   "task_id": "is_power_of_two",
+   "category": "passed",
+   "item_category": "coding",
+   "prompt_sha256": "cfec97c5e70872771c3647a7b15f3f76d6b3fdf1132181257c36f742d246018e",
+   "generation": {
+    "output": "```python\ndef is_power_of_two(n):\n    \"\"\"\n    Check if the integer n is a positive power of two.\n    \n    Args:\n    n (int): The integer to check.\n    \n    Returns:\n    bool: True if n is a positive power of two, False otherwise.\n    \"\"\"\n    if n <= 0:\n        return False\n    while n > 1:\n        if n % 2 != 0:\n            return False\n        n //= 2\n    return True\n```",
+    "ttft_seconds": 0.042702165999799035,
+    "wall_seconds": 1.2809857080001166,
+    "truncated": false,
+    "eval_count": 105
+   },
+   "status": "scored",
+   "passed": true,
+   "test_cases": 7,
+   "cases_passed": 7,
+   "sandbox_image": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+   "sandbox_backend": "docker",
+   "outcome": "passed",
+   "case_results": [
+    {
+     "index": 0,
+     "passed": true
+    },
+    {
+     "index": 1,
+     "passed": true
+    },
+    {
+     "index": 2,
+     "passed": true
+    },
+    {
+     "index": 3,
+     "passed": true
+    },
+    {
+     "index": 4,
+     "passed": true
+    },
+    {
+     "index": 5,
+     "passed": true
+    },
+    {
+     "index": 6,
+     "passed": true
+    }
+   ],
+   "execution": {
+    "container": "feather-eval-bec21bb4ecfe4e258a75c283b53611a5",
+    "exit_code": 0,
+    "seconds": 3652.352,
+    "category": "executed",
+    "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7"
+   }
+  }
+ ],
+ "sandbox": {
+  "status": "available",
+  "backend": "docker",
+  "binary": "/usr/local/bin/docker",
+  "image": "docker.io/library/python@sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+  "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+  "server_version": "29.9.3",
+  "security_options": [
+   "name=seccomp,profile=builtin",
+   "name=cgroupns"
+  ],
+  "daemon_os": "Docker Desktop",
+  "daemon_memory_bytes": 2065739776,
+  "isolation": "Linux container, no network, read-only root, all capabilities dropped, non-root user"
+ },
+ "perplexity": {
+  "status": "unsupported",
+  "reason": "Backend did not provide held-out token log probabilities"
+ },
+ "summary": {
+  "items": 10,
+  "scored": 10,
+  "passed": 5,
+  "complete": true,
+  "accuracy": 0.5,
+  "accuracy_ci95": [
+   0.236593090512564,
+   0.7634069094874361
+  ],
+  "accuracy_over_scored_items": 0.5,
+  "outcomes": {
+   "partial_pass": 4,
+   "passed": 5,
+   "runtime_error": 1
+  },
+  "not_scored": 0,
+  "lenient_accuracy": null
+ },
+ "by_category": {
+  "coding": {
+   "items": 10,
+   "scored": 10,
+   "passed": 5,
+   "complete": true,
+   "accuracy": 0.5,
+   "accuracy_ci95": [
+    0.236593090512564,
+    0.7634069094874361
+   ],
+   "accuracy_over_scored_items": 0.5,
+   "outcomes": {
+    "partial_pass": 4,
+    "passed": 5,
+    "runtime_error": 1
+   },
+   "not_scored": 0,
+   "lenient_accuracy": null
+  }
+ },
+ "status": "completed",
+ "server_session": {
+  "load_seconds": 1.309070958999655,
+  "command": [
+   "/Users/yaswanth/Desktop/FeatherAI/.feather/tools/llama.cpp/build/bin/llama-server",
+   "-m",
+   "/Users/yaswanth/Desktop/FeatherAI/models/qwen2.5-coder-0.5b-instruct-fp16.gguf",
+   "--host",
+   "127.0.0.1",
+   "--port",
+   "50338",
+   "-c",
+   "2048",
+   "-np",
+   "1",
+   "-t",
+   "4",
+   "--load-mode",
+   "none",
+   "--cache-ram",
+   "0",
+   "--fit",
+   "off",
+   "--no-warmup",
+   "-lv",
+   "4"
+  ],
+  "settings": {
+   "context": 2048,
+   "threads": 4,
+   "load_mode": "none",
+   "parallel": 1,
+   "cache_ram_mib": 0,
+   "fit": "off",
+   "server_warmup": false,
+   "n_gpu_layers": "default (all)",
+   "prompt_template": "chatml-v1: <|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant\n",
+   "executable_sha256": "4de055b01d5b27044bfd0dfd6f0a4b022b4359cb59c37d18451d99ed7a77cb67"
+  },
+  "runtime_version": "version: 0.9.0-dev (build 1, commit 9d340ec)\nbuilt with AppleClang 17.0.0.17000603 for Darwin arm64",
+  "time_l": {
+   "max_rss_bytes": 1492860928,
+   "peak_memory_footprint_bytes": 1664419688,
+   "page_reclaims": 114192,
+   "page_faults": 2692,
+   "involuntary_context_switches": 69037,
+   "instructions_retired": 628289245981,
+   "real_seconds": 28.47,
+   "user_seconds": 32.76,
+   "sys_seconds": 1.2
+  },
+  "snapshots": {
+   "after_load": {
+    "time": 1794328454.7847848,
+    "footprint_bytes": 1661992960
+   }
+  },
+  "sampled_rss_phase_peaks": {
+   "startup": 1443446784,
+   "after_load": 1279426560
+  },
+  "metal": {
+   "device": "Apple M2",
+   "offloaded_layers": [
+    25,
+    25
+   ],
+   "verified": true
+  },
+  "buffers_mib": {
+   "model_CPU": 259.66,
+   "model_MTL0": 942.43,
+   "kv_MTL0": 24.0,
+   "compute_MTL0": 37.51,
+   "compute_CPU": 9.02,
+   "kv_cells": 2048,
+   "kv_type_k": "f16",
+   "kv_type_v": "f16"
+  },
+  "system_before": {
+   "available_bytes": 2852552704,
+   "swap": {
+    "total_bytes": 3221225472,
+    "used_bytes": 2635333632,
+    "free_bytes": 585891840
+   },
+   "pressure_level": 1,
+   "thermal": {
+    "limits": {},
+    "no_thermal_warning_recorded": true,
+    "raw": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded"
+   }
+  },
+  "system_after": {
+   "available_bytes": 2782658560,
+   "swap": {
+    "total_bytes": 3221225472,
+    "used_bytes": 2809198018,
+    "free_bytes": 412027453
+   },
+   "pressure_level": 1,
+   "thermal": {
+    "limits": {},
+    "no_thermal_warning_recorded": true,
+    "raw": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded"
+   }
+  },
+  "system_delta": {
+   "seconds": 28.518862009048462,
+   "swap_used_delta_bytes": 173864386,
+   "pageins": 156287,
+   "pageouts": 668,
+   "swapins": 4959,
+   "swapouts": 15220,
+   "page_size": 16384,
+   "max_pressure_level": 1
+  },
+  "docker_vm_running": true,
+  "exit_code": 0
+ }
+}

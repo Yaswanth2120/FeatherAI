@@ -1,0 +1,2092 @@
+{
+  "phases": {
+    "convert": {
+      "status": "completed",
+      "finished_at": 1794327654.268981,
+      "jobs": [
+        {
+          "status": "converted",
+          "started_at": 1794327635.307005,
+          "target": "Q8_0",
+          "command": [
+            "/Users/yaswanth/Desktop/FeatherAI/.feather/tools/llama.cpp/build/bin/llama-quantize",
+            "/Users/yaswanth/Desktop/FeatherAI/models/qwen2.5-coder-0.5b-instruct-fp16.gguf",
+            "/Users/yaswanth/Desktop/FeatherAI/.feather/study-qwen05b-clean/quantization/Q8_0/model-Q8_0.gguf",
+            "Q8_0"
+          ],
+          "executable_sha256": "963dc27a67e05f3bfb4990459cbcad47c99022b41ac0b9c1f955a7e8de73733b",
+          "memory_admission_estimate_bytes": 2168074048,
+          "memory_admission_rule": "1.5 x source_size + 256 MiB (v0.2, measured basis: experiments/memory/quantize-smollm.json)",
+          "available_ram_bytes": 2315436032,
+          "generation_validated": false,
+          "memory": {
+            "stage": "quantization",
+            "metric_source": "/usr/bin/time -l (whole llama-quantize process)",
+            "max_rss_bytes": 1050771456,
+            "peak_memory_footprint_bytes": 1044759872,
+            "page_reclaims": 83635,
+            "page_faults": 2661,
+            "involuntary_context_switches": 14332,
+            "instructions_retired": 19216162930,
+            "real_seconds": 2.55,
+            "user_seconds": 1.28,
+            "sys_seconds": 1.09,
+            "sampled_peak_rss_bytes": 1014022144,
+            "wall_seconds": 2.619986250000238,
+            "system_delta": {
+              "seconds": 2.616605043411255,
+              "swap_used_delta_bytes": 0,
+              "pageins": 53424,
+              "pageouts": 318,
+              "swapins": 82,
+              "swapouts": 0,
+              "page_size": 16384,
+              "max_pressure_level": 1
+            },
+            "pressure_before": 1,
+            "swap_used_before_bytes": 1785787842
+          },
+          "artifact": {
+            "path": "/Users/yaswanth/Desktop/FeatherAI/.feather/study-qwen05b-clean/quantization/Q8_0/model-Q8_0.gguf",
+            "sha256": "0d93a22a0efbdbacb9306457836164baf2b50dc744f4cd64050150c551119108",
+            "size_bytes": 675710848,
+            "architecture": "qwen2",
+            "tokenizer_sha256": "2a79a01a91fbc7fbb416c63be850e165bb1adb07bd6c705909ec9504624e39aa",
+            "tensor_count": 291,
+            "tensor_types": {
+              "Q8_0": 170,
+              "F32": 121
+            },
+            "parameter_count": 630167424,
+            "higher_precision": false
+          },
+          "storage_reduction_fraction": 0.4664425768835928,
+          "finished_at": 1794327642.782314,
+          "admission_rule_check": {
+            "measured_max_rss_bytes": 1050771456,
+            "rule_limit_bytes": 1899638592,
+            "violated": false
+          }
+        },
+        {
+          "status": "converted",
+          "started_at": 1794327647.1435351,
+          "target": "Q4_K_M",
+          "command": [
+            "/Users/yaswanth/Desktop/FeatherAI/.feather/tools/llama.cpp/build/bin/llama-quantize",
+            "/Users/yaswanth/Desktop/FeatherAI/models/qwen2.5-coder-0.5b-instruct-fp16.gguf",
+            "/Users/yaswanth/Desktop/FeatherAI/.feather/study-qwen05b-clean/quantization/Q4_K_M/model-Q4_K_M.gguf",
+            "Q4_K_M"
+          ],
+          "executable_sha256": "963dc27a67e05f3bfb4990459cbcad47c99022b41ac0b9c1f955a7e8de73733b",
+          "memory_admission_estimate_bytes": 2168074048,
+          "memory_admission_rule": "1.5 x source_size + 256 MiB (v0.2, measured basis: experiments/memory/quantize-smollm.json)",
+          "available_ram_bytes": 2278457344,
+          "generation_validated": false,
+          "memory": {
+            "stage": "quantization",
+            "metric_source": "/usr/bin/time -l (whole llama-quantize process)",
+            "max_rss_bytes": 1051475968,
+            "peak_memory_footprint_bytes": 1044972936,
+            "page_reclaims": 96377,
+            "page_faults": 2574,
+            "involuntary_context_switches": 15357,
+            "instructions_retired": 55695609637,
+            "real_seconds": 2.6,
+            "user_seconds": 6.1,
+            "sys_seconds": 1.06,
+            "sampled_peak_rss_bytes": 1050132480,
+            "wall_seconds": 2.6806058750003103,
+            "system_delta": {
+              "seconds": 2.671802282333374,
+              "swap_used_delta_bytes": 0,
+              "pageins": 50687,
+              "pageouts": 116,
+              "swapins": 0,
+              "swapouts": 0,
+              "page_size": 16384,
+              "max_pressure_level": 1
+            },
+            "pressure_before": 1,
+            "swap_used_before_bytes": 1785787842
+          },
+          "artifact": {
+            "path": "/Users/yaswanth/Desktop/FeatherAI/.feather/study-qwen05b-clean/quantization/Q4_K_M/model-Q4_K_M.gguf",
+            "sha256": "3dc9c14a9c9a560ab29b2572e2549947566a30e2c024ba8518b1164d6f33a2a2",
+            "size_bytes": 491400064,
+            "architecture": "qwen2",
+            "tokenizer_sha256": "2a79a01a91fbc7fbb416c63be850e165bb1adb07bd6c705909ec9504624e39aa",
+            "tensor_count": 291,
+            "tensor_types": {
+              "Q8_0": 13,
+              "F32": 121,
+              "Q5_0": 133,
+              "Q6_K": 12,
+              "Q4_K": 12
+            },
+            "parameter_count": 630167424,
+            "higher_precision": false
+          },
+          "storage_reduction_fraction": 0.6119787736971812,
+          "finished_at": 1794327654.2665448,
+          "admission_rule_check": {
+            "measured_max_rss_bytes": 1051475968,
+            "rule_limit_bytes": 1899638592,
+            "violated": false
+          }
+        }
+      ],
+      "docker_vm_running_at_end": false,
+      "pressure_level_at_start": 1
+    },
+    "validate": {
+      "status": "completed",
+      "finished_at": 1794327670.379966,
+      "results": {
+        "F16": {
+          "output": "4",
+          "nonempty": true,
+          "metal": {
+            "device": "Apple M2",
+            "offloaded_layers": [
+              25,
+              25
+            ],
+            "verified": true
+          },
+          "load_seconds": 1.6830290420002711,
+          "peak_memory_footprint_bytes": 1663944552,
+          "buffers_mib": {
+            "model_CPU": 259.66,
+            "model_MTL0": 942.43,
+            "kv_MTL0": 24.0,
+            "compute_MTL0": 37.51,
+            "compute_CPU": 9.02,
+            "kv_cells": 2048,
+            "kv_type_k": "f16",
+            "kv_type_v": "f16"
+          }
+        },
+        "Q8_0": {
+          "output": "4",
+          "nonempty": true,
+          "metal": {
+            "device": "Apple M2",
+            "offloaded_layers": [
+              25,
+              25
+            ],
+            "verified": true
+          },
+          "load_seconds": 0.8979182079997372,
+          "peak_memory_footprint_bytes": 943408520,
+          "buffers_mib": {
+            "model_CPU": 137.94,
+            "model_MTL0": 500.79,
+            "kv_MTL0": 24.0,
+            "compute_MTL0": 37.51,
+            "compute_CPU": 9.02,
+            "kv_cells": 2048,
+            "kv_type_k": "f16",
+            "kv_type_v": "f16"
+          }
+        },
+        "Q4_K_M": {
+          "output": "4",
+          "nonempty": true,
+          "metal": {
+            "device": "Apple M2",
+            "offloaded_layers": [
+              25,
+              25
+            ],
+            "verified": true
+          },
+          "load_seconds": 0.6150535420001688,
+          "peak_memory_footprint_bytes": 757269752,
+          "buffers_mib": {
+            "model_CPU": 89.26,
+            "model_MTL0": 373.71,
+            "kv_MTL0": 24.0,
+            "compute_MTL0": 37.51,
+            "compute_CPU": 9.02,
+            "kv_cells": 2048,
+            "kv_type_k": "f16",
+            "kv_type_v": "f16"
+          }
+        }
+      },
+      "prompt": "What is 2 + 2? Answer with only the number.",
+      "docker_vm_running_at_end": false,
+      "pressure_level_at_start": 1
+    },
+    "benchmark": {
+      "status": "completed",
+      "finished_at": 1794328220.59424,
+      "design": {
+        "rounds": 5,
+        "warmups_per_session": 1,
+        "measured_per_session": 4,
+        "cooldown_seconds": 30,
+        "seed": 20261109,
+        "orders": [
+          [
+            "Q8_0",
+            "F16",
+            "Q4_K_M"
+          ],
+          [
+            "Q4_K_M",
+            "F16",
+            "Q8_0"
+          ],
+          [
+            "Q4_K_M",
+            "Q8_0",
+            "F16"
+          ],
+          [
+            "Q8_0",
+            "Q4_K_M",
+            "F16"
+          ],
+          [
+            "F16",
+            "Q8_0",
+            "Q4_K_M"
+          ]
+        ],
+        "prompt_sha256": "e5c537d94d1d5a00b86a6881f9d1563c967d075b6d9141daced99341267d88ba",
+        "options": {
+          "num_ctx": 2048,
+          "num_predict": 128,
+          "seed": 42,
+          "temperature": 0,
+          "ignore_eos": true
+        },
+        "context": 2048,
+        "threads": 4
+      },
+      "analysis": {
+        "primary_all_sessions": {
+          "F16": {
+            "sessions": 5,
+            "failed_sessions": 0,
+            "failed_trials": 0,
+            "flagged_sessions": 3,
+            "decode_tokens_per_second": {
+              "n": 20,
+              "median": 84.78681992252581,
+              "mean": 84.53956688721046,
+              "sd": 1.0365752956868415,
+              "p95": 85.37852729425005,
+              "min": 81.00399387660434,
+              "max": 85.39909063312084,
+              "median_ci95": [
+                83.98370742642149,
+                85.24899424369181
+              ],
+              "sessions_used": 5
+            },
+            "prefill_tokens_per_second": {
+              "n": 20,
+              "median": 2888.5463894599297,
+              "mean": 2890.0628998019893,
+              "sd": 8.541232111633608,
+              "p95": 2902.861561181657,
+              "min": 2871.8847352024923,
+              "max": 2907.5497733096786,
+              "median_ci95": [
+                2885.0858660454633,
+                2896.8433250140693
+              ],
+              "sessions_used": 5
+            },
+            "ttft_seconds": {
+              "n": 20,
+              "median": 0.04193656249981359,
+              "mean": 0.04224867719999566,
+              "sd": 0.0008309448061493005,
+              "p95": 0.04386163189999479,
+              "min": 0.041689707999921666,
+              "max": 0.04518066699984047,
+              "median_ci95": [
+                0.04187291700009155,
+                0.04227087500021298
+              ],
+              "sessions_used": 5
+            },
+            "wall_seconds": {
+              "n": 20,
+              "median": 1.5518647290000445,
+              "mean": 1.5566744291999839,
+              "sd": 0.019045038405358556,
+              "p95": 1.5865288994002869,
+              "min": 1.5410860000001776,
+              "max": 1.622300833999816,
+              "median_ci95": [
+                1.5437815420000334,
+                1.5664473125000313
+              ],
+              "sessions_used": 5
+            },
+            "peak_memory_footprint_bytes": {
+              "n": 5,
+              "median": 1667352400.0,
+              "mean": 1666176052.8,
+              "sd": 1886760.366432155,
+              "p95": 1667512963.2,
+              "min": 1663272856.0,
+              "max": 1667516216.0
+            },
+            "max_rss_bytes": {
+              "n": 5,
+              "median": 1434124288.0,
+              "mean": 1426689228.8,
+              "sd": 39829118.82923592,
+              "p95": 1462226124.8,
+              "min": 1364901888.0,
+              "max": 1463402496.0
+            },
+            "load_seconds_first_in_study": {
+              "n": 1,
+              "median": 1.2483962090000205,
+              "mean": 1.2483962090000205,
+              "sd": null,
+              "p95": 1.2483962090000205,
+              "min": 1.2483962090000205,
+              "max": 1.2483962090000205
+            },
+            "load_seconds_repeat": {
+              "n": 4,
+              "median": 1.2701669170000969,
+              "mean": 1.2819310937500177,
+              "sd": 0.13753403800684427,
+              "p95": 1.4277427937998255,
+              "min": 1.145743166000102,
+              "max": 1.441647374999775
+            }
+          },
+          "Q8_0": {
+            "sessions": 5,
+            "failed_sessions": 0,
+            "failed_trials": 0,
+            "flagged_sessions": 2,
+            "decode_tokens_per_second": {
+              "n": 20,
+              "median": 124.43826659864251,
+              "mean": 123.82733451199336,
+              "sd": 1.4316861359247994,
+              "p95": 124.80514442573357,
+              "min": 119.29481850411753,
+              "max": 125.04615961751506,
+              "median_ci95": [
+                123.31215097354142,
+                124.68118486204874
+              ],
+              "sessions_used": 5,
+              "ratio_to_F16": {
+                "ratio": 1.467660500916868,
+                "ci95": [
+                  1.4533456460085266,
+                  1.478191555004061
+                ],
+                "method": "independent two-stage cluster bootstraps, 10000 resamples, seeds 20261109/20261110"
+              }
+            },
+            "prefill_tokens_per_second": {
+              "n": 20,
+              "median": 2761.300000834761,
+              "mean": 2759.0585119018,
+              "sd": 16.52698179856776,
+              "p95": 2770.948300458091,
+              "min": 2692.5885359620297,
+              "max": 2772.5563909774437,
+              "median_ci95": [
+                2756.9449311931967,
+                2766.7057444314187
+              ],
+              "sessions_used": 5,
+              "ratio_to_F16": {
+                "ratio": 0.9559479504675844,
+                "ci95": [
+                  0.9528865555431556,
+                  0.9581794584604221
+                ],
+                "method": "independent two-stage cluster bootstraps, 10000 resamples, seeds 20261109/20261110"
+              }
+            },
+            "ttft_seconds": {
+              "n": 20,
+              "median": 0.043704604000140534,
+              "mean": 0.04395369164999465,
+              "sd": 0.000654110752773911,
+              "p95": 0.044851332699795424,
+              "min": 0.04356224999992264,
+              "max": 0.0463816249998672,
+              "median_ci95": [
+                0.04360983300011867,
+                0.04398979199982023
+              ],
+              "sessions_used": 5,
+              "ratio_to_F16": {
+                "ratio": 1.0421599052219601,
+                "ci95": [
+                  1.0348014932813283,
+                  1.048002367307668
+                ],
+                "method": "independent two-stage cluster bootstraps, 10000 resamples, seeds 20261109/20261110"
+              }
+            },
+            "wall_seconds": {
+              "n": 20,
+              "median": 1.0725713329998143,
+              "mean": 1.078033372949949,
+              "sd": 0.012329869751314794,
+              "p95": 1.0967413711499148,
+              "min": 1.0682208340003854,
+              "max": 1.1173911249998127,
+              "median_ci95": [
+                1.0706607499998881,
+                1.082502561999945
+              ],
+              "sessions_used": 5,
+              "ratio_to_F16": {
+                "ratio": 0.6911500164649876,
+                "ci95": [
+                  0.6863068265062426,
+                  0.6976484503543111
+                ],
+                "method": "independent two-stage cluster bootstraps, 10000 resamples, seeds 20261109/20261110"
+              }
+            },
+            "peak_memory_footprint_bytes": {
+              "n": 5,
+              "median": 942720392.0,
+              "mean": 942451684.8,
+              "sd": 939366.6109390944,
+              "p95": 943208596.8,
+              "min": 940950920.0,
+              "max": 943211864.0
+            },
+            "max_rss_bytes": {
+              "n": 5,
+              "median": 925433856.0,
+              "mean": 937138585.6,
+              "sd": 54381401.74990311,
+              "p95": 989514956.8,
+              "min": 859668480.0,
+              "max": 989609984.0
+            },
+            "load_seconds_first_in_study": {
+              "n": 1,
+              "median": 0.6262248750003891,
+              "mean": 0.6262248750003891,
+              "sd": null,
+              "p95": 0.6262248750003891,
+              "min": 0.6262248750003891,
+              "max": 0.6262248750003891
+            },
+            "load_seconds_repeat": {
+              "n": 4,
+              "median": 0.8119482294998761,
+              "mean": 0.8478613959998711,
+              "sd": 0.09807796359367149,
+              "p95": 0.9663185607998684,
+              "min": 0.7751027079998494,
+              "max": 0.9924464169998828
+            }
+          },
+          "Q4_K_M": {
+            "sessions": 5,
+            "failed_sessions": 0,
+            "failed_trials": 0,
+            "flagged_sessions": 1,
+            "decode_tokens_per_second": {
+              "n": 20,
+              "median": 149.73046449723347,
+              "mean": 146.80120784177896,
+              "sd": 5.589420089849287,
+              "p95": 150.4882753226811,
+              "min": 132.52040348321597,
+              "max": 150.64423950551028,
+              "median_ci95": [
+                144.72565443131865,
+                150.11176289847052
+              ],
+              "sessions_used": 5,
+              "ratio_to_F16": {
+                "ratio": 1.7659639155478422,
+                "ci95": [
+                  1.7041197062069218,
+                  1.778721261205785
+                ],
+                "method": "independent two-stage cluster bootstraps, 10000 resamples, seeds 20261109/20261110"
+              }
+            },
+            "prefill_tokens_per_second": {
+              "n": 20,
+              "median": 2373.577667322142,
+              "mean": 2364.928112231243,
+              "sd": 28.932749215066323,
+              "p95": 2380.556241295774,
+              "min": 2250.319430936171,
+              "max": 2383.0680992002585,
+              "median_ci95": [
+                2361.4475548987284,
+                2378.4090741557516
+              ],
+              "sessions_used": 5,
+              "ratio_to_F16": {
+                "ratio": 0.8217204598074428,
+                "ci95": [
+                  0.816727345656702,
+                  0.8237072266333482
+                ],
+                "method": "independent two-stage cluster bootstraps, 10000 resamples, seeds 20261109/20261110"
+              }
+            },
+            "ttft_seconds": {
+              "n": 20,
+              "median": 0.05083624949998011,
+              "mean": 0.05126363119998132,
+              "sd": 0.001062751725280846,
+              "p95": 0.053681374999769105,
+              "min": 0.05048270799989041,
+              "max": 0.05382149999968533,
+              "median_ci95": [
+                0.050624916500055406,
+                0.05127608299972053
+              ],
+              "sessions_used": 5,
+              "ratio_to_F16": {
+                "ratio": 1.2122178469016407,
+                "ci95": [
+                  1.2024060437541886,
+                  1.2218291561434496
+                ],
+                "method": "independent two-stage cluster bootstraps, 10000 resamples, seeds 20261109/20261110"
+              }
+            },
+            "wall_seconds": {
+              "n": 20,
+              "median": 0.9056723545002114,
+              "mean": 0.9245359478500405,
+              "sd": 0.035696977083046144,
+              "p95": 0.9960827913498861,
+              "min": 0.9005395829999543,
+              "max": 1.017243249999865,
+              "median_ci95": [
+                0.9037108750003426,
+                0.938261582999985
+              ],
+              "sessions_used": 5,
+              "ratio_to_F16": {
+                "ratio": 0.5836026411166572,
+                "ci95": [
+                  0.5795387884550104,
+                  0.6056174287863847
+                ],
+                "method": "independent two-stage cluster bootstraps, 10000 resamples, seeds 20261109/20261110"
+              }
+            },
+            "peak_memory_footprint_bytes": {
+              "n": 5,
+              "median": 755483896.0,
+              "mean": 756516097.6,
+              "sd": 1834664.2180008853,
+              "p95": 758747617.6,
+              "min": 754877688.0,
+              "max": 758924560.0
+            },
+            "max_rss_bytes": {
+              "n": 5,
+              "median": 805371904.0,
+              "mean": 785140940.8,
+              "sd": 29458098.030587435,
+              "p95": 806977536.0,
+              "min": 745455616.0,
+              "max": 807174144.0
+            },
+            "load_seconds_first_in_study": {
+              "n": 1,
+              "median": 0.6250347089999195,
+              "mean": 0.6250347089999195,
+              "sd": null,
+              "p95": 0.6250347089999195,
+              "min": 0.6250347089999195,
+              "max": 0.6250347089999195
+            },
+            "load_seconds_repeat": {
+              "n": 4,
+              "median": 0.6596057705000931,
+              "mean": 0.6823140832500485,
+              "sd": 0.07671112304375323,
+              "p95": 0.7733140749002132,
+              "min": 0.6219354169998041,
+              "max": 0.7881093750002037
+            }
+          }
+        },
+        "sensitivity_unflagged_sessions": {
+          "F16": {
+            "sessions": 5,
+            "failed_sessions": 0,
+            "failed_trials": 0,
+            "flagged_sessions": 3,
+            "decode_tokens_per_second": {
+              "n": 8,
+              "median": 84.77315057776184,
+              "mean": 84.77996053223484,
+              "sd": 0.40403486856248033,
+              "p95": 85.29787485890704,
+              "min": 84.20570664705376,
+              "max": 85.32798611287026,
+              "median_ci95": [
+                84.38712858950211,
+                85.24195395868962
+              ],
+              "sessions_used": 2
+            },
+            "prefill_tokens_per_second": {
+              "n": 8,
+              "median": 2888.8294882153536,
+              "mean": 2888.6034891304275,
+              "sd": 6.576408476659505,
+              "p95": 2896.718002283275,
+              "min": 2875.804250341197,
+              "max": 2898.9067682102936,
+              "median_ci95": [
+                2881.7510838863072,
+                2894.823300812643
+              ],
+              "sessions_used": 2
+            },
+            "ttft_seconds": {
+              "n": 8,
+              "median": 0.04191514600006485,
+              "mean": 0.04195714074995749,
+              "sd": 0.00020546590259730806,
+              "p95": 0.042282166899804,
+              "min": 0.041689707999921666,
+              "max": 0.04234924999991563,
+              "median_ci95": [
+                0.041791437500023676,
+                0.042137603999890416
+              ],
+              "sessions_used": 2
+            },
+            "wall_seconds": {
+              "n": 8,
+              "median": 1.5520464374999392,
+              "mean": 1.552331421999952,
+              "sd": 0.007408058459965457,
+              "p95": 1.5612251039500051,
+              "min": 1.542256666999947,
+              "max": 1.5622723330002373,
+              "median_ci95": [
+                1.543769291999979,
+                1.5592802499995742
+              ],
+              "sessions_used": 2
+            },
+            "peak_memory_footprint_bytes": {
+              "n": 2,
+              "median": 1667426176.0,
+              "mean": 1667426176.0,
+              "sd": 104335.01977763746,
+              "p95": 1667492574.4,
+              "min": 1667352400.0,
+              "max": 1667499952.0
+            },
+            "max_rss_bytes": {
+              "n": 2,
+              "median": 1448763392.0,
+              "mean": 1448763392.0,
+              "sd": 20702819.417790227,
+              "p95": 1461938585.6,
+              "min": 1434124288.0,
+              "max": 1463402496.0
+            },
+            "load_seconds_first_in_study": null,
+            "load_seconds_repeat": {
+              "n": 2,
+              "median": 1.168563416500092,
+              "mean": 1.168563416500092,
+              "sd": 0.03227270775383716,
+              "p95": 1.1891016419500828,
+              "min": 1.145743166000102,
+              "max": 1.191383667000082
+            }
+          },
+          "Q8_0": {
+            "sessions": 5,
+            "failed_sessions": 0,
+            "failed_trials": 0,
+            "flagged_sessions": 2,
+            "decode_tokens_per_second": {
+              "n": 12,
+              "median": 124.39667188237982,
+              "mean": 123.8737105424297,
+              "sd": 1.4998967171706383,
+              "p95": 124.66720572526165,
+              "min": 119.29481850411753,
+              "max": 124.76545556449058,
+              "median_ci95": [
+                123.50968476887688,
+                124.55748035786924
+              ],
+              "sessions_used": 3,
+              "ratio_to_F16": {
+                "ratio": 1.4674064964504485,
+                "ci95": [
+                  1.4543037118562596,
+                  1.4740454979156654
+                ],
+                "method": "independent two-stage cluster bootstraps, 10000 resamples, seeds 20261109/20261110"
+              }
+            },
+            "prefill_tokens_per_second": {
+              "n": 12,
+              "median": 2763.401816531465,
+              "mean": 2763.0025281293,
+              "sd": 5.759373312631798,
+              "p95": 2770.695527540338,
+              "min": 2754.113665538569,
+              "max": 2772.5563909774437,
+              "median_ci95": [
+                2756.9449311931967,
+                2768.2313503093783
+              ],
+              "sessions_used": 3,
+              "ratio_to_F16": {
+                "ratio": 0.956581836278134,
+                "ci95": [
+                  0.9537235341232271,
+                  0.958990780353802
+                ],
+                "method": "independent two-stage cluster bootstraps, 10000 resamples, seeds 20261109/20261110"
+              }
+            },
+            "ttft_seconds": {
+              "n": 12,
+              "median": 0.043693833500128676,
+              "mean": 0.04396775358331221,
+              "sd": 0.0007822976459416813,
+              "p95": 0.04517758369993317,
+              "min": 0.04358349999984057,
+              "max": 0.0463816249998672,
+              "median_ci95": [
+                0.04361356250001336,
+                0.043941646500115894
+              ],
+              "sessions_used": 3,
+              "ratio_to_F16": {
+                "ratio": 1.042435436108491,
+                "ci95": [
+                  1.0364539948745035,
+                  1.049247057318922
+                ],
+                "method": "independent two-stage cluster bootstraps, 10000 resamples, seeds 20261109/20261110"
+              }
+            },
+            "wall_seconds": {
+              "n": 12,
+              "median": 1.0731768334999288,
+              "mean": 1.0776284860832372,
+              "sd": 0.01297527228599762,
+              "p95": 1.0983565418497847,
+              "min": 1.0701774580002166,
+              "max": 1.1173911249998127,
+              "median_ci95": [
+                1.0716299579999031,
+                1.0802833334998923
+              ],
+              "sessions_used": 3,
+              "ratio_to_F16": {
+                "ratio": 0.6914592292925326,
+                "ci95": [
+                  0.6879919213884288,
+                  0.6972514932161639
+                ],
+                "method": "independent two-stage cluster bootstraps, 10000 resamples, seeds 20261109/20261110"
+              }
+            },
+            "peak_memory_footprint_bytes": {
+              "n": 3,
+              "median": 942720392.0,
+              "mean": 942703992.0,
+              "sd": 516267.40085347247,
+              "p95": 943162716.8,
+              "min": 942179720.0,
+              "max": 943211864.0
+            },
+            "max_rss_bytes": {
+              "n": 3,
+              "median": 989134848.0,
+              "mean": 946137770.6666666,
+              "sd": 74884979.20045106,
+              "p95": 989562470.4,
+              "min": 859668480.0,
+              "max": 989609984.0
+            },
+            "load_seconds_first_in_study": null,
+            "load_seconds_repeat": {
+              "n": 3,
+              "median": 0.8056357499999649,
+              "mean": 0.7996663889998672,
+              "sd": 0.022189597013911197,
+              "p95": 0.816998213099805,
+              "min": 0.7751027079998494,
+              "max": 0.8182607089997873
+            }
+          },
+          "Q4_K_M": {
+            "sessions": 5,
+            "failed_sessions": 0,
+            "failed_trials": 0,
+            "flagged_sessions": 1,
+            "decode_tokens_per_second": {
+              "n": 16,
+              "median": 149.74773670456796,
+              "mean": 146.4952761975078,
+              "sd": 6.028225495654965,
+              "p95": 150.52110988748723,
+              "min": 132.52040348321597,
+              "max": 150.64423950551028,
+              "median_ci95": [
+                140.6286200801773,
+                150.21294797498243
+              ],
+              "sessions_used": 4,
+              "ratio_to_F16": {
+                "ratio": 1.7664524166434674,
+                "ci95": [
+                  1.6640634175404998,
+                  1.7769278129629673
+                ],
+                "method": "independent two-stage cluster bootstraps, 10000 resamples, seeds 20261109/20261110"
+              }
+            },
+            "prefill_tokens_per_second": {
+              "n": 16,
+              "median": 2370.64520307687,
+              "mean": 2362.9589051221174,
+              "sd": 31.97324937717178,
+              "p95": 2381.0850534861916,
+              "min": 2250.319430936171,
+              "max": 2383.0680992002585,
+              "median_ci95": [
+                2357.359757072079,
+                2379.0087231193756
+              ],
+              "sessions_used": 4,
+              "ratio_to_F16": {
+                "ratio": 0.8206248284115222,
+                "ci95": [
+                  0.8160259256175056,
+                  0.8238180368385938
+                ],
+                "method": "independent two-stage cluster bootstraps, 10000 resamples, seeds 20261109/20261110"
+              }
+            },
+            "ttft_seconds": {
+              "n": 16,
+              "median": 0.05098618700003499,
+              "mean": 0.05122934106248067,
+              "sd": 0.0009502057497825237,
+              "p95": 0.053459031249985856,
+              "min": 0.05048270799989041,
+              "max": 0.053673999999773514,
+              "median_ci95": [
+                0.05063154099980238,
+                0.05138250049981252
+              ],
+              "sessions_used": 4,
+              "ratio_to_F16": {
+                "ratio": 1.216414395883438,
+                "ci95": [
+                  1.2059955828508924,
+                  1.2265126792552676
+                ],
+                "method": "independent two-stage cluster bootstraps, 10000 resamples, seeds 20261109/20261110"
+              }
+            },
+            "wall_seconds": {
+              "n": 16,
+              "median": 0.905664207999962,
+              "mean": 0.926484429562521,
+              "sd": 0.03848222280968555,
+              "p95": 1.0005376247498816,
+              "min": 0.9005395829999543,
+              "max": 1.017243249999865,
+              "median_ci95": [
+                0.903000042000258,
+                0.9638051454999186
+              ],
+              "sessions_used": 4,
+              "ratio_to_F16": {
+                "ratio": 0.5835290659594052,
+                "ci95": [
+                  0.5799215925209852,
+                  0.6185471676345904
+                ],
+                "method": "independent two-stage cluster bootstraps, 10000 resamples, seeds 20261109/20261110"
+              }
+            },
+            "peak_memory_footprint_bytes": {
+              "n": 4,
+              "median": 756761872.0,
+              "mean": 756831498.0,
+              "sd": 1955711.5435605529,
+              "p95": 758791853.2,
+              "min": 754877688.0,
+              "max": 758924560.0
+            },
+            "max_rss_bytes": {
+              "n": 4,
+              "median": 805781504.0,
+              "mean": 795062272.0,
+              "sd": 22379022.191306215,
+              "p95": 807026688.0,
+              "min": 761511936.0,
+              "max": 807174144.0
+            },
+            "load_seconds_first_in_study": {
+              "n": 1,
+              "median": 0.6250347089999195,
+              "mean": 0.6250347089999195,
+              "sd": null,
+              "p95": 0.6250347089999195,
+              "min": 0.6250347089999195,
+              "max": 0.6250347089999195
+            },
+            "load_seconds_repeat": {
+              "n": 3,
+              "median": 0.6297374999999192,
+              "mean": 0.6470489859999967,
+              "sd": 0.03694769402299865,
+              "p95": 0.6835003869002321,
+              "min": 0.6219354169998041,
+              "max": 0.6894740410002669
+            }
+          }
+        }
+      },
+      "sessions_file": "benchmark/sessions.jsonl",
+      "trials_file": "benchmark/trials.csv",
+      "docker_vm_running_at_end": false,
+      "pressure_level_at_start": 2
+    },
+    "dryrun": {
+      "status": "completed",
+      "finished_at": 1794328482.0176342,
+      "results": {
+        "reasoning-v1": {
+          "path": "quality/dryrun-reasoning-v1-F16.json",
+          "status": "completed",
+          "summary": {
+            "items": 40,
+            "scored": 40,
+            "passed": 8,
+            "complete": true,
+            "accuracy": 0.2,
+            "accuracy_ci95": [
+              0.10499989725437704,
+              0.347573063463995
+            ],
+            "accuracy_over_scored_items": 0.2,
+            "outcomes": {
+              "correct": 8,
+              "invalid_format": 14,
+              "incorrect": 10,
+              "truncated": 8
+            },
+            "not_scored": 0,
+            "lenient_accuracy": 0.4
+          },
+          "by_category": {
+            "algorithmic": {
+              "items": 10,
+              "scored": 10,
+              "passed": 0,
+              "complete": true,
+              "accuracy": 0.0,
+              "accuracy_ci95": [
+                0.0,
+                0.2775327998628892
+              ],
+              "accuracy_over_scored_items": 0.0,
+              "outcomes": {
+                "incorrect": 4,
+                "truncated": 4,
+                "invalid_format": 2
+              },
+              "not_scored": 0,
+              "lenient_accuracy": 0.1
+            },
+            "arithmetic": {
+              "items": 10,
+              "scored": 10,
+              "passed": 6,
+              "complete": true,
+              "accuracy": 0.6,
+              "accuracy_ci95": [
+                0.31267376973365824,
+                0.8318196702937638
+              ],
+              "accuracy_over_scored_items": 0.6,
+              "outcomes": {
+                "correct": 6,
+                "invalid_format": 2,
+                "incorrect": 2
+              },
+              "not_scored": 0,
+              "lenient_accuracy": 0.7
+            },
+            "multi_step": {
+              "items": 10,
+              "scored": 10,
+              "passed": 0,
+              "complete": true,
+              "accuracy": 0.0,
+              "accuracy_ci95": [
+                0.0,
+                0.2775327998628892
+              ],
+              "accuracy_over_scored_items": 0.0,
+              "outcomes": {
+                "invalid_format": 6,
+                "truncated": 4
+              },
+              "not_scored": 0,
+              "lenient_accuracy": 0.4
+            },
+            "programming_concepts": {
+              "items": 10,
+              "scored": 10,
+              "passed": 2,
+              "complete": true,
+              "accuracy": 0.2,
+              "accuracy_ci95": [
+                0.05668215145437519,
+                0.5098375284633583
+              ],
+              "accuracy_over_scored_items": 0.2,
+              "outcomes": {
+                "incorrect": 4,
+                "invalid_format": 4,
+                "correct": 2
+              },
+              "not_scored": 0,
+              "lenient_accuracy": 0.4
+            }
+          },
+          "sandbox": null
+        },
+        "coding-v1": {
+          "path": "quality/dryrun-coding-v1-F16.json",
+          "status": "completed",
+          "summary": {
+            "items": 10,
+            "scored": 10,
+            "passed": 5,
+            "complete": true,
+            "accuracy": 0.5,
+            "accuracy_ci95": [
+              0.236593090512564,
+              0.7634069094874361
+            ],
+            "accuracy_over_scored_items": 0.5,
+            "outcomes": {
+              "partial_pass": 4,
+              "passed": 5,
+              "runtime_error": 1
+            },
+            "not_scored": 0,
+            "lenient_accuracy": null
+          },
+          "by_category": {
+            "coding": {
+              "items": 10,
+              "scored": 10,
+              "passed": 5,
+              "complete": true,
+              "accuracy": 0.5,
+              "accuracy_ci95": [
+                0.236593090512564,
+                0.7634069094874361
+              ],
+              "accuracy_over_scored_items": 0.5,
+              "outcomes": {
+                "partial_pass": 4,
+                "passed": 5,
+                "runtime_error": 1
+              },
+              "not_scored": 0,
+              "lenient_accuracy": null
+            }
+          },
+          "sandbox": {
+            "status": "available",
+            "backend": "docker",
+            "binary": "/usr/local/bin/docker",
+            "image": "docker.io/library/python@sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+            "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+            "server_version": "29.9.3",
+            "security_options": [
+              "name=seccomp,profile=builtin",
+              "name=cgroupns"
+            ],
+            "daemon_os": "Docker Desktop",
+            "daemon_memory_bytes": 2065739776,
+            "isolation": "Linux container, no network, read-only root, all capabilities dropped, non-root user"
+          }
+        }
+      },
+      "note": "Screening split on the baseline only; format check before held-out runs.",
+      "docker_vm_running_at_end": true,
+      "pressure_level_at_start": 1
+    },
+    "quality": {
+      "status": "completed",
+      "runs": {
+        "reasoning-v1-F16": {
+          "path": "quality/heldout-reasoning-v1-F16.json",
+          "status": "completed",
+          "summary": {
+            "items": 160,
+            "scored": 160,
+            "passed": 47,
+            "complete": true,
+            "accuracy": 0.29375,
+            "accuracy_ci95": [
+              0.2286747315770294,
+              0.3684968239312166
+            ],
+            "accuracy_over_scored_items": 0.29375,
+            "outcomes": {
+              "correct": 47,
+              "incorrect": 21,
+              "invalid_format": 68,
+              "truncated": 24
+            },
+            "not_scored": 0,
+            "lenient_accuracy": 0.51875
+          },
+          "by_category": {
+            "algorithmic": {
+              "items": 40,
+              "scored": 40,
+              "passed": 1,
+              "complete": true,
+              "accuracy": 0.025,
+              "accuracy_ci95": [
+                0.0044268315026814095,
+                0.1288136896347409
+              ],
+              "accuracy_over_scored_items": 0.025,
+              "outcomes": {
+                "invalid_format": 22,
+                "incorrect": 8,
+                "truncated": 9,
+                "correct": 1
+              },
+              "not_scored": 0,
+              "lenient_accuracy": 0.2
+            },
+            "arithmetic": {
+              "items": 40,
+              "scored": 40,
+              "passed": 29,
+              "complete": true,
+              "accuracy": 0.725,
+              "accuracy_ci95": [
+                0.5716504419378943,
+                0.8389198375233267
+              ],
+              "accuracy_over_scored_items": 0.725,
+              "outcomes": {
+                "correct": 29,
+                "incorrect": 9,
+                "invalid_format": 1,
+                "truncated": 1
+              },
+              "not_scored": 0,
+              "lenient_accuracy": 0.725
+            },
+            "multi_step": {
+              "items": 40,
+              "scored": 40,
+              "passed": 0,
+              "complete": true,
+              "accuracy": 0.0,
+              "accuracy_ci95": [
+                0.0,
+                0.08762160119728664
+              ],
+              "accuracy_over_scored_items": 0.0,
+              "outcomes": {
+                "invalid_format": 28,
+                "truncated": 12
+              },
+              "not_scored": 0,
+              "lenient_accuracy": 0.6
+            },
+            "programming_concepts": {
+              "items": 40,
+              "scored": 40,
+              "passed": 17,
+              "complete": true,
+              "accuracy": 0.425,
+              "accuracy_ci95": [
+                0.28509392559950375,
+                0.5780493145800892
+              ],
+              "accuracy_over_scored_items": 0.425,
+              "outcomes": {
+                "correct": 17,
+                "invalid_format": 17,
+                "truncated": 2,
+                "incorrect": 4
+              },
+              "not_scored": 0,
+              "lenient_accuracy": 0.55
+            }
+          },
+          "sandbox": null
+        },
+        "coding-v1-F16": {
+          "path": "quality/heldout-coding-v1-F16.json",
+          "status": "completed",
+          "summary": {
+            "items": 30,
+            "scored": 30,
+            "passed": 21,
+            "complete": true,
+            "accuracy": 0.7,
+            "accuracy_ci95": [
+              0.5212421254128504,
+              0.8333525173175619
+            ],
+            "accuracy_over_scored_items": 0.7,
+            "outcomes": {
+              "passed": 21,
+              "runtime_error": 4,
+              "truncated": 1,
+              "partial_pass": 4
+            },
+            "not_scored": 0,
+            "lenient_accuracy": null
+          },
+          "by_category": {
+            "coding": {
+              "items": 30,
+              "scored": 30,
+              "passed": 21,
+              "complete": true,
+              "accuracy": 0.7,
+              "accuracy_ci95": [
+                0.5212421254128504,
+                0.8333525173175619
+              ],
+              "accuracy_over_scored_items": 0.7,
+              "outcomes": {
+                "passed": 21,
+                "runtime_error": 4,
+                "truncated": 1,
+                "partial_pass": 4
+              },
+              "not_scored": 0,
+              "lenient_accuracy": null
+            }
+          },
+          "sandbox": {
+            "status": "available",
+            "backend": "docker",
+            "binary": "/usr/local/bin/docker",
+            "image": "docker.io/library/python@sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+            "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+            "server_version": "29.9.3",
+            "security_options": [
+              "name=seccomp,profile=builtin",
+              "name=cgroupns"
+            ],
+            "daemon_os": "Docker Desktop",
+            "daemon_memory_bytes": 2065739776,
+            "isolation": "Linux container, no network, read-only root, all capabilities dropped, non-root user"
+          }
+        },
+        "reasoning-v1-Q8_0": {
+          "path": "quality/heldout-reasoning-v1-Q8_0.json",
+          "status": "completed",
+          "summary": {
+            "items": 160,
+            "scored": 160,
+            "passed": 41,
+            "complete": true,
+            "accuracy": 0.25625,
+            "accuracy_ci95": [
+              0.19487420274668216,
+              0.32905581739942663
+            ],
+            "accuracy_over_scored_items": 0.25625,
+            "outcomes": {
+              "correct": 41,
+              "incorrect": 23,
+              "invalid_format": 67,
+              "truncated": 29
+            },
+            "not_scored": 0,
+            "lenient_accuracy": 0.4875
+          },
+          "by_category": {
+            "algorithmic": {
+              "items": 40,
+              "scored": 40,
+              "passed": 1,
+              "complete": true,
+              "accuracy": 0.025,
+              "accuracy_ci95": [
+                0.0044268315026814095,
+                0.1288136896347409
+              ],
+              "accuracy_over_scored_items": 0.025,
+              "outcomes": {
+                "invalid_format": 20,
+                "incorrect": 8,
+                "truncated": 11,
+                "correct": 1
+              },
+              "not_scored": 0,
+              "lenient_accuracy": 0.2
+            },
+            "arithmetic": {
+              "items": 40,
+              "scored": 40,
+              "passed": 28,
+              "complete": true,
+              "accuracy": 0.7,
+              "accuracy_ci95": [
+                0.5456998118185507,
+                0.8192515477025347
+              ],
+              "accuracy_over_scored_items": 0.7,
+              "outcomes": {
+                "correct": 28,
+                "incorrect": 9,
+                "invalid_format": 2,
+                "truncated": 1
+              },
+              "not_scored": 0,
+              "lenient_accuracy": 0.7
+            },
+            "multi_step": {
+              "items": 40,
+              "scored": 40,
+              "passed": 0,
+              "complete": true,
+              "accuracy": 0.0,
+              "accuracy_ci95": [
+                0.0,
+                0.08762160119728664
+              ],
+              "accuracy_over_scored_items": 0.0,
+              "outcomes": {
+                "invalid_format": 26,
+                "truncated": 14
+              },
+              "not_scored": 0,
+              "lenient_accuracy": 0.55
+            },
+            "programming_concepts": {
+              "items": 40,
+              "scored": 40,
+              "passed": 12,
+              "complete": true,
+              "accuracy": 0.3,
+              "accuracy_ci95": [
+                0.18074845229746528,
+                0.45430018818144935
+              ],
+              "accuracy_over_scored_items": 0.3,
+              "outcomes": {
+                "correct": 12,
+                "invalid_format": 19,
+                "incorrect": 6,
+                "truncated": 3
+              },
+              "not_scored": 0,
+              "lenient_accuracy": 0.5
+            }
+          },
+          "sandbox": null
+        },
+        "coding-v1-Q8_0": {
+          "path": "quality/heldout-coding-v1-Q8_0.json",
+          "status": "completed",
+          "summary": {
+            "items": 30,
+            "scored": 30,
+            "passed": 21,
+            "complete": true,
+            "accuracy": 0.7,
+            "accuracy_ci95": [
+              0.5212421254128504,
+              0.8333525173175619
+            ],
+            "accuracy_over_scored_items": 0.7,
+            "outcomes": {
+              "passed": 21,
+              "runtime_error": 5,
+              "partial_pass": 4
+            },
+            "not_scored": 0,
+            "lenient_accuracy": null
+          },
+          "by_category": {
+            "coding": {
+              "items": 30,
+              "scored": 30,
+              "passed": 21,
+              "complete": true,
+              "accuracy": 0.7,
+              "accuracy_ci95": [
+                0.5212421254128504,
+                0.8333525173175619
+              ],
+              "accuracy_over_scored_items": 0.7,
+              "outcomes": {
+                "passed": 21,
+                "runtime_error": 5,
+                "partial_pass": 4
+              },
+              "not_scored": 0,
+              "lenient_accuracy": null
+            }
+          },
+          "sandbox": {
+            "status": "available",
+            "backend": "docker",
+            "binary": "/usr/local/bin/docker",
+            "image": "docker.io/library/python@sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+            "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+            "server_version": "29.9.3",
+            "security_options": [
+              "name=seccomp,profile=builtin",
+              "name=cgroupns"
+            ],
+            "daemon_os": "Docker Desktop",
+            "daemon_memory_bytes": 2065739776,
+            "isolation": "Linux container, no network, read-only root, all capabilities dropped, non-root user"
+          }
+        },
+        "reasoning-v1-Q4_K_M": {
+          "path": "quality/heldout-reasoning-v1-Q4_K_M.json",
+          "status": "completed",
+          "summary": {
+            "items": 160,
+            "scored": 160,
+            "passed": 45,
+            "complete": true,
+            "accuracy": 0.28125,
+            "accuracy_ci95": [
+              0.217343234860214,
+              0.35541447552731964
+            ],
+            "accuracy_over_scored_items": 0.28125,
+            "outcomes": {
+              "correct": 45,
+              "incorrect": 26,
+              "truncated": 32,
+              "invalid_format": 57
+            },
+            "not_scored": 0,
+            "lenient_accuracy": 0.475
+          },
+          "by_category": {
+            "algorithmic": {
+              "items": 40,
+              "scored": 40,
+              "passed": 0,
+              "complete": true,
+              "accuracy": 0.0,
+              "accuracy_ci95": [
+                0.0,
+                0.08762160119728664
+              ],
+              "accuracy_over_scored_items": 0.0,
+              "outcomes": {
+                "invalid_format": 19,
+                "truncated": 14,
+                "incorrect": 7
+              },
+              "not_scored": 0,
+              "lenient_accuracy": 0.075
+            },
+            "arithmetic": {
+              "items": 40,
+              "scored": 40,
+              "passed": 30,
+              "complete": true,
+              "accuracy": 0.75,
+              "accuracy_ci95": [
+                0.5980603857923197,
+                0.858128813609037
+              ],
+              "accuracy_over_scored_items": 0.75,
+              "outcomes": {
+                "correct": 30,
+                "incorrect": 9,
+                "truncated": 1
+              },
+              "not_scored": 0,
+              "lenient_accuracy": 0.75
+            },
+            "multi_step": {
+              "items": 40,
+              "scored": 40,
+              "passed": 0,
+              "complete": true,
+              "accuracy": 0.0,
+              "accuracy_ci95": [
+                0.0,
+                0.08762160119728664
+              ],
+              "accuracy_over_scored_items": 0.0,
+              "outcomes": {
+                "invalid_format": 23,
+                "truncated": 17
+              },
+              "not_scored": 0,
+              "lenient_accuracy": 0.6
+            },
+            "programming_concepts": {
+              "items": 40,
+              "scored": 40,
+              "passed": 15,
+              "complete": true,
+              "accuracy": 0.375,
+              "accuracy_ci95": [
+                0.24222979167233266,
+                0.5296756086269889
+              ],
+              "accuracy_over_scored_items": 0.375,
+              "outcomes": {
+                "correct": 15,
+                "incorrect": 10,
+                "invalid_format": 15
+              },
+              "not_scored": 0,
+              "lenient_accuracy": 0.475
+            }
+          },
+          "sandbox": null
+        },
+        "coding-v1-Q4_K_M": {
+          "path": "quality/heldout-coding-v1-Q4_K_M.json",
+          "status": "completed",
+          "summary": {
+            "items": 30,
+            "scored": 30,
+            "passed": 19,
+            "complete": true,
+            "accuracy": 0.6333333333333333,
+            "accuracy_ci95": [
+              0.4551356365479487,
+              0.7812607919389929
+            ],
+            "accuracy_over_scored_items": 0.6333333333333333,
+            "outcomes": {
+              "passed": 19,
+              "partial_pass": 6,
+              "runtime_error": 4,
+              "wrong_answer": 1
+            },
+            "not_scored": 0,
+            "lenient_accuracy": null
+          },
+          "by_category": {
+            "coding": {
+              "items": 30,
+              "scored": 30,
+              "passed": 19,
+              "complete": true,
+              "accuracy": 0.6333333333333333,
+              "accuracy_ci95": [
+                0.4551356365479487,
+                0.7812607919389929
+              ],
+              "accuracy_over_scored_items": 0.6333333333333333,
+              "outcomes": {
+                "passed": 19,
+                "partial_pass": 6,
+                "runtime_error": 4,
+                "wrong_answer": 1
+              },
+              "not_scored": 0,
+              "lenient_accuracy": null
+            }
+          },
+          "sandbox": {
+            "status": "available",
+            "backend": "docker",
+            "binary": "/usr/local/bin/docker",
+            "image": "docker.io/library/python@sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+            "image_id": "sha256:e064671ca452259bab50e8e2c7bd896e39e9a343bb06ca25234adf6fe18d0fc7",
+            "server_version": "29.9.3",
+            "security_options": [
+              "name=seccomp,profile=builtin",
+              "name=cgroupns"
+            ],
+            "daemon_os": "Docker Desktop",
+            "daemon_memory_bytes": 2065739776,
+            "isolation": "Linux container, no network, read-only root, all capabilities dropped, non-root user"
+          }
+        }
+      },
+      "comparisons": {
+        "reasoning-v1:Q8_0_vs_F16": {
+          "status": "completed",
+          "categories": {
+            "overall": {
+              "items": 160,
+              "baseline_accuracy": 0.29375,
+              "candidate_accuracy": 0.25625,
+              "difference": -0.0375,
+              "difference_ci95": [
+                -0.075,
+                -0.00625
+              ],
+              "ci_method": "paired bootstrap over items, 10000 resamples, seed 20261109",
+              "baseline_only_correct": 7,
+              "candidate_only_correct": 1,
+              "mcnemar_exact_p": 0.0703125,
+              "baseline_correct": 47,
+              "informative": true,
+              "validity": "informative",
+              "evidence": "detectable change"
+            },
+            "arithmetic": {
+              "items": 40,
+              "baseline_accuracy": 0.725,
+              "candidate_accuracy": 0.7,
+              "difference": -0.025,
+              "difference_ci95": [
+                -0.1,
+                0.05
+              ],
+              "ci_method": "paired bootstrap over items, 10000 resamples, seed 20261109",
+              "baseline_only_correct": 2,
+              "candidate_only_correct": 1,
+              "mcnemar_exact_p": 1.0,
+              "baseline_correct": 29,
+              "informative": true,
+              "validity": "informative",
+              "evidence": "no detectable change"
+            },
+            "multi_step": {
+              "items": 40,
+              "baseline_accuracy": 0.0,
+              "candidate_accuracy": 0.0,
+              "difference": 0.0,
+              "difference_ci95": [
+                0.0,
+                0.0
+              ],
+              "ci_method": "paired bootstrap over items, 10000 resamples, seed 20261109",
+              "baseline_only_correct": 0,
+              "candidate_only_correct": 0,
+              "mcnemar_exact_p": 1.0,
+              "baseline_correct": 0,
+              "informative": false,
+              "validity": "uninformative: baseline solved 0/40 (< 10 and 25%)",
+              "evidence": "insufficient"
+            },
+            "programming_concepts": {
+              "items": 40,
+              "baseline_accuracy": 0.425,
+              "candidate_accuracy": 0.3,
+              "difference": -0.125,
+              "difference_ci95": [
+                -0.225,
+                -0.025
+              ],
+              "ci_method": "paired bootstrap over items, 10000 resamples, seed 20261109",
+              "baseline_only_correct": 5,
+              "candidate_only_correct": 0,
+              "mcnemar_exact_p": 0.0625,
+              "baseline_correct": 17,
+              "informative": true,
+              "validity": "informative",
+              "evidence": "detectable change"
+            },
+            "algorithmic": {
+              "items": 40,
+              "baseline_accuracy": 0.025,
+              "candidate_accuracy": 0.025,
+              "difference": 0.0,
+              "difference_ci95": [
+                0.0,
+                0.0
+              ],
+              "ci_method": "paired bootstrap over items, 10000 resamples, seed 20261109",
+              "baseline_only_correct": 0,
+              "candidate_only_correct": 0,
+              "mcnemar_exact_p": 1.0,
+              "baseline_correct": 1,
+              "informative": false,
+              "validity": "uninformative: baseline solved 1/40 (< 10 and 25%)",
+              "evidence": "insufficient"
+            }
+          }
+        },
+        "reasoning-v1:Q4_K_M_vs_F16": {
+          "status": "completed",
+          "categories": {
+            "overall": {
+              "items": 160,
+              "baseline_accuracy": 0.29375,
+              "candidate_accuracy": 0.28125,
+              "difference": -0.0125,
+              "difference_ci95": [
+                -0.075,
+                0.05
+              ],
+              "ci_method": "paired bootstrap over items, 10000 resamples, seed 20261109",
+              "baseline_only_correct": 14,
+              "candidate_only_correct": 12,
+              "mcnemar_exact_p": 0.8450189828872681,
+              "baseline_correct": 47,
+              "informative": true,
+              "validity": "informative",
+              "evidence": "no detectable change"
+            },
+            "arithmetic": {
+              "items": 40,
+              "baseline_accuracy": 0.725,
+              "candidate_accuracy": 0.75,
+              "difference": 0.025,
+              "difference_ci95": [
+                -0.15,
+                0.2
+              ],
+              "ci_method": "paired bootstrap over items, 10000 resamples, seed 20261109",
+              "baseline_only_correct": 6,
+              "candidate_only_correct": 7,
+              "mcnemar_exact_p": 1.0,
+              "baseline_correct": 29,
+              "informative": true,
+              "validity": "informative",
+              "evidence": "no detectable change"
+            },
+            "multi_step": {
+              "items": 40,
+              "baseline_accuracy": 0.0,
+              "candidate_accuracy": 0.0,
+              "difference": 0.0,
+              "difference_ci95": [
+                0.0,
+                0.0
+              ],
+              "ci_method": "paired bootstrap over items, 10000 resamples, seed 20261109",
+              "baseline_only_correct": 0,
+              "candidate_only_correct": 0,
+              "mcnemar_exact_p": 1.0,
+              "baseline_correct": 0,
+              "informative": false,
+              "validity": "uninformative: baseline solved 0/40 (< 10 and 25%)",
+              "evidence": "insufficient"
+            },
+            "programming_concepts": {
+              "items": 40,
+              "baseline_accuracy": 0.425,
+              "candidate_accuracy": 0.375,
+              "difference": -0.05,
+              "difference_ci95": [
+                -0.225,
+                0.125
+              ],
+              "ci_method": "paired bootstrap over items, 10000 resamples, seed 20261109",
+              "baseline_only_correct": 7,
+              "candidate_only_correct": 5,
+              "mcnemar_exact_p": 0.7744140625,
+              "baseline_correct": 17,
+              "informative": true,
+              "validity": "informative",
+              "evidence": "no detectable change"
+            },
+            "algorithmic": {
+              "items": 40,
+              "baseline_accuracy": 0.025,
+              "candidate_accuracy": 0.0,
+              "difference": -0.025,
+              "difference_ci95": [
+                -0.075,
+                0.0
+              ],
+              "ci_method": "paired bootstrap over items, 10000 resamples, seed 20261109",
+              "baseline_only_correct": 1,
+              "candidate_only_correct": 0,
+              "mcnemar_exact_p": 1.0,
+              "baseline_correct": 1,
+              "informative": false,
+              "validity": "uninformative: baseline solved 1/40 (< 10 and 25%)",
+              "evidence": "insufficient"
+            }
+          }
+        },
+        "coding-v1:Q8_0_vs_F16": {
+          "status": "completed",
+          "categories": {
+            "overall": {
+              "items": 30,
+              "baseline_accuracy": 0.7,
+              "candidate_accuracy": 0.7,
+              "difference": 0.0,
+              "difference_ci95": [
+                0.0,
+                0.0
+              ],
+              "ci_method": "paired bootstrap over items, 10000 resamples, seed 20261109",
+              "baseline_only_correct": 0,
+              "candidate_only_correct": 0,
+              "mcnemar_exact_p": 1.0,
+              "baseline_correct": 21,
+              "informative": true,
+              "validity": "informative",
+              "evidence": "no detectable change"
+            },
+            "coding": {
+              "items": 30,
+              "baseline_accuracy": 0.7,
+              "candidate_accuracy": 0.7,
+              "difference": 0.0,
+              "difference_ci95": [
+                0.0,
+                0.0
+              ],
+              "ci_method": "paired bootstrap over items, 10000 resamples, seed 20261109",
+              "baseline_only_correct": 0,
+              "candidate_only_correct": 0,
+              "mcnemar_exact_p": 1.0,
+              "baseline_correct": 21,
+              "informative": true,
+              "validity": "informative",
+              "evidence": "no detectable change"
+            }
+          }
+        },
+        "coding-v1:Q4_K_M_vs_F16": {
+          "status": "completed",
+          "categories": {
+            "overall": {
+              "items": 30,
+              "baseline_accuracy": 0.7,
+              "candidate_accuracy": 0.6333333333333333,
+              "difference": -0.06666666666666667,
+              "difference_ci95": [
+                -0.2,
+                0.06666666666666667
+              ],
+              "ci_method": "paired bootstrap over items, 10000 resamples, seed 20261109",
+              "baseline_only_correct": 3,
+              "candidate_only_correct": 1,
+              "mcnemar_exact_p": 0.625,
+              "baseline_correct": 21,
+              "informative": true,
+              "validity": "informative",
+              "evidence": "no detectable change"
+            },
+            "coding": {
+              "items": 30,
+              "baseline_accuracy": 0.7,
+              "candidate_accuracy": 0.6333333333333333,
+              "difference": -0.06666666666666667,
+              "difference_ci95": [
+                -0.2,
+                0.06666666666666667
+              ],
+              "ci_method": "paired bootstrap over items, 10000 resamples, seed 20261109",
+              "baseline_only_correct": 3,
+              "candidate_only_correct": 1,
+              "mcnemar_exact_p": 0.625,
+              "baseline_correct": 21,
+              "informative": true,
+              "validity": "informative",
+              "evidence": "no detectable change"
+            }
+          }
+        }
+      },
+      "finished_at": 1794329623.9162729,
+      "docker_vm_running_at_end": true,
+      "pressure_level_at_start": 1
+    },
+    "perplexity": {
+      "status": "completed",
+      "finished_at": 1794329660.334317,
+      "corpus": {
+        "path": "/Users/yaswanth/Desktop/FeatherAI/.feather/study-qwen05b-clean/perplexity/corpus.txt",
+        "sha256": "68640572d8e7cd6612ba101e810e3e108fa44b8966c644364910bb32fd3b9c6c",
+        "bytes": 322575,
+        "files": [
+          "textwrap.py",
+          "heapq.py",
+          "bisect.py",
+          "fractions.py",
+          "statistics.py",
+          "difflib.py",
+          "string.py",
+          "shlex.py",
+          "colorsys.py",
+          "graphlib.py",
+          "functools.py",
+          "contextlib.py"
+        ],
+        "python": "3.12.9",
+        "library": "/opt/homebrew/opt/python@3.12/Frameworks/Python.framework/Versions/3.12/lib/python3.12"
+      },
+      "results": {
+        "F16": {
+          "command": [
+            "/Users/yaswanth/Desktop/FeatherAI/.feather/tools/llama.cpp/build/bin/llama-perplexity",
+            "-m",
+            "/Users/yaswanth/Desktop/FeatherAI/models/qwen2.5-coder-0.5b-instruct-fp16.gguf",
+            "-f",
+            "/Users/yaswanth/Desktop/FeatherAI/.feather/study-qwen05b-clean/perplexity/corpus.txt",
+            "-c",
+            "512",
+            "--chunks",
+            "20",
+            "-b",
+            "512",
+            "--kl-divergence-base",
+            "/Users/yaswanth/Desktop/FeatherAI/.feather/study-qwen05b-clean/perplexity/base-logits.kld"
+          ],
+          "exit_code": 0,
+          "ppl": 5.541,
+          "ppl_se": 0.19613,
+          "note": "\u00b1 values are llama-perplexity standard errors (per-token), not confidence intervals over texts."
+        },
+        "Q8_0": {
+          "command": [
+            "/Users/yaswanth/Desktop/FeatherAI/.feather/tools/llama.cpp/build/bin/llama-perplexity",
+            "-m",
+            "/Users/yaswanth/Desktop/FeatherAI/.feather/study-qwen05b-clean/quantization/Q8_0/model-Q8_0.gguf",
+            "-f",
+            "/Users/yaswanth/Desktop/FeatherAI/.feather/study-qwen05b-clean/perplexity/corpus.txt",
+            "-c",
+            "512",
+            "--chunks",
+            "20",
+            "-b",
+            "512",
+            "--kl-divergence-base",
+            "/Users/yaswanth/Desktop/FeatherAI/.feather/study-qwen05b-clean/perplexity/base-logits.kld",
+            "--kl-divergence"
+          ],
+          "exit_code": 0,
+          "mean_kld": 0.000245,
+          "mean_kld_se": 6e-06,
+          "same_top_p": 99.157,
+          "same_top_p_se": 0.128,
+          "mean_ppl_q": 5.544379,
+          "mean_ppl_q_se": 0.196322,
+          "mean_ppl_base": 5.538694,
+          "mean_ppl_base_se": 0.19585,
+          "ppl_ratio": 1.001026,
+          "ppl_ratio_se": 0.00045,
+          "rms_delta_p": 0.481,
+          "rms_delta_p_se": 0.015,
+          "kld_p99": 0.001773,
+          "kld_median": 0.000126,
+          "kld_max": 0.007681,
+          "note": "\u00b1 values are llama-perplexity standard errors (per-token), not confidence intervals over texts."
+        },
+        "Q4_K_M": {
+          "command": [
+            "/Users/yaswanth/Desktop/FeatherAI/.feather/tools/llama.cpp/build/bin/llama-perplexity",
+            "-m",
+            "/Users/yaswanth/Desktop/FeatherAI/.feather/study-qwen05b-clean/quantization/Q4_K_M/model-Q4_K_M.gguf",
+            "-f",
+            "/Users/yaswanth/Desktop/FeatherAI/.feather/study-qwen05b-clean/perplexity/corpus.txt",
+            "-c",
+            "512",
+            "--chunks",
+            "20",
+            "-b",
+            "512",
+            "--kl-divergence-base",
+            "/Users/yaswanth/Desktop/FeatherAI/.feather/study-qwen05b-clean/perplexity/base-logits.kld",
+            "--kl-divergence"
+          ],
+          "exit_code": 0,
+          "mean_kld": 0.012147,
+          "mean_kld_se": 0.000313,
+          "same_top_p": 95.039,
+          "same_top_p_se": 0.304,
+          "mean_ppl_q": 5.628443,
+          "mean_ppl_q_se": 0.200149,
+          "mean_ppl_base": 5.538694,
+          "mean_ppl_base_se": 0.19585,
+          "ppl_ratio": 1.016204,
+          "ppl_ratio_se": 0.002681,
+          "rms_delta_p": 3.438,
+          "rms_delta_p_se": 0.109,
+          "kld_p99": 0.099843,
+          "kld_median": 0.005532,
+          "kld_max": 0.569234,
+          "note": "\u00b1 values are llama-perplexity standard errors (per-token), not confidence intervals over texts."
+        }
+      },
+      "base_logits": "deleted after use (large temporary file)",
+      "docker_vm_running_at_end": true,
+      "pressure_level_at_start": 2
+    }
+  },
+  "kind": "real-run",
+  "study": "quantization-study-v0.2",
+  "created_at": "2026-11-10T16:20:31.131688+00:00",
+  "source": {
+    "path": "/Users/yaswanth/Desktop/FeatherAI/models/qwen2.5-coder-0.5b-instruct-fp16.gguf",
+    "sha256": "bb69b303c65113199b19c72f9c75bca449200b6cdf807e0f7d8822f669c02e64",
+    "size_bytes": 1266425728,
+    "architecture": "qwen2",
+    "tokenizer_sha256": "2a79a01a91fbc7fbb416c63be850e165bb1adb07bd6c705909ec9504624e39aa",
+    "tensor_count": 291,
+    "tensor_types": {
+      "F16": 170,
+      "F32": 121
+    },
+    "parameter_count": 630167424,
+    "higher_precision": true
+  },
+  "repository_commit": "2b818837ee39fcf0b796c917d7b782699f8c1489",
+  "working_tree_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "untracked_files": [],
+  "toolchain_commit": "9d340ec341e079d2c28afd50871afce358cdbf48",
+  "tools": {
+    "llama-server": "4de055b01d5b27044bfd0dfd6f0a4b022b4359cb59c37d18451d99ed7a77cb67",
+    "llama-quantize": "963dc27a67e05f3bfb4990459cbcad47c99022b41ac0b9c1f955a7e8de73733b",
+    "llama-perplexity": "b6dc45b79a95f0ddff2c39d48003770d6feab6346ae957f5b37c431b2cf6d622"
+  },
+  "hardware": {
+    "chip": "Apple M2",
+    "architecture": "arm64",
+    "os": "macOS-26.7.3-arm64-arm-64bit",
+    "python": "3.12.9",
+    "physical_ram_bytes": 8589934592,
+    "available_ram_bytes": 2415099904,
+    "system_swap": {
+      "total": 2147483648,
+      "used": 1785790464,
+      "free": 361693184,
+      "percent": 83.2,
+      "sin": 59942879232,
+      "sout": 554369024
+    }
+  },
+  "os": "macOS-26.7.3-arm64-arm-64bit",
+  "conditions": "Run by the agent while VS Code and other user applications were open; see per-session flags."
+}

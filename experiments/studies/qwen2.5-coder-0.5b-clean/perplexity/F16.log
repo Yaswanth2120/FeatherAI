@@ -1,0 +1,12 @@
+0.00.364.579 W load: control-looking token: 128247 '</s>' was not control-type; this is probably a bug in the model. its type will be overridden
+0.01.771.159 I cmn          init: llama threadpool init, n_threads = 4
+0.01.814.379 I 
+0.01.815.990 I system_info: n_threads = 4 (n_threads_batch = 4) / 8 | MTL : EMBED_LIBRARY = 1 | CPU : NEON = 1 | ARM_FMA = 1 | FP16_VA = 1 | MATMUL_INT8 = 1 | DOTPROD = 1 | ACCELERATE = 1 | REPACK = 1 | 
+0.01.817.345 I perplexity: saving all logits to /Users/yaswanth/Desktop/FeatherAI/.feather/study-qwen05b-clean/perplexity/base-logits.kld
+0.01.817.356 I perplexity: tokenizing the input ..
+0.01.899.795 I perplexity: tokenization took 82.424 ms
+0.01.899.842 I perplexity: calculating perplexity over 20 chunks, n_ctx=512, batch_size=512, n_seq=1
+0.02.132.202 I perplexity: 0.22 seconds per pass - ETA 0.07 minutes
+[1]5.4643,[2]6.5991,[3]5.3219,[4]5.4086,[5]5.8165,[6]5.4848,[7]4.7819,[8]5.0928,[9]5.1151,[10]5.3494,[11]6.2115,[12]6.0861,[13]5.6114,[14]6.1446,[15]5.8922,[16]5.6662,[17]5.5742,[18]5.6502,[19]5.7184,[20]5.5410,
+0.08.903.014 I Final estimate: PPL = 5.5410 +/- 0.19613
+
