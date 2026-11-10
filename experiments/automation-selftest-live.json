@@ -1,0 +1,113 @@
+{
+  "kind": "real-run",
+  "observed_date": "2026-11-10",
+  "codex_cli_version": "0.167.0 (updated from 0.142.3 at the user's request)",
+  "auth_mode": "ChatGPT account",
+  "model": "gpt-6.1-sol (CLI default; accepted by doctor --probe after the update)",
+  "doctor": [
+    "Feather automation doctor: READY",
+    "  \u2713 codex_cli: codex-cli 0.167.0",
+    "  \u2713 authentication: logged in (ChatGPT)",
+    "  \u2713 automation_config: timeout 1800s, max_attempts 3",
+    "  \u2713 model_configuration: gpt-6.1-sol (source: codex CLI default (no -m flag), inherited from ~/.codex/config.toml)",
+    "  \u2713 repository: HEAD ffa485c, clean",
+    "  \u2713 task_queue: {'completed': 9}; eligible: none",
+    "  \u2713 logging_paths: .feather/automation",
+    "  \u2713 dependency_git: /opt/homebrew/bin/git",
+    "  \u2713 dependency_uv: /Users/yaswanth/.local/bin/uv",
+    "  \u2713 dependency_npm: /Users/yaswanth/.local/bin/npm",
+    "  \u2713 dependency_docker: /usr/local/bin/docker",
+    "  \u2713 recursion_guard: not nested",
+    "  \u2713 live_model_probe: accepted: gpt-6.1-sol",
+    "  probe gpt-6.1-sol: accepted"
+  ],
+  "attempt_1": {
+    "status": "failed",
+    "tasks": {
+      "selftest-alpha": {
+        "status": "failed",
+        "attempts": 1,
+        "invocations": [
+          {
+            "name": "implementation",
+            "attempt": 1,
+            "exit_code": 124,
+            "model": "gpt-6.1-sol",
+            "failure_kind": null,
+            "recorded_at": 1794327474.906044
+          }
+        ],
+        "error": "RuntimeError: Implementation exited 124; see /private/var/folders/q7/34bsb64d37x1x115qfws2zqh0000gn/T/feather-automation-selftest-d4pnbsai/repo/.feather/automation/selftest-alpha/attempt-1"
+      },
+      "selftest-beta": {
+        "status": "pending",
+        "attempts": 0
+      }
+    },
+    "diagnosis": "codex exec waited on 'Reading additional input from stdin...' because the orchestrator left stdin open; killed at the 900 s timeout (exit 124). The dependent task did not start. Fixed in fb6c29c (stdin=DEVNULL) with a regression test."
+  },
+  "attempt_2": {
+    "status": "passed",
+    "dependent_advanced": true,
+    "tasks": {
+      "selftest-alpha": {
+        "status": "completed",
+        "attempts": 1,
+        "invocations": [
+          {
+            "name": "implementation",
+            "attempt": 1,
+            "exit_code": 0,
+            "model": "gpt-6.1-sol",
+            "failure_kind": null,
+            "recorded_at": 1794327528.145765
+          },
+          {
+            "name": "review",
+            "attempt": 1,
+            "exit_code": 0,
+            "model": "gpt-6.1-sol",
+            "failure_kind": null,
+            "recorded_at": 1794327540.9612281
+          }
+        ],
+        "commit": "cbe3dda534bc432ab9fe3cd4dcd00be5e47bd729",
+        "error": null
+      },
+      "selftest-beta": {
+        "status": "completed",
+        "attempts": 1,
+        "invocations": [
+          {
+            "name": "implementation",
+            "attempt": 1,
+            "exit_code": 0,
+            "model": "gpt-6.1-sol",
+            "failure_kind": null,
+            "recorded_at": 1794327555.106667
+          },
+          {
+            "name": "review",
+            "attempt": 1,
+            "exit_code": 0,
+            "model": "gpt-6.1-sol",
+            "failure_kind": null,
+            "recorded_at": 1794327568.635888
+          }
+        ],
+        "commit": "c3809f11c792398c16f8dad537538a11aaa78fed",
+        "error": null
+      }
+    },
+    "commits_in_throwaway_repo": [
+      "Complete selftest-beta: Write beta",
+      "Complete selftest-alpha: Write alpha",
+      "Self-test fixture"
+    ],
+    "verified_outputs": {
+      "selftest/alpha.txt": "alpha\\n",
+      "selftest/beta.txt": "ahpla\\n"
+    }
+  },
+  "conclusion": "Live Codex automation verified: two dependent tasks executed with implementation and independent read-only review, committed in order, and the dependent task advanced only after its predecessor passed."
+}
