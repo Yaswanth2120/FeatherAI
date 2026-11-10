@@ -165,3 +165,31 @@ def test_benchmark_summary_labels_method_and_only_clusters_sessions_v2():
     assert v2['method'] == 'sessions-v2' and v2['decode_tokens_per_second']['sessions_used'] == 2
     low, high = v2['decode_tokens_per_second']['median_ci95']
     assert low <= v2['decode_tokens_per_second']['median'] <= high
+
+
+def test_server_session_stays_in_callers_process_group_and_uses_path_lookup(tmp_path, monkeypatch):
+    from backend.study import server as module
+    monkeypatch.setattr(module, 'sha256', lambda path: 'x')
+    real_run = module.subprocess.run
+    monkeypatch.setattr(module.subprocess, 'run', lambda *a, **k: type('R', (), {'stdout': 'v', 'stderr': ''})())
+    # A bare name is looked up on PATH, never in the current directory.
+    monkeypatch.chdir(tmp_path)
+    (tmp_path / 'llama-server').write_text('#!/bin/sh\n')
+    monkeypatch.setattr(module.shutil, 'which', lambda name: None)
+    with pytest.raises(ValueError, match='not found'):
+        module.ServerSession({'path': '/x.gguf', 'size_bytes': 1}, 'llama-server', tmp_path / 'log')
+    monkeypatch.setattr(module.shutil, 'which', lambda name: '/usr/local/bin/llama-server')
+    session = module.ServerSession({'path': '/x.gguf', 'size_bytes': 1}, 'llama-server', tmp_path / 'log')
+    assert session.binary == '/usr/local/bin/llama-server'
+    # The server must not get its own session: API job cancellation kills the worker's process group.
+    captured = {}
+    class Stop(Exception):
+        pass
+    def popen(argv, **kwargs):
+        captured.update(kwargs)
+        raise Stop
+    monkeypatch.setattr(module.subprocess, 'Popen', popen)
+    monkeypatch.setattr(module, 'system_snapshot', lambda: {'available_bytes': 10**12})
+    with pytest.raises(Stop):
+        session.start()
+    assert not captured.get('start_new_session') and 'preexec_fn' not in captured

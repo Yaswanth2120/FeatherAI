@@ -1,4 +1,28 @@
-# Final report: Feather AI v0.2 (2026-11-09)
+# Final report: Feather AI v0.2.1 update (2026-11-10)
+
+This update supersedes the status lines of the v0.2 report below wherever they conflict.
+
+| Item | Status | Evidence |
+|---|---|---|
+| Live Codex automation | **Verified.** Codex CLI 0.167.0 (updated from 0.142.3); `gpt-6.1-sol` accepted. A stdin bug in the orchestrator was fixed in `fb6c29c`, and both dependent self-test tasks then completed with commits. | `experiments/automation-selftest-live.json` |
+| Qwen2.5-Coder-0.5B study | **Complete.** Ran under the unchanged memory guards from clean commit `2b81883`. | `docs/studies/quantization-study-v0.2-qwen.md`, `experiments/studies/qwen2.5-coder-0.5b-clean/` |
+| Qwen end-to-end workflow | **BLOCKED.** Workflow `e14e38ca` was rejected by the quantization guard (1.60/1.66 GB available vs 2.17 GB required). The failed run is preserved; the guard is unchanged. | `experiments/e2e/e14e38ca…/`, `experiments/e2e-evidence-qwen.json` |
+| Unified benchmark method | **Complete.** API llama.cpp jobs use sessions-v2. Older results are labelled `legacy-sampled-rss-v1`. | `backend/benchmarks/sessions.py` |
+| coding-v2 | **Frozen; not yet run.** 360 held-out + 40 screening MBPP problems with sandbox-verified references. Analysis plan pre-registered. | `backend/evaluation/datasets/coding-v2.json`, `docs/DECISIONS.md` |
+| Reasoning replication of the Q8_0 signal | **Planned; nothing collected.** Will use a new `reasoning-v2` (600 held-out items), two-sided McNemar with Holm correction. coding-v2 cannot test this. | `docs/DECISIONS.md` |
+| Optional 1.5B experiment | **Deferred.** | — |
+
+**Qwen results** (held-out; "no detectable loss" does not mean equivalent quality):
+
+| Variant | Decode tok/s | Peak footprint | Reasoning, 160 items | Coding, 30 items | Mean KLD |
+|---|---|---|---|---|---|
+| F16 | 84.8 | 1 590 MiB | 29.4% | 70.0% | — |
+| Q8_0 | 124.4 (×1.47) | 899 MiB | 25.6% | 70.0% | 0.00025 |
+| Q4_K_M | 149.7 (×1.77) | 721 MiB | 28.1% | 63.3% | 0.0121 |
+
+---
+
+# Final report: Feather AI v0.2 (2026-11-09; status lines superseded by the v0.2.1 update above)
 
 ## Status
 

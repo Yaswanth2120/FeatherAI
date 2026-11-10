@@ -80,7 +80,7 @@ Quantization speeds up decoding much more on this 0.5B model (×1.47 and ×1.77)
 - 12 paired comparisons were made, with no correction for multiplicity.
 - Q8_0 is almost identical to F16 at the token level: mean KLD 0.00025, with the same top token 99.2% of the time.
 
-Small output differences at temperature 0 can still flip individual answers, but this result is not evidence that Q8_0 reliably degrades reasoning. It should be re-tested on the larger `coding-v2` suite and on a held-out reasoning set before anyone relies on it.
+Small output differences at temperature 0 can still flip individual answers, but this result is not evidence that Q8_0 reliably degrades reasoning. It needs a separate, pre-registered reasoning replication on new held-out reasoning items (planned in `docs/DECISIONS.md`) before anyone relies on it. The coding suites cannot test a reasoning effect.
 
 **Exploratory.** Q4_K_M ran out of tokens more often on reasoning items (32 of 160, vs 24 for F16).
 

@@ -95,6 +95,7 @@ Sources: https://learn.chatgpt.com/docs/agent-configuration/subagents and https:
   - An item is included only if all its tests are of the form `assert <name>(<literal args>) == <literal>`, parsed with `ast` and literal evaluation. Everything else (`math.isclose`, `set(...)`, side effects, imports in tests) is excluded and counted.
   - Expected values stay on the host. Tuples and sets are compared with an explicit canonical encoding, never via lossy JSON coercion.
   - The prompt shows the task text and the function signature from the first test's call. Test inputs and outputs are never shown.
+  - *Correction (2026-11-10, before any model ran on coding-v2):* the frozen implementation states the function **name and positional-argument count** from the first test's call, not a full signature. No test values are shown.
 - **Splits.** A seeded shuffle (seed 20261110) puts 40 problems in screening and the rest in held-out. The dataset is frozen and hash-pinned before any model runs on it.
 - **Disclosed limitation.** MBPP is public, and models such as Qwen2.5-Coder may have seen it in training. That can inflate absolute pass rates. It affects variant-vs-F16 differences only through ceiling effects, so absolute pass rates must not be quoted as capability claims.
 - **Correction and freeze record (2026-11-10).**
@@ -124,6 +125,6 @@ Sources: https://learn.chatgpt.com/docs/agent-configuration/subagents and https:
   - It uses a different seed, and every question must differ from all reasoning-v1 questions.
   - Size: **150 held-out items per category (600 total) plus 40 screening items**.
   - Basis: discordance ψ ≈ 0.05–0.10 and δ = 3.75 pp, two-sided α = 0.025 (Holm over Q8_0 and Q4_K_M), 80% power, gives about 505–675 items. 600 sits inside that range. At ψ ≥ 0.10 the study may be underpowered, and that will be reported.
-- **Primary hypothesis.** Q8_0 pass rate is lower than F16's on all reasoning-v2 held-out items. Test: exact two-sided McNemar with Holm correction across {Q8_0, Q4_K_M}. Per-category results are exploratory only.
+- **Primary hypothesis.** Two-sided: Q8_0's held-out pass rate on reasoning-v2 differs from F16's. The direction of interest is a drop, but the test is two-sided. Test: exact two-sided McNemar with Holm correction across {Q8_0, Q4_K_M}. Per-category results are exploratory only. *(Wording fixed 2026-11-10, before any data, to match the two-sided test.)*
 - **Equivalence.** Margin ±5 pp, using the 90% paired-bootstrap CI.
 - **Freeze rule.** The dataset is frozen and hash-pinned, and this plan committed, before any model runs on reasoning-v2.

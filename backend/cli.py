@@ -155,14 +155,14 @@ def main():
         sys.exit(sandbox_command(args))
     if args.command == "e2e":
         from backend.e2e import Workflow, summary_evidence
+        if args.evidence_out.exists() and json.loads(args.evidence_out.read_text()).get("status") == "completed":
+            raise SystemExit(f"{args.evidence_out} already points to a completed workflow; choose a new --evidence-out")
         workflow = Workflow(args.source, args.constraints, args.tools, args.out, log=lambda m: print(m, flush=True),
                             defer_sandbox=args.defer_sandbox)
         try:
             record = workflow.run(json.loads(args.constraints.read_text()))
         finally:
             evidence = summary_evidence(workflow.out)
-            if args.evidence_out.exists() and json.loads(args.evidence_out.read_text()).get("status") == "completed":
-                raise SystemExit(f"{args.evidence_out} already points to a completed workflow; choose a new --evidence-out")
             args.evidence_out.write_text(json.dumps(evidence, indent=2) + "\n")
             print(json.dumps(evidence, indent=2))
         sys.exit(0 if record["status"] == "completed" else 1)

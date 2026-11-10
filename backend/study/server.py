@@ -9,6 +9,7 @@ import json
 import os
 from pathlib import Path
 import re
+import shutil
 import signal
 import socket
 import subprocess
@@ -67,7 +68,11 @@ class ServerSession:
     def __init__(self, artifact: dict, binary: str, log_path: Path, context=2048, threads=4, load_mode="none",
                  source_sha256: str | None = None, startup_timeout=180, request_timeout=300):
         self.artifact = artifact
-        self.binary = str(Path(binary).resolve())
+        # PATH lookup like LlamaCpp: a bare name never resolves to ./llama-server in the current directory.
+        found = shutil.which(str(binary)) if os.sep not in str(binary) else (str(Path(binary).resolve()) if Path(binary).is_file() else None)
+        if not found:
+            raise ValueError(f"llama-server executable not found: {binary}")
+        self.binary = found
         self.log_path = Path(log_path)
         self.context, self.threads, self.load_mode = context, threads, load_mode
         self.source_sha256 = source_sha256
@@ -110,8 +115,9 @@ class ServerSession:
         self.log_path.parent.mkdir(parents=True, exist_ok=True)
         self.log = self.log_path.open("w")
         started = time.monotonic()
-        self.wrapper = subprocess.Popen(["/usr/bin/time", "-l", *self.command], stdout=self.log, stderr=subprocess.STDOUT,
-                                        start_new_session=True)
+        # Same process group as the caller: when an API job is cancelled or times out, the job manager's
+        # process-group kill also reaches /usr/bin/time and llama-server, so no server is orphaned.
+        self.wrapper = subprocess.Popen(["/usr/bin/time", "-l", *self.command], stdout=self.log, stderr=subprocess.STDOUT)
         self.client = httpx.Client(base_url=f"http://127.0.0.1:{self.port}", timeout=self.request_timeout)
         self.server_pid = None
         try:
@@ -192,7 +198,12 @@ class ServerSession:
         try:
             self.wrapper.wait(timeout=20)
         except subprocess.TimeoutExpired:
-            os.killpg(self.wrapper.pid, signal.SIGKILL)
+            for pid in (self.server_pid, self.wrapper.pid):
+                if pid:
+                    try:
+                        os.kill(pid, signal.SIGKILL)
+                    except ProcessLookupError:
+                        pass
             self.wrapper.wait()
         self.client.close()
         self.log.close()
