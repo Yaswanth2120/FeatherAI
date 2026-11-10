@@ -78,7 +78,10 @@ def validate_workflow(data, record=None):
         require(bench['status'] == 'completed' and bench['artifact_sha256'] == item['artifact_sha256'] and bench['source_sha256'] == source['sha256'],
                 f'{target} benchmark lineage mismatch')
         summary = bench['summary']
-        require(summary['successful_trials'] == record['settings']['benchmark_repeats'] and summary['failed_trials'] == 0, f'{target} benchmark incomplete')
+        expected_trials = record['settings']['benchmark_repeats'] * record['settings'].get('benchmark_sessions', 1)
+        require(summary['successful_trials'] == expected_trials and summary['failed_trials'] == 0, f'{target} benchmark incomplete')
+        if record['settings'].get('benchmark_method'):
+            require(summary.get('method') == record['settings']['benchmark_method'], f'{target} benchmark method differs from workflow settings')
         evaluation = stages['evaluation']['results'][target]
         require(evaluation['status'] == 'completed' and evaluation['artifact_sha256'] == item['artifact_sha256'] and
                 evaluation['source_sha256'] == source['sha256'], f'{target} evaluation lineage mismatch')
@@ -94,7 +97,9 @@ def validate_workflow(data, record=None):
         require(len(hashes) == 1 and None not in hashes, f'{stage} settings differ across configurations')
     expected_payloads = {
         'benchmark': {'context': record['settings']['context'], 'seed': record['settings']['seed'], 'repeats': record['settings']['benchmark_repeats'],
-                      'warmups': record['settings']['benchmark_warmups'], 'tokens': record['settings']['benchmark_tokens']},
+                      'warmups': record['settings']['benchmark_warmups'], 'tokens': record['settings']['benchmark_tokens'],
+                      **({'method': record['settings']['benchmark_method'], 'sessions': record['settings']['benchmark_sessions'],
+                          'cooldown': record['settings']['benchmark_cooldown']} if record['settings'].get('benchmark_method') else {})},
         'evaluation': {'context': record['settings']['context'], 'seed': record['settings']['seed'], 'tokens': record['settings']['coding_tokens'],
                        'suite': record['settings']['quality_suite']}}
     for target, item in artifacts.items():

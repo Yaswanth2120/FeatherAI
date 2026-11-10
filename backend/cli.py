@@ -141,6 +141,8 @@ def main():
     e2e.add_argument("--constraints", type=Path, default=Path("experiments/e2e/recommendation-constraints.json"))
     e2e.add_argument("--tools", type=Path, default=Path(".feather/tools/llama.cpp/build/bin"))
     e2e.add_argument("--out", type=Path, default=Path("experiments/e2e"))
+    e2e.add_argument("--defer-sandbox", action="store_true",
+                     help="Check the Docker sandbox just before coding evaluation (lets conversion/benchmark run with Docker stopped)")
     e2e.add_argument("--evidence-out", type=Path, default=Path("experiments/e2e-evidence-v0.2.json"),
                      help="Summary pointer to write; use a new file for additional workflows (task08 evidence is never overwritten)")
     sandbox = commands.add_parser("sandbox", help="Coding-evaluation isolation").add_subparsers(dest="action", required=True)
@@ -153,7 +155,8 @@ def main():
         sys.exit(sandbox_command(args))
     if args.command == "e2e":
         from backend.e2e import Workflow, summary_evidence
-        workflow = Workflow(args.source, args.constraints, args.tools, args.out, log=lambda m: print(m, flush=True))
+        workflow = Workflow(args.source, args.constraints, args.tools, args.out, log=lambda m: print(m, flush=True),
+                            defer_sandbox=args.defer_sandbox)
         try:
             record = workflow.run(json.loads(args.constraints.read_text()))
         finally:

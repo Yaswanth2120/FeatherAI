@@ -25,7 +25,10 @@ from backend.evaluation.sandbox import discover
 
 ROOT = Path(__file__).resolve().parents[1]
 TARGETS = ("Q8_0", "Q4_K_M")
+# v0.2.1: API benchmarks use sessions-v2 (4 fresh server sessions x 5 measured requests). Earlier workflows
+# (e.g. 8cab4706) recorded no benchmark_method and used the legacy single-process method.
 SETTINGS = {"context": 2048, "seed": 42, "temperature": 0, "benchmark_repeats": 5, "benchmark_warmups": 1,
+            "benchmark_method": "sessions-v2", "benchmark_sessions": 4, "benchmark_cooldown": 10,
             "benchmark_tokens": 128, "coding_tokens": 384, "quality_suite": "coding-v1"}
 VALIDATION_PROMPT = "What is 2 + 2? Answer with only the number."
 
@@ -35,7 +38,8 @@ def _digest(path: Path) -> str:
 
 
 class Workflow:
-    def __init__(self, source: Path, constraints: Path, tools: Path, out_root: Path, log=print):
+    def __init__(self, source: Path, constraints: Path, tools: Path, out_root: Path, log=print, defer_sandbox=False):
+        self.defer_sandbox = defer_sandbox
         self.id = str(uuid.uuid4())
         self.source, self.constraints_path = source.resolve(strict=True), constraints.resolve(strict=True)
         self.tools, self.log = tools.resolve(), log
@@ -107,6 +111,21 @@ class Workflow:
             time.sleep(1)
         raise TimeoutError(f"Job {job_id} did not finish")
 
+    def sandbox_preflight(self, wait_seconds=0):
+        """Confirm isolated execution before any generated code runs. With --defer-sandbox this runs just
+        before the coding stage (so conversion and benchmarking can run with the Docker VM stopped)."""
+        deadline = time.monotonic() + wait_seconds
+        sandbox = discover().status()
+        while sandbox["status"] != "available" and time.monotonic() < deadline:
+            self.log("  waiting for the Docker sandbox (start Docker Desktop)...")
+            time.sleep(15)
+            sandbox = discover().status()
+        self.stage("preflight", status="completed" if sandbox["status"] == "available" else "blocked", sandbox=sandbox,
+                   available_memory_bytes=hardware()["available_ram_bytes"],
+                   timing="before coding evaluation (deferred)" if self.defer_sandbox else "before quantization")
+        if sandbox["status"] != "available":
+            raise RuntimeError(f"Sandbox unavailable: {sandbox.get('reason')}")
+
     # Stages --------------------------------------------------------------------------------------
     def run(self, constraints: dict) -> dict:
         try:
@@ -126,11 +145,8 @@ class Workflow:
             self.stage("import", status="completed", source=source)
             self.log(f"[{self.id}] import {source['sha256'][:12]} {source['size_bytes']} bytes")
 
-            sandbox = discover().status()
-            self.stage("preflight", status="completed" if sandbox["status"] == "available" else "blocked", sandbox=sandbox,
-                       available_memory_bytes=hardware()["available_ram_bytes"])
-            if sandbox["status"] != "available":
-                raise RuntimeError(f"Sandbox unavailable: {sandbox.get('reason')}")
+            if not self.defer_sandbox:
+                self.sandbox_preflight()
 
             quantized = {}
             for target in TARGETS:
@@ -171,7 +187,8 @@ class Workflow:
                 job = self.client.post("/api/jobs/benchmark", json={
                     "backend": "llama.cpp", "artifact_job_id": q["job_id"], "model": "managed", "repeats": SETTINGS["benchmark_repeats"],
                     "warmups": SETTINGS["benchmark_warmups"], "context": SETTINGS["context"], "tokens": SETTINGS["benchmark_tokens"],
-                    "seed": SETTINGS["seed"]}).json()
+                    "seed": SETTINGS["seed"], "method": SETTINGS["benchmark_method"], "sessions": SETTINGS["benchmark_sessions"],
+                    "cooldown": SETTINGS["benchmark_cooldown"]}).json()
                 job = self.wait(job["id"])
                 report = job.get("result") or {}
                 metadata = report.get("metadata") or {}
@@ -183,6 +200,8 @@ class Workflow:
             self.stage("benchmark", status="completed" if all(b["status"] == "completed" for b in benchmarks.values()) else "failed",
                        results=benchmarks)
 
+            if self.defer_sandbox:
+                self.sandbox_preflight(wait_seconds=900)
             evaluations = {}
             for target, q in quantized.items():
                 job = self.client.post("/api/jobs/evaluation", json={
