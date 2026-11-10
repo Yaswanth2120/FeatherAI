@@ -81,3 +81,19 @@ Sources: https://learn.chatgpt.com/docs/agent-configuration/subagents and https:
   - The v0.2 gate also requires that the source and artifact hashes chain consistently across all stages, that each stage record belongs to the `workflow_id`, that the sandbox was available and every coding item was scored, and that the constraints file is unchanged.
   - It also requires that the exported files exist with their recorded hashes, and that the interrupted-job and failure regression tests pass.
   - This makes the specification stricter; nothing is relaxed.
+
+### coding-v2 design (recorded 2026-11-10, before any coding-v2 data is downloaded or any model has seen it)
+- **Goal.** Detect a paired drop in pass rate between a quantized variant and F16 on the same problems, using an exact two-sided McNemar test at α = 0.05 with 80% power.
+- **Sizing.** n ≈ (z₀.₉₇₅·√ψ + z₀.₈·√(ψ − δ²))² / δ², where δ is the drop and ψ the discordant-pair rate.
+  - Measured ψ on coding-v1 (SmolLM2): 0.10 for Q8_0 and 0.20 for Q4_K_M.
+  - δ = 10 pp needs about 152 problems at ψ = 0.20 and about 171 at ψ = 0.25.
+  - δ = 5 pp needs about 312 problems at ψ = 0.10 and about 626 at ψ = 0.20.
+  - **Target:** at least 300 held-out problems. That detects a 10 pp drop up to ψ ≈ 0.4, and a 5 pp drop only if ψ ≤ 0.10. A 5 pp drop at higher discordance is explicitly out of reach and will be reported as such.
+- **Source.** Hand-writing 300+ independently checked problems is not feasible, so the problems come from the MBPP sanitized set:
+  - Google Research, CC-BY-4.0; problems and tests written independently of this project.
+  - Pinned by commit and file SHA-256.
+  - An item is included only if all its tests are of the form `assert <name>(<literal args>) == <literal>`, parsed with `ast` and literal evaluation. Everything else (`math.isclose`, `set(...)`, side effects, imports in tests) is excluded and counted.
+  - Expected values stay on the host. Tuples and sets are compared with an explicit canonical encoding, never via lossy JSON coercion.
+  - The prompt shows the task text and the function signature from the first test's call. Test inputs and outputs are never shown.
+- **Splits.** A seeded shuffle (seed 20261110) puts 40 problems in screening and the rest in held-out. The dataset is frozen and hash-pinned before any model runs on it.
+- **Disclosed limitation.** MBPP is public, and models such as Qwen2.5-Coder may have seen it in training. That can inflate absolute pass rates. It affects variant-vs-F16 differences only through ceiling effects, so absolute pass rates must not be quoted as capability claims.
