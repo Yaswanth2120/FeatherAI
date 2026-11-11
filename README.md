@@ -12,7 +12,7 @@ The earlier Q8_0 reasoning signal from reasoning-v1 was **not replicated under t
 
 > **Caveats.**
 > - **Possible contamination:** coding-v2 is built from MBPP, a public benchmark Qwen2.5-Coder may have seen in training.
-> - **Low absolute accuracy:** F16 solves only 38% of coding-v2 and 27% of reasoning-v2, with many format and truncation failures. Equivalence describes paired differences between variants, not useful capability.
+> - **Low absolute accuracy:** F16 solves only 38% of coding-v2 and 27% of reasoning-v2, with many format and truncation failures on reasoning-v2 and mostly runtime errors and wrong answers on coding-v2. Equivalence describes paired differences between variants, not useful capability.
 > - **Hardware-specific measurements:** all speed and memory figures come from one 8 GiB M2 under background load, with llama.cpp `9d340ec`.
 
 **Current status (v0.2):**
