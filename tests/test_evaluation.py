@@ -189,3 +189,21 @@ def test_wilson_extreme_counts_contain_point_without_rounding_rejection():
         assert wilson_interval(trials,trials)[1] == 1.0
         assert wilson_interval(0,trials)[1] > 0
         assert wilson_interval(trials,trials)[0] < 1
+
+
+def test_every_pinned_dataset_is_runnable_by_evaluate_dataset():
+    from backend.evaluation.datasets import SHA256
+    from backend.evaluation.runner import DATASET_SUITES, DEFAULT_TOKENS, evaluate_dataset
+
+    class Backend:
+        name = 'llama.cpp'
+        source_sha256 = 'source'
+        def models(self): return [{'name': 'm', 'artifact_sha256': 'a'}]
+        def version(self): return 'test'
+        def generate(self, model, prompt, options): return {'output': 'Answer: 1', 'runtime': {}}
+
+    assert set(SHA256) == set(DATASET_SUITES) == set(DEFAULT_TOKENS)
+    for suite in SHA256:
+        if suite.startswith('reasoning'):
+            report = evaluate_dataset(Backend(), 'm', suite, split='screening', limit=2)
+            assert report['dataset_sha256'] == SHA256[suite] and len(report['results']) == 2

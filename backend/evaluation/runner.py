@@ -11,8 +11,8 @@ from backend.evaluation.datasets import load as load_dataset
 from backend.evaluation.scoring import accuracy_summary, category_summary, paired_comparison, perplexity, wilson_interval
 from backend.evaluation.suites import CODING, REASONING
 
-DATASET_SUITES = {'reasoning-v1': 'reasoning-v1', 'coding-v1': 'coding-v1', 'coding-v2': 'coding-v2'}
-DEFAULT_TOKENS = {'reasoning-v1': 256, 'coding-v1': 384, 'coding-v2': 384}
+DATASET_SUITES = {'reasoning-v1': 'reasoning-v1', 'reasoning-v2': 'reasoning-v2', 'coding-v1': 'coding-v1', 'coding-v2': 'coding-v2'}
+DEFAULT_TOKENS = {'reasoning-v1': 256, 'reasoning-v2': 256, 'coding-v1': 384, 'coding-v2': 384}
 # Pre-specified (docs/DECISIONS.md, 2026-11-09, before held-out results existed): a category can
 # measure quantization loss only if the baseline solves at least this many held-out items.
 MIN_BASELINE_CORRECT = 10

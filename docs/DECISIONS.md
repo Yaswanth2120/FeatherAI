@@ -139,3 +139,4 @@ Sources: https://learn.chatgpt.com/docs/agent-configuration/subagents and https:
     - **not detected:** not rejected *and* the 90% paired-bootstrap CI lies inside (−5, +5) pp (equivalent within ±5 pp);
     - **inconclusive:** otherwise, or if any held-out item is unscored.
   - **Reporting.** The baseline-validity rule (F16 solves at least 10 and at least 25%) is reported. Q4_K_M is reported with the same rules. Per-category results are exploratory. If observed Q8_0 discordance is ≥ 0.10, that is reported as possible under-power.
+- **Execution bug fix (2026-11-11, before any reasoning-v2 model output).** The first launch attempts crashed with `KeyError: 'reasoning-v2'` before generating anything: the suite was missing from the evaluation runner's registry. Both attempts are recorded in the run file. The fix only registers the suite, with the same 256-token limit as reasoning-v1. Settings, data, order and analysis are unchanged.
