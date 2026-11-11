@@ -1,0 +1,1101 @@
+{
+ "id": "0c7219f4-32e1-4436-a8ca-fdfc9d34bde6",
+ "kind": "evaluation",
+ "created_at": "2026-11-11T16:07:58.118116+00:00",
+ "model": {
+  "name": "qwen2.5-coder-0.5b-instruct-fp16.gguf",
+  "size": 1266425728,
+  "digest": "bb69b303c65113199b19c72f9c75bca449200b6cdf807e0f7d8822f669c02e64",
+  "artifact_sha256": "bb69b303c65113199b19c72f9c75bca449200b6cdf807e0f7d8822f669c02e64",
+  "details": {
+   "tensor_types": {
+    "F16": 170,
+    "F32": 121
+   },
+   "parameter_count": 630167424
+  }
+ },
+ "suite": "reasoning-v2",
+ "split": "screening",
+ "dataset_version": "v2",
+ "dataset_sha256": "16202bdd23f78d5f2d0b247e707a5dc84afecc58b6b2df3fcc50bd5fd7fa1dda",
+ "suite_sha256": "a7626fb59f944eb25c6af938a3dc1eb0fcde881bcbe6dec07f3983697d3037fd:16202bdd23f78d5f2d0b247e707a5dc84afecc58b6b2df3fcc50bd5fd7fa1dda",
+ "item_limit": null,
+ "options": {
+  "seed": 42,
+  "temperature": 0,
+  "num_ctx": 2048,
+  "num_predict": 256
+ },
+ "settings_sha256": "fbbe41e53f8fbe4f7d6c595c1e9feec4ee9c44f1e50fe523960e57f0d6d6b16d",
+ "repeats": 1,
+ "backend": "llama.cpp",
+ "source_sha256": "bb69b303c65113199b19c72f9c75bca449200b6cdf807e0f7d8822f669c02e64",
+ "prompt_template": "chatml-v1: <|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant\n",
+ "runtime_version": "version: 0.9.0-dev (build 1, commit 9d340ec)\nbuilt with AppleClang 17.0.0.17000603 for Darwin arm64",
+ "results": [
+  {
+   "task_id": "arithmetic-screening-001",
+   "category": "correct",
+   "item_category": "arithmetic",
+   "prompt_sha256": "e7c79356f31c31a36794e3e7f6b2685280f98b75b772ec5bff85b382cee8709e",
+   "generation": {
+    "output": "Answer: 510",
+    "ttft_seconds": 0.044844582999985505,
+    "wall_seconds": 0.11631254199983232,
+    "truncated": false,
+    "eval_count": 7
+   },
+   "status": "scored",
+   "passed": true,
+   "expected": 510,
+   "extracted": 510,
+   "lenient_extracted": 510,
+   "lenient_passed": true,
+   "answer_tag": true,
+   "truncated": false
+  },
+  {
+   "task_id": "arithmetic-screening-002",
+   "category": "correct",
+   "item_category": "arithmetic",
+   "prompt_sha256": "26869a3433102f5e27bfa1104275649828fd11e8485324a2d3beca911a108b28",
+   "generation": {
+    "output": "Answer: 317",
+    "ttft_seconds": 0.02640029200006211,
+    "wall_seconds": 0.09621570900003462,
+    "truncated": false,
+    "eval_count": 7
+   },
+   "status": "scored",
+   "passed": true,
+   "expected": 317,
+   "extracted": 317,
+   "lenient_extracted": 317,
+   "lenient_passed": true,
+   "answer_tag": true,
+   "truncated": false
+  },
+  {
+   "task_id": "arithmetic-screening-003",
+   "category": "correct",
+   "item_category": "arithmetic",
+   "prompt_sha256": "86af9033dd148cbdbd186de7085c8b73f6dd02860fa005e6e8dee79aa338aa9e",
+   "generation": {
+    "output": "To solve the expression \\(20 \\times 3 - 57\\), we will follow these steps:\n\n1. Calculate \\(20 \\times 3\\).\n2. Subtract 57 from the result of step 1.\n\nLet's start with step 1:\n\\[20 \\times 3 = 60\\]\n\nNow, let's move to step 2:\n\\[60 - 57 = 3\\]\n\nTherefore, the final answer is:\nAnswer: 3",
+    "ttft_seconds": 0.024506458999894676,
+    "wall_seconds": 1.2287816670000211,
+    "truncated": false,
+    "eval_count": 104
+   },
+   "status": "scored",
+   "passed": true,
+   "expected": 3,
+   "extracted": 3,
+   "lenient_extracted": 3,
+   "lenient_passed": true,
+   "answer_tag": true,
+   "truncated": false
+  },
+  {
+   "task_id": "arithmetic-screening-004",
+   "category": "truncated",
+   "item_category": "arithmetic",
+   "prompt_sha256": "30abc20eaff230cff92b9fbc55d880340a0b8d616ed153ae02ab35ef41f98654",
+   "generation": {
+    "output": "To solve the problem of adding 109 and 625, we can follow these steps:\n\n1. Align the numbers by their decimal points.\n2. Add the numbers column by column.\n3. Keep track of any carry-over.\n\nLet's do this step by step:\n\n109 + 625 = 734\n\nNow, let's verify this by adding the numbers column by column:\n\n   109   + 625 = 734\n   109   + 625 = 734\n   109   + 625 = 734\n   109   + 625 = 734\n   109   + 625 = 734\n   109   + 625 = 734\n   109   + 625 = 734\n   109   + 625 = 734\n   109   + 625 = 734\n   109   + 625 = 734\n",
+    "ttft_seconds": 0.024505458000021463,
+    "wall_seconds": 3.021161124999935,
+    "truncated": true,
+    "eval_count": 256
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 734,
+   "extracted": null,
+   "lenient_extracted": 734,
+   "lenient_passed": true,
+   "answer_tag": false,
+   "truncated": true
+  },
+  {
+   "task_id": "arithmetic-screening-005",
+   "category": "incorrect",
+   "item_category": "arithmetic",
+   "prompt_sha256": "e8ce799688ddf7c567df259f492cdb1c01b4a805b99ad7d9a6fb6c56c804be84",
+   "generation": {
+    "output": "Answer: 779",
+    "ttft_seconds": 0.024980375000041022,
+    "wall_seconds": 0.09581716699995013,
+    "truncated": false,
+    "eval_count": 7
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 769,
+   "extracted": 779,
+   "lenient_extracted": 779,
+   "lenient_passed": false,
+   "answer_tag": true,
+   "truncated": false
+  },
+  {
+   "task_id": "arithmetic-screening-006",
+   "category": "correct",
+   "item_category": "arithmetic",
+   "prompt_sha256": "3c99c66fc612f6d5daf30070ac5f111dc0901b4a2667fa40bf98f0943515b45e",
+   "generation": {
+    "output": "Answer: 330",
+    "ttft_seconds": 0.024664250000114407,
+    "wall_seconds": 0.09727245800013407,
+    "truncated": false,
+    "eval_count": 7
+   },
+   "status": "scored",
+   "passed": true,
+   "expected": 330,
+   "extracted": 330,
+   "lenient_extracted": 330,
+   "lenient_passed": true,
+   "answer_tag": true,
+   "truncated": false
+  },
+  {
+   "task_id": "arithmetic-screening-007",
+   "category": "correct",
+   "item_category": "arithmetic",
+   "prompt_sha256": "0f46b06b141bfdee03ceb1b727e2b745fc650b13d306ee94f6b471718180aded",
+   "generation": {
+    "output": "To divide 440 by 11, we can follow these steps:\n\n1. Start with the dividend: 440\n2. Divide the dividend by the divisor: 11\n3. Perform the division: 440 \u00f7 11 = 40\n\nSo, 440 divided by 11 equals 40. The final answer is: Answer: 40",
+    "ttft_seconds": 0.02480308300005163,
+    "wall_seconds": 1.060862833000101,
+    "truncated": false,
+    "eval_count": 89
+   },
+   "status": "scored",
+   "passed": true,
+   "expected": 40,
+   "extracted": 40,
+   "lenient_extracted": 40,
+   "lenient_passed": true,
+   "answer_tag": true,
+   "truncated": false
+  },
+  {
+   "task_id": "arithmetic-screening-008",
+   "category": "correct",
+   "item_category": "arithmetic",
+   "prompt_sha256": "cd67c4e4bdcd7647661c728e68073e930f6167714011c9113b68450e63f3f44b",
+   "generation": {
+    "output": "Answer: 557",
+    "ttft_seconds": 0.02447262500004399,
+    "wall_seconds": 0.09701308399985464,
+    "truncated": false,
+    "eval_count": 7
+   },
+   "status": "scored",
+   "passed": true,
+   "expected": 557,
+   "extracted": 557,
+   "lenient_extracted": 557,
+   "lenient_passed": true,
+   "answer_tag": true,
+   "truncated": false
+  },
+  {
+   "task_id": "arithmetic-screening-009",
+   "category": "correct",
+   "item_category": "arithmetic",
+   "prompt_sha256": "02b8559cf45e56d18498509e2c2c8372adaf0791089f5ce81a5e1dc0d8ed7d17",
+   "generation": {
+    "output": "Answer: 170",
+    "ttft_seconds": 0.025629750000007334,
+    "wall_seconds": 0.09662620800008881,
+    "truncated": false,
+    "eval_count": 7
+   },
+   "status": "scored",
+   "passed": true,
+   "expected": 170,
+   "extracted": 170,
+   "lenient_extracted": 170,
+   "lenient_passed": true,
+   "answer_tag": true,
+   "truncated": false
+  },
+  {
+   "task_id": "arithmetic-screening-010",
+   "category": "invalid_format",
+   "item_category": "arithmetic",
+   "prompt_sha256": "174c75007790258810c8ec7b1e20b9e9ac57ff90dbb4cab484e4b131bd64084a",
+   "generation": {
+    "output": "To divide 342 by 9, we can follow these steps:\n\n1. Divide the tens digit of 342 by 9.\n2. Multiply the units digit of 342 by 9.\n3. Add the results from steps 1 and 2.\n\nLet's do this step by step:\n\n1. The tens digit of 342 is 3. When we divide 3 by 9, we get a quotient of 3 and a remainder of 6. So, 342 \u00f7 9 = 342.6667.\n2. The units digit of 342 is 4. When we multiply 4 by 9, we get a quotient of 40 and a remainder of 0. So, 342 \u00f7 9 = 342.0000.\n3. Adding the results from steps 1 and 2, we get 342.6667 + 40 = 382.6667.\n\nTherefore, the final answer is: Answer: 382.6667",
+    "ttft_seconds": 0.024547792000021218,
+    "wall_seconds": 2.8618084999998246,
+    "truncated": false,
+    "eval_count": 242
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 38,
+   "extracted": null,
+   "lenient_extracted": 40,
+   "lenient_passed": false,
+   "answer_tag": true,
+   "truncated": false
+  },
+  {
+   "task_id": "multi_step-screening-001",
+   "category": "invalid_format",
+   "item_category": "multi_step",
+   "prompt_sha256": "bc721b4e3bda39875b953ed9a3d609cc588324ec4ac57cc9abbb70048c39ba63",
+   "generation": {
+    "output": "To determine the total number of cookies Fatima has, we need to follow these steps:\n\n1. Calculate the total number of cookies in the trays.\n2. Add the loose cookies to the total number of cookies from the trays.\n\nFirst, let's calculate the total number of cookies in the trays. Fatima has 3 trays, and each tray has 11 cookies. So, we multiply the number of trays by the number of cookies per tray:\n\\[ 3 \\times 11 = 33 \\]\n\nNext, we add the loose cookies to the total number of cookies from the trays. Fatima has 10 loose cookies. So, we add 10 to the 33 cookies:\n\\[ 33 + 10 = 43 \\]\n\nTherefore, the total number of cookies Fatima has is \\(\\boxed{43}\\).",
+    "ttft_seconds": 0.026079750000008062,
+    "wall_seconds": 2.1500225409999985,
+    "truncated": false,
+    "eval_count": 180
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 43,
+   "extracted": null,
+   "lenient_extracted": 43,
+   "lenient_passed": true,
+   "answer_tag": false,
+   "truncated": false
+  },
+  {
+   "task_id": "multi_step-screening-002",
+   "category": "truncated",
+   "item_category": "multi_step",
+   "prompt_sha256": "d9ba988f153116a6a86589f5b1d80438034697c1e7ed1cc2f48b9c69ed206cc8",
+   "generation": {
+    "output": "To determine how many dollars of change Gus receives, we need to follow these steps:\n\n1. Calculate the total cost of the pencils Gus buys.\n2. Calculate the total cost of the notebooks Gus buys.\n3. Sum the costs of the pencils and notebooks to get the total amount spent.\n4. Subtract the total amount spent from the amount Gus paid to find the change.\n\nLet's start with the cost of the pencils:\nGus buys 3 pencils, and each pencil costs $8.\n\\[\n3 \\times 8 = 24\n\\]\nSo, the total cost of the pencils is $24.\n\nNext, let's calculate the cost of the notebooks:\nGus buys 4 notebooks, and each notebook costs $8.\n\\[\n4 \\times 8 = 32\n\\]\nSo, the total cost of the notebooks is $32.\n\nNow, we sum the costs of the pencils and notebooks to get the total amount spent:\n\\[\n24 + 32 = 56\n\\]\nSo, the total amount spent is $56.\n\nFinally, we subtract the total amount spent from the amount Gus paid to find the change:\nGus paid with $70, and the total amount spent is $5",
+    "ttft_seconds": 0.03382783400002154,
+    "wall_seconds": 3.038131999999905,
+    "truncated": true,
+    "eval_count": 256
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 14,
+   "extracted": null,
+   "lenient_extracted": 5,
+   "lenient_passed": false,
+   "answer_tag": false,
+   "truncated": true
+  },
+  {
+   "task_id": "multi_step-screening-003",
+   "category": "invalid_format",
+   "item_category": "multi_step",
+   "prompt_sha256": "cc9234544e126be52cbae8c6877a3a017d841ba760d751fa69eedf93e6714013",
+   "generation": {
+    "output": "To determine the total number of stickers Omar has, we need to follow these steps:\n\n1. Calculate the total number of stickers in the sheets with 5 stickers each.\n2. Add the loose stickers to the total from the sheets with 5 stickers.\n3. Sum the total number of stickers from both sheets with 5 stickers and the loose stickers.\n\nFirst, let's calculate the total number of stickers in the sheets with 5 stickers each:\n- Omar has 9 sheets.\n- Each sheet has 5 stickers.\n- Therefore, the total number of stickers in the sheets with 5 stickers is:\n  \\[\n  9 \\times 5 = 45\n  \\]\n\nNext, we add the loose stickers to the total from the sheets with 5 stickers:\n- Omar has 8 loose stickers.\n- Therefore, the total number of stickers is:\n  \\[\n  45 + 8 = 53\n  \\]\n\nSo, the total number of stickers Omar has is:\n\\[\n\\boxed{53}\n\\]",
+    "ttft_seconds": 0.02554416700013462,
+    "wall_seconds": 2.557992167000066,
+    "truncated": false,
+    "eval_count": 216
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 53,
+   "extracted": null,
+   "lenient_extracted": 53,
+   "lenient_passed": true,
+   "answer_tag": false,
+   "truncated": false
+  },
+  {
+   "task_id": "multi_step-screening-004",
+   "category": "invalid_format",
+   "item_category": "multi_step",
+   "prompt_sha256": "54f68f6bd53fbb1e355d82d881e5730e584d44585a29115263c76251ca3aaeba",
+   "generation": {
+    "output": "To determine how many dollars of change Kofi receives, we need to follow these steps:\n\n1. Calculate the total cost of the pencils.\n2. Calculate the total cost of the notebooks.\n3. Sum the costs of the pencils and notebooks.\n4. Subtract the total cost from the amount Kofi paid to find the change.\n\nLet's start with the cost of the pencils:\nKofi buys 5 pencils, and each pencil costs $8.\n\\[\n5 \\text{ pencils} \\times \\$8 \\text{ per pencil} = \\$40\n\\]\n\nNext, let's calculate the cost of the notebooks:\nKofi buys 2 notebooks, and each notebook costs $4.\n\\[\n2 \\text{ notebooks} \\times \\$4 \\text{ per notebook} = \\$8\n\\]\n\nNow, we sum the costs of the pencils and notebooks:\n\\[\n\\$40 + \\$8 = \\$48\n\\]\n\nKofi paid with $60. To find the change, we subtract the total cost from the amount paid:\n\\[\n\\$60 - \\$48 = \\$12\n\\]\n\nTherefore, the amount of change Kofi receives is \\(\\boxed{12}\\).",
+    "ttft_seconds": 0.03322279099984371,
+    "wall_seconds": 2.9492557500000203,
+    "truncated": false,
+    "eval_count": 249
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 12,
+   "extracted": null,
+   "lenient_extracted": 12,
+   "lenient_passed": true,
+   "answer_tag": false,
+   "truncated": false
+  },
+  {
+   "task_id": "multi_step-screening-005",
+   "category": "truncated",
+   "item_category": "multi_step",
+   "prompt_sha256": "1e1cb16f815faf2f1dc68fe21a2a33959ada78e5222c7b1e609c4eee5ca3f9e8",
+   "generation": {
+    "output": "To determine the total number of parts the machine makes in 6 hours a day for 6 days, we need to follow these steps:\n\n1. Calculate the total number of parts made in one hour.\n2. Multiply the total number of parts made in one hour by the number of hours in a day.\n3. Multiply the result by the number of days in a week.\n\nStep 1: Calculate the total number of parts made in one hour.\nThe machine makes 8 parts per hour.\n\nStep 2: Multiply the total number of parts made in one hour by the number of hours in a day.\nThere are 24 hours in a day, so we multiply 8 parts per hour by 24 hours:\n\\[ 8 \\text{ parts/hour} \\times 24 \\text{ hours} = 192 \\text{ parts/day} \\]\n\nStep 3: Multiply the result by the number of days in a week.\nThere are 7 days in a week, so we multiply 192 parts/day by 7 days:\n\\[ 192 \\text{ parts/day} \\times 7 \\text{ days} = 1344 \\text{ parts/week} \\]\n\nTherefore,",
+    "ttft_seconds": 0.025846250000086002,
+    "wall_seconds": 3.003280249999989,
+    "truncated": true,
+    "eval_count": 256
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 288,
+   "extracted": null,
+   "lenient_extracted": 1344,
+   "lenient_passed": false,
+   "answer_tag": false,
+   "truncated": true
+  },
+  {
+   "task_id": "multi_step-screening-006",
+   "category": "invalid_format",
+   "item_category": "multi_step",
+   "prompt_sha256": "a714db86cc9473ceb730034e9abad0ca2878d2f93430f726a323d3c5fb410f03",
+   "generation": {
+    "output": "To determine how many cookies each child gets, we need to follow these steps:\n\n1. **Calculate the total number of cookies:**\n   \\[\n   64 \\text{ cookies}\n   \\]\n\n2. **Determine the number of children:**\n   \\[\n   8 \\text{ children}\n   \\]\n\n3. **Divide the total number of cookies by the number of children:**\n   \\[\n   \\frac{64 \\text{ cookies}}{8 \\text{ children}} = 8 \\text{ cookies per child}\n   \\]\n\nTherefore, each child gets \\(\\boxed{8}\\) cookies.",
+    "ttft_seconds": 0.02588287499997932,
+    "wall_seconds": 1.5644428749999406,
+    "truncated": false,
+    "eval_count": 133
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 8,
+   "extracted": null,
+   "lenient_extracted": 8,
+   "lenient_passed": true,
+   "answer_tag": false,
+   "truncated": false
+  },
+  {
+   "task_id": "multi_step-screening-007",
+   "category": "invalid_format",
+   "item_category": "multi_step",
+   "prompt_sha256": "6c04ec1c092b57e1a74286c41dcadbb3e110f0e6522dd20cde93229fb25c2c54",
+   "generation": {
+    "output": "To determine the total number of parts the machine makes in 2 days, we need to follow these steps:\n\n1. Calculate the total number of parts made in one day.\n2. Multiply the daily parts by the number of days.\n\nFirst, let's calculate the total number of parts made in one day. The machine makes 4 parts per hour and it runs for 3 hours a day. Therefore, the total number of parts made in one day is:\n\\[ 4 \\text{ parts/hour} \\times 3 \\text{ hours/day} = 12 \\text{ parts/day} \\]\n\nNext, we need to multiply the daily parts by the number of days. The machine runs for 2 days, so the total number of parts made in 2 days is:\n\\[ 12 \\text{ parts/day} \\times 2 \\text{ days} = 24 \\text{ parts} \\]\n\nTherefore, the total number of parts the machine makes in 2 days is:\n\\[ \\boxed{24} \\]",
+    "ttft_seconds": 0.025580582999964463,
+    "wall_seconds": 2.5484607920000144,
+    "truncated": false,
+    "eval_count": 217
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 24,
+   "extracted": null,
+   "lenient_extracted": 24,
+   "lenient_passed": true,
+   "answer_tag": false,
+   "truncated": false
+  },
+  {
+   "task_id": "multi_step-screening-008",
+   "category": "truncated",
+   "item_category": "multi_step",
+   "prompt_sha256": "b5c3f272d594b9b55ebd65c50fb9bbf059cb152e999513627dc8c1cb9015cadd",
+   "generation": {
+    "output": "To determine how many dollars of change Dara receives, we need to follow these steps:\n\n1. Calculate the total cost of the pencils.\n2. Calculate the total cost of the notebooks.\n3. Sum the costs of the pencils and notebooks.\n4. Subtract the total cost from the amount Dara paid to find the change.\n\nLet's start with the cost of the pencils:\nDara buys 2 pencils, and each pencil costs $6.\n\\[\n2 \\times 6 = 12\n\\]\nSo, the total cost of the pencils is $12.\n\nNext, let's calculate the total cost of the notebooks:\nDara buys 4 notebooks, and each notebook costs $10.\n\\[\n4 \\times 10 = 40\n\\]\nSo, the total cost of the notebooks is $40.\n\nNow, we sum the costs of the pencils and notebooks:\n\\[\n12 + 40 = 52\n\\]\nSo, the total cost of the pencils and notebooks is $52.\n\nDara paid with $60, so the change she receives is:\n\\[\n60 - 52 = 8\n\\]\nTherefore, the amount of change Dara receives is \\(\\boxed",
+    "ttft_seconds": 0.03418358400017496,
+    "wall_seconds": 3.0116294169999946,
+    "truncated": true,
+    "eval_count": 256
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 8,
+   "extracted": null,
+   "lenient_extracted": 8,
+   "lenient_passed": true,
+   "answer_tag": false,
+   "truncated": true
+  },
+  {
+   "task_id": "multi_step-screening-009",
+   "category": "invalid_format",
+   "item_category": "multi_step",
+   "prompt_sha256": "27384af05eaebccbb01df3343cfb36641dcb1dd0f29c55409161b00aab510f75",
+   "generation": {
+    "output": "To determine how many cookies each child gets, we need to follow these steps:\n\n1. **Calculate the total number of cookies:**\n   \\[\n   30 \\text{ cookies}\n   \\]\n\n2. **Determine the number of children:**\n   \\[\n   6 \\text{ children}\n   \\]\n\n3. **Divide the total number of cookies by the number of children:**\n   \\[\n   \\frac{30 \\text{ cookies}}{6 \\text{ children}} = 5 \\text{ cookies per child}\n   \\]\n\nTherefore, each child gets \\(\\boxed{5}\\) cookies.",
+    "ttft_seconds": 0.02596829100002651,
+    "wall_seconds": 1.6368210409998483,
+    "truncated": false,
+    "eval_count": 133
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 5,
+   "extracted": null,
+   "lenient_extracted": 5,
+   "lenient_passed": true,
+   "answer_tag": false,
+   "truncated": false
+  },
+  {
+   "task_id": "multi_step-screening-010",
+   "category": "invalid_format",
+   "item_category": "multi_step",
+   "prompt_sha256": "232aa2c0272d4661a02b0f2531094bdf73b7e58294b0b1486ef617ece4d5a979",
+   "generation": {
+    "output": "Let's break down the problem step by step and use Python code to ensure accuracy.\n\n1. Dara starts with 55 stickers.\n2. She gives 24 stickers to Kofi.\n3. She then buys 7 more stickers.\n4. After that, she gives half of the stickers to a sibling.\n5. Finally, we need to find out how many stickers Dara keeps.\n\nLet's calculate this step by step using Python code.\n```python\n# Initial number of stickers\ninitial_stickers = 55\n\n# Stickers given to Kofi\nstickers_given_to_kofi = 24\n\n# Stickers bought\nstickers_bought = 7\n\n# Total stickers after buying\ntotal_stickers_after_buying = initial_stickers + stickers_bought\n\n# Stickers given to a sibling\nstickers_given_to_sibling = total_stickers_after_buying / 2\n\n# Stickers Dara keeps\nstickers_kept = total_stickers_after_buying - stickers_given_to_sibling\nprint(stickers_kept)\n```\n```output\n28.0\n```\nAfter performing the calculations, we find that Dara keeps \\(\\boxed{28}\\) stickers.",
+    "ttft_seconds": 0.03443933400012611,
+    "wall_seconds": 2.94631937500003,
+    "truncated": false,
+    "eval_count": 250
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 19,
+   "extracted": null,
+   "lenient_extracted": 28,
+   "lenient_passed": false,
+   "answer_tag": false,
+   "truncated": false
+  },
+  {
+   "task_id": "programming_concepts-screening-001",
+   "category": "correct",
+   "item_category": "programming_concepts",
+   "prompt_sha256": "baea029b5bbf6c12d8772a250cba1f3e4637faa6e5fb941e175bea36c2f401e3",
+   "generation": {
+    "output": "To find the value of 28 % 5, we can use the modulus operator `%`. The modulus operator returns the remainder of the division of the first operand by the second operand. In this case, 28 divided by 5 gives a quotient of 5 and a remainder of 3.\n\nSo, 28 % 5 equals 3.\n\nAnswer: 3",
+    "ttft_seconds": 0.025132375000112006,
+    "wall_seconds": 0.9341810840001017,
+    "truncated": false,
+    "eval_count": 79
+   },
+   "status": "scored",
+   "passed": true,
+   "expected": 3,
+   "extracted": 3,
+   "lenient_extracted": 3,
+   "lenient_passed": true,
+   "answer_tag": true,
+   "truncated": false
+  },
+  {
+   "task_id": "programming_concepts-screening-002",
+   "category": "incorrect",
+   "item_category": "programming_concepts",
+   "prompt_sha256": "d6515af1b127946c5e9e052c6bb025249baa6ae2483f1bbda145e9c085990770",
+   "generation": {
+    "output": "To grasp the output, we will break down the code execution into detailed steps.\n\n1. The function `len(set([5, 2, 3, 2, 5, 5, 6, 6, 1]))` is called.\n2. Inside the function, the set `set([5, 2, 3, 2, 5, 5, 6, 6, 1])` is created.\n3. The `set` function returns a view object that displays a set-like object as an iterable. This view object is called a set.\n4. The `len` function is then called on this view object, which returns the number of elements in the set.\n5. The set `{5, 2, 3, 2, 5, 5, 6, 6, 1}` contains the elements 5, 2, 3, 2, 5, 5, 6, 6, and 1.\n6. The length of this set is calculated, which is 9.\n\nTherefore, the computed output for this input is `9`, i.e. `Answer: 9`",
+    "ttft_seconds": 0.03315220800004681,
+    "wall_seconds": 2.917708292000043,
+    "truncated": false,
+    "eval_count": 248
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 5,
+   "extracted": 9,
+   "lenient_extracted": 9,
+   "lenient_passed": false,
+   "answer_tag": true,
+   "truncated": false
+  },
+  {
+   "task_id": "programming_concepts-screening-003",
+   "category": "incorrect",
+   "item_category": "programming_concepts",
+   "prompt_sha256": "ab9f9fd00fe43d0a6b346763d1b83016d561c09d7984779ddc96f6b1a7772a6f",
+   "generation": {
+    "output": "To solve this problem, we need to understand the function `sum(range(0, 26, 1))`. The `range` function generates numbers starting from 0 up to, but not including, the specified stop value. In this case, the stop value is 26, so the `range` function generates numbers from 0 to 25.\n\nThe `sum` function then adds up all the numbers in the range. Since the range is from 0 to 25, the sum is simply the sum of all numbers from 0 to 25.\n\nLet's calculate this step by step:\n1. The range is from 0 to 25.\n2. The sum of all numbers in this range is \\(0 + 1 + 2 + \\cdots + 25\\).\n3. The formula for the sum of the first \\(n\\) natural numbers is \\(\\frac{n(n+1)}{2}\\). For \\(n = 25\\), the sum is \\(\\frac{25 \\times 26}{2} = 325\\).\n\nTherefore, the sum of the range from 0 to 25 is 325.\n\nAnswer: 32",
+    "ttft_seconds": 0.025086499999815715,
+    "wall_seconds": 3.003692000000001,
+    "truncated": true,
+    "eval_count": 256
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 325,
+   "extracted": 32,
+   "lenient_extracted": 32,
+   "lenient_passed": false,
+   "answer_tag": true,
+   "truncated": true
+  },
+  {
+   "task_id": "programming_concepts-screening-004",
+   "category": "incorrect",
+   "item_category": "programming_concepts",
+   "prompt_sha256": "192a1a0952ecb0ac910bf9bc74d8a4dbf1dc708c09ad2349e0387a54edb7da7d",
+   "generation": {
+    "output": "To determine what \"banana\".count(\"a\") returns in Python, we need to understand the method `count()` which is used to count the number of times a specified value appears in a string.\n\nHere's a step-by-step breakdown of how the method works:\n\n1. **Function Call**: The method `count()` is called on the string \"banana\".\n2. **Argument**: The argument \"a\" is passed to the method.\n3. **Counting**: The method counts the number of times \"a\" appears in the string \"banana\". In this case, \"a\" appears once.\n4. **Return Value**: The method returns the count of \"a\", which is 1.\n\nTherefore, the value returned by `banana\".count(\"a\")` is `1`.\n\nAnswer: 1",
+    "ttft_seconds": 0.025113832999977603,
+    "wall_seconds": 1.9255579169998782,
+    "truncated": false,
+    "eval_count": 164
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 3,
+   "extracted": 1,
+   "lenient_extracted": 1,
+   "lenient_passed": false,
+   "answer_tag": true,
+   "truncated": false
+  },
+  {
+   "task_id": "programming_concepts-screening-005",
+   "category": "correct",
+   "item_category": "programming_concepts",
+   "prompt_sha256": "dedecc2b2a6934cc288bd6a95bc7b1cf588f496bdc80f93e0d6fc26ea42e2cdf",
+   "generation": {
+    "output": "To determine the length of the string \"python\", we can use the built-in `len()` function in Python. The `len()` function returns the number of characters in the string. In this case, the string \"python\" has 6 characters.\n\nAnswer: 6",
+    "ttft_seconds": 0.024990666999883615,
+    "wall_seconds": 0.6660302919999594,
+    "truncated": false,
+    "eval_count": 56
+   },
+   "status": "scored",
+   "passed": true,
+   "expected": 6,
+   "extracted": 6,
+   "lenient_extracted": 6,
+   "lenient_passed": true,
+   "answer_tag": true,
+   "truncated": false
+  },
+  {
+   "task_id": "programming_concepts-screening-006",
+   "category": "invalid_format",
+   "item_category": "programming_concepts",
+   "prompt_sha256": "9efec911e9a15c94703fcefff775e26f38440bec0d1f6e87da6b1bcce362a95c",
+   "generation": {
+    "output": "To solve the expression \\(49 \\div 5\\), we can follow these steps:\n\n1. **Understand the division operation**: Division is a mathematical operation that divides one number by another number.\n2. **Perform the division**: Divide 49 by 5.\n3. **Calculate the result**: 49 divided by 5 equals 9.9.\n\nTherefore, the value of \\(49 \\div 5\\) is \\(\\boxed{9.9}\\).",
+    "ttft_seconds": 0.024727125000026717,
+    "wall_seconds": 1.1780563340000754,
+    "truncated": false,
+    "eval_count": 100
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 9,
+   "extracted": null,
+   "lenient_extracted": 5,
+   "lenient_passed": false,
+   "answer_tag": false,
+   "truncated": false
+  },
+  {
+   "task_id": "programming_concepts-screening-007",
+   "category": "correct",
+   "item_category": "programming_concepts",
+   "prompt_sha256": "aa3a03fba31db5b29318d25ffc7ebd7d9e1ddfb6d250323259652a274b6e05f8",
+   "generation": {
+    "output": "To find the value of 56 % 3, we can use the modulus operator `%`. The modulus operator returns the remainder of the division of the first operand by the second operand. In this case, 56 divided by 3 gives a quotient of 18 and a remainder of 2.\n\nSo, 56 % 3 equals 2.\n\nAnswer: 2",
+    "ttft_seconds": 0.02478062500017586,
+    "wall_seconds": 0.9456498330000613,
+    "truncated": false,
+    "eval_count": 80
+   },
+   "status": "scored",
+   "passed": true,
+   "expected": 2,
+   "extracted": 2,
+   "lenient_extracted": 2,
+   "lenient_passed": true,
+   "answer_tag": true,
+   "truncated": false
+  },
+  {
+   "task_id": "programming_concepts-screening-008",
+   "category": "invalid_format",
+   "item_category": "programming_concepts",
+   "prompt_sha256": "0dca12533c2649fd2c37defea948f8e8a999934b8dcdb7291d4291f8715a04d6",
+   "generation": {
+    "output": "To solve the expression \\(-13 // 6\\), we need to perform the division of -13 by 6. The division of two numbers results in a quotient and a remainder. In this case, the quotient is -2 and the remainder is 1.\n\nLet's break it down step by step:\n\n1. Identify the dividend and the divisor: -13 and 6.\n2. Perform the division: \\(-13 \\div 6\\).\n3. Calculate the quotient: \\(-2\\).\n4. Calculate the remainder: 1.\n\nTherefore, the value of \\(-13 // 6\\) is \\(-2\\).\n\nAnswer: \\(-2\\)",
+    "ttft_seconds": 0.024743540999907054,
+    "wall_seconds": 1.6793914579998273,
+    "truncated": false,
+    "eval_count": 143
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": -3,
+   "extracted": null,
+   "lenient_extracted": -2,
+   "lenient_passed": false,
+   "answer_tag": true,
+   "truncated": false
+  },
+  {
+   "task_id": "programming_concepts-screening-009",
+   "category": "correct",
+   "item_category": "programming_concepts",
+   "prompt_sha256": "d7e7016c3cdee3a0bccaa8d41ae3160d14becf621046ea40037f03d0d47a2fab",
+   "generation": {
+    "output": "To find the value of 28 % 3, we can use the modulus operator `%`. The modulus operator returns the remainder of the division of the first operand by the second operand. In this case, 28 divided by 3 gives a quotient of 9 and a remainder of 1.\n\nSo, 28 % 3 equals 1.\n\nAnswer: 1",
+    "ttft_seconds": 0.025059083000087412,
+    "wall_seconds": 0.9418344580001303,
+    "truncated": false,
+    "eval_count": 79
+   },
+   "status": "scored",
+   "passed": true,
+   "expected": 1,
+   "extracted": 1,
+   "lenient_extracted": 1,
+   "lenient_passed": true,
+   "answer_tag": true,
+   "truncated": false
+  },
+  {
+   "task_id": "programming_concepts-screening-010",
+   "category": "incorrect",
+   "item_category": "programming_concepts",
+   "prompt_sha256": "0c7273a036596ff25617f7ab84eb1842fd005241eacb7ae2a6ac3cd19ea950ef",
+   "generation": {
+    "output": "To determine what `len(\"benchmark\")` returns in Python, we need to understand the function `len()` which returns the number of characters in an object. In this case, the object is the string \"benchmark\".\n\nHere's a step-by-step breakdown:\n\n1. The function `len()` is called with the argument `\"benchmark\"`.\n2. The `len()` function counts the number of characters in the string `\"benchmark\"`.\n3. The string `\"benchmark\"` has 10 characters.\n\nTherefore, `len(\"benchmark\")` returns `10`.\n\nAnswer: 10",
+    "ttft_seconds": 0.024936416999935318,
+    "wall_seconds": 1.401586707999968,
+    "truncated": false,
+    "eval_count": 119
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 9,
+   "extracted": 10,
+   "lenient_extracted": 10,
+   "lenient_passed": false,
+   "answer_tag": true,
+   "truncated": false
+  },
+  {
+   "task_id": "algorithmic-screening-001",
+   "category": "incorrect",
+   "item_category": "algorithmic",
+   "prompt_sha256": "4c8a9414bec1647fce04057911617f258c5dd57d2330dc7ee23fc85396df4926",
+   "generation": {
+    "output": "To determine how many prime numbers are less than 16, we need to identify all the prime numbers between 1 and 15. A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself.\n\nLet's list the prime numbers between 1 and 15:\n\n1. 2\n2. 3\n3. 5\n4. 7\n5. 11\n6. 13\n7. 17\n\nThere are 7 prime numbers less than 16.\n\nAnswer: 7",
+    "ttft_seconds": 0.025010249999922962,
+    "wall_seconds": 1.4344452909999745,
+    "truncated": false,
+    "eval_count": 122
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 6,
+   "extracted": 7,
+   "lenient_extracted": 7,
+   "lenient_passed": false,
+   "answer_tag": true,
+   "truncated": false
+  },
+  {
+   "task_id": "algorithmic-screening-002",
+   "category": "invalid_format",
+   "item_category": "algorithmic",
+   "prompt_sha256": "352c63b5ae586c2177be0a05fac07bb59306c4a304953e9f21673e1aba2bf70d",
+   "generation": {
+    "output": "To determine the number at position 4 in the sorted list [13, 15, 14, 50, 25, 76, 23], we need to follow these steps:\n\n1. **Identify the position**: The question states that the list is sorted in ascending order. This means that the number at position 4 is the next number after 50.\n\n2. **Locate the number**: The number at position 4 is 50. This is because 50 is the next number after 50 in the list.\n\n3. **Answer the question**: The number at position 4 is 50.\n\nTherefore, the final answer is \\(\\boxed{50}\\).",
+    "ttft_seconds": 0.03381616699994083,
+    "wall_seconds": 1.830091541999991,
+    "truncated": false,
+    "eval_count": 155
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 23,
+   "extracted": null,
+   "lenient_extracted": 50,
+   "lenient_passed": false,
+   "answer_tag": false,
+   "truncated": false
+  },
+  {
+   "task_id": "algorithmic-screening-003",
+   "category": "invalid_format",
+   "item_category": "algorithmic",
+   "prompt_sha256": "23f10afe8f3dc0ac5c7b59de478145e87fd1d07d1bd7baeb82b57adc176c18f7",
+   "generation": {
+    "output": "To find the greatest common divisor (GCD) of 54 and 24, we can use the Euclidean algorithm. The Euclidean algorithm is based on the principle that the GCD of two numbers also divides their difference. Here's how we can implement it:\n\n1. Divide 24 by 54 and find the remainder.\n2. Replace 24 with 54 and 54 with the remainder from step 1.\n3. Repeat steps 2 and 3 until the remainder is 0. The last non-zero remainder is the GCD.\n\nLet's implement this in Python:\n```python\ndef gcd(a, b):\n    while b != 0:\n        a, b = b, a % b\n    return a\n\n# Find the GCD of 54 and 24\ngcd_54_24 = gcd(54, 24)\nprint(gcd_54_24)\n```\n```output\n6\n```\nThe greatest common divisor of 54 and 24 is \\(\\boxed{6}\\).",
+    "ttft_seconds": 0.02510937500005639,
+    "wall_seconds": 2.676244875000066,
+    "truncated": false,
+    "eval_count": 228
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 6,
+   "extracted": null,
+   "lenient_extracted": 6,
+   "lenient_passed": true,
+   "answer_tag": false,
+   "truncated": false
+  },
+  {
+   "task_id": "algorithmic-screening-004",
+   "category": "truncated",
+   "item_category": "algorithmic",
+   "prompt_sha256": "b8da680f39d2fa704855429b1e2e5d8c6f6beb5fd7734140570078d4d17209f7",
+   "generation": {
+    "output": "To find the least common multiple (LCM) of 12 and 10, we can use the relationship between the greatest common divisor (GCD) and LCM. The formula is:\n\n\\[ \\text{LCM}(a, b) = \\frac{|a \\times b|}{\\text{GCD}(a, b)} \\]\n\nFirst, we need to find the GCD of 12 and 10. We can do this by listing the prime factors of each number and then finding the common factors.\n\nThe prime factorization of 12 is:\n\\[ 12 = 2^2 \\times 3 \\]\n\nThe prime factorization of 10 is:\n\\[ 10 = 2 \\times 5 \\]\n\nThe common factors between 12 and 10 are 2 and 5. Therefore, the GCD of 12 and 10 is:\n\\[ \\text{GCD}(12, 10) = 2 \\times 5 = 10 \\]\n\nNow we can use the formula to find the LCM:\n\\[ \\text{LCM}(12, 10) = \\frac{|12 \\times 10",
+    "ttft_seconds": 0.025114875000099346,
+    "wall_seconds": 3.00167112500003,
+    "truncated": true,
+    "eval_count": 256
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 60,
+   "extracted": null,
+   "lenient_extracted": 10,
+   "lenient_passed": false,
+   "answer_tag": false,
+   "truncated": true
+  },
+  {
+   "task_id": "algorithmic-screening-005",
+   "category": "truncated",
+   "item_category": "algorithmic",
+   "prompt_sha256": "13f4c19b1b29e34b5c86f79c470458f5c4bebef5852a1c82ef07829dc1f51a5d",
+   "generation": {
+    "output": "To determine how many 1 bits are in the binary representation of 253, we can follow these steps:\n\n1. **Understand the binary representation of 253:**\n   - The binary representation of 253 is `11111111`.\n   - This is a 8-bit number.\n\n2. **Count the number of 1 bits:**\n   - In a binary number, each bit represents a power of 2.\n   - To count the number of 1 bits, we need to count the number of 1s in the binary representation.\n\n3. **Count the 1s in the binary representation:**\n   - The binary representation of 253 is `11111111`.\n   - Count the number of 1s:\n     - The first bit is `1`.\n     - The second bit is `1`.\n     - The third bit is `1`.\n     - The fourth bit is `1`.\n     - The fifth bit is `1`.\n     - The sixth bit is `1`.\n     - The seventh bit is `1`.\n     - The eighth bit is `1`.\n     - The ninth bit is `1`.\n     - The tenth bit is",
+    "ttft_seconds": 0.025146209000013187,
+    "wall_seconds": 3.0063527090001116,
+    "truncated": true,
+    "eval_count": 256
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 7,
+   "extracted": null,
+   "lenient_extracted": 1,
+   "lenient_passed": false,
+   "answer_tag": false,
+   "truncated": true
+  },
+  {
+   "task_id": "algorithmic-screening-006",
+   "category": "truncated",
+   "item_category": "algorithmic",
+   "prompt_sha256": "7671160a3480bd3703737c173cbd18b5a56ecd57987d9305c90bb101abb66c13",
+   "generation": {
+    "output": "To find the least common multiple (LCM) of 13 and 14, we can use the relationship between the greatest common divisor (GCD) and LCM. The formula is:\n\n\\[ \\text{LCM}(a, b) = \\frac{|a \\times b|}{\\text{GCD}(a, b)} \\]\n\nFirst, we need to find the GCD of 13 and 14. We can do this by testing divisibility starting from the smallest number, which is 1. If 13 is divisible by 14, then 14 is the GCD. If not, we divide 14 by 13 and repeat the process until we find the GCD.\n\nLet's start by testing 13 and 14:\n\n\\[ 13 \\div 14 = 0.9285714285714285 \\]\n\\[ 14 \\div 13 = 1 \\]\n\nSince 13 is not divisible by 14, we divide 14 by 13 and repeat the process:\n\n\\[ 14 \\div 13 = 1 \\]\n\\[ 13",
+    "ttft_seconds": 0.025045958999953655,
+    "wall_seconds": 3.0206554169999436,
+    "truncated": true,
+    "eval_count": 256
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 182,
+   "extracted": null,
+   "lenient_extracted": 13,
+   "lenient_passed": false,
+   "answer_tag": false,
+   "truncated": true
+  },
+  {
+   "task_id": "algorithmic-screening-007",
+   "category": "invalid_format",
+   "item_category": "algorithmic",
+   "prompt_sha256": "bb53a56531680399359ae4d700572db1c3d45f14bb359775635572b1ebf67881",
+   "generation": {
+    "output": "To determine the number at position 4 in the sorted list [65, 24, 66, 47, 57, 60, 87], we need to follow these steps:\n\n1. Identify the position of the number we are interested in. In this case, the number is 4.\n2. Count the positions of the numbers in the list from left to right.\n3. The number at position 4 is the 5th number in the list.\n\nLet's list the numbers in the list:\n\\[ 65, 24, 66, 47, 57, 60, 87 \\]\n\nCounting the positions:\n- Position 1: 65\n- Position 2: 24\n- Position 3: 66\n- Position 4: 47\n- Position 5: 57\n- Position 6: 60\n- Position 7: 87\n\nThe number at position 4 is 47.\n\nTherefore, the answer is \\(\\boxed{47}\\).",
+    "ttft_seconds": 0.033825541000169324,
+    "wall_seconds": 2.7939558330001546,
+    "truncated": false,
+    "eval_count": 236
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 60,
+   "extracted": null,
+   "lenient_extracted": 47,
+   "lenient_passed": false,
+   "answer_tag": false,
+   "truncated": false
+  },
+  {
+   "task_id": "algorithmic-screening-008",
+   "category": "truncated",
+   "item_category": "algorithmic",
+   "prompt_sha256": "8694a9e0c8d3befa00b396c3ae481f6befe79265345ca3786131f6c4e2462a19",
+   "generation": {
+    "output": "To find F(20) in the Fibonacci sequence, we can use the recurrence relation F(n) = F(n-1) + F(n-2) for n >= 2. Let's start by calculating the first few terms of the sequence to identify any patterns.\n\n1. F(1) = 1\n2. F(2) = 1\n3. F(3) = F(2) + F(1) = 1 + 1 = 2\n4. F(4) = F(3) + F(2) = 2 + 2 = 4\n5. F(5) = F(4) + F(3) = 4 + 2 = 6\n6. F(6) = F(5) + F(4) = 6 + 4 = 10\n7. F(7) = F(6) + F(5) = 10 + 6 = 16\n8. F(8) = F(7) + F(6) = 16 + 10 = 26\n9. F(9) = F(8) + F(7) = ",
+    "ttft_seconds": 0.02552849999983664,
+    "wall_seconds": 3.001042290999976,
+    "truncated": true,
+    "eval_count": 256
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 6765,
+   "extracted": null,
+   "lenient_extracted": 7,
+   "lenient_passed": false,
+   "answer_tag": false,
+   "truncated": true
+  },
+  {
+   "task_id": "algorithmic-screening-009",
+   "category": "invalid_format",
+   "item_category": "algorithmic",
+   "prompt_sha256": "51d71425c9df06fe3e2357ae0e749d3f18fb9339fcdd0253ba9d416748068722",
+   "generation": {
+    "output": "To determine the number at position 4 in the sorted list [1, 39, 49, 6, 72, 55, 33], we need to follow these steps:\n\n1. Identify the position of the number we are interested in. In this case, the number is 49.\n2. Count the positions of the numbers in the list from left to right.\n3. The number 49 is at position 4 in the list.\n\nLet's list the numbers in the list and count their positions:\n\n- 1 is at position 1\n- 39 is at position 2\n- 49 is at position 3\n- 6 is at position 4\n- 72 is at position 5\n- 55 is at position 6\n- 33 is at position 7\n\nThe number 49 is at position 4 in the list.\n\nTherefore, the answer is \\(\\boxed{49}\\).",
+    "ttft_seconds": 0.03349395899999763,
+    "wall_seconds": 2.471583917000089,
+    "truncated": false,
+    "eval_count": 210
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 39,
+   "extracted": null,
+   "lenient_extracted": 49,
+   "lenient_passed": false,
+   "answer_tag": false,
+   "truncated": false
+  },
+  {
+   "task_id": "algorithmic-screening-010",
+   "category": "invalid_format",
+   "item_category": "algorithmic",
+   "prompt_sha256": "4fbbfe359378b1927a2d39eeb4fee69f4e5841e96c33d268fe280d2620a22995",
+   "generation": {
+    "output": "To determine the number at position 6 in the sorted list [15, 71, 52, 48, 18, 56, 10], we can follow these steps:\n\n1. Identify the position of the number we are looking for. In this case, we are looking for the number at position 6.\n2. Count the positions of the numbers in the list. The numbers are: 15, 71, 52, 48, 18, 56, 10.\n3. The position 6 is the 5th number in the list.\n4. The number at position 5 is 56.\n\nTherefore, the number at position 6 is \\(\\boxed{56}\\).",
+    "ttft_seconds": 0.03369741699998485,
+    "wall_seconds": 1.9465390000000298,
+    "truncated": false,
+    "eval_count": 165
+   },
+   "status": "scored",
+   "passed": false,
+   "expected": 56,
+   "extracted": null,
+   "lenient_extracted": 56,
+   "lenient_passed": true,
+   "answer_tag": false,
+   "truncated": false
+  }
+ ],
+ "sandbox": null,
+ "perplexity": {
+  "status": "unsupported",
+  "reason": "Backend did not provide held-out token log probabilities"
+ },
+ "summary": {
+  "items": 40,
+  "scored": 40,
+  "passed": 11,
+  "complete": true,
+  "accuracy": 0.275,
+  "accuracy_ci95": [
+   0.16108016247667337,
+   0.42834955806210573
+  ],
+  "accuracy_over_scored_items": 0.275,
+  "outcomes": {
+   "correct": 11,
+   "truncated": 8,
+   "incorrect": 6,
+   "invalid_format": 15
+  },
+  "not_scored": 0,
+  "lenient_accuracy": 0.525
+ },
+ "by_category": {
+  "algorithmic": {
+   "items": 10,
+   "scored": 10,
+   "passed": 0,
+   "complete": true,
+   "accuracy": 0.0,
+   "accuracy_ci95": [
+    0.0,
+    0.2775327998628892
+   ],
+   "accuracy_over_scored_items": 0.0,
+   "outcomes": {
+    "incorrect": 1,
+    "invalid_format": 5,
+    "truncated": 4
+   },
+   "not_scored": 0,
+   "lenient_accuracy": 0.2
+  },
+  "arithmetic": {
+   "items": 10,
+   "scored": 10,
+   "passed": 7,
+   "complete": true,
+   "accuracy": 0.7,
+   "accuracy_ci95": [
+    0.39677814746114537,
+    0.8922087325936989
+   ],
+   "accuracy_over_scored_items": 0.7,
+   "outcomes": {
+    "correct": 7,
+    "truncated": 1,
+    "incorrect": 1,
+    "invalid_format": 1
+   },
+   "not_scored": 0,
+   "lenient_accuracy": 0.8
+  },
+  "multi_step": {
+   "items": 10,
+   "scored": 10,
+   "passed": 0,
+   "complete": true,
+   "accuracy": 0.0,
+   "accuracy_ci95": [
+    0.0,
+    0.2775327998628892
+   ],
+   "accuracy_over_scored_items": 0.0,
+   "outcomes": {
+    "invalid_format": 7,
+    "truncated": 3
+   },
+   "not_scored": 0,
+   "lenient_accuracy": 0.7
+  },
+  "programming_concepts": {
+   "items": 10,
+   "scored": 10,
+   "passed": 4,
+   "complete": true,
+   "accuracy": 0.4,
+   "accuracy_ci95": [
+    0.16818032970623614,
+    0.6873262302663417
+   ],
+   "accuracy_over_scored_items": 0.4,
+   "outcomes": {
+    "correct": 4,
+    "incorrect": 4,
+    "invalid_format": 2
+   },
+   "not_scored": 0,
+   "lenient_accuracy": 0.4
+  }
+ },
+ "status": "completed",
+ "server_session": {
+  "load_seconds": 0.5977968750000855,
+  "command": [
+   "/Users/yaswanth/Desktop/FeatherAI/.feather/tools/llama.cpp/build/bin/llama-server",
+   "-m",
+   "/Users/yaswanth/Desktop/FeatherAI/models/qwen2.5-coder-0.5b-instruct-fp16.gguf",
+   "--host",
+   "127.0.0.1",
+   "--port",
+   "50876",
+   "-c",
+   "2048",
+   "-np",
+   "1",
+   "-t",
+   "4",
+   "--load-mode",
+   "none",
+   "--cache-ram",
+   "0",
+   "--fit",
+   "off",
+   "--no-warmup",
+   "-lv",
+   "4"
+  ],
+  "settings": {
+   "context": 2048,
+   "threads": 4,
+   "load_mode": "none",
+   "parallel": 1,
+   "cache_ram_mib": 0,
+   "fit": "off",
+   "server_warmup": false,
+   "n_gpu_layers": "default (all)",
+   "prompt_template": "chatml-v1: <|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant\n",
+   "executable_sha256": "4de055b01d5b27044bfd0dfd6f0a4b022b4359cb59c37d18451d99ed7a77cb67"
+  },
+  "runtime_version": "version: 0.9.0-dev (build 1, commit 9d340ec)\nbuilt with AppleClang 17.0.0.17000603 for Darwin arm64",
+  "time_l": {
+   "max_rss_bytes": 1538801664,
+   "peak_memory_footprint_bytes": 1664173976,
+   "page_reclaims": 106944,
+   "page_faults": 2464,
+   "involuntary_context_switches": 132727,
+   "instructions_retired": 2179896769341,
+   "real_seconds": 75.64,
+   "user_seconds": 114.54,
+   "sys_seconds": 2.46
+  },
+  "snapshots": {
+   "after_load": {
+    "time": 1794413278.063413,
+    "footprint_bytes": 1661992960
+   }
+  },
+  "sampled_rss_phase_peaks": {
+   "startup": 1497612288,
+   "after_load": 1339228160
+  },
+  "metal": {
+   "device": "Apple M2",
+   "offloaded_layers": [
+    25,
+    25
+   ],
+   "verified": true
+  },
+  "buffers_mib": {
+   "model_CPU": 259.66,
+   "model_MTL0": 942.43,
+   "kv_MTL0": 24.0,
+   "compute_MTL0": 37.51,
+   "compute_CPU": 9.02,
+   "kv_cells": 2048,
+   "kv_type_k": "f16",
+   "kv_type_v": "f16"
+  },
+  "system_before": {
+   "available_bytes": 3781214208,
+   "swap": {
+    "total_bytes": 1073741824,
+    "used_bytes": 64225280,
+    "free_bytes": 1009516544
+   },
+   "pressure_level": 1,
+   "thermal": {
+    "limits": {},
+    "no_thermal_warning_recorded": true,
+    "raw": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded"
+   }
+  },
+  "system_after": {
+   "available_bytes": 3713662976,
+   "swap": {
+    "total_bytes": 1073741824,
+    "used_bytes": 64225280,
+    "free_bytes": 1009516544
+   },
+   "pressure_level": 1,
+   "thermal": {
+    "limits": {},
+    "no_thermal_warning_recorded": true,
+    "raw": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded"
+   }
+  },
+  "system_delta": {
+   "seconds": 75.73120188713074,
+   "swap_used_delta_bytes": 0,
+   "pageins": 8818,
+   "pageouts": 193,
+   "swapins": 0,
+   "swapouts": 0,
+   "page_size": 16384,
+   "max_pressure_level": 1
+  },
+  "docker_vm_running": false,
+  "exit_code": 0
+ }
+}

@@ -67,7 +67,7 @@ Quantization speeds up decoding much more on this 0.5B model (×1.47 and ×1.77)
 
 | Comparison | Δ | 95% CI | McNemar p | Pre-registered label |
 |---|---:|---|---:|---|
-| reasoning overall, Q8_0 | −3.75 pp | [−7.5, −0.6] | 0.070 | detectable change (pre-registered label; unresolved, see below) |
+| reasoning overall, Q8_0 | −3.75 pp | [−7.5, −0.6] | 0.070 | detectable change (pre-registered label; **did not replicate on reasoning-v2**, §8) |
 | reasoning programming concepts, Q8_0 | −12.5 pp | [−22.5, −2.5] | 0.062 | detectable change (pre-registered label; unresolved) |
 | reasoning arithmetic, Q8_0 | −2.5 pp | [−10, +5] | 1.0 | no detectable change |
 | reasoning overall, Q4_K_M | −1.25 pp | [−7.5, +5.0] | 0.845 | no detectable change |
@@ -146,6 +146,45 @@ For Q8_0 the 95% and 90% intervals are identical because only 5 problems differ 
 
 **What this does and does not show.**
 - **Bounded conclusion.** On these 360 held-out coding problems, Q8_0 and Q4_K_M preserved coding performance within the pre-registered ±10 pp margin. That is an equivalence claim for this coding evaluation only; it says nothing about equal overall capability.
-- This says nothing about the Q8_0 *reasoning* signal from §3. That is tested only by the separate `reasoning-v2` replication, which has not been run.
+- This says nothing about the Q8_0 *reasoning* signal from §3. That is tested only by the separate `reasoning-v2` replication (§8), which ran after this section was written.
 - **Known defect in these reports:** each item's `execution.seconds` field holds the machine's monotonic clock minus 1 (roughly machine uptime), not the run time. A variable reuse in `sandbox.py`, introduced in `fc93634`, caused it; it is fixed after this run. The analysis never uses that field, and the committed evidence is left unmodified.
 - "Runtime error" is the largest failure category for every variant. Those are failures in the generated code (exceptions inside the sandbox), not infrastructure failures.
+
+## 8. reasoning-v2: pre-registered replication of the Q8_0 reasoning signal
+
+The plan, the outcome mapping and the settings were all committed before any reasoning-v2 output existed (`docs/DECISIONS.md`, reasoning replication plan, commits `5ccf17e` and `acc33d8`). The dataset is frozen (`16202bdd…`): 600 held-out items (150 per category) plus 40 screening, with no question shared with reasoning-v1. Evidence is in `experiments/studies/qwen2.5-coder-0.5b-clean/reasoning-v2/`.
+
+**Completeness, provenance and attempts.**
+- screening-F16 scored 40/40. Held-out F16, Q8_0 and Q4_K_M each scored 600/600, with no infrastructure failures and no exclusions.
+- Dataset and model hashes were verified (F16 `bb69b303`, Q8_0 `0d93a22a`, Q4_K_M `3dc9c14a`). All results come from one run at clean commit `de4ccf9`, in the registered order and settings (context 2048, temperature 0, seed 42, `n_predict` 256).
+- Three earlier launches produced no output: two crashed on a missing suite registration (fixed in `de4ccf9`; settings and analysis unchanged), and one was rejected by the F16 runtime memory guard. All are recorded in `run.json` and explained in `ATTEMPTS.md`.
+
+**Pass rates (strict `Answer:` scoring; Wilson 95%):** F16 160/600 (26.7%) [23.3, 30.3]; Q8_0 156/600 (26.0%) [22.7, 29.7]; Q4_K_M 159/600 (26.5%) [23.1, 30.2]. F16 meets the baseline-validity rule.
+
+**Primary analysis (paired, exact two-sided McNemar, Holm across {Q8_0, Q4_K_M}):**
+
+| Variant | Δ vs F16 | 95% CI | 90% CI | F16-only / variant-only | p | Holm-adjusted p | Inside ±5 pp (90% CI) |
+|---|---:|---|---|---|---:|---:|---|
+| Q8_0 | −0.67 pp | [−1.83, +0.50] | [−1.67, +0.33] | 8 / 4 | 0.388 | 0.775 | yes |
+| Q4_K_M | −0.17 pp | [−3.17, +2.83] | [−2.83, +2.33] | 45 / 44 | 1.00 | 1.00 | yes |
+
+**Registered outcome for the Q8_0 signal: not detected.** The test does not reject, and the 90% CI lies within the pre-registered ±5 pp equivalence margin.
+- reasoning-v1 suggested a Q8_0 drop of −3.75 pp. reasoning-v2 is 3.75× larger and independent of it, and its estimate is −0.67 pp, with the whole 95% CI above −1.83 pp.
+- Observed Q8_0 discordance was 0.02 (12 of 600 items), below the planning range, so the study was not under-powered for this question.
+
+**Exploratory, per category (not tested for significance; F16 vs Q8_0):**
+
+| Category | F16 | Q8_0 |
+|---|---:|---:|
+| arithmetic | 70.7% | 71.3% |
+| programming concepts | 31.3% | 29.3% |
+| algorithmic | 4.7% | 3.3% |
+| multi-step | 0.0% | 0.0% |
+
+The programming-concepts gap that drove the reasoning-v1 signal (−12.5 pp) shrank to −2.0 pp, with 4 F16-only and 1 Q8_0-only items.
+
+**Interpretation and limits.**
+- The reasoning-v1 Q8_0 signal did not replicate. The most likely explanation is chance in a small sample: 8 discordant items out of 160, across 12 unadjusted comparisons.
+- The equivalence conclusion covers this generated, integer-answer reasoning suite with strict extraction. It is not a claim about every kind of reasoning.
+- Most answers are not scored correct because of format and truncation rather than wrong arithmetic: F16 had 239 invalid-format and 111 truncated answers out of 600. Those failure modes are part of what is compared, and they are identical in settings across variants.
+- Q4_K_M had more truncated answers (142 vs 111 for F16) but fewer invalid-format ones (201 vs 239). That is exploratory only.

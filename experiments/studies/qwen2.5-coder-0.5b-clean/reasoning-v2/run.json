@@ -1,0 +1,363 @@
+{
+ "kind": "real-run",
+ "suite": "reasoning-v2",
+ "dataset_sha256": "16202bdd23f78d5f2d0b247e707a5dc84afecc58b6b2df3fcc50bd5fd7fa1dda",
+ "settings": {
+  "context": 2048,
+  "seed": 42,
+  "temperature": 0,
+  "tokens": 256
+ },
+ "plan": [
+  "screening-F16",
+  "heldout-F16",
+  "heldout-Q8_0",
+  "heldout-Q4_K_M"
+ ],
+ "runs": {
+  "screening-F16": {
+   "status": "completed",
+   "artifact_sha256": "bb69b303c65113199b19c72f9c75bca449200b6cdf807e0f7d8822f669c02e64",
+   "summary": {
+    "items": 40,
+    "scored": 40,
+    "passed": 11,
+    "complete": true,
+    "accuracy": 0.275,
+    "accuracy_ci95": [
+     0.16108016247667337,
+     0.42834955806210573
+    ],
+    "accuracy_over_scored_items": 0.275,
+    "outcomes": {
+     "correct": 11,
+     "truncated": 8,
+     "incorrect": 6,
+     "invalid_format": 15
+    },
+    "not_scored": 0,
+    "lenient_accuracy": 0.525
+   },
+   "file": "screening-F16.json",
+   "infrastructure_failures": [],
+   "provenance": {
+    "at": "2026-11-11T16:07:52.907865+00:00",
+    "repository_commit": "de4ccf9315d1eeda161e67452f4d1f17d95682f4",
+    "repository_dirty": false,
+    "working_tree_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  },
+  "heldout-F16": {
+   "status": "completed",
+   "artifact_sha256": "bb69b303c65113199b19c72f9c75bca449200b6cdf807e0f7d8822f669c02e64",
+   "summary": {
+    "items": 600,
+    "scored": 600,
+    "passed": 160,
+    "complete": true,
+    "accuracy": 0.26666666666666666,
+    "accuracy_ci95": [
+     0.23284852244066429,
+     0.30345360469906274
+    ],
+    "accuracy_over_scored_items": 0.26666666666666666,
+    "outcomes": {
+     "correct": 160,
+     "incorrect": 90,
+     "invalid_format": 239,
+     "truncated": 111
+    },
+    "not_scored": 0,
+    "lenient_accuracy": 0.5216666666666666
+   },
+   "file": "heldout-F16.json",
+   "infrastructure_failures": [],
+   "provenance": {
+    "at": "2026-11-11T16:07:52.907865+00:00",
+    "repository_commit": "de4ccf9315d1eeda161e67452f4d1f17d95682f4",
+    "repository_dirty": false,
+    "working_tree_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  },
+  "heldout-Q8_0": {
+   "status": "completed",
+   "artifact_sha256": "0d93a22a0efbdbacb9306457836164baf2b50dc744f4cd64050150c551119108",
+   "summary": {
+    "items": 600,
+    "scored": 600,
+    "passed": 156,
+    "complete": true,
+    "accuracy": 0.26,
+    "accuracy_ci95": [
+     0.22650792164694153,
+     0.2965456948396349
+    ],
+    "accuracy_over_scored_items": 0.26,
+    "outcomes": {
+     "correct": 156,
+     "incorrect": 90,
+     "invalid_format": 236,
+     "truncated": 118
+    },
+    "not_scored": 0,
+    "lenient_accuracy": 0.5083333333333333
+   },
+   "file": "heldout-Q8_0.json",
+   "infrastructure_failures": [],
+   "provenance": {
+    "at": "2026-11-11T16:07:52.907865+00:00",
+    "repository_commit": "de4ccf9315d1eeda161e67452f4d1f17d95682f4",
+    "repository_dirty": false,
+    "working_tree_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  },
+  "heldout-Q4_K_M": {
+   "status": "completed",
+   "artifact_sha256": "3dc9c14a9c9a560ab29b2572e2549947566a30e2c024ba8518b1164d6f33a2a2",
+   "summary": {
+    "items": 600,
+    "scored": 600,
+    "passed": 159,
+    "complete": true,
+    "accuracy": 0.265,
+    "accuracy_ci95": [
+     0.23126241057476435,
+     0.30172758890167506
+    ],
+    "accuracy_over_scored_items": 0.265,
+    "outcomes": {
+     "correct": 159,
+     "incorrect": 98,
+     "truncated": 142,
+     "invalid_format": 201
+    },
+    "not_scored": 0,
+    "lenient_accuracy": 0.47833333333333333
+   },
+   "file": "heldout-Q4_K_M.json",
+   "infrastructure_failures": [],
+   "provenance": {
+    "at": "2026-11-11T16:07:52.907865+00:00",
+    "repository_commit": "de4ccf9315d1eeda161e67452f4d1f17d95682f4",
+    "repository_dirty": false,
+    "working_tree_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   }
+  }
+ },
+ "started": {
+  "at": "2026-11-11T15:56:38.250778+00:00",
+  "repository_commit": "acc33d8645afe21536c78dc0135bde8a7fbe1008",
+  "repository_dirty": false,
+  "working_tree_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+ },
+ "study": "experiments/studies/qwen2.5-coder-0.5b-clean",
+ "resumptions": [
+  {
+   "at": "2026-11-11T15:56:51.176201+00:00",
+   "repository_commit": "acc33d8645afe21536c78dc0135bde8a7fbe1008",
+   "repository_dirty": false,
+   "working_tree_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "pending_runs": [
+    "screening-F16",
+    "heldout-F16",
+    "heldout-Q8_0",
+    "heldout-Q4_K_M"
+   ],
+   "note": "Recorded automatically by the runner on restart."
+  },
+  {
+   "at": "2026-11-11T15:58:53.971141+00:00",
+   "repository_commit": "de4ccf9315d1eeda161e67452f4d1f17d95682f4",
+   "repository_dirty": false,
+   "working_tree_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "pending_runs": [
+    "screening-F16",
+    "heldout-F16",
+    "heldout-Q8_0",
+    "heldout-Q4_K_M"
+   ],
+   "note": "Recorded automatically by the runner on restart."
+  },
+  {
+   "at": "2026-11-11T16:07:52.907865+00:00",
+   "repository_commit": "de4ccf9315d1eeda161e67452f4d1f17d95682f4",
+   "repository_dirty": false,
+   "working_tree_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "pending_runs": [
+    "screening-F16",
+    "heldout-F16",
+    "heldout-Q8_0",
+    "heldout-Q4_K_M"
+   ],
+   "note": "Recorded automatically by the runner on restart."
+  }
+ ],
+ "analysis": {
+  "items": 600,
+  "baseline_solved": 160,
+  "baseline_informative": true,
+  "pass_rates": {
+   "F16": 0.26666666666666666,
+   "Q8_0": 0.26,
+   "Q4_K_M": 0.265
+  },
+  "comparisons": {
+   "Q8_0": {
+    "items": 600,
+    "baseline_accuracy": 0.26666666666666666,
+    "candidate_accuracy": 0.26,
+    "difference": -0.006666666666666667,
+    "difference_ci95": [
+     -0.018333333333333333,
+     0.005
+    ],
+    "ci_method": "paired bootstrap over items, 10000 resamples, seed 20261110",
+    "baseline_only_correct": 8,
+    "candidate_only_correct": 4,
+    "mcnemar_exact_p": 0.3876953125,
+    "difference_ci90": [
+     -0.016666666666666666,
+     0.0033333333333333335
+    ],
+    "equivalent_within_5pp": true,
+    "exploratory_by_category": {
+     "algorithmic": {
+      "items": 150,
+      "baseline_accuracy": 0.04666666666666667,
+      "candidate_accuracy": 0.03333333333333333,
+      "difference": -0.013333333333333334,
+      "difference_ci95": [
+       -0.03333333333333333,
+       0.0
+      ],
+      "baseline_only_correct": 2,
+      "candidate_only_correct": 0,
+      "mcnemar_exact_p": 0.5
+     },
+     "arithmetic": {
+      "items": 150,
+      "baseline_accuracy": 0.7066666666666667,
+      "candidate_accuracy": 0.7133333333333334,
+      "difference": 0.006666666666666667,
+      "difference_ci95": [
+       -0.02,
+       0.03333333333333333
+      ],
+      "baseline_only_correct": 2,
+      "candidate_only_correct": 3,
+      "mcnemar_exact_p": 1.0
+     },
+     "multi_step": {
+      "items": 150,
+      "baseline_accuracy": 0.0,
+      "candidate_accuracy": 0.0,
+      "difference": 0.0,
+      "difference_ci95": [
+       0.0,
+       0.0
+      ],
+      "baseline_only_correct": 0,
+      "candidate_only_correct": 0,
+      "mcnemar_exact_p": 1.0
+     },
+     "programming_concepts": {
+      "items": 150,
+      "baseline_accuracy": 0.31333333333333335,
+      "candidate_accuracy": 0.29333333333333333,
+      "difference": -0.02,
+      "difference_ci95": [
+       -0.05333333333333334,
+       0.006666666666666667
+      ],
+      "baseline_only_correct": 4,
+      "candidate_only_correct": 1,
+      "mcnemar_exact_p": 0.375
+     }
+    },
+    "p": 0.3876953125,
+    "holm_adjusted_p": 0.775390625,
+    "reject_at_family_0.05": false
+   },
+   "Q4_K_M": {
+    "items": 600,
+    "baseline_accuracy": 0.26666666666666666,
+    "candidate_accuracy": 0.265,
+    "difference": -0.0016666666666666668,
+    "difference_ci95": [
+     -0.03166666666666667,
+     0.028333333333333332
+    ],
+    "ci_method": "paired bootstrap over items, 10000 resamples, seed 20261110",
+    "baseline_only_correct": 45,
+    "candidate_only_correct": 44,
+    "mcnemar_exact_p": 1.0,
+    "difference_ci90": [
+     -0.028333333333333332,
+     0.023333333333333334
+    ],
+    "equivalent_within_5pp": true,
+    "exploratory_by_category": {
+     "algorithmic": {
+      "items": 150,
+      "baseline_accuracy": 0.04666666666666667,
+      "candidate_accuracy": 0.04666666666666667,
+      "difference": 0.0,
+      "difference_ci95": [
+       -0.04,
+       0.04
+      ],
+      "baseline_only_correct": 4,
+      "candidate_only_correct": 4,
+      "mcnemar_exact_p": 1.0
+     },
+     "arithmetic": {
+      "items": 150,
+      "baseline_accuracy": 0.7066666666666667,
+      "candidate_accuracy": 0.7333333333333333,
+      "difference": 0.02666666666666667,
+      "difference_ci95": [
+       -0.04666666666666667,
+       0.1
+      ],
+      "baseline_only_correct": 15,
+      "candidate_only_correct": 19,
+      "mcnemar_exact_p": 0.6075913612730801
+     },
+     "multi_step": {
+      "items": 150,
+      "baseline_accuracy": 0.0,
+      "candidate_accuracy": 0.0,
+      "difference": 0.0,
+      "difference_ci95": [
+       0.0,
+       0.0
+      ],
+      "baseline_only_correct": 0,
+      "candidate_only_correct": 0,
+      "mcnemar_exact_p": 1.0
+     },
+     "programming_concepts": {
+      "items": 150,
+      "baseline_accuracy": 0.31333333333333335,
+      "candidate_accuracy": 0.28,
+      "difference": -0.03333333333333333,
+      "difference_ci95": [
+       -0.12,
+       0.06
+      ],
+      "baseline_only_correct": 26,
+      "candidate_only_correct": 21,
+      "mcnemar_exact_p": 0.5600646295802107
+     }
+    },
+    "p": 1.0,
+    "holm_adjusted_p": 1.0,
+    "reject_at_family_0.05": false
+   }
+  },
+  "q8_discordance": 0.02,
+  "power_note": "observed Q8_0 discordance within the registered planning range",
+  "q8_signal": "not detected (equivalent within \u00b15 pp)"
+ },
+ "finished_at": "2026-11-11T17:18:07.743848+00:00"
+}
