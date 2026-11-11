@@ -2,6 +2,20 @@
 
 This update supersedes the status lines of the v0.2 report below wherever they conflict.
 
+**Bounded conclusion (Qwen2.5-Coder-0.5B, Apple M2 8 GiB).** On these evaluated suites, Q8_0 and Q4_K_M met the registered equivalence margins against F16 while improving decode speed and reducing peak memory:
+- coding-v2 within ±10 pp;
+- reasoning-v2 within ±5 pp;
+- decode ×1.47 and ×1.77;
+- peak memory 899 and 721 MiB vs 1 590 MiB.
+
+The earlier Q8_0 reasoning signal from reasoning-v1 was **not replicated under the registered analysis**. It has not been disproved in general.
+
+> **Caveats.**
+> - **Possible contamination:** coding-v2 is built from MBPP, a public benchmark Qwen2.5-Coder may have seen in training.
+> - **Low absolute accuracy:** F16 solves only 38% of coding-v2 and 27% of reasoning-v2, with many format and truncation failures. Equivalence describes paired differences between variants, not useful capability.
+> - **Hardware-specific measurements:** all speed and memory figures come from one 8 GiB M2 under background load, with llama.cpp `9d340ec`.
+
+
 | Item | Status | Evidence |
 |---|---|---|
 | Live Codex automation | **Verified.** Codex CLI 0.167.0 (updated from 0.142.3); `gpt-6.1-sol` accepted. A stdin bug in the orchestrator was fixed in `fb6c29c`, and both dependent self-test tasks then completed with commits. | `experiments/automation-selftest-live.json` |

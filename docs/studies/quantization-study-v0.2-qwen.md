@@ -67,7 +67,7 @@ Quantization speeds up decoding much more on this 0.5B model (×1.47 and ×1.77)
 
 | Comparison | Δ | 95% CI | McNemar p | Pre-registered label |
 |---|---:|---|---:|---|
-| reasoning overall, Q8_0 | −3.75 pp | [−7.5, −0.6] | 0.070 | detectable change (pre-registered label; **did not replicate on reasoning-v2**, §8) |
+| reasoning overall, Q8_0 | −3.75 pp | [−7.5, −0.6] | 0.070 | detectable change (pre-registered label; **not replicated under the registered analysis on reasoning-v2**, §8) |
 | reasoning programming concepts, Q8_0 | −12.5 pp | [−22.5, −2.5] | 0.062 | detectable change (pre-registered label; unresolved) |
 | reasoning arithmetic, Q8_0 | −2.5 pp | [−10, +5] | 1.0 | no detectable change |
 | reasoning overall, Q4_K_M | −1.25 pp | [−7.5, +5.0] | 0.845 | no detectable change |
@@ -184,7 +184,7 @@ The plan, the outcome mapping and the settings were all committed before any rea
 The programming-concepts gap that drove the reasoning-v1 signal (−12.5 pp) shrank to −2.0 pp, with 4 F16-only and 1 Q8_0-only items.
 
 **Interpretation and limits.**
-- The reasoning-v1 Q8_0 signal did not replicate. This is consistent with chance in a small sample (8 discordant items out of 160, across 12 unadjusted comparisons). An effect specific to the reasoning-v1 item set cannot be ruled out.
+- The reasoning-v1 Q8_0 signal was not replicated under the registered analysis; it has not been disproved in general. This is consistent with chance in a small sample (8 discordant items out of 160, across 12 unadjusted comparisons). An effect specific to the reasoning-v1 item set cannot be ruled out.
 - The equivalence conclusion covers this generated, integer-answer reasoning suite with strict extraction. It is not a claim about every kind of reasoning.
 - Most answers are not scored correct because of format and truncation rather than wrong arithmetic: F16 had 239 invalid-format and 111 truncated answers out of 600. Those failure modes are part of what is compared, and they are identical in settings across variants.
 - Q4_K_M had more truncated answers (142 vs 111 for F16) but fewer invalid-format ones (201 vs 239). That is exploratory only.

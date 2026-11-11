@@ -2,13 +2,26 @@
 
 A local-first laboratory for quantizing language models, measuring performance, evaluating quality and selecting tested configurations. Python/FastAPI backend, React/TypeScript dashboard, SQLite storage. One project root; application code is in `backend/`.
 
+**Bounded conclusion (Qwen2.5-Coder-0.5B, Apple M2 8 GiB).** On these evaluated suites, Q8_0 and Q4_K_M met the registered equivalence margins against F16 while improving decode speed and reducing peak memory:
+- coding-v2 within ±10 pp;
+- reasoning-v2 within ±5 pp;
+- decode ×1.47 and ×1.77;
+- peak memory 899 and 721 MiB vs 1 590 MiB.
+
+The earlier Q8_0 reasoning signal from reasoning-v1 was **not replicated under the registered analysis**. It has not been disproved in general.
+
+> **Caveats.**
+> - **Possible contamination:** coding-v2 is built from MBPP, a public benchmark Qwen2.5-Coder may have seen in training.
+> - **Low absolute accuracy:** F16 solves only 38% of coding-v2 and 27% of reasoning-v2, with many format and truncation failures. Equivalence describes paired differences between variants, not useful capability.
+> - **Hardware-specific measurements:** all speed and memory figures come from one 8 GiB M2 under background load, with llama.cpp `9d340ec`.
+
 **Current status (v0.2):**
 - **Working:** coding evaluation runs in a hardened Docker sandbox, and the reasoning and coding datasets are hash-pinned.
 - **Complete study:** the pre-registered quantization study is complete for SmolLM2-135M ([study](docs/studies/quantization-study-v0.2.md)).
 - **End-to-end:** one traceable SmolLM2 workflow went through the API (task08 complete); its recommendation truthfully found no configuration that meets the pre-registered 70% coding requirement.
 - **Qwen2.5-Coder-0.5B study:** complete under clean conditions ([report](docs/studies/quantization-study-v0.2-qwen.md)). Q4_K_M decodes 1.77× faster than F16 with 55% less peak memory; no detectable quality loss at these sample sizes.
 - **coding-v2 (360 held-out MBPP problems):** on Qwen, Q8_0 and Q4_K_M preserved coding performance within the pre-registered ±10 pp margin (−0.28 pp and −0.83 pp vs F16). This is a coding-only result; MBPP is public, so contamination is possible.
-- **Reasoning replication (reasoning-v2, 600 items):** the earlier Q8_0 reasoning drop did not replicate: −0.67 pp, equivalent to F16 within the pre-registered ±5 pp on this reasoning suite.
+- **Reasoning replication (reasoning-v2, 600 items):** the earlier Q8_0 reasoning drop was not replicated under the registered analysis: −0.67 pp, equivalent to F16 within the pre-registered ±5 pp on this reasoning suite.
 - **Live Codex automation:** verified with codex-cli 0.167.0 (`experiments/automation-selftest-live.json`).
 - **Qwen end-to-end:** completed on retry (workflow `5cf6580c`, passes the task08 gate). The recommendation is `no_eligible_configuration`: coding lower bounds 0.52 and 0.46 are below the pre-registered 0.70. The first attempt (`e14e38ca`) was rejected by the memory guard and is preserved.
 - **Deferred:** the optional 1.5B experiment.
