@@ -207,3 +207,11 @@ def test_holm_and_coding_v2_analysis_rules():
     assert result['baseline_informative'] and result['comparisons']['Q8_0']['equivalence_label'] == 'equivalent within +/-10 pp'
     q4 = result['comparisons']['Q4_K_M']
     assert q4['difference'] == pytest.approx(-40 / 360) and q4['reject_at_family_0.05'] and q4['equivalence_label'] == 'not shown equivalent'
+
+
+def test_reasoning_v2_outcome_mapping():
+    from backend.study.reasoning_v2_run import classify
+    assert classify({'reject_at_family_0.05': True, 'difference': -0.04, 'equivalent_within_5pp': False}) == 'replicated'
+    assert classify({'reject_at_family_0.05': True, 'difference': 0.03, 'equivalent_within_5pp': True}).startswith('opposite')
+    assert classify({'reject_at_family_0.05': False, 'difference': -0.01, 'equivalent_within_5pp': True}).startswith('not detected')
+    assert classify({'reject_at_family_0.05': False, 'difference': -0.03, 'equivalent_within_5pp': False}) == 'inconclusive'

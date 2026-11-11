@@ -129,3 +129,13 @@ Sources: https://learn.chatgpt.com/docs/agent-configuration/subagents and https:
 - **Equivalence.** Margin ±5 pp, using the 90% paired-bootstrap CI.
 - **Freeze rule.** The dataset is frozen and hash-pinned, and this plan committed, before any model runs on reasoning-v2.
 - **Freeze record (2026-11-10).** `reasoning-v2` was built and frozen before any model ran on it: 600 held-out items (150 per category) + 40 screening, seed 20261110, no question shared with reasoning-v1, SHA-256 `16202bdd…`. Running it on the Qwen variants is the next step of the replication.
+- **Execution and outcome mapping (recorded 2026-11-11, before any reasoning-v2 model output).**
+  - **Settings.** Identical to the reasoning-v1 study: context 2048, temperature 0, seed 42, `n_predict` 256, ChatML, `--load-mode none`, strict `Answer:` extraction.
+  - **Artifacts.** The hash-verified F16/Q8_0/Q4_K_M from `experiments/studies/qwen2.5-coder-0.5b-clean`.
+  - **Order.** A screening dry run on F16 first (format check only; never analysed; prompts frozen), then held-out F16 → Q8_0 → Q4_K_M, sequentially, from a clean committed tree. The runner (`backend/study/reasoning_v2_run.py`) records resumptions and per-item infrastructure failures itself.
+  - **Primary result, Q8_0 vs F16 on all 600 held-out items:**
+    - **replicated:** Holm-adjusted exact McNemar rejects at family α = 0.05 *and* Q8_0 is lower;
+    - **opposite direction:** rejects with Q8_0 higher;
+    - **not detected:** not rejected *and* the 90% paired-bootstrap CI lies inside (−5, +5) pp (equivalent within ±5 pp);
+    - **inconclusive:** otherwise, or if any held-out item is unscored.
+  - **Reporting.** The baseline-validity rule (F16 solves at least 10 and at least 25%) is reported. Q4_K_M is reported with the same rules. Per-category results are exploratory. If observed Q8_0 discordance is ≥ 0.10, that is reported as possible under-power.
